@@ -51,12 +51,18 @@ return {
 			pickers = {
 				find_files = {
 					path_display = { "filename_first" },
+					no_ignore = false,
+					hidden = true,
 				},
 				git_files = {
 					path_display = { "filename_first" },
+					no_ignore = false,
+					hidden = true,
 				},
 				live_grep = {
 					path_display = { "filename_first" },
+					no_ignore = false,
+					hidden = true,
 				},
 				buffers = {
 					path_display = { "filename_first" },

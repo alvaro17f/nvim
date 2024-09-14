@@ -20,26 +20,6 @@ keymap("n", "<leader>c", ":e $MYVIMRC<CR>", { noremap = true, silent = true, des
 keymap("n", "<leader>p", '"*p', { noremap = true, silent = true, desc = "Paste after from computer" })
 keymap("n", "<leader>P", '"*P', { noremap = true, silent = true, desc = "Paste before from computer" })
 
---REPLACE
-keymap(
-	"n",
-	"<leader>mr",
-	":%s##gci<Left><Left><Left><Left>",
-	{ noremap = true, silent = false, desc = "Manual replace" }
-)
-keymap(
-	"n",
-	"<leader>r",
-	"*:%s###gci<Left><Left><Left><Left>",
-	{ noremap = true, silent = false, desc = "Replace current word" }
-)
-keymap(
-	"v",
-	"<leader>r",
-	'"hy:%s#<C-r>h##gci<Left><Left><Left><Left>',
-	{ noremap = true, silent = false, desc = "Replace current word" }
-)
-
 --BUFFERS
 keymap("n", "<c-x>", ":bdelete<CR>", { noremap = true, silent = true, desc = "Buffer delete" })
 keymap("n", "<c-tab>", ":bp<CR>", { noremap = true, silent = true, desc = "Buffer previous" })

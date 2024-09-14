@@ -1,14 +1,14 @@
-# NVIM CONFIGURATION
+# NVIM
 
 ## Introduction
 
-This is the configuration file for NVIM (Neovim), a highly customizable text editor.
-This README provides an overview of the configuration and links to useful plugins.
+This is the configuration file for [nvim](https://github.com/neovim/neovim), a highly customizable text editor.
 
-## Plugins
+## Requirements
 
-- [lazy.nvim](https://github.com/folke/lazy.nvim): A Neovim plugin for lazy loading.
-- [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim): A Neovim plugin for lazygit integration.
+- [lazygit](https://github.com/jesseduffield/lazygit)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) (optional)
+- [fd](https://github.com/sharkdp/fd) (optional)
 
 ## Usage
 

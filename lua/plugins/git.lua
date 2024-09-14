@@ -1,3 +1,7 @@
+if vim.fn.executable("lazygit") == 0 then
+	return { vim.notify("Please install 'lazygit'", vim.log.levels.ERROR) }
+end
+
 require("utils.lazygit_toggle")
 local is_git_repo = require("utils.is_git_repo")
 

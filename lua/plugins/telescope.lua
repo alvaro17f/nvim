@@ -1,9 +1,13 @@
+local is_git_repo = require("utils.is_git_repo")
+
 return {
 	"nvim-telescope/telescope.nvim",
 	lazy = false,
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"davvid/telescope-git-grep.nvim",
+	},
 	keys = {
-		{ mode = "n", "<C-f>", ":Telescope live_grep<CR>", silent = true, desc = "Telescope grep" },
 		{ mode = "n", "<C-b>", ":Telescope buffers<CR>", silent = true, desc = "Telescope buffers" },
 		{
 			mode = "n",
@@ -12,8 +16,23 @@ return {
 			silent = true,
 			desc = "Telescope files",
 		},
+		{
+			mode = "n",
+			"<C-f>",
+
+			function()
+				if is_git_repo() then
+					vim.cmd("Telescope git_grep")
+				else
+					vim.cmd("Telescope live_grep")
+				end
+			end,
+			silent = true,
+			desc = "Telescope grep",
+		},
 	},
 	config = function()
+		require("telescope").load_extension("git_grep")
 		local actions = require("telescope.actions")
 		require("telescope").setup({
 			defaults = {

@@ -1,3 +1,7 @@
+if require("utils.flags").get_flags("copilot") == false then
+	return
+end
+
 ---@diagnostic disable: undefined-doc-name
 return {
 	{

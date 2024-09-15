@@ -1,5 +1,5 @@
 local DEFAULT_FLAGS = {
-	copilot = true,
+	copilot = false,
 }
 
 local flags_path = vim.fn.stdpath("data") .. "/flags"

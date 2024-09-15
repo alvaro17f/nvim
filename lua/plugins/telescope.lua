@@ -9,6 +9,7 @@ return {
 	},
 	keys = {
 		{ mode = "n", "<C-b>", ":Telescope buffers<CR>", silent = true, desc = "Telescope buffers" },
+		{ mode = "n", "<C-BS>", ":Telescope oldfiles<CR>", silent = true, desc = "Telescope recent files" },
 		{
 			mode = "n",
 			"<C-e>",

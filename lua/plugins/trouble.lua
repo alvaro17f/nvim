@@ -1,13 +1,9 @@
 return {
 	"folke/trouble.nvim",
+	opts = {},
 	cmd = "Trouble",
-	keys = {
-		{
-			mode = "n",
-			"X",
-			"<cmd>Trouble diagnostics toggle focus=true<cr>",
-			silent = true,
-			desc = "Trouble diagnostics",
-		},
-	},
+  --stylua: ignore
+  keys = {
+    { mode = "n", "X", "<cmd>Trouble diagnostics toggle focus=true<cr>", silent = true, desc = "Trouble diagnostics" },
+  },
 }

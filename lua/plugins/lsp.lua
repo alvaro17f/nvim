@@ -1,4 +1,3 @@
----@diagnostic disable: unused-local
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local LSP_SERVERS = {
 	"astro",

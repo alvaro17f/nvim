@@ -29,3 +29,11 @@ local function lg_toggle()
 end
 
 vim.api.nvim_create_user_command("LazyGitToggle", lg_toggle, {})
+vim.keymap.set("n", "<leader>gg", function()
+	if require("utils.is_git_repo")() then
+		vim.cmd("LazyGitToggle")
+	end
+end, {
+	silent = true,
+	desc = "Lazygit",
+})

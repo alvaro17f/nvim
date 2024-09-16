@@ -4,23 +4,11 @@ else
 	vim.notify("Please install 'lazygit'", vim.log.levels.ERROR)
 end
 
-local is_git_repo = require("utils.is_git_repo")
-
 return {
 	{
 		"lewis6991/gitsigns.nvim",
 		lazy = false,
 		keys = {
-			{
-				mode = "n",
-				"<leader>gg",
-				function()
-					if is_git_repo() then
-						vim.cmd("LazyGitToggle")
-					end
-				end,
-				desc = "Lazygit",
-			},
 			{
 				mode = "n",
 				"<leader>gp",

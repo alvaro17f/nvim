@@ -1,14 +1,48 @@
 return {
   "folke/trouble.nvim",
-  opts = {},
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "folke/todo-comments.nvim",
+  },
+  opts = {
+    focus = true,
+  },
   cmd = "Trouble",
   keys = {
     {
       mode = "n",
-      "<leader>x",
-      "<cmd>Trouble diagnostics toggle focus=true<cr>",
+      "<leader>xw",
+      ":Trouble diagnostics toggle<CR>",
       silent = true,
-      desc = "Trouble diagnostics",
+      desc = "Trouble: workspace diagnostics",
+    },
+    {
+      mode = "n",
+      "<leader>xd",
+      ":Trouble diagnostics toggle filter.buf=0<CR>",
+      silent = true,
+      desc = "Trouble: document diagnostics",
+    },
+    {
+      mode = "n",
+      "<leader>xq",
+      ":Trouble quickfix toggle<CR>",
+      silent = true,
+      desc = "Trouble: quickfix list",
+    },
+    {
+      mode = "n",
+      "<leader>xl",
+      ":Trouble loclist toggle<CR>",
+      silent = true,
+      desc = "Trouble: location list",
+    },
+    {
+      mode = "n",
+      "<leader>xt",
+      ":Trouble todo toggle<CR>",
+      silent = true,
+      desc = "Trouble: TODO",
     },
   },
 }

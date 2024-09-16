@@ -8,6 +8,8 @@ return {
 		"davvid/telescope-git-grep.nvim",
 	},
 	keys = {
+
+		{ mode = "n", "gr", ":Telescope lsp_references<CR>", silent = true, desc = "Telescope references" },
 		{ mode = "n", "<C-b>", ":Telescope buffers<CR>", silent = true, desc = "Telescope buffers" },
 		{ mode = "n", "<C-BS>", ":Telescope oldfiles<CR>", silent = true, desc = "Telescope recent files" },
 		{
@@ -68,7 +70,12 @@ return {
 				buffers = {
 					path_display = { "filename_first" },
 					ignore_current_buffer = true,
-					sort_lastused = true,
+					sort_mru = true,
+				},
+				lsp_references = {
+					path_display = { "filename_first" },
+					include_current_line = true,
+					show_line = false,
 				},
 			},
 		})

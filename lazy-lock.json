@@ -17,6 +17,7 @@
   "mini.surround": { "branch": "main", "commit": "0e67c4bc147f2a15cee94e7c94dcc0e115b9f55e" },
   "nerdcommenter": { "branch": "master", "commit": "3f860f2d981547c18f2c9599e3c358ea488c3be4" },
   "noice.nvim": { "branch": "main", "commit": "448bb9c524a7601035449210838e374a30153172" },
+  "none-ls-extras.nvim": { "branch": "main", "commit": "ebb09961f1c0a377f9ed1685740cdf87b5cd39a8" },
   "none-ls.nvim": { "branch": "main", "commit": "9b98991e15dce8fc502993e23caac2528b8b667f" },
   "nui.nvim": { "branch": "main", "commit": "b58e2bfda5cea347c9d58b7f11cf3012c7b3953f" },
   "nvim": { "branch": "main", "commit": "63685e1562ef53873c9764b483d7ac5c7a608922" },

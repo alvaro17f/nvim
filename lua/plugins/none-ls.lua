@@ -6,6 +6,7 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"nvimtools/none-ls.nvim",
+      "nvimtools/none-ls-extras.nvim",
 		},
 		config = function()
 			require("mason")
@@ -15,6 +16,7 @@ return {
 				sources = {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.diagnostics.markdownlint,
+					require("none-ls.diagnostics.eslint_d"),
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.biome,
 					null_ls.builtins.diagnostics.golangci_lint,

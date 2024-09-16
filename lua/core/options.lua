@@ -6,7 +6,7 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = false
 
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamedplus"
 end)
 vim.opt.autochdir = true
 vim.opt.backup = false

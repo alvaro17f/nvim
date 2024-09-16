@@ -4,8 +4,8 @@ return {
     name = "toggleterm",
     version = "*",
     keys = {
-      { mode = 'n', '<C-\\>', '<CMD>exe v:count1 . "ToggleTerm"<CR>', silent = true, desc = 'Toggle terminal' },
-      { mode = 't', '<C-\\>', '<CMD>exe v:count1 . "ToggleTerm"<CR>', silent = true, desc = 'Toggle terminal' },
+      { mode = "n", "<C-\\>", '<CMD>exe v:count1 . "ToggleTerm"<CR>', silent = true, desc = "Toggle terminal" },
+      { mode = "t", "<C-\\>", '<CMD>exe v:count1 . "ToggleTerm"<CR>', silent = true, desc = "Toggle terminal" },
     },
     opts = {
       size = 20,
@@ -29,5 +29,5 @@ return {
         },
       },
     },
-  }
+  },
 }

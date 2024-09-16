@@ -6,7 +6,9 @@
 ------------------------------------
 --GOLANG ORGANIZE IMPORTS
 ------------------------------------
-vim.cmd([[autocmd BufWritePre *.go :silent! lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })]])
+vim.cmd(
+  [[autocmd BufWritePre *.go :silent! lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })]]
+)
 
 ------------------------------------
 --CURSOR INSERT MODE

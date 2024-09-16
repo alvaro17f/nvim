@@ -10,6 +10,7 @@ local function lg_toggle()
 		term = Terminal:new({
 			cmd = "lazygit",
 			hidden = true,
+			count = 0,
 			on_exit = function()
 				term = nil
 			end,

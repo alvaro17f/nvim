@@ -1,8 +1,9 @@
-if vim.fn.executable("lazygit") == 0 then
-	return { vim.notify("Please install 'lazygit'", vim.log.levels.ERROR) }
+if vim.fn.executable("lazygit") == 1 then
+	require("utils.lazygit_toggle")
+else
+	vim.notify("Please install 'lazygit'", vim.log.levels.ERROR)
 end
 
-require("utils.lazygit_toggle")
 local is_git_repo = require("utils.is_git_repo")
 
 return {
@@ -10,6 +11,16 @@ return {
 		"lewis6991/gitsigns.nvim",
 		lazy = false,
 		keys = {
+			{
+				mode = "n",
+				"<leader>gg",
+				function()
+					if is_git_repo() then
+						vim.cmd("LazyGitToggle")
+					end
+				end,
+				desc = "Lazygit",
+			},
 			{
 				mode = "n",
 				"<leader>gp",
@@ -70,30 +81,5 @@ return {
 				},
 			}
 		end,
-	},
-	{
-		"kdheepak/lazygit.nvim",
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
-		},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		lazy = false,
-		keys = {
-			{
-				"<leader>gg",
-				function()
-					if is_git_repo() then
-						vim.cmd("LazyGitToggle")
-					end
-				end,
-				desc = "LazyGit",
-			},
-		},
 	},
 }

@@ -9,20 +9,17 @@ return {
 		"davvid/telescope-git-grep.nvim",
 	},
 	keys = {
-
-		{ mode = "n", "gr", ":Telescope lsp_references<CR>", silent = true, desc = "Telescope references" },
-		{ mode = "n", "<C-b>", ":Telescope buffers<CR>", silent = true, desc = "Telescope buffers" },
-		{ mode = "n", "<C-BS>", ":Telescope oldfiles<CR>", silent = true, desc = "Telescope recent files" },
+		{ mode = "n", "<leader>fb", ":Telescope buffers<CR>", desc = "Telescope buffers" },
+		{ mode = "n", "<leader>fo", ":Telescope oldfiles<CR>", desc = "Telescope recent files" },
 		{
 			mode = "n",
-			"<C-e>",
+			"<leader>ff",
 			require("utils.telescope_files"),
-			silent = true,
 			desc = "Telescope files",
 		},
 		{
 			mode = "n",
-			"<C-f>",
+			"<leader>fg",
 
 			function()
 				if is_git_repo() then
@@ -31,7 +28,6 @@ return {
 					vim.cmd("Telescope live_grep")
 				end
 			end,
-			silent = true,
 			desc = "Telescope grep",
 		},
 	},
@@ -45,6 +41,7 @@ return {
 		require("telescope").setup({
 
 			defaults = {
+				path_display = { "filename_first" }, -- "smart"
 				mappings = {
 					n = {
 						["<c-x>"] = actions.delete_buffer,
@@ -59,27 +56,22 @@ return {
 			},
 			pickers = {
 				find_files = {
-					path_display = { "filename_first" },
 					no_ignore = false,
 					hidden = true,
 				},
 				git_files = {
-					path_display = { "filename_first" },
 					no_ignore = false,
 					hidden = true,
 				},
 				live_grep = {
-					path_display = { "filename_first" },
 					no_ignore = false,
 					hidden = true,
 				},
 				buffers = {
-					path_display = { "filename_first" },
 					ignore_current_buffer = true,
 					sort_mru = true,
 				},
 				lsp_references = {
-					path_display = { "filename_first" },
 					include_current_line = true,
 					show_line = false,
 				},

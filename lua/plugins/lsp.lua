@@ -93,7 +93,7 @@ return {
 					vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
 					vim.keymap.set("n", "gp", vim.diagnostic.goto_prev, opts)
 					vim.keymap.set("n", "gn", vim.diagnostic.goto_next, opts)
-					--vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+					vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", opts) --vim.lsp.buf.references
 					vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 					--vim.keymap.set("n", "<leader>gws", vim.lsp.buf.workspace_symbol, opts)

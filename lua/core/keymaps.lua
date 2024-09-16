@@ -3,9 +3,6 @@
 ------------------------------------
 local keymap = vim.api.nvim_set_keymap
 
---LUAFILE RELOAD
-keymap("n", "<F5>", ":luafile %<CR>", { noremap = true, silent = true, desc = "Reload nvim" })
-
 --LAZY
 keymap("n", "<leader>.", ":Lazy sync<CR>", { noremap = true, silent = true, desc = "Lazy sync" })
 --keymap('n', '<leader>.', ':Lazy<CR>', { noremap = true, silent = true, desc = 'Lazy' })
@@ -52,6 +49,3 @@ keymap("i", "<c-a-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true, d
 keymap("i", "<c-a-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true, desc = "Move line up" })
 keymap("v", "<c-a-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move line down" })
 keymap("v", "<c-a-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move line up" })
-
---SHELL
-keymap("n", "<leader>;", ":!", { noremap = true, silent = true, desc = "Open shell" })

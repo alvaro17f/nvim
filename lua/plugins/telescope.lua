@@ -5,6 +5,7 @@ return {
 	lazy = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"davvid/telescope-git-grep.nvim",
 	},
 	keys = {
@@ -35,9 +36,14 @@ return {
 		},
 	},
 	config = function()
-		require("telescope").load_extension("git_grep")
+		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+
+		telescope.load_extension("fzf")
+		telescope.load_extension("git_grep")
+
 		require("telescope").setup({
+
 			defaults = {
 				mappings = {
 					n = {

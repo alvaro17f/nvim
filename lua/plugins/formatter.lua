@@ -5,7 +5,6 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				go = { "goimports", "gofmt" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 				lua = { "stylua" },

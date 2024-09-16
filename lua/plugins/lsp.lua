@@ -25,7 +25,6 @@ local LSP_SERVERS = {
 
 local LSP_TOOLS = {
 	"eslint_d",
-	"goimports",
 	"jq",
 	"prettierd",
 	"stylua",

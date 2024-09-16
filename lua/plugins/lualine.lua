@@ -1,4 +1,4 @@
---https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
+-- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {

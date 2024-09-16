@@ -6,13 +6,13 @@ return {
 	keys = {
 		{
 			mode = "n",
-			"<c-s-f>",
+			"<leader>r",
 			'<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
 			desc = "Search and replace",
 		},
 		{
 			mode = "v",
-			"<c-s-f>",
+			"<leader>r",
 			'<esc><cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
 			desc = "Search and replace",
 		},

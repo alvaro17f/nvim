@@ -1,7 +1,7 @@
 ------------------------------------
 --AUTO FORMAT ON SAVE
 ------------------------------------
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
+--vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
 
 ------------------------------------
 --GOLANG ORGANIZE IMPORTS

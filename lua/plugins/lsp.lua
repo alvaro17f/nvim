@@ -23,6 +23,14 @@ local LSP_SERVERS = {
 	"zls",
 }
 
+local LSP_TOOLS = {
+	"eslint_d",
+	"goimports",
+	"jq",
+	"prettierd",
+	"stylua",
+}
+
 local LSP_SERVER_CONFIG = {
 	taplo = {
 		settings = {
@@ -58,6 +66,15 @@ return {
 			auto_install = true,
 			ensure_installed = LSP_SERVERS,
 		},
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		lazy = false,
+		config = function()
+			require("mason-tool-installer").setup({
+				ensure_installed = LSP_TOOLS,
+			})
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",

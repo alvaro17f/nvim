@@ -9,7 +9,7 @@ return {
     "davvid/telescope-git-grep.nvim",
   },
   keys = {
-    { mode = "n", "<leader>fb", ":Telescope buffers<CR>", desc = "Telescope buffers" },
+    { mode = "n", "<leader>b", ":Telescope buffers<CR>", desc = "Telescope buffers" },
     { mode = "n", "<leader>fr", ":Telescope oldfiles<CR>", desc = "Telescope recent files" },
     {
       mode = "n",

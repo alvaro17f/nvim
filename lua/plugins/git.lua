@@ -1,9 +1,3 @@
-if vim.fn.executable("lazygit") == 1 then
-  require("utils.lazygit_toggle")
-else
-  vim.notify("Please install 'lazygit'", vim.log.levels.ERROR)
-end
-
 return {
   {
     "lewis6991/gitsigns.nvim",

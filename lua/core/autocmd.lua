@@ -14,3 +14,8 @@ vim.cmd(
 --CURSOR INSERT MODE
 ------------------------------------
 --vim.cmd('autocmd InsertEnter,InsertLeave * set cul!')
+
+------------------------------------
+--DEPENDENCIES
+------------------------------------
+require("utils.dependencies")()

@@ -1,4 +1,4 @@
-local is_git_repo = require("utils.is_git_repo")
+local telescope_utils = require("utils.telescope")
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -14,20 +14,13 @@ return {
     {
       mode = "n",
       "<leader>ff",
-      require("utils.telescope_files"),
+      telescope_utils.find_files,
       desc = "Telescope files",
     },
     {
       mode = "n",
       "<leader>fg",
-
-      function()
-        if is_git_repo() then
-          vim.cmd("Telescope git_grep live_grep")
-        else
-          vim.cmd("Telescope live_grep")
-        end
-      end,
+      telescope_utils.live_grep,
       desc = "Telescope grep",
     },
   },
@@ -38,7 +31,7 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("git_grep")
 
-    require("telescope").setup({
+    telescope.setup({
 
       defaults = {
         path_display = { "filename_first" }, -- "smart", "filename_first"

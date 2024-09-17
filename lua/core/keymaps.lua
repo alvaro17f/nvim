@@ -11,7 +11,7 @@ keymap("n", "<leader>.", ":Lazy sync<CR>", { noremap = true, silent = true, desc
 keymap("n", "<esc><esc>", ":up<CR>", { noremap = true, silent = true, desc = "Update document" })
 
 --OPEN CONFIG
-keymap("n", "<leader>c", ":e $MYVIMRC<CR>", { noremap = true, silent = true, desc = "Open config" })
+keymap("n", "<leader>cc", ":e $MYVIMRC<CR>", { noremap = true, silent = true, desc = "Open config" })
 
 --PASTE YANK, NOT DELETED
 keymap("n", "<leader>p", '"*p', { noremap = true, silent = true, desc = "Paste after from computer" })

@@ -24,9 +24,10 @@ local LSP_SERVERS = {
 }
 
 local LSP_TOOLS = {
+  "ast-grep",
   "eslint_d",
-  "jq",
   "prettierd",
+  "shfmt",
   "stylua",
 }
 

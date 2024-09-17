@@ -1,16 +1,25 @@
--- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
+-- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters | :h conform-formatters
 return {
   "stevearc/conform.nvim",
-  opts = {},
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("conform").setup({
       formatters_by_ft = {
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-        javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+        astro = { "prettierd", "prettier", "ast-grep" },
+        css = { "prettierd", "prettier", "ast-grep" },
+        html = { "prettierd", "prettier", "ast-grep" },
+        javascript = { "prettierd", "prettier", "ast-grep" },
+        javascriptreact = { "prettierd", "prettier", "ast-grep" },
+        json = { "prettierd", "prettier", "ast-grep" },
         lua = { "stylua" },
-        rust = { "rustfmt", lsp_format = "fallback" },
-        typescript = { "prettierd", "prettier", stop_after_first = true },
-        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        markdown = { "prettierd", "prettier", "ast-grep" },
+        sh = { "shfmt" },
+        typescript = { "prettierd", "prettier", "ast-grep" },
+        typescriptreact = { "prettierd", "prettier", "ast-grep" },
+      },
+      default_format_opts = {
+        lsp_format = "fallback",
+        stop_after_first = true,
       },
       format_on_save = {
         lsp_fallback = true,

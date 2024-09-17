@@ -10,10 +10,10 @@ return {
 
     lualine.setup({
       options = {
-        theme = "catppuccin",
-        --theme = 'horizon',
-        --theme = 'rose-pine',
-        --theme = 'poimandres',
+        theme = "horizon",
+        -- theme = "catppuccin",
+        -- theme = "rose-pine",
+        -- theme = "poimandres",
       },
       sections = {
         lualine_a = { "mode" },

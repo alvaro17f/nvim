@@ -35,7 +35,7 @@
   "nvim_autopairs": { "branch": "master", "commit": "ffc139f2a96640ca6c4d3dff9b95b7b9eace87ae" },
   "persistence.nvim": { "branch": "main", "commit": "f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
-  "render-markdown.nvim": { "branch": "main", "commit": "01b38dcf7d0a99620547651fb59a3ba521ba12d5" },
+  "render-markdown.nvim": { "branch": "main", "commit": "5ff191f0c7457ede2fd30ecf76ab16c65118b4ee" },
   "suda": { "branch": "master", "commit": "b97fab52f9cdeabe2bbb5eb98d82356899f30829" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
   "telescope-git-grep.nvim": { "branch": "main", "commit": "814217cb30c076bc5edebe36e525b05a7c9eb4b2" },

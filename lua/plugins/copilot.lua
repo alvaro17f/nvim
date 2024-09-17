@@ -3,19 +3,19 @@ if require("utils.flags").get_flags("copilot") == false then
 end
 
 return {
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
-      },
-    },
-  }, -- for providers='copilot'
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   build = ":Copilot auth",
+  --   opts = {
+  --     suggestion = { enabled = false },
+  --     panel = { enabled = false },
+  --     filetypes = {
+  --       markdown = true,
+  --       help = true,
+  --     },
+  --   },
+  -- }, -- for providers='copilot'
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -23,14 +23,14 @@ return {
     version = false, -- set this if you want to always pull the latest change
     opts = {
       ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-      provider = "copilot",
+      provider = "openai",
       --auto_suggestions_provider = "copilot",
       behaviour = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
-        support_paste_from_clipboard = false,
+        support_paste_from_clipboard = true,
       },
       mappings = {
         --- @class AvanteConflictMappings
@@ -92,7 +92,7 @@ return {
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
+      -- "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",

@@ -48,19 +48,7 @@ return {
       })
 
       return {
-        enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'
-        file_panel = {
-          listing_style = "list", -- One of 'list' or 'tree'
-          tree_options = { -- Only applies when listing_style is 'tree'
-            flatten_dirs = true, -- Flatten dirs that only contain one single dir
-            folder_statuses = "only_folded", -- One of 'never', 'only_folded' or 'always'.
-          },
-          win_config = { -- See |diffview-config-win_config|
-            position = "left",
-            width = 35,
-            win_opts = {},
-          },
-        },
+        enhanced_diff_hl = true,
         keymaps = {
           view = {
             { "n", "q", actions.close },
@@ -83,6 +71,18 @@ return {
             { "n", "q", "<cmd>DiffviewClose<CR>" },
             { "n", "o", actions.focus_entry },
             { "n", "O", actions.options },
+          },
+        },
+        file_panel = {
+          listing_style = "list", -- 'list', 'tree'
+          tree_options = {
+            flatten_dirs = true,
+            folder_statuses = "only_folded", -- 'never', 'only_folded', 'always'.
+          },
+          win_config = {
+            position = "left",
+            width = 35,
+            win_opts = {},
           },
         },
       }

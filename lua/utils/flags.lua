@@ -2,13 +2,17 @@ local DEFAULT_FLAGS = {
   copilot = false,
 }
 
+local function capitalize_first_letter(str)
+  return str:sub(1, 1):upper() .. str:sub(2)
+end
+
 local flags_path = vim.fn.stdpath("data") .. "/flags"
 
 local function read_flags(file)
   local flags = {}
-  local file = io.open(file, "r")
-  if file then
-    for line in file:lines() do
+  local f = io.open(file, "r")
+  if f then
+    for line in f:lines() do
       for k, v in string.gmatch(line, "(%w+)%s*=%s*(%w+)") do
         if v == "true" then
           flags[k] = true
@@ -17,17 +21,19 @@ local function read_flags(file)
         end
       end
     end
-    file:close()
+    f:close()
   end
   return flags
 end
 
 local function write_flags(file, flags)
   local f = io.open(file, "w")
-  for k, v in pairs(flags) do
-    f:write(string.format("%s = %s\n", k, tostring(v)))
+  if f then
+    for k, v in pairs(flags) do
+      f:write(string.format("%s = %s\n", k, tostring(v)))
+    end
+    f:close()
   end
-  f:close()
 end
 
 local function get_flags(flag_to_check)
@@ -72,8 +78,27 @@ local function get_all_flags()
   return flags
 end
 
+local function generate_flags_fn()
+  local function create_flag_command(flag)
+    vim.api.nvim_create_user_command("Flags" .. capitalize_first_letter(flag) .. "Enable", function()
+      set_flags(flag, true)
+      vim.notify(flag .. " enabled", vim.log.levels.INFO)
+    end, {})
+
+    vim.api.nvim_create_user_command("Flags" .. capitalize_first_letter(flag) .. "Disable", function()
+      set_flags(flag, false)
+      vim.notify(flag .. " disabled", vim.log.levels.INFO)
+    end, {})
+  end
+
+  local all_flags = get_all_flags()
+  for flag, _ in pairs(all_flags) do
+    create_flag_command(flag)
+  end
+end
+
 return {
   get_flags = get_flags,
   set_flags = set_flags,
-  get_all_flags = get_all_flags,
+  generate_flags_fn = generate_flags_fn,
 }

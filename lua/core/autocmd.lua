@@ -1,4 +1,9 @@
 ------------------------------------
+--FLAGS
+------------------------------------
+require("utils.flags").generate_flags_fn()
+
+------------------------------------
 --AUTO FORMAT ON SAVE
 ------------------------------------
 --vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])

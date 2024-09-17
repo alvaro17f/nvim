@@ -41,7 +41,7 @@ return {
     require("telescope").setup({
 
       defaults = {
-        path_display = { "smart" }, -- "smart", "filename_first"
+        path_display = { "filename_first" }, -- "smart", "filename_first"
         mappings = {
           n = {
             ["<c-x>"] = actions.delete_buffer,

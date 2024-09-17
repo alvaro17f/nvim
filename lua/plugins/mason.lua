@@ -32,9 +32,13 @@ local LSP_TOOLS = {
 
 return {
   "williamboman/mason.nvim",
+  lazy = false,
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
+  keys = {
+    { mode = "n", "<leader>,", ":Mason<CR>", desc = "Open mason" },
   },
   config = function()
     local mason = require("mason")

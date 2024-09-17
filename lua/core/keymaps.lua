@@ -5,10 +5,6 @@ local keymap = vim.api.nvim_set_keymap
 
 --LAZY
 keymap("n", "<leader>.", ":Lazy sync<CR>", { noremap = true, silent = true, desc = "Lazy sync" })
---keymap('n', '<leader>.', ':Lazy<CR>', { noremap = true, silent = true, desc = 'Lazy' })
-
---SAVE
-keymap("n", "<esc><esc>", ":up<CR>", { noremap = true, silent = true, desc = "Update document" })
 
 --OPEN CONFIG
 keymap("n", "<leader>cc", ":e $MYVIMRC<CR>", { noremap = true, silent = true, desc = "Open config" })

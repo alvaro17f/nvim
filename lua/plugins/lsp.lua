@@ -3,7 +3,10 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
-    "folke/lazydev.nvim",
+    {
+      "folke/lazydev.nvim",
+      ft = "lua",
+    },
   },
   config = function()
     local lspconfig = require("lspconfig")

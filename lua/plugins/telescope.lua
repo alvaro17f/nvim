@@ -23,7 +23,7 @@ return {
 
       function()
         if is_git_repo() then
-          vim.cmd("Telescope git_grep")
+          vim.cmd("Telescope git_grep live_grep")
         else
           vim.cmd("Telescope live_grep")
         end
@@ -41,7 +41,7 @@ return {
     require("telescope").setup({
 
       defaults = {
-        path_display = { "filename_first" }, -- "smart"
+        path_display = { "smart" }, -- "smart", "filename_first"
         mappings = {
           n = {
             ["<c-x>"] = actions.delete_buffer,
@@ -74,6 +74,14 @@ return {
         lsp_references = {
           include_current_line = true,
           show_line = false,
+        },
+      },
+      extensions = {
+        git_grep = {
+          cwd = "%:h:p",
+          regex = "extended",
+          skip_binary_files = false,
+          use_git_root = true,
         },
       },
     })

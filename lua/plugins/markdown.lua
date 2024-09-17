@@ -5,7 +5,7 @@ return {
     "nvim-tree/nvim-web-devicons", --"echasnovski/mini.icons",
   },
   opts = {
-    file_types = { "markdown", "Avante" },
+    file_types = { "markdown" },
   },
-  ft = { "markdown", "Avante" },
+  ft = { "markdown" },
 }

@@ -2,7 +2,6 @@ if require("utils.flags").get_flags("copilot") == false then
   return {}
 end
 
----@diagnostic disable: undefined-doc-name
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -110,6 +109,14 @@ return {
             use_absolute_path = true,
           },
         },
+      },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
       },
     },
   },

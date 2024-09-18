@@ -21,13 +21,14 @@ return {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
-      { mode = "n", "<Leader>gd", ":DiffviewFileHistory %<CR>", silent = true, desc = "Diff File" },
+      { mode = "n", "<Leader>gb", ":DiffviewFileHistory<CR>", silent = true, desc = "Diff branch history" },
+      { mode = "n", "<Leader>gf", ":DiffviewFileHistory %<CR>", silent = true, desc = "Diff file history" },
       {
         mode = "n",
         "<Leader>gv",
         ":DiffviewOpen<CR>:wincmd l<CR>:wincmd l<CR>",
         silent = true,
-        desc = "Diff View",
+        desc = "Diff view",
       },
     },
     opts = function()

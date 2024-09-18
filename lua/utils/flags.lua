@@ -1,3 +1,5 @@
+local M = {}
+
 local DEFAULT_FLAGS = {
   copilot = false,
 }
@@ -36,7 +38,7 @@ local function write_flags(file, flags)
   end
 end
 
-local function get_flags(flag_to_check)
+function M.get_flags(flag_to_check)
   local flags = {}
   if vim.fn.filereadable(flags_path) == 1 then
     flags = read_flags(flags_path)
@@ -54,7 +56,7 @@ local function get_flags(flag_to_check)
   return flags[flag_to_check]
 end
 
-local function set_flags(flag, value)
+function M.set_flags(flag, value)
   local flags = {}
   if vim.fn.filereadable(flags_path) == 1 then
     flags = read_flags(flags_path)
@@ -78,7 +80,7 @@ local function get_all_flags()
   return flags
 end
 
-local function generate_flags_fn()
+function M.generate_flags_fn()
   local function create_flag_command(flag)
     vim.api.nvim_create_user_command("Flags" .. capitalize_first_letter(flag) .. "Enable", function()
       set_flags(flag, true)
@@ -97,8 +99,4 @@ local function generate_flags_fn()
   end
 end
 
-return {
-  get_flags = get_flags,
-  set_flags = set_flags,
-  generate_flags_fn = generate_flags_fn,
-}
+return M

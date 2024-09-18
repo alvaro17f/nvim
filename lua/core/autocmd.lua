@@ -23,4 +23,4 @@ vim.cmd(
 ------------------------------------
 --DEPENDENCIES
 ------------------------------------
-require("utils.dependencies")()
+require("utils.dependencies").missing_dependencies_notification()

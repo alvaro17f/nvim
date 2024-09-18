@@ -1,3 +1,5 @@
+local M = {}
+
 local DEPENDENCIES = {
   { name = "lazygit", function_name = "lazygit" },
   { name = "fzf" },
@@ -19,7 +21,7 @@ local function handle_dependencies_check(executable, func_name)
   end
 end
 
-return function()
+function M.missing_dependencies_notification()
   for _, exec in ipairs(DEPENDENCIES) do
     vim.api.nvim_create_autocmd({ "VimEnter" }, {
       group = dependencies_group,
@@ -28,3 +30,5 @@ return function()
     })
   end
 end
+
+return M

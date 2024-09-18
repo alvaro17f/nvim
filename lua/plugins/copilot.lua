@@ -39,8 +39,11 @@ return {
     },
     keys = {
       { mode = "n", "<leader>a", ":CodeCompanionToggle<CR>", desc = "CodeCompanion toggle" },
-      { mode = "v", "<leader>a", ":CodeCompanion<CR>", desc = "CodeCompanion selection" },
-      { mode = "v", "<c-a>", ":CodeCompanionActions<CR>", desc = "CodeCompanion actions" },
+      { mode = "v", "<leader>a", ":CodeCompanionActions<CR>", desc = "CodeCompanion actions" },
+    },
+    opts = {
+      use_default_actions = false,
+      use_default_pre_defined_prompts = false,
     },
     config = function()
       require("codecompanion").setup({

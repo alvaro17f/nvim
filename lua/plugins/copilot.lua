@@ -64,9 +64,6 @@ return {
     },
     config = function()
       require("codecompanion").setup({
-        use_default_actions = false,
-        use_default_pre_defined_prompts = false,
-
         strategies = {
           chat = {
             adapter = provider,

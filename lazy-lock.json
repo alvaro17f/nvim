@@ -26,7 +26,7 @@
   "mini.files": { "branch": "main", "commit": "a3a9cce82115a69dba161ac45bda16f4e606f73b" },
   "mini.indentscope": { "branch": "main", "commit": "da9af64649e114aa79480c238fd23f6524bc0903" },
   "mini.surround": { "branch": "main", "commit": "0e67c4bc147f2a15cee94e7c94dcc0e115b9f55e" },
-  "noice.nvim": { "branch": "main", "commit": "448bb9c524a7601035449210838e374a30153172" },
+  "noice.nvim": { "branch": "main", "commit": "16c946a5964f0cf966f77ae16aa11cb40969ae8a" },
   "nui.nvim": { "branch": "main", "commit": "b58e2bfda5cea347c9d58b7f11cf3012c7b3953f" },
   "nvim-cmp": { "branch": "main", "commit": "ae644feb7b67bf1ce4260c231d1d4300b19c6f30" },
   "nvim-lint": { "branch": "master", "commit": "99cab0b885aaa2f59736c047d23e9a7835d4f9a9" },

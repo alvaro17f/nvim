@@ -46,13 +46,13 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
         ["<C-e>"] = cmp.mapping.abort(), -- close completion window
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.confirm({ select = true })
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
+        -- ["<Tab>"] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.confirm({ select = true })
+        --   else
+        --     fallback()
+        --   end
+        -- end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },

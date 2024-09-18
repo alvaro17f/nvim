@@ -83,12 +83,12 @@ end
 function M.generate_flags_fn()
   local function create_flag_command(flag)
     vim.api.nvim_create_user_command("Flags" .. capitalize_first_letter(flag) .. "Enable", function()
-      set_flags(flag, true)
+      M.set_flags(flag, true)
       vim.notify(flag .. " enabled", vim.log.levels.INFO)
     end, {})
 
     vim.api.nvim_create_user_command("Flags" .. capitalize_first_letter(flag) .. "Disable", function()
-      set_flags(flag, false)
+      M.set_flags(flag, false)
       vim.notify(flag .. " disabled", vim.log.levels.INFO)
     end, {})
   end

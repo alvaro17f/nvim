@@ -1,20 +1,26 @@
 local M = {}
 
-local is_git_repo = require("utils.git").is_git_repo
+local telescope = require("telescope.builtin")
+local git = require("utils.git")
 
 function M.find_files()
-  local status = pcall(require("telescope.builtin").git_files)
-  if not status then
-    require("telescope.builtin").find_files()
+  local opts = {}
+  if git.is_git_repo() then
+    opts = {
+      cwd = git.get_git_root(),
+    }
   end
+  telescope.find_files(opts)
 end
 
 function M.live_grep()
-  if is_git_repo() then
-    vim.cmd("Telescope git_grep live_grep")
-  else
-    vim.cmd("Telescope live_grep")
+  local opts = {}
+  if git.is_git_repo() then
+    opts = {
+      cwd = git.get_git_root(),
+    }
   end
+  telescope.live_grep(opts)
 end
 
 return M

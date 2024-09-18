@@ -2,6 +2,8 @@ if require("utils.flags").get_flags("copilot") == false then
   return {}
 end
 
+local provider = "copilot"
+
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -9,12 +11,14 @@ return {
     build = ":Copilot auth",
     lazy = false,
     opts = {
-      suggestion = { enabled = false },
+      suggestion = {
+        enabled = false,
+        auto_trigger = false,
+      },
       panel = { enabled = false },
     },
   },
   {
-
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -24,19 +28,20 @@ return {
       { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves the default Neovim UI
     },
     keys = {
-      { mode = "n", "<c-a>", ":CodeCompanionToggle<CR>", desc = "Chat toggle" },
+      { mode = "n", "<leader>a", ":CodeCompanionToggle<CR>", desc = "CodeCompanion chat" },
+      { mode = "v", "<leader>a", ":CodeCompanion<CR>", desc = "CodeCompanion inline" },
     },
     config = function()
       require("codecompanion").setup({
         strategies = {
           chat = {
-            adapter = "copilot",
+            adapter = provider,
           },
           inline = {
-            adapter = "copilot",
+            adapter = provider,
           },
           agent = {
-            adapter = "copilot",
+            adapter = provider,
           },
         },
         adapters = {

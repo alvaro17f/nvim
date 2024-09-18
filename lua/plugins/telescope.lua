@@ -62,8 +62,8 @@ return {
         },
         buffers = {
           ignore_current_buffer = true,
+          sort_lastused = true,
           sort_mru = true,
-          -- sort_lastused = true,
         },
         lsp_references = {
           include_current_line = true,
@@ -73,7 +73,7 @@ return {
       extensions = {
         git_grep = {
           cwd = "%:h:p",
-          regex = "extended",
+          regex = "extended", -- "extended", "basic", "fixed", "perl"
           skip_binary_files = false,
           use_git_root = true,
         },

@@ -29,7 +29,7 @@ return {
         mark_set = "m",
         reset = "<BS>",
         reveal_cwd = "@",
-        show_help = "?",
+        show_help = "g?",
         synchronize = "=",
         trim_left = ">",
         trim_right = "<",

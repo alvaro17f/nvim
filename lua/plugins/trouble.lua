@@ -5,6 +5,7 @@ return {
     "folke/todo-comments.nvim",
   },
   opts = {
+    auto_close = true,
     focus = true,
   },
   cmd = "Trouble",

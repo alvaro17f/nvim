@@ -28,6 +28,7 @@ local LSP_TOOLS = {
   "eslint_d",
   "prettierd",
   "shfmt",
+  "stylelint",
   "stylua",
 }
 

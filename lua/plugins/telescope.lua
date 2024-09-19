@@ -46,6 +46,11 @@ return {
         },
       },
       pickers = {
+        buffers = {
+          ignore_current_buffer = true,
+          sort_lastused = true,
+          sort_mru = true,
+        },
         find_files = {
           no_ignore = false,
           hidden = true,
@@ -57,11 +62,6 @@ return {
         live_grep = {
           no_ignore = false,
           hidden = true,
-        },
-        buffers = {
-          ignore_current_buffer = true,
-          sort_lastused = true,
-          sort_mru = true,
         },
         lsp_references = {
           include_current_line = true,

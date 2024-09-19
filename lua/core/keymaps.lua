@@ -14,7 +14,7 @@ keymap("n", "<leader>p", '"*p', { noremap = true, silent = true, desc = "Paste a
 keymap("n", "<leader>P", '"*P', { noremap = true, silent = true, desc = "Paste before from computer" })
 
 --BUFFERS
-keymap("n", "<c-x>", ":bdelete<CR>", { noremap = true, silent = true, desc = "Buffer delete" })
+keymap("n", "<c-x>", ":bn<CR>:bd#<CR>", { noremap = true, silent = true, desc = "Buffer delete" })
 keymap("n", "<leader>[", ":bp<CR>", { noremap = true, silent = true, desc = "Buffer previous" })
 keymap("n", "<leader>]", ":bn<CR>", { noremap = true, silent = true, desc = "Buffer next" })
 

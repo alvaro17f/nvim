@@ -14,11 +14,13 @@ return {
         globalstatus = true,
         disabled_filetypes = {
           statusline = {
-            "dashboard",
             "alpha",
-            "starter",
+            "dashboard",
             "lazy",
+            "lazygit",
             "mason",
+            "minifiles",
+            "starter",
             "TelescopePrompt",
             -- "toggleterm",
           },

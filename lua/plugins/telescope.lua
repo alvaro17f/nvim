@@ -53,7 +53,7 @@ return {
           sort_mru = true,
         },
         lsp_references = {
-          include_current_line = true,
+          include_current_line = false,
           show_line = false,
         },
       },

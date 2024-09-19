@@ -1,7 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    lazy = false,
+    event = "BufEnter",
     keys = {
       {
         mode = "n",
@@ -11,11 +11,9 @@ return {
         desc = "Gitsigns Preview Hunk",
       },
     },
-    config = function()
-      require("gitsigns").setup({
-        current_line_blame = true,
-      })
-    end,
+    opts = {
+      current_line_blame = true,
+    },
   },
   {
     "sindrets/diffview.nvim",

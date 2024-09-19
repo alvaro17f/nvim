@@ -10,23 +10,49 @@ return {
 
     lualine.setup({
       options = {
-        theme = "horizon",
-        -- theme = "catppuccin",
-        -- theme = "rose-pine",
-        -- theme = "poimandres",
+        theme = "horizon", -- "auto", "horizon", "catppuccin"
+        globalstatus = true,
+        disabled_filetypes = {
+          statusline = {
+            "dashboard",
+            "alpha",
+            "starter",
+            "lazy",
+            "mason",
+            "TelescopePrompt",
+            -- "toggleterm",
+          },
+        },
       },
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch" },
-        lualine_c = { "filename" },
+        lualine_c = {
+          {
+            "diagnostics",
+            symbols = {
+              error = " ",
+              warn = " ",
+              hint = " ",
+              info = " ",
+            },
+          },
+          "filename",
+        },
         lualine_x = {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
             color = { fg = "#ff9e64" },
           },
-          "diagnostics",
-          "diff",
+          {
+            "diff",
+            symbols = {
+              added = " ",
+              modified = " ",
+              removed = " ",
+            },
+          },
           "filetype",
           {
             require("noice").api.statusline.mode.get,

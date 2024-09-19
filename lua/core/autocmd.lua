@@ -11,14 +11,24 @@ require("utils.flags").generate_flags_fn()
 ------------------------------------
 --GOLANG ORGANIZE IMPORTS
 ------------------------------------
-vim.cmd(
-  [[autocmd BufWritePre *.go :silent! lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })]]
-)
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    vim.lsp.buf.code_action({
+      context = { only = { "source.organizeImports" } },
+      apply = true,
+    })
+  end,
+})
 
 ------------------------------------
---CURSOR INSERT MODE
+--UNDOFILE ON GIT REPOSITORY ONLY
 ------------------------------------
---vim.cmd('autocmd InsertEnter,InsertLeave * set cul!')
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+  callback = function()
+    vim.opt.undofile = require("utils.git").is_git_repo()
+  end,
+})
 
 ------------------------------------
 --DEPENDENCIES

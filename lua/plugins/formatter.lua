@@ -7,6 +7,7 @@ return {
       formatters_by_ft = {
         astro = { "prettierd", "prettier", "ast-grep" },
         css = { "prettierd", "prettier", "ast-grep" },
+        go = { "gofmt" },
         html = { "prettierd", "prettier", "ast-grep" },
         javascript = { "prettierd", "prettier", "ast-grep" },
         javascriptreact = { "prettierd", "prettier", "ast-grep" },

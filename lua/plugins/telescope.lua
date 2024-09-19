@@ -30,9 +30,10 @@ return {
     telescope.load_extension("fzf")
 
     telescope.setup({
-
       defaults = {
         path_display = { "filename_first" }, -- "smart", "filename_first"
+        no_ignore = false,
+        hidden = true,
         mappings = {
           n = {
             ["<c-x>"] = actions.delete_buffer,
@@ -50,18 +51,6 @@ return {
           ignore_current_buffer = true,
           sort_lastused = true,
           sort_mru = true,
-        },
-        find_files = {
-          no_ignore = false,
-          hidden = true,
-        },
-        git_files = {
-          no_ignore = false,
-          hidden = true,
-        },
-        live_grep = {
-          no_ignore = false,
-          hidden = true,
         },
         lsp_references = {
           include_current_line = true,

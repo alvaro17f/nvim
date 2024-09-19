@@ -4,9 +4,9 @@
 require("utils.flags").generate_flags_fn()
 
 ------------------------------------
---AUTO FORMAT ON SAVE
+--SINGLE DIAGNOSTIC ICON
 ------------------------------------
---vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
+require("utils.lsp").override_diagnostic_signs_handler()
 
 ------------------------------------
 --GOLANG ORGANIZE IMPORTS

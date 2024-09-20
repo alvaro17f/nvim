@@ -35,14 +35,10 @@ return {
         no_ignore = false,
         hidden = true,
         mappings = {
-          n = {
-            ["<c-x>"] = actions.delete_buffer,
-          },
           i = {
             ["<esc>"] = actions.close,
             ["<c-j>"] = actions.move_selection_next,
             ["<c-k>"] = actions.move_selection_previous,
-            ["<c-x>"] = actions.delete_buffer,
           },
         },
       },
@@ -51,6 +47,14 @@ return {
           ignore_current_buffer = true,
           sort_lastused = true,
           sort_mru = true,
+          mappings = {
+            n = {
+              ["<c-x>"] = actions.delete_buffer,
+            },
+            i = {
+              ["<c-x>"] = actions.delete_buffer,
+            },
+          },
         },
         lsp_references = {
           include_current_line = false,

@@ -8,7 +8,6 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   keys = {
-    { mode = "n", "<leader>b", ":Telescope buffers<CR>", desc = "Telescope buffers" },
     { mode = "n", "<leader>fr", ":Telescope oldfiles<CR>", desc = "Telescope recent files" },
     {
       mode = "n",

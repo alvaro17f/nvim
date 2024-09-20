@@ -1,3 +1,11 @@
+local icons = {
+  add = { text = "+" },
+  change = { text = "~" },
+  delete = { text = "_" },
+  topdelete = { text = "‾" },
+  changedelete = { text = "~" },
+}
+
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufEnter",
@@ -27,12 +35,7 @@ return {
   opts = {
     current_line_blame = true,
     sign_priority = 0,
-    signs = {
-      add = { text = "+" },
-      change = { text = "~" },
-      delete = { text = "_" },
-      topdelete = { text = "‾" },
-      changedelete = { text = "~" },
-    },
+    signs = icons,
+    signs_staged = icons,
   },
 }

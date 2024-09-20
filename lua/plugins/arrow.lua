@@ -5,7 +5,6 @@ return {
       leader_key = ";", -- Recommended to be a single key
       buffer_leader_key = "m", -- Per Buffer Mappings
       show_icons = true,
-      separate_by_branch = true, -- Bookmarks will be separated by git branch
       global_bookmarks = true,
     })
 

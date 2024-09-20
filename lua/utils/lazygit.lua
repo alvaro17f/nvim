@@ -1,7 +1,7 @@
 local term = nil
 local is_git_repo = require("utils.git").is_git_repo
 
-local function lg_toggle()
+local function lazygit_toggle()
   local Terminal = require("toggleterm.terminal").Terminal
 
   local size = 90
@@ -20,19 +20,15 @@ local function lg_toggle()
       term:toggle(size, direction)
 
       vim.cmd("set ft=lazygit")
-      vim.keymap.set("t", "<a-q>", function()
-        term:toggle(size, direction)
-      end, { buffer = true })
     end
   else
     term:toggle(size, direction)
   end
 end
 
-vim.api.nvim_create_user_command("LazyGitToggle", lg_toggle, {})
 vim.keymap.set("n", "<leader>gg", function()
   if is_git_repo() then
-    vim.cmd("LazyGitToggle")
+    lazygit_toggle()
   end
 end, {
   silent = true,

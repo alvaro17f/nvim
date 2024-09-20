@@ -1,13 +1,15 @@
 return {
   "otavioschwanck/arrow.nvim",
-  opts = {
-    show_icons = true,
-    leader_key = ";", -- Recommended to be a single key
-    buffer_leader_key = "m", -- Per Buffer Mappings
+  config = function()
+    require("arrow").setup({
+      leader_key = ";", -- Recommended to be a single key
+      buffer_leader_key = "m", -- Per Buffer Mappings
+      show_icons = true,
+      separate_by_branch = true, -- Bookmarks will be separated by git branch
+      global_bookmarks = true,
+    })
 
-    function()
-      require("arrow.git").refresh_git_branch() -- only if separated_by_branch is true
-      require("arrow.persist").load_cache_file()
-    end,
-  },
+    require("arrow.git").refresh_git_branch() -- only if separated_by_branch is true
+    require("arrow.persist").load_cache_file()
+  end,
 }

@@ -14,9 +14,10 @@ return {
       end,
       close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
       telescope = {
-        sort_mru = true,
-        sort_lastused = true,
+        ignore_current_buffer = true,
         selection_strategy = "row",
+        sort_lastused = true,
+        sort_mru = true,
         use_default_mappings = true, -- false to not include the mappings below
         mappings = {
           i = {

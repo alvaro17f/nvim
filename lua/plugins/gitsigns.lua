@@ -4,21 +4,21 @@ return {
   keys = {
     {
       mode = "n",
-      "g;",
+      "<leader>g;",
       ":Gitsigns preview_hunk_inline<CR>",
       silent = true,
       desc = "Gitsigns preview hunk inline",
     },
     {
       mode = "n",
-      "g[",
+      "<leader>g[",
       ":Gitsigns prev_hunk<CR>",
       silent = true,
       desc = "Gitsigns previous hunk",
     },
     {
       mode = "n",
-      "g]",
+      "<leader>g]",
       ":Gitsigns next_hunk<CR>",
       silent = true,
       desc = "Gitsigns next hunk",

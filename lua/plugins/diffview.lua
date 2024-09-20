@@ -1,16 +1,20 @@
+local function diffview_toggle()
+  local lib = require("diffview.lib")
+  local view = lib.get_current_view()
+  if view then
+    vim.cmd.DiffviewClose()
+  else
+    vim.cmd.DiffviewOpen()
+  end
+end
+
 return {
   "sindrets/diffview.nvim",
   cmd = { "DiffviewOpen", "DiffviewFileHistory" },
   keys = {
-    { mode = "n", "<Leader>gb", ":DiffviewFileHistory<CR>", silent = true, desc = "Diff branch history" },
-    { mode = "n", "<Leader>gf", ":DiffviewFileHistory %<CR>", silent = true, desc = "Diff file history" },
-    {
-      mode = "n",
-      "<Leader>gv",
-      ":DiffviewOpen<CR>:wincmd l<CR>:wincmd l<CR>",
-      silent = true,
-      desc = "Diff view",
-    },
+    { mode = "n", "<leader>gh", ":DiffviewFileHistory<CR>", silent = true, desc = "Diff branch history" },
+    { mode = "n", "<leader>gf", ":DiffviewFileHistory %<CR>", silent = true, desc = "Diff file history" },
+    { mode = "n", "<leader>g\\", diffview_toggle, silent = true, desc = "Diff view toggle" },
   },
   opts = function()
     local actions = require("diffview.actions")

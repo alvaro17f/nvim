@@ -45,3 +45,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --DEPENDENCIES
 ------------------------------------
 require("utils.dependencies").missing_dependencies_notification()
+
+------------------------------------
+--SNIPPETS
+------------------------------------
+require("utils.snippets")

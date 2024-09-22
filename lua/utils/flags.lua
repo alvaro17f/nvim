@@ -2,6 +2,7 @@ local M = {}
 
 local DEFAULT_FLAGS = {
   copilot = false,
+  debugger = false,
 }
 
 local function capitalize_first_letter(str)

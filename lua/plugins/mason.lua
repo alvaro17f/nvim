@@ -32,6 +32,11 @@ local LSP_TOOLS = {
   "stylua",
 }
 
+if require("utils.flags").get_flags("debugger") == true then
+  local DEBUGGERS = require("utils.debugger").DEBUGGERS
+  table.insert(LSP_TOOLS, DEBUGGERS)
+end
+
 return {
   "williamboman/mason.nvim",
   lazy = false,

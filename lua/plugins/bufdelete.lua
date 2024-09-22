@@ -1,6 +1,5 @@
 return {
   "famiu/bufdelete.nvim",
-  lazy = false,
   vim.g.bufdelete_buf_filter,
   keys = {
     {

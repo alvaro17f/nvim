@@ -2,6 +2,7 @@ local EXCLUDED_FILETYPES = {
   "alpha",
   "lazy",
   "mason",
+  "oil",
   "TelescopePrompt",
 }
 

@@ -20,6 +20,7 @@ return {
             "lazygit",
             "mason",
             "minifiles",
+            "oil",
             "starter",
             "TelescopePrompt",
             -- "toggleterm",

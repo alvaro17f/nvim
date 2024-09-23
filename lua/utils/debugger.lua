@@ -13,7 +13,7 @@ local get_workspace_root = function()
   end
 end
 
-local function findDebugTarget(targetPrefix, depth)
+local function findDebugTarget(targetPrefix, depth, buildCommand)
   local dap = require("dap")
   local targets = {}
   for entry in vim.fs.dir(targetPrefix, { depth = depth }) do
@@ -25,8 +25,7 @@ local function findDebugTarget(targetPrefix, depth)
     return targetPrefix .. targets[1]
   end
   if #targets == 0 then
-    vim.print("Cannot find debug target")
-    return dap.ABORT
+    return vim.fn.system(buildCommand) -- return vim.fn.input("Path to executable: ", get_workspace_root() .. "/", "file")
   end
   return coroutine.create(function(coro)
     vim.ui.select(targets, {
@@ -43,10 +42,17 @@ end
 
 local function find_program(lang)
   local handlers = {
+    go = function()
+      vim.fn.chdir(get_workspace_root())
+      return findDebugTarget(get_workspace_root() .. "/bin/", 2, { "go", "build", "-o", "./bin/" })
+    end,
+    rust = function()
+      vim.fn.chdir(get_workspace_root())
+      return findDebugTarget(get_workspace_root() .. "/target/release/", 2, { "cargo", "build", "--release" })
+    end,
     zig = function()
-      vim.fn.delete("zig-out", "rf")
-      vim.fn.system({ "zig", "build", "-Doptimize=Debug" })
-      return findDebugTarget(get_workspace_root() .. "/zig-out/bin/", 2)
+      vim.fn.chdir(get_workspace_root())
+      return findDebugTarget(get_workspace_root() .. "/zig-out/bin/", 2, { "zig", "build", "-Doptimize=Debug" })
     end,
   }
 

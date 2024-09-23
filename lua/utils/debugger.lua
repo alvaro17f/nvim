@@ -4,9 +4,27 @@ local function debugger_executable_path(debugger_name)
   return vim.fn.stdpath("data") .. "/mason/bin/" .. debugger_name
 end
 
-M.DEBUGGERS = {
-  "delve",
-}
+local function debugger_config_maker(debugger, additional_configs)
+  local base_config = {
+    {
+      type = debugger,
+      name = "Debug",
+      request = "launch",
+      program = "${file}",
+      cwd = "${workspaceFolder}",
+      stopOnEntry = false,
+    },
+  }
+
+  if additional_configs then
+    for _, config in ipairs(additional_configs) do
+      config.type = debugger
+      table.insert(base_config, config)
+    end
+  end
+
+  return base_config
+end
 
 M.ADAPTERS = {
   delve = {
@@ -15,36 +33,44 @@ M.ADAPTERS = {
     executable = {
       command = debugger_executable_path("dlv"),
       args = { "dap", "-l", "127.0.0.1:${port}" },
-      -- add this if on windows, otherwise server won't open successfully
-      -- detached = false
+      -- detached = false, -- windows only
+    },
+  },
+  codelldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+      command = debugger_executable_path("codelldb"),
+      args = { "--port", "${port}" },
+      -- detached = false, -- windows only
     },
   },
 }
 
+M.DEBUGGERS = {}
+for key, _ in pairs(M.ADAPTERS) do
+  table.insert(M.DEBUGGERS, key)
+end
+
 M.CONFIGURATIONS = {
-  go = {
+  c = debugger_config_maker("codelldb"),
+  cpp = debugger_config_maker("codelldb"),
+  go = debugger_config_maker("delve", {
     {
-      type = "delve",
-      name = "Debug",
-      request = "launch",
-      program = "${file}",
-    },
-    {
-      type = "delve",
-      name = "Debug test", -- configuration for debugging test files
+      name = "Debug test",
       request = "launch",
       mode = "test",
       program = "${file}",
     },
-    -- works with go.mod packages and sub packages
     {
-      type = "delve",
       name = "Debug test (go.mod)",
       request = "launch",
       mode = "test",
       program = "./${relativeFileDirname}",
     },
-  },
+  }),
+  rust = debugger_config_maker("codelldb"),
+  zig = debugger_config_maker("codelldb"),
 }
 
 return M

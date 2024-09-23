@@ -4,6 +4,7 @@ local function debugger_executable_path(debugger_name)
   return vim.fn.stdpath("data") .. "/mason/bin/" .. debugger_name
 end
 
+-- TODO: Add "Program" field to configurations (path to executable)
 local function debugger_config_maker(debugger, additional_configs)
   local base_config = {
     {
@@ -33,7 +34,7 @@ M.ADAPTERS = {
     executable = {
       command = debugger_executable_path("dlv"),
       args = { "dap", "-l", "127.0.0.1:${port}" },
-      -- detached = false, -- windows only
+      detached = vim.fn.has("win32") == 0,
     },
   },
   codelldb = {
@@ -42,7 +43,7 @@ M.ADAPTERS = {
     executable = {
       command = debugger_executable_path("codelldb"),
       args = { "--port", "${port}" },
-      -- detached = false, -- windows only
+      detached = vim.fn.has("win32") == 0,
     },
   },
 }

@@ -6,10 +6,9 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    "nvim-telescope/telescope-frecency.nvim",
   },
   keys = {
-    { mode = "n", "<leader>fr", ":Telescope frecency<CR>", desc = "Telescope recent files" },
+    { mode = "n", "<leader>fr", ":Telescope oldfiles<CR>", desc = "Telescope recent files" },
     {
       mode = "n",
       "<leader>ff",
@@ -28,7 +27,6 @@ return {
     local actions = require("telescope.actions")
 
     telescope.load_extension("fzf")
-    telescope.load_extension("frecency")
 
     telescope.setup({
       defaults = {
@@ -60,14 +58,6 @@ return {
         lsp_references = {
           include_current_line = false,
           show_line = false,
-        },
-      },
-      extensions = {
-        frecency = {
-          auto_validate = false,
-          default_workspace = "CWD",
-          show_unindexed = false,
-          ignore_patterns = { "*/.git", "*/.git/*", "*/.DS_Store", "*node_modules/*" },
         },
       },
     })

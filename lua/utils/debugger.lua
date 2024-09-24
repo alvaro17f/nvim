@@ -43,15 +43,12 @@ end
 local function find_program(lang)
   local handlers = {
     go = function()
-      vim.fn.chdir(get_workspace_root())
       return findDebugTarget(get_workspace_root() .. "/bin/", 2, { "go", "build", "-o", "./bin/" })
     end,
     rust = function()
-      vim.fn.chdir(get_workspace_root())
       return findDebugTarget(get_workspace_root() .. "/target/release/", 2, { "cargo", "build", "--release" })
     end,
     zig = function()
-      vim.fn.chdir(get_workspace_root())
       return findDebugTarget(get_workspace_root() .. "/zig-out/bin/", 2, { "zig", "build", "-Doptimize=Debug" })
     end,
   }

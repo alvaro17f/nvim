@@ -5,7 +5,6 @@ return {
   config = function()
     require("conform").setup({
       formatters_by_ft = {
-        astro = { "prettierd", "prettier", "ast-grep" },
         css = { "prettierd", "prettier", "ast-grep" },
         go = { "gofmt" },
         html = { "prettierd", "prettier", "ast-grep" },

@@ -1,7 +1,14 @@
 return {
   "stevearc/oil.nvim",
   keys = {
-    { mode = "n", "<leader>/", ":Oil --float<CR>", desc = "File explorer" },
+    {
+      mode = "n",
+      "<leader>/",
+      function()
+        require("oil").open_float()
+      end,
+      desc = "File explorer",
+    },
   },
   dependencies = {
     "echasnovski/mini.icons",
@@ -18,13 +25,7 @@ return {
       end,
     },
     float = {
-      padding = 2,
       max_width = 90,
-      max_height = 0,
-    },
-    win_options = {
-      wrap = true,
-      winblend = 0,
     },
     use_default_keymaps = false,
     keymaps = {

@@ -31,6 +31,13 @@ return {
       silent = true,
       desc = "Gitsigns next hunk",
     },
+    {
+      mode = "n",
+      "<leader>gb",
+      ":Gitsigns blame_line<CR>",
+      silent = true,
+      desc = "Gitsigns blame line",
+    },
   },
   opts = {
     current_line_blame = true,

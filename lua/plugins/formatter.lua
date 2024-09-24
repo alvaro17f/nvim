@@ -14,6 +14,7 @@ return {
         json = { "prettierd", "prettier", "ast-grep" },
         lua = { "stylua" },
         markdown = { "prettierd", "prettier", "ast-grep" },
+        nix = { "nixfmt" },
         scss = { "prettierd", "prettier", "ast-grep" },
         sh = { "shfmt" },
         typescript = { "prettierd", "prettier", "ast-grep" },

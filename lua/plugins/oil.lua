@@ -34,6 +34,7 @@ return {
       ["h"] = "actions.parent",
       ["l"] = "actions.select",
       ["<BS>"] = "actions.open_cwd",
+      [";"] = "actions.cd",
       ["<localleader>p"] = "actions.preview",
       ["<localleader>."] = "actions.toggle_hidden",
       ["<localleader>r"] = "actions.refresh",

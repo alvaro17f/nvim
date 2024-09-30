@@ -60,7 +60,7 @@ return {
       { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves the default Neovim UI
     },
     keys = {
-      { mode = "n", "<leader>a", ":CodeCompanionToggle<CR>", desc = "CodeCompanion toggle" },
+      { mode = "n", "<leader>a", ":CodeCompanionChat Toggle<CR>", desc = "CodeCompanion toggle" },
       { mode = "v", "<leader>a", ":CodeCompanionActions<CR>", desc = "CodeCompanion actions" },
     },
     config = function()

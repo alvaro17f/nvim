@@ -10,4 +10,12 @@ function M.get_git_root()
   return vim.fn.fnamemodify(dot_git_path, ":h")
 end
 
+function M.get_workspace_root()
+  if M.is_git_repo() then
+    return M.get_git_root()
+  else
+    return vim.fn.getcwd()
+  end
+end
+
 return M

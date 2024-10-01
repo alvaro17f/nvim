@@ -1,16 +1,9 @@
 local M = {}
 
+local git = require("utils.git")
+
 local function debugger_executable_path(debugger_name)
   return vim.fn.stdpath("data") .. "/mason/bin/" .. debugger_name
-end
-
-local get_workspace_root = function()
-  local git = require("utils.git")
-  if git.is_git_repo() then
-    return git.get_git_root()
-  else
-    return vim.fn.getcwd()
-  end
 end
 
 local function findDebugTarget(targetPrefix, depth, buildCommand)
@@ -43,13 +36,13 @@ end
 local function find_program(lang)
   local handlers = {
     go = function()
-      return findDebugTarget(get_workspace_root() .. "/bin/", 2, { "go", "build", "-o", "./bin/" })
+      return findDebugTarget(git.get_workspace_root() .. "/bin/", 2, { "go", "build", "-o", "./bin/" })
     end,
     rust = function()
-      return findDebugTarget(get_workspace_root() .. "/target/release/", 2, { "cargo", "build", "--release" })
+      return findDebugTarget(git.get_workspace_root() .. "/target/release/", 2, { "cargo", "build", "--release" })
     end,
     zig = function()
-      return findDebugTarget(get_workspace_root() .. "/zig-out/bin/", 2, { "zig", "build", "-Doptimize=Debug" })
+      return findDebugTarget(git.get_workspace_root() .. "/zig-out/bin/", 2, { "zig", "build", "-Doptimize=Debug" })
     end,
   }
 
@@ -63,7 +56,7 @@ local function generate_debugger_config(lang, debugger, additional_configs)
       name = "Debug",
       request = "launch",
       program = find_program(lang),
-      cwd = get_workspace_root,
+      cwd = git.get_workspace_root,
       stopOnEntry = false,
     },
   }

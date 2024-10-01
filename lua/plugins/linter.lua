@@ -17,13 +17,6 @@ return {
       typescriptreact = { "eslint_d" },
     }
 
-    lint.linters = {
-      astro = {
-        cmd = "astro_ls",
-        stdin = true,
-      },
-    }
-
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = lint_augroup,

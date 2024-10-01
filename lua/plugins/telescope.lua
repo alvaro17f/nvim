@@ -94,7 +94,7 @@ return {
         end,
         close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
         telescope = {
-          ignore_current_buffer = true,
+          ignore_current_buffer = false,
           selection_strategy = "row",
           sort_lastused = true,
           sort_mru = true,

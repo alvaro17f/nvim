@@ -6,7 +6,7 @@ return {
     require("conform").setup({
       formatters_by_ft = {
         css = { "prettierd", "prettier", "ast-grep" },
-        go = { "gofmt" },
+        go = { "gofmt", "goimports", stop_after_first = false },
         html = { "prettierd", "prettier", "ast-grep" },
         javascript = { "prettierd", "prettier", "ast-grep" },
         javascriptreact = { "prettierd", "prettier", "ast-grep" },

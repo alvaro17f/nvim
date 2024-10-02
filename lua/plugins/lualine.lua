@@ -10,7 +10,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "horizon", -- "auto", "horizon", "catppuccin"
+        theme = "catppuccin", -- "auto", "horizon", "catppuccin"
         globalstatus = true,
         disabled_filetypes = {
           statusline = {

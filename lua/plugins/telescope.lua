@@ -7,7 +7,7 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
-      { mode = "n", "<leader>fr", ":Telescope oldfiles<CR>", desc = "Telescope recent files" },
+      { mode = "n", "<leader>fr", ":Telescope oldfiles<CR>", silent = true, desc = "Telescope recent files" },
       {
         mode = "n",
         "<leader>ff",
@@ -20,6 +20,7 @@ return {
           end
           require("telescope.builtin").find_files(opts)
         end,
+        silent = true,
         desc = "Telescope files",
       },
       {
@@ -34,6 +35,7 @@ return {
           end
           require("telescope.builtin").live_grep(opts)
         end,
+        silent = true,
         desc = "Telescope grep",
       },
     },
@@ -82,7 +84,7 @@ return {
     "axkirillov/hbac.nvim",
     lazy = false,
     keys = {
-      { mode = "n", "<leader>b", ":Telescope hbac buffers<CR>", desc = "Telescope buffers" },
+      { mode = "n", "<leader>b", ":Telescope hbac buffers<CR>", silent = true, desc = "Telescope buffers" },
     },
     config = function()
       local actions = require("hbac.telescope.actions")

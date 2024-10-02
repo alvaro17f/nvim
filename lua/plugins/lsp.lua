@@ -79,6 +79,8 @@ return {
           capabilities = capabilities,
         })
       end,
+
+      -- custom handlers for specific servers
       ["taplo"] = function()
         lspconfig["taplo"].setup({
           capabilities = capabilities,

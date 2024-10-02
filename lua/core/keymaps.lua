@@ -15,8 +15,8 @@ keymap("n", "<leader>P", '"*P', { noremap = true, silent = true, desc = "Paste b
 
 --BUFFERS
 keymap("n", "<leader><tab>", ":b#<CR>", { noremap = true, silent = true, desc = "Buffer switch back & forth" })
-keymap("n", "<leader>[", ":bp<CR>", { noremap = true, silent = true, desc = "Buffer previous" })
-keymap("n", "<leader>]", ":bn<CR>", { noremap = true, silent = true, desc = "Buffer next" })
+keymap("n", "[b", ":bp<CR>", { noremap = true, silent = true, desc = "Buffer previous" })
+keymap("n", "]b", ":bn<CR>", { noremap = true, silent = true, desc = "Buffer next" })
 
 --MOVE THROUGH WORKSPACES
 keymap("n", "<Left>", ":wincmd h<CR>", { noremap = true, silent = true, desc = "Workspace left" })

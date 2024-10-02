@@ -9,19 +9,6 @@ require("utils.flags").generate_flags_fn()
 require("utils.lsp").override_diagnostic_signs_handler()
 
 ------------------------------------
---GOLANG ORGANIZE IMPORTS
-------------------------------------
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    vim.lsp.buf.code_action({
-      context = { only = { "source.organizeImports" } },
-      apply = true,
-    })
-  end,
-})
-
-------------------------------------
 --UNDOFILE ON GIT REPOSITORY ONLY
 ------------------------------------
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {

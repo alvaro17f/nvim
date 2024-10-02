@@ -19,14 +19,14 @@ return {
     },
     {
       mode = "n",
-      "<leader>g[",
+      "[g",
       ":Gitsigns prev_hunk<CR>",
       silent = true,
       desc = "Gitsigns previous hunk",
     },
     {
       mode = "n",
-      "<leader>g]",
+      "]g",
       ":Gitsigns next_hunk<CR>",
       silent = true,
       desc = "Gitsigns next hunk",

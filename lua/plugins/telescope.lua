@@ -48,7 +48,6 @@ return {
       telescope.setup({
         defaults = {
           path_display = { "filename_first" }, -- "smart", "filename_first"
-          no_ignore = false,
           hidden = true,
           mappings = {
             i = {
@@ -57,8 +56,25 @@ return {
               ["<c-k>"] = actions.move_selection_previous,
             },
           },
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--ignore-file",
+            ".gitignore",
+          },
         },
         pickers = {
+          find_files = {
+            find_command = { "fd", "--type", "f", "--color", "never", "--no-ignore-vcs" },
+          },
+          git_files = {
+            find_command = { "fd", "--type", "f", "--color", "never", "--no-ignore-vcs" },
+          },
           buffers = {
             ignore_current_buffer = true,
             sort_lastused = true,

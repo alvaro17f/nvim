@@ -44,18 +44,18 @@ return {
 
     dashboard.section.buttons.val = {
       dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("f", " " .. " Find files", ":Telescope find_files <CR>"),
-      dashboard.button("g", "󰷾 " .. " Grep text", ":Telescope live_grep <CR>"),
-      dashboard.button("r", "󰄉 " .. " Recent files", ":Telescope oldfiles <CR>"),
-      dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-      dashboard.button("s", " " .. " Restore last session", function()
+      dashboard.button("<leader>ff", " " .. " Find files", ":Telescope find_files <CR>"),
+      dashboard.button("<leader>fg", "󰷾 " .. " Grep text", ":Telescope live_grep <CR>"),
+      dashboard.button("<leader>fr", "󰄉 " .. " Recent files", ":Telescope oldfiles <CR>"),
+      dashboard.button("<leader>cc", " " .. " Config", ":e $MYVIMRC <CR>"),
+      dashboard.button("<BS>", " " .. " Restore last session", function()
         require("persistence").load({ last = true })
       end),
-      dashboard.button("S", " " .. " Select session to restore", function()
+      dashboard.button("s", " " .. " Select session to restore", function()
         require("persistence").select()
       end),
-      dashboard.button(",", "✓ " .. " Mason", ":Mason<CR>"),
-      dashboard.button(".", "󰒲 " .. " Lazy", ":Lazy sync<CR>"),
+      dashboard.button("<leader>,", "✓ " .. " Mason", ":Mason<CR>"),
+      dashboard.button("<leader>.", "󰒲 " .. " Lazy", ":Lazy sync<CR>"),
       dashboard.button("q", " " .. " Quit", ":qa<CR>"),
     }
 

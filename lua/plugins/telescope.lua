@@ -81,10 +81,10 @@ return {
             sort_mru = true,
             mappings = {
               n = {
-                ["<c-x>"] = actions.delete_buffer,
+                ["<c-c>"] = actions.delete_buffer,
               },
               i = {
-                ["<c-x>"] = actions.delete_buffer,
+                ["<c-c>"] = actions.delete_buffer,
               },
             },
           },
@@ -119,7 +119,7 @@ return {
           use_default_mappings = true, -- false to not include the mappings below
           mappings = {
             i = {
-              ["<c-x>"] = actions.delete_buffer,
+              ["<c-c>"] = actions.delete_buffer,
               ["<c-p>"] = actions.toggle_pin,
             },
           },

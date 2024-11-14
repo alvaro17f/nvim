@@ -62,6 +62,7 @@ return {
     keys = {
       { mode = "n", "<leader>a", ":CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
       { mode = "v", "<leader>a", ":CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
+      { mode = "v", "ga", ":CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
     },
     config = function()
       require("codecompanion").setup({

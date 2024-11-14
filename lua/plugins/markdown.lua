@@ -5,7 +5,7 @@ return {
     "echasnovski/mini.icons",
   },
   opts = {
-    file_types = { "markdown" },
+    file_types = { "markdown", "codecompanion" },
   },
-  ft = { "markdown" },
+  ft = { "markdown", "codecompanion" },
 }

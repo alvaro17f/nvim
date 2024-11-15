@@ -27,6 +27,9 @@ return {
     },
     float = {
       max_width = 90,
+      win_options = {
+        winblend = 10,
+      },
     },
     use_default_keymaps = false,
     keymaps = {

@@ -43,12 +43,7 @@ return {
       dashboard.button("<leader>fg", "󰷾 " .. " Grep text", ":Telescope live_grep <CR>"),
       dashboard.button("<leader>fr", "󰄉 " .. " Recent files", ":Telescope oldfiles <CR>"),
       dashboard.button("<leader>cc", " " .. " Config", ":e $MYVIMRC <CR>"),
-      dashboard.button("<BS>", " " .. " Restore last session", function()
-        require("persistence").load({ last = true })
-      end),
-      dashboard.button("s", " " .. " Select session to restore", function()
-        require("persistence").select()
-      end),
+      dashboard.button("<leader>ww", " " .. " Select session to restore", ":SessionSearch<CR>"),
       dashboard.button("<leader>,", "✓ " .. " Mason", ":Mason<CR>"),
       dashboard.button("<leader>.", "󰒲 " .. " Lazy", ":Lazy sync<CR>"),
       dashboard.button("q", " " .. " Quit", ":qa<CR>"),

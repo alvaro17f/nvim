@@ -14,18 +14,10 @@ return {
   },
   opts = {
     enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
-    execution_message = {
-      enabled = true,
-      message = function() -- message to print on save
-        return ("󰄳 auto-save: saved at " .. vim.fn.strftime("%H:%M:%S"))
-      end,
-      dim = 0.18, -- dim the color of `message`
-      cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
-    },
     trigger_events = { -- See :h events
       immediate_save = { "BufLeave", "FocusLost" }, -- vim events that trigger an immediate save
       defer_save = { "InsertLeave", "TextChanged" }, -- vim events that trigger a deferred save (saves after `debounce_delay`)
-      cancel_defered_save = { "InsertEnter" }, -- vim events that cancel a pending deferred save
+      cancel_deferred_save = { "InsertEnter" }, -- vim events that cancel a pending deferred save
     },
     condition = function(buf)
       local fn = vim.fn
@@ -48,5 +40,15 @@ return {
     debounce_delay = 1000, -- delay after which a pending save is executed
     -- log debug messages to 'auto-save.log' file in neovim cache directory, set to `true` to enable
     debug = false,
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "AutoSaveWritePost",
+      group = vim.api.nvim_create_augroup("autosave", {}),
+      callback = function(opts)
+        if opts.data.saved_buffer ~= nil then
+          print("󰄳 auto-save: saved at " .. vim.fn.strftime("%H:%M:%S"))
+        end
+      end,
+    }),
   },
 }

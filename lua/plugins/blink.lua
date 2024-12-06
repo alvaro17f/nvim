@@ -7,10 +7,21 @@ return {
   },
   version = "v0.*",
   opts = {
-    -- 'default' for mappings similar to built-in completion
-    -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-    -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-    keymap = { preset = "enter" },
+    keymap = {
+      preset = "default", -- "default" | "enter" | "super-tab"
+      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-e>"] = { "hide", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
+      ["<Up>"] = { "select_prev", "fallback" },
+      ["<Down>"] = { "select_next", "fallback" },
+      ["<C-p>"] = { "show", "select_prev", "fallback" },
+      ["<C-n>"] = { "show", "select_next", "fallback" },
+      ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+    },
+
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
       -- Useful for when your theme doesn't support blink.cmp
@@ -19,6 +30,20 @@ return {
       -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       nerd_font_variant = "mono",
     },
+
+    completion = {
+      accept = { auto_brackets = { enabled = true } }, -- experimental auto-brackets support
+      menu = {
+        auto_show = false,
+      },
+      documentation = {
+        auto_show = true,
+      },
+      list = {
+        selection = "manual",
+      },
+    },
+
     snippets = {
       expand = function(snippet)
         require("luasnip").lsp_expand(snippet)
@@ -33,27 +58,27 @@ return {
         require("luasnip").jump(direction)
       end,
     },
+
     sources = {
       completion = {
-        enabled_providers = { "lsp", "path", "snippets", "buffer", "luasnip" },
+        enabled_providers = {
+          "lsp",
+          "path",
+          "snippets",
+          "buffer",
+          "luasnip",
+          "lazydev",
+        },
       },
-    },
-    completion = {
-      -- experimental auto-brackets support
-      accept = { auto_brackets = { enabled = true } },
-      menu = {
-        -- autoshow completion menu
-        auto_show = false,
-      },
-      -- show documentation in completion menu
-      documentation = {
-        auto_show = true,
+      providers = {
+        lsp = { fallback_for = { "lazydev" } },
+        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
       },
     },
 
-    -- experimental signature help support
-    signature = { enabled = true },
+    signature = { enabled = true }, -- experimental signature help support
   },
+
   -- allows extending the enabled_providers array elsewhere in your config
   -- without having to redefine it
   opts_extend = { "sources.completion.enabled_providers" },

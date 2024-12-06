@@ -5,6 +5,7 @@ return {
     modes = {
       search = {
         enabled = true,
+        mode = "fuzzy", -- "fuzzy" | "exact" | "search"
       },
     },
     jump = {

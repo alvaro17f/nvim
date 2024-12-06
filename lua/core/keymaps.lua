@@ -4,7 +4,7 @@
 local keymap = vim.api.nvim_set_keymap
 
 --QUIT
-keymap("n", "ZQ", ":quitall<CR>", { noremap = true, silent = true, desc = "Quit all" })
+keymap("n", "ZQ", ":quitall!<CR>", { noremap = true, silent = true, desc = "Quit all" })
 
 --LAZY
 keymap("n", "<leader>.", ":Lazy sync<CR>", { noremap = true, silent = true, desc = "Lazy sync" })

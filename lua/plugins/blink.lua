@@ -45,6 +45,10 @@ return {
         -- autoshow completion menu
         auto_show = false,
       },
+      -- show documentation in completion menu
+      documentation = {
+        auto_show = true,
+      },
     },
 
     -- experimental signature help support

@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
 local LSP_SERVERS = {
   "astro",
@@ -65,7 +65,7 @@ return {
     })
 
     mason_lspconfig.setup({
-      auto_install = true,
+      automatic_installation = true,
       ensure_installed = LSP_SERVERS,
     })
 

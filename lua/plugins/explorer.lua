@@ -1,3 +1,20 @@
+if vim.fn.executable("yazi") == 1 then
+  return {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    keys = {
+      { mode = "n", "<leader>/", ":Yazi<CR>", silent = true, desc = "Open Yazi" },
+    },
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = false,
+      keymaps = {
+        show_help = "<f1>",
+      },
+    },
+  }
+end
+
 return {
   "echasnovski/mini.files",
   version = false,

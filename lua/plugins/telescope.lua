@@ -43,8 +43,6 @@ return {
       local telescope = require("telescope")
       local actions = require("telescope.actions")
 
-      telescope.load_extension("fzf")
-
       telescope.setup({
         defaults = {
           path_display = { "filename_first" }, -- "smart", "filename_first"
@@ -93,7 +91,12 @@ return {
             show_line = false,
           },
         },
+        extensions = {
+          fzf = {},
+        },
       })
+
+      telescope.load_extension("fzf")
     end,
   },
   {

@@ -23,26 +23,18 @@ return {
     },
 
     appearance = {
-      -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-      -- Useful for when your theme doesn't support blink.cmp
-      -- will be removed in a future release
-      use_nvim_cmp_as_default = true,
-      -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-      nerd_font_variant = "mono",
+      use_nvim_cmp_as_default = true, -- Fallback highlight groups to nvim-cmp's highlight groups
+      nerd_font_variant = "mono", -- 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
     },
 
     completion = {
-      accept = { auto_brackets = { enabled = true } }, -- experimental auto-brackets support
-      menu = {
-        auto_show = false,
-      },
-      documentation = {
-        auto_show = true,
-      },
-      list = {
-        selection = "manual",
-      },
+      accept = { auto_brackets = { enabled = true } }, -- Experimental auto-brackets support
+      documentation = { auto_show = true },
+      list = { selection = "manual" },
+      menu = { auto_show = false },
     },
+
+    signature = { enabled = true }, -- Experimental signature help support
 
     snippets = {
       expand = function(snippet)
@@ -75,11 +67,9 @@ return {
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
       },
     },
-
-    signature = { enabled = true }, -- experimental signature help support
   },
 
-  -- allows extending the enabled_providers array elsewhere in your config
+  -- Allows extending the enabled_providers array elsewhere in your config
   -- without having to redefine it
   opts_extend = { "sources.completion.enabled_providers" },
 }

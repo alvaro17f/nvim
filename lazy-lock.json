@@ -36,7 +36,7 @@
   "nvim-lint": { "branch": "master", "commit": "6b46370d02cd001509a765591a3ffc481b538794" },
   "nvim-lspconfig": { "branch": "master", "commit": "9f2c279cf9abe584f03bfeb37c6658d68e3ff49d" },
   "nvim-nio": { "branch": "master", "commit": "a428f309119086dc78dd4b19306d2d67be884eee" },
-  "nvim-treesitter": { "branch": "master", "commit": "d20db847aaa5c023a040e8453b4dd82b00f8dcfd" },
+  "nvim-treesitter": { "branch": "master", "commit": "c47d8d27d047634d00a07ca80a1b694624743b38" },
   "nvim-ts-autotag": { "branch": "main", "commit": "1cca23c9da708047922d3895a71032bc0449c52d" },
   "nvim_autopairs": { "branch": "master", "commit": "b464658e9b880f463b9f7e6ccddd93fb0013f559" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
@@ -53,5 +53,5 @@
   "vim-caddyfile": { "branch": "master", "commit": "24fe0720551883e407cb70ae1d7c03f162d1d5a0" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },
   "which-key.nvim": { "branch": "main", "commit": "8ab96b38a2530eacba5be717f52e04601eb59326" },
-  "yazi.nvim": { "branch": "main", "commit": "e7e0a1d8de1466546efc8e5e8fa7b436d3088ba7" }
+  "yazi.nvim": { "branch": "main", "commit": "2d6e9b9e2bda2294a978f60367598b75ea5b59d0" }
 }

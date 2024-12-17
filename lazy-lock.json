@@ -48,7 +48,7 @@
   "telescope.nvim": { "branch": "master", "commit": "2eca9ba22002184ac05eddbe47a7fe2d5a384dfc" },
   "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "toggleterm": { "branch": "main", "commit": "022ff5594acccc8d90d2e46dc43994f7722ebdf7" },
-  "treewalker.nvim": { "branch": "main", "commit": "e30df9d6b2570d68fa4b645bbd60d1ddfb0a6077" },
+  "treewalker.nvim": { "branch": "main", "commit": "a6d8c2969ad402c6cea091d62e5f71839405390c" },
   "trouble.nvim": { "branch": "main", "commit": "46cf952fc115f4c2b98d4e208ed1e2dce08c9bf6" },
   "vim-caddyfile": { "branch": "master", "commit": "24fe0720551883e407cb70ae1d7c03f162d1d5a0" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },

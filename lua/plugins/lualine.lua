@@ -10,7 +10,9 @@ return {
 
     lualine.setup({
       options = {
-        theme = "catppuccin", -- "auto", "horizon", "catppuccin"
+        theme = "horizon", -- "auto", "horizon", "catppuccin"
+        component_separators = "",
+        section_separators = { left = "", right = "" },
         globalstatus = true,
         disabled_filetypes = {
           statusline = {
@@ -23,7 +25,7 @@ return {
             "oil",
             "starter",
             "TelescopePrompt",
-            -- "toggleterm",
+            "yazi",
           },
         },
       },
@@ -58,8 +60,8 @@ return {
           },
           "filetype",
           {
-            require("noice").api.statusline.mode.get,
-            cond = require("noice").api.statusline.mode.has,
+            require("noice").api.status.mode.get,
+            cond = require("noice").api.status.mode.has,
             color = { fg = "#ff9e64" },
           }, --showmode
         },

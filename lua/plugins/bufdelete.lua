@@ -4,7 +4,7 @@ return {
   keys = {
     {
       mode = "n",
-      "<c-c>",
+      "<c-x>",
       function()
         require("bufdelete").bufdelete(0, true)
       end,

@@ -71,9 +71,13 @@ return {
         },
         buffers = {
           prompt = "buffers: ",
-          preview_opts = "hidden",
           no_header = true,
           fzf_opts = { ["--delimiter"] = " ", ["--with-nth"] = "-1.." },
+          winopts = {
+            preview = {
+              hidden = "hidden",
+            },
+          },
         },
         helptags = {
           prompt = "💡:",
@@ -101,6 +105,7 @@ return {
         },
         keymap = {
           builtin = {
+            ["<Esc>"] = "hide",
             ["<c-d>"] = "preview-down",
             ["<c-u>"] = "preview-up",
           },

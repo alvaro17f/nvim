@@ -1,7 +1,6 @@
 return {
   {
     "ibhagwan/fzf-lua",
-    build = "./install --bin",
     event = "VeryLazy",
     keys = {
       {

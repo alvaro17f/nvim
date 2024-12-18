@@ -40,7 +40,7 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert<CR>"),
       dashboard.button("<leader>ff", " " .. " Find files", ":FzfLua files<CR>"),
-      dashboard.button("<leader>fg", "󰷾 " .. " Grep text", ":FzfLua live_grep_native<CR>"),
+      dashboard.button("<leader>fg", "󰷾 " .. " Grep text", ":FzfLua live_grep<CR>"),
       dashboard.button("<leader>fr", "󰄉 " .. " Recent files", ":FzfLua oldfiles<CR>"),
       dashboard.button("<leader>cc", " " .. " Config", ":e $MYVIMRC<CR>"),
       dashboard.button("<leader>ww", " " .. " Select session to restore", function()

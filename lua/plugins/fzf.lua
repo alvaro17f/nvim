@@ -92,6 +92,14 @@ return {
             },
           },
         },
+        git = {
+          files = {
+            prompt = "📂: ",
+          },
+        },
+        grep = {
+          prompt = " 🔍: ",
+        },
         helptags = {
           prompt = "💡:",
           winopts = {
@@ -105,7 +113,7 @@ return {
         },
         lsp = {
           code_actions = {
-            prompt = "code actions:",
+            prompt = "code actions: ",
             winopts = {
               width = 0.8,
               height = 0.7,
@@ -115,6 +123,9 @@ return {
               },
             },
           },
+        },
+        oldfiles = {
+          prompt = "⌛: ",
         },
         keymap = {
           builtin = {

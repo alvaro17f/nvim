@@ -43,7 +43,12 @@ return {
       dashboard.button("<leader>fg", "󰷾 " .. " Grep text", ":FzfLua live_grep_native<CR>"),
       dashboard.button("<leader>fr", "󰄉 " .. " Recent files", ":FzfLua oldfiles<CR>"),
       dashboard.button("<leader>cc", " " .. " Config", ":e $MYVIMRC<CR>"),
-      dashboard.button("<leader>ww", " " .. " Select session to restore", ":SessionSearch<CR>"),
+      dashboard.button("<leader>ww", " " .. " Select session to restore", function()
+        require("session_manager").load_session(false)
+      end),
+      dashboard.button("<leader>w<backspace>", " " .. " Restore last session", function()
+        require("session_manager").load_last_session()
+      end),
       dashboard.button("<leader>,", "✓ " .. " Mason", ":Mason<CR>"),
       dashboard.button("<leader>.", "󰒲 " .. " Lazy", ":Lazy sync<CR>"),
       dashboard.button("q", " " .. " Quit", ":qa<CR>"),

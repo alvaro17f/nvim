@@ -17,7 +17,7 @@ return {
       {
         "<leader>fg",
         function()
-          require("fzf-lua").live_grep_native()
+          require("fzf-lua").live_grep_native({ cwd = require("utils.git").get_workspace_root() })
         end,
         desc = "live grep",
       },

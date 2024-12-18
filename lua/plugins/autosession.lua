@@ -24,7 +24,8 @@ return {
     suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
   },
   keys = {
-    { "<leader>ww", ":SessionSearch<CR>", desc = "Session search" },
+    { "<leader>ww", ":Autosession search<CR>", desc = "Session search" },
+    { "<leader>wd", ":Autosession delete<CR>", desc = "Session delete" },
     { "<leader>ws", ":SessionSave ", desc = "Save session" },
   },
 }

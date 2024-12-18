@@ -11,42 +11,55 @@ return {
           end
           require("fzf-lua").files()
         end,
-        desc = "search files",
+        desc = "Search files",
       },
       {
         "<leader>fg",
         function()
           require("fzf-lua").live_grep({ cwd = require("utils.git").get_workspace_root() })
         end,
-        desc = "live grep",
+        desc = "Live grep",
       },
       {
         "<leader>fr",
         function()
           require("fzf-lua").oldfiles()
         end,
-        desc = "show recent files",
+        desc = "Show recent files",
       },
       {
         "<leader>fh",
         function()
           require("fzf-lua").helptags()
         end,
-        desc = "show help",
+        desc = "Show help",
+      },
+      {
+        "<leader>fb",
+        function()
+          local bufs = vim.api.nvim_list_bufs()
+          local qflist = {}
+          for _, buf in ipairs(bufs) do
+            table.insert(qflist, { bufnr = buf })
+          end
+          vim.fn.setqflist(qflist, "r")
+          require("fzf-lua").grep_quickfix()
+        end,
+        desc = "Grep buffers",
       },
       {
         "<leader>b",
         function()
           require("fzf-lua").buffers()
         end,
-        desc = "show buffers",
+        desc = "Show buffers",
       },
       {
         "<leader>f<backspace>",
         function()
           require("fzf-lua").resume()
         end,
-        desc = "resume fzf",
+        desc = "Resume fzf",
       },
     },
     config = function()

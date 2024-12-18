@@ -53,6 +53,9 @@ return {
     config = function()
       local fzf = require("fzf-lua")
       fzf.setup({
+        defaults = {
+          formatter = "path.filename_first",
+        },
         keymap = {
           builtin = {
             ["<c-d>"] = "preview-down",

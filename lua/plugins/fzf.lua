@@ -52,8 +52,52 @@ return {
     config = function()
       local fzf = require("fzf-lua")
       fzf.setup({
+        hls = { normal = "Pmenu" },
+        winopts = {
+          height = 0.5,
+          width = 0.8,
+          row = 0.5,
+          border = "none",
+        },
+        fzf_opts = {
+          ["--no-info"] = "",
+          ["--info"] = "hidden",
+          ["--padding"] = "13%,5%,13%,5%",
+          ["--header"] = " ",
+          ["--no-scrollbar"] = "",
+        },
         defaults = {
           formatter = "path.filename_first",
+        },
+        buffers = {
+          prompt = "buffers: ",
+          preview_opts = "hidden",
+          no_header = true,
+          fzf_opts = { ["--delimiter"] = " ", ["--with-nth"] = "-1.." },
+        },
+        helptags = {
+          prompt = "💡:",
+          winopts = {
+            width = 0.8,
+            height = 0.7,
+            preview = {
+              layout = "horizontal",
+              horizontal = "up:75%",
+            },
+          },
+        },
+        lsp = {
+          code_actions = {
+            prompt = "code actions:",
+            winopts = {
+              width = 0.8,
+              height = 0.7,
+              preview = {
+                layout = "horizontal",
+                horizontal = "up:75%",
+              },
+            },
+          },
         },
         keymap = {
           builtin = {

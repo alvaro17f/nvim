@@ -59,6 +59,12 @@ return {
               removed = " ",
             },
           },
+          {
+            require("nvim-possession").status,
+            cond = function()
+              return require("nvim-possession").status() ~= nil
+            end,
+          },
           "filetype",
           {
             require("noice").api.status.mode.get,

@@ -3,7 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = { "nvim-lua/plenary.nvim" },
   keys = {
-    { mode = "n", "<leader>ft", ":TodoTelescope<CR>", silent = true, desc = "Telescope TODO" },
+    { mode = "n", "<leader>ft", ":TodoFzfLua<CR>", silent = true, desc = "show TODO" },
   },
   config = function()
     local todo_comments = require("todo-comments")

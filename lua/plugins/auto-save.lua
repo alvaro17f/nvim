@@ -1,9 +1,12 @@
 local EXCLUDED_FILETYPES = {
   "alpha",
+  "fzf",
   "lazy",
+  "lazygit",
   "mason",
   "oil",
   "TelescopePrompt",
+  "yazi",
 }
 
 return {

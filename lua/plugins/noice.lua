@@ -10,7 +10,7 @@ return {
     {
       mode = "n",
       "<leader>nn",
-      ":NoiceTelescope<CR>",
+      ":NoiceFzf<CR>",
       { silent = true, pending = true },
       desc = "Show all Notifications",
     },

@@ -5,6 +5,7 @@ return {
     disabled_filetypes = {
       "alpha",
       "dashboard",
+      "fzf",
       "help",
       "lazy",
       "lazygit",
@@ -16,6 +17,7 @@ return {
       "TelescopePrompt",
       "text",
       "toggleterm",
+      "yazi",
     },
     custom_colorcolumn = {},
     scope = "file",

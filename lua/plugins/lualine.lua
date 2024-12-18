@@ -18,6 +18,7 @@ return {
           statusline = {
             "alpha",
             "dashboard",
+            "fzf",
             "lazy",
             "lazygit",
             "mason",

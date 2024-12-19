@@ -9,6 +9,8 @@ local EXCLUDED_FILETYPES = {
   "yazi",
 }
 
+local group = vim.api.nvim_create_augroup("autosave", {})
+
 return {
   "okuuva/auto-save.nvim",
   lazy = false,
@@ -23,19 +25,19 @@ return {
       cancel_deferred_save = { "InsertEnter" }, -- vim events that cancel a pending deferred save
     },
     condition = function(buf)
-      local fn = vim.fn
-      local utils = require("auto-save.utils.data")
+      local filetype = vim.fn.getbufvar(buf, "&filetype")
 
       -- don't save for special-buffers
-      if fn.getbufvar(buf, "&buftype") ~= "" then
+      if filetype ~= "" then
         return false
       end
 
       -- don't save for EXCLUDED_FILETYPES
-      if utils.not_in(fn.getbufvar(buf, "&filetype"), EXCLUDED_FILETYPES) then
-        return true
+      if vim.list_contains(EXCLUDED_FILETYPES, filetype) then
+        return false
       end
-      return false
+
+      return true
     end,
     write_all_buffers = false, -- write all buffers when the current one meets `condition`
     noautocmd = false, -- do not execute autocmds when saving
@@ -45,8 +47,24 @@ return {
     debug = false,
 
     vim.api.nvim_create_autocmd("User", {
+      pattern = "AutoSaveEnable",
+      group = group,
+      callback = function(_)
+        vim.notify("AutoSave enabled", vim.log.levels.INFO)
+      end,
+    }),
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "AutoSaveDisable",
+      group = group,
+      callback = function(_)
+        vim.notify("AutoSave disabled", vim.log.levels.INFO)
+      end,
+    }),
+
+    vim.api.nvim_create_autocmd("User", {
       pattern = "AutoSaveWritePost",
-      group = vim.api.nvim_create_augroup("autosave", {}),
+      group = group,
       callback = function(opts)
         if opts.data.saved_buffer ~= nil then
           print("󰄳 auto-save: saved at " .. vim.fn.strftime("%H:%M:%S"))

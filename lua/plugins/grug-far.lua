@@ -17,11 +17,11 @@ return {
         paths = vim.fn.expand("%"),
       },
       keymaps = {
-        replace = { n = "<localleader>r" },
+        replace = { n = "<localleader><enter>" },
         qflist = { n = "<localleader>q" },
         syncLocations = { n = "<localleader>s" },
         syncLine = { n = "<localleader>l" },
-        close = { n = "<localleader>c" },
+        close = { n = "<localleader>r" },
         historyOpen = { n = "<localleader>t" },
         historyAdd = { n = "<localleader>a" },
         refresh = { n = "<localleader>f" },

@@ -59,6 +59,13 @@ return {
       --     require('nvim-tree').toggle(false, true)
       -- end
 
+      fzf_hls = {
+        normal = "Pmenu",
+        preview_normal = "Normal",
+        border = "Constant",
+        preview_border = "Constant",
+      },
+
       fzf_winopts = {
         height = 0.5,
         width = 0.5,

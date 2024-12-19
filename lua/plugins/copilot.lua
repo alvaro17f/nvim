@@ -55,7 +55,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves the default Neovim UI
     },
     keys = {
       { mode = "n", "<leader>a", ":CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },

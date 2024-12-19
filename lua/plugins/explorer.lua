@@ -18,7 +18,7 @@ if vim.fn.executable("yazi") == 1 then
         cycle_open_buffers = false,
         copy_relative_path_to_selected_files = "<c-y>",
         send_to_quickfix_list = "<c-q>",
-        change_working_directory = "w",
+        change_working_directory = ";",
       },
     },
     future_features = {

@@ -6,8 +6,8 @@ if vim.fn.executable("yazi") == 1 then
       { mode = "n", "<leader>/", ":Yazi<CR>", silent = true, desc = "Open Yazi" },
     },
     opts = {
-      -- if you want to open yazi instead of netrw, see below for more info
-      open_for_directories = false,
+      open_for_directories = true, -- use yazi instead of netrw for directories
+      open_multiple_tabs = true,
       keymaps = {
         show_help = "<f1>",
         open_file_in_vertical_split = "<c-w>v",
@@ -20,10 +20,10 @@ if vim.fn.executable("yazi") == 1 then
         send_to_quickfix_list = "<c-q>",
         change_working_directory = ";",
       },
-    },
-    future_features = {
-      ya_emit_reveal = true,
-      ya_emit_open = true,
+      future_features = {
+        ya_emit_reveal = true,
+        ya_emit_open = true,
+      },
     },
   }
 end

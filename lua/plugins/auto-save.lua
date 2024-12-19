@@ -25,15 +25,17 @@ return {
       cancel_deferred_save = { "InsertEnter" }, -- vim events that cancel a pending deferred save
     },
     condition = function(buf)
-      local filetype = vim.fn.getbufvar(buf, "&filetype")
+      local bufVar = function(type)
+        return vim.fn.getbufvar(buf, type)
+      end
 
       -- don't save for special-buffers
-      if filetype ~= "" then
+      if bufVar("&buftype") ~= "" then
         return false
       end
 
       -- don't save for EXCLUDED_FILETYPES
-      if vim.list_contains(EXCLUDED_FILETYPES, filetype) then
+      if vim.list_contains(EXCLUDED_FILETYPES, bufVar("&filetype")) then
         return false
       end
 

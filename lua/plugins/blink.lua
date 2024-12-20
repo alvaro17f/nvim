@@ -9,13 +9,7 @@ return {
   opts = {
     keymap = {
       preset = "default", -- "default" | "enter" | "super-tab"
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-e>"] = { "hide", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
-      ["<Tab>"] = { "snippet_forward", "fallback" },
-      ["<S-Tab>"] = { "snippet_backward", "fallback" },
-      ["<Up>"] = { "select_prev", "fallback" },
-      ["<Down>"] = { "select_next", "fallback" },
       ["<C-p>"] = { "show", "select_prev", "fallback" },
       ["<C-n>"] = { "show", "select_next", "fallback" },
       ["<C-u>"] = { "scroll_documentation_up", "fallback" },
@@ -31,7 +25,7 @@ return {
       accept = { auto_brackets = { enabled = true } }, -- Experimental auto-brackets support
       documentation = { auto_show = true },
       list = { selection = "manual" },
-      menu = { auto_show = false },
+      menu = { auto_show = true },
     },
 
     signature = { enabled = true }, -- Experimental signature help support
@@ -66,7 +60,5 @@ return {
     },
   },
 
-  -- Allows extending the enabled_providers array elsewhere in your config
-  -- without having to redefine it
   opts_extend = { "sources.default" },
 }

@@ -18,7 +18,6 @@ return {
         sh = { "shfmt" },
         typescript = { "prettierd", "prettier", "biome" },
         typescriptreact = { "prettierd", "prettier", "biome" },
-        zig = { "zigfmt" },
       },
       default_format_opts = {
         lsp_format = "fallback",

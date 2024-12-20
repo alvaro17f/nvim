@@ -10,11 +10,11 @@ return {
 
     lint.linters_by_ft = {
       css = { "stylelint" },
-      javascript = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
+      javascript = { "eslint_d", "biomejs" },
+      javascriptreact = { "eslint_d", "biomejs" },
       scss = { "stylelint" },
-      typescript = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
+      typescript = { "eslint_d", "biomejs" },
+      typescriptreact = { "eslint_d", "biomejs" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

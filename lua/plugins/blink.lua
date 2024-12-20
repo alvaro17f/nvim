@@ -2,7 +2,7 @@ return {
   "saghen/blink.cmp",
   lazy = false,
   dependencies = {
-    "L3MON4D3/LuaSnip",
+    { "L3MON4D3/LuaSnip", version = "v2.*" },
     "rafamadriz/friendly-snippets",
   },
   version = "v0.*",
@@ -52,24 +52,21 @@ return {
     },
 
     sources = {
-      completion = {
-        enabled_providers = {
-          "lsp",
-          "path",
-          "snippets",
-          "buffer",
-          "luasnip",
-          "lazydev",
-        },
+      default = {
+        "lazydev",
+        "lsp",
+        "path",
+        "luasnip",
+        "snippets",
+        "buffer",
       },
       providers = {
-        lsp = { fallback_for = { "lazydev" } },
-        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
       },
     },
   },
 
   -- Allows extending the enabled_providers array elsewhere in your config
   -- without having to redefine it
-  opts_extend = { "sources.completion.enabled_providers" },
+  opts_extend = { "sources.default" },
 }

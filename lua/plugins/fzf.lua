@@ -55,6 +55,13 @@ return {
         desc = "Show buffers",
       },
       {
+        "<leader>cc",
+        function()
+          require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
+        end,
+        desc = "Show buffers",
+      },
+      {
         "<leader>f<backspace>",
         function()
           require("fzf-lua").resume()

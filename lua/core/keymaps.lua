@@ -9,9 +9,6 @@ keymap("n", "ZQ", ":quitall!<CR>", { noremap = true, silent = true, desc = "Quit
 --LAZY
 keymap("n", "<leader>.", ":Lazy sync<CR>", { noremap = true, silent = true, desc = "Lazy sync" })
 
---OPEN CONFIG
-keymap("n", "<leader>cc", ":e $MYVIMRC<CR>", { noremap = true, silent = true, desc = "Open config" })
-
 --PASTE YANK, NOT DELETED
 keymap("n", "<leader>p", '"*p', { noremap = true, silent = true, desc = "Paste after from computer" })
 keymap("n", "<leader>P", '"*P', { noremap = true, silent = true, desc = "Paste before from computer" })

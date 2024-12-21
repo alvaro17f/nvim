@@ -9,7 +9,25 @@ local EXCLUDED_FILETYPES = {
   "yazi",
 }
 
-local group = vim.api.nvim_create_augroup("autosave", {})
+local autosave_group = vim.api.nvim_create_augroup("autosave", {})
+
+local setup_autosave_autocmds = function()
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "AutoSaveEnable",
+    group = autosave_group,
+    callback = function(_)
+      vim.notify("AutoSave enabled", vim.log.levels.INFO)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "AutoSaveDisable",
+    group = autosave_group,
+    callback = function(_)
+      vim.notify("AutoSave disabled", vim.log.levels.INFO)
+    end,
+  })
+end
 
 return {
   "okuuva/auto-save.nvim",
@@ -48,25 +66,13 @@ return {
     -- log debug messages to 'auto-save.log' file in neovim cache directory, set to `true` to enable
     debug = false,
 
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "AutoSaveEnable",
-      group = group,
-      callback = function(_)
-        vim.notify("AutoSave enabled", vim.log.levels.INFO)
-      end,
-    }),
-
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "AutoSaveDisable",
-      group = group,
-      callback = function(_)
-        vim.notify("AutoSave disabled", vim.log.levels.INFO)
-      end,
+    vim.api.nvim_create_autocmd("VimEnter", {
+      callback = setup_autosave_autocmds,
     }),
 
     vim.api.nvim_create_autocmd("User", {
       pattern = "AutoSaveWritePost",
-      group = group,
+      group = autosave_group,
       callback = function(opts)
         if opts.data.saved_buffer ~= nil then
           print("󰄳 auto-save: saved at " .. vim.fn.strftime("%H:%M:%S"))

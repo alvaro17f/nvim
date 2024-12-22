@@ -7,35 +7,9 @@ return {
   config = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard") -- ["dashboard", "startify"]
+    local ui = require("utils.ui")
 
-    dashboard.section.header.val = {
-      [[                                                                       ]],
-      [[                                                                     ]],
-      [[       ████ ██████           █████      ██                     ]],
-      [[      ███████████             █████                             ]],
-      [[      █████████ ███████████████████ ███   ███████████   ]],
-      [[     █████████  ███    █████████████ █████ ██████████████   ]],
-      [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-      [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-      [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-      [[                                                                       ]],
-      [[                                                                       ]],
-      [[                                                                       ]],
-    }
-
-    dashboard.section.header.val = {
-      [[        .---.        .----------- ]],
-      [[       /     \  __  /    ------   ]],
-      [[      / /     \(  )/    -----     ]],
-      [[     //////   ' \/ `   ---        ]],
-      [[    //// / // :    : ---          ]],
-      [[   // /   /  /`    '--            ]],
-      [[  //          //..\\              ]],
-      [[         ====UU====UU====         ]],
-      [[             '//||\\`             ]],
-      [[               ''``               ]],
-      [[           memento mori           ]],
-    }
+    dashboard.section.header.val = ui.get_header(ui.headers.neovim)
 
     dashboard.section.buttons.val = {
       dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert<CR>"),

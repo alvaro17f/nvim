@@ -1,5 +1,6 @@
 return {
   "echasnovski/mini.icons",
+  lazy = true,
   version = false,
   config = function()
     local mini_icons = require("mini.icons")

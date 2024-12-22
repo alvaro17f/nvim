@@ -18,10 +18,10 @@ return {
       },
       keymaps = {
         replace = { n = "<localleader><enter>" },
-        qflist = { n = "<localleader>q" },
+        qflist = { n = "<c-q>" },
         syncLocations = { n = "<localleader>s" },
         syncLine = { n = "<localleader>l" },
-        close = { n = "<localleader>r" },
+        close = { n = "q" },
         historyOpen = { n = "<localleader>t" },
         historyAdd = { n = "<localleader>a" },
         refresh = { n = "<localleader>f" },

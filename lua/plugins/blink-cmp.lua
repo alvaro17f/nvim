@@ -48,14 +48,17 @@ return {
 
     sources = {
       default = {
+        "buffer",
         "lazydev",
         "lsp",
-        "path",
         "luasnip",
+        "path",
         "snippets",
-        "buffer",
       },
       providers = {
+        lsp = { name = "lsp", module = "blink.cmp.sources.lsp", score_offset = 1000 },
+        luasnip = { name = "luasnip", module = "blink.cmp.sources.luasnip", score_offset = 950 },
+        snippets = { name = "snippets", module = "blink.cmp.sources.snippets", score_offset = 900 },
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
       },
     },

@@ -1,7 +1,6 @@
 local M = {}
 
 local DEPENDENCIES = {
-  { name = "lazygit", function_name = "lazygit" },
   { name = "fzf" },
   { name = "rg" },
   { name = "fd" },

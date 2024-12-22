@@ -13,6 +13,7 @@ return {
       "mason",
       "minifiles",
       "oil",
+      "snacks_dashboard",
       "starter",
       "TelescopePrompt",
       "text",

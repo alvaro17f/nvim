@@ -55,6 +55,8 @@ return {
       function()
         if require("utils.git").is_git_repo() then
           Snacks.lazygit({ cwd = require("utils.git").get_git_root() })
+        elseif vim.bo.filetype == "snacks_dashboard" then
+          Snacks.lazygit({ cwd = vim.fn.stdpath("config") })
         end
       end,
       desc = "Lazygit",
@@ -64,6 +66,8 @@ return {
       function()
         if require("utils.git").is_git_repo() then
           Snacks.lazygit.log({ cwd = require("utils.git").get_git_root() })
+        elseif vim.bo.filetype == "snacks_dashboard" then
+          Snacks.lazygit.log({ cwd = vim.fn.stdpath("config") })
         end
       end,
       desc = "Lazygit log",

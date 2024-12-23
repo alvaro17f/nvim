@@ -1,9 +1,7 @@
 -- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = {
-    "echasnovski/mini.icons",
-  },
+  dependencies = { "echasnovski/mini.icons" },
   config = function()
     local lualine = require("lualine")
     local lazy_status = require("lazy.status") -- to configure lazy pending updates count

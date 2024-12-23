@@ -186,6 +186,7 @@ return {
     debug = { enabled = true },
     dim = { enabled = true },
     indent = { enabled = true },
+    input = { enabled = true },
     lazygit = {
       enabled = true,
       theme = {
@@ -214,6 +215,7 @@ return {
     },
     notify = { enabled = true },
     quickfile = { enabled = true },
+    scope = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     terminal = { enabled = true },

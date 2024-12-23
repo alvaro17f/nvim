@@ -2,7 +2,7 @@ return {
   "saghen/blink.cmp",
   event = { "InsertEnter" },
   dependencies = {
-    { "L3MON4D3/LuaSnip", version = "v2.*" },
+    { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
     "rafamadriz/friendly-snippets",
   },
   version = "v0.*",

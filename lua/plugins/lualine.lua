@@ -23,6 +23,7 @@ return {
             "minifiles",
             "oil",
             "snacks_dashboard",
+            "snacks_terminal",
             "starter",
             "TelescopePrompt",
             "yazi",

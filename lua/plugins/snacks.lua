@@ -210,15 +210,32 @@ return {
     },
     notifier = {
       enabled = true,
-      top_down = true,
-      style = "compact", -- "compact" | "fancy" | "minimal"
+      top_down = false,
+      style = "minimal", -- "compact" | "fancy" | "minimal"
     },
     notify = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
-    terminal = { enabled = true },
+    terminal = {
+      enabled = true,
+      win = {
+        keys = {
+          term_normal = {
+            "<esc><esc>",
+            function()
+              return "<C-\\><C-n>"
+            end,
+            mode = "t",
+            expr = true,
+            desc = "Double escape to normal mode",
+          },
+          q = "hide",
+          ["<esc>"] = "hide",
+        },
+      },
+    },
     words = { enabled = true },
   },
 }

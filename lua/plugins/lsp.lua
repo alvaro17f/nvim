@@ -19,7 +19,7 @@ return {
         end, opts) -- show definition, references
 
         opts.desc = "Go to declaration"
-        vim.keymap.set("n", "gc", vim.lsp.buf.declaration, opts) -- go to declaration
+        vim.keymap.set("n", "gk", vim.lsp.buf.declaration, opts) -- go to declaration
 
         opts.desc = "Show LSP definitions"
         vim.keymap.set("n", "gd", function()

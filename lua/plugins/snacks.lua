@@ -119,7 +119,7 @@ return {
     {
       "<leader>|",
       function()
-        Snacks.scratch.select()
+        require("utils.fzf").scratch_buffers()
       end,
       desc = "Select Scratch Buffer",
     },

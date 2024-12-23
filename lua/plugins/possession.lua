@@ -50,14 +50,10 @@ return {
         exclude_ft = {}, -- list of filetypes to exclude from autoswitch
       },
 
-      save_hook = nil, -- callback, function to execute before saving a session
-      -- useful to update or cleanup global variables for example
-      post_hook = nil, -- callback, function to execute after loading a session
-      -- useful to restore file trees, file managers or terminals
-      -- function()
-      --     require('FTerm').open()
-      --     require('nvim-tree').toggle(false, true)
-      -- end
+      save_hook = function()
+        require("edgy").close()
+      end,
+      post_hook = nil,
 
       fzf_hls = {
         normal = "Pmenu",

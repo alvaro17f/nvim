@@ -5,6 +5,7 @@ return {
     disabled_filetypes = {
       "alpha",
       "dashboard",
+      "checkhealth",
       "fzf",
       "help",
       "lazy",

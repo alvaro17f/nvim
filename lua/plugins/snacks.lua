@@ -237,5 +237,6 @@ return {
       },
     },
     words = { enabled = true },
+    win = { wo = { winhighlight = "" } },
   },
 }

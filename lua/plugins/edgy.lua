@@ -39,8 +39,6 @@ return {
     options = {
       top = { size = 10 },
     },
-    wo = {
-      winhighlight = "",
-    },
+    wo = { winhighlight = "" },
   },
 }

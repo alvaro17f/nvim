@@ -58,6 +58,7 @@ return {
         "lsp",
         "path",
         "buffer",
+        "snippets",
         "luasnip",
       },
 
@@ -81,10 +82,15 @@ return {
           name = "buffer",
           module = "blink.cmp.sources.buffer",
         },
+        snippets = {
+          name = "Snippets",
+          module = "blink.cmp.sources.snippets",
+          score_offset = 80,
+        },
         luasnip = {
           name = "luasnip",
           module = "blink.cmp.sources.luasnip",
-          score_offset = 80,
+          score_offset = 70,
         },
       },
 

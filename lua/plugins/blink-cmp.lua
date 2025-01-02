@@ -2,8 +2,13 @@ return {
   "saghen/blink.cmp",
   event = { "InsertEnter" },
   dependencies = {
-    { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
-    { "rafamadriz/friendly-snippets" },
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
   },
   version = "*",
   opts = {
@@ -54,39 +59,32 @@ return {
         "path",
         "buffer",
         "luasnip",
-        "snippets",
       },
 
       providers = {
         lazydev = {
-          name = "LazyDev",
+          name = "lazydev",
           module = "lazydev.integrations.blink",
           score_offset = 100,
         },
         lsp = {
-          name = "LSP",
+          name = "lsp",
           module = "blink.cmp.sources.lsp",
           score_offset = 90,
         },
         path = {
-          name = "Path",
+          name = "path",
           module = "blink.cmp.sources.path",
           fallbacks = { "luasnip", "buffer" },
         },
         buffer = {
-          name = "Buffer",
+          name = "buffer",
           module = "blink.cmp.sources.buffer",
         },
         luasnip = {
-          name = "Luasnip",
+          name = "luasnip",
           module = "blink.cmp.sources.luasnip",
           score_offset = 80,
-          fallbacks = { "snippets" },
-        },
-        snippets = {
-          name = "Snippets",
-          module = "blink.cmp.sources.snippets",
-          score_offset = 70,
         },
       },
 

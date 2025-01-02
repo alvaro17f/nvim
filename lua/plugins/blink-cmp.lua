@@ -3,9 +3,9 @@ return {
   event = { "InsertEnter" },
   dependencies = {
     { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
-    "rafamadriz/friendly-snippets",
+    { "rafamadriz/friendly-snippets" },
   },
-  version = "v0.*",
+  version = "*",
   opts = {
     keymap = {
       preset = "default", -- "default" | "enter" | "super-tab"
@@ -24,13 +24,13 @@ return {
     },
 
     completion = {
-      accept = { auto_brackets = { enabled = true } }, -- Experimental auto-brackets support
+      accept = { auto_brackets = { enabled = true } },
       documentation = { auto_show = true },
       list = { selection = "manual" },
       menu = { auto_show = true },
     },
 
-    signature = { enabled = true }, -- Experimental signature help support
+    signature = { enabled = true },
 
     snippets = {
       expand = function(snippet)
@@ -49,19 +49,57 @@ return {
 
     sources = {
       default = {
-        "buffer",
         "lazydev",
         "lsp",
-        "luasnip",
         "path",
+        "buffer",
+        "luasnip",
         "snippets",
       },
+
       providers = {
-        lsp = { name = "lsp", module = "blink.cmp.sources.lsp", score_offset = 1000 },
-        luasnip = { name = "luasnip", module = "blink.cmp.sources.luasnip", score_offset = 950 },
-        snippets = { name = "snippets", module = "blink.cmp.sources.snippets", score_offset = 900 },
-        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100,
+        },
+        lsp = {
+          name = "LSP",
+          module = "blink.cmp.sources.lsp",
+          score_offset = 90,
+        },
+        path = {
+          name = "Path",
+          module = "blink.cmp.sources.path",
+          fallbacks = { "luasnip", "buffer" },
+        },
+        buffer = {
+          name = "Buffer",
+          module = "blink.cmp.sources.buffer",
+        },
+        luasnip = {
+          name = "Luasnip",
+          module = "blink.cmp.sources.luasnip",
+          score_offset = 80,
+          fallbacks = { "snippets" },
+        },
+        snippets = {
+          name = "Snippets",
+          module = "blink.cmp.sources.snippets",
+          score_offset = 70,
+        },
       },
+
+      cmdline = function()
+        local type = vim.fn.getcmdtype()
+        if type == "/" or type == "?" then
+          return { "buffer" }
+        end
+        if type == ":" then
+          return { "cmdline" }
+        end
+        return {}
+      end,
     },
   },
 

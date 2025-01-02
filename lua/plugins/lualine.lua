@@ -8,7 +8,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "horizon", -- "auto", "horizon", "catppuccin"
+        theme = "auto", -- "auto", "horizon", "catppuccin"
         component_separators = "",
         section_separators = { left = "", right = "" },
         globalstatus = true,

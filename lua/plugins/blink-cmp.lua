@@ -76,7 +76,7 @@ return {
         path = {
           name = "path",
           module = "blink.cmp.sources.path",
-          fallbacks = { "luasnip", "buffer" },
+          fallbacks = { "snippets", "luasnip", "buffer" },
         },
         buffer = {
           name = "buffer",

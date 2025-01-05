@@ -96,10 +96,10 @@ return {
           },
         })
       end,
-      ["emmet_ls"] = function()
-        lspconfig["emmet_ls"].setup({
+      ["emmet_language_server"] = function()
+        lspconfig["emmet_language_server"].setup({
           capabilities = capabilities,
-          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss" },
         })
       end,
       ["lua_ls"] = function()

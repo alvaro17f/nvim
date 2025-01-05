@@ -25,7 +25,48 @@ return {
 
     appearance = {
       use_nvim_cmp_as_default = true, -- Fallback highlight groups to nvim-cmp's highlight groups
-      nerd_font_variant = "mono", -- 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      nerd_font_variant = "normal", -- 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      kind_icons = {
+        Array = "  ",
+        Boolean = " 󰨙 ",
+        Class = " 󰯳 ",
+        Codeium = " 󰘦 ",
+        Color = " 󰰠 ",
+        Control = "  ",
+        Collapsed = " > ",
+        Constant = " 󰯱 ",
+        Constructor = "  ",
+        Copilot = "  ",
+        Enum = " 󰯹 ",
+        EnumMember = "  ",
+        Event = "  ",
+        Field = "  ",
+        File = "  ",
+        Folder = "  ",
+        Function = " 󰡱 ",
+        Interface = " 󰰅 ",
+        Key = "  ",
+        Keyword = " 󱕴 ",
+        Method = " 󰰑 ",
+        Module = " 󰆼 ",
+        Namespace = " 󰰔 ",
+        Null = "  ",
+        Number = " 󰰔 ",
+        Object = " 󰲟 ",
+        Operator = "  ",
+        Package = " 󰰚 ",
+        Property = " 󰲽 ",
+        Reference = " 󰰠 ",
+        Snippet = "  ",
+        String = "  ",
+        Struct = " 󰰣 ",
+        TabNine = " 󰏚 ",
+        Text = " 󱜥 ",
+        TypeParameter = " 󰰦 ",
+        Unit = " 󱜥 ",
+        Value = "  ",
+        Variable = " 󰫧 ",
+      },
     },
 
     completion = {
@@ -76,17 +117,16 @@ return {
         lazydev = {
           name = "lazydev",
           module = "lazydev.integrations.blink",
-          score_offset = 100,
         },
         lsp = {
           name = "lsp",
           module = "blink.cmp.sources.lsp",
-          score_offset = 90,
+          fallbacks = { "buffer" },
         },
         path = {
           name = "path",
           module = "blink.cmp.sources.path",
-          fallbacks = { "snippets", "luasnip", "buffer" },
+          fallbacks = { "buffer", "snippets", "luasnip" },
         },
         buffer = {
           name = "buffer",
@@ -95,12 +135,11 @@ return {
         snippets = {
           name = "snippets",
           module = "blink.cmp.sources.snippets",
-          score_offset = 80,
         },
         luasnip = {
           name = "luasnip",
           module = "blink.cmp.sources.luasnip",
-          score_offset = 70,
+          fallbacks = { "snippets" },
         },
       },
 

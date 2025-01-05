@@ -7,7 +7,7 @@ local LSP_SERVERS = {
   "cssls",
   "docker_compose_language_service",
   "dockerls",
-  "emmet_ls",
+  "emmet_language_server",
   "gopls",
   "html",
   "jsonls",

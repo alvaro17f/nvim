@@ -32,7 +32,17 @@ return {
       accept = { auto_brackets = { enabled = true } },
       documentation = { auto_show = true },
       list = { selection = "manual" },
-      menu = { auto_show = true },
+      menu = {
+        auto_show = true,
+        draw = {
+          columns = {
+            { "kind_icon" },
+            { "label", "label_description", gap = 1 },
+            { "source_name" },
+          },
+          treesitter = { "lsp" },
+        },
+      },
     },
 
     signature = { enabled = true },
@@ -83,7 +93,7 @@ return {
           module = "blink.cmp.sources.buffer",
         },
         snippets = {
-          name = "Snippets",
+          name = "snippets",
           module = "blink.cmp.sources.snippets",
           score_offset = 80,
         },

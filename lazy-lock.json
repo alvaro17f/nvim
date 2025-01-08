@@ -27,7 +27,7 @@
   "multicursor.nvim": { "branch": "1.0", "commit": "f454cac9d03ccaf20008f4793f05b159f5547e78" },
   "noice.nvim": { "branch": "main", "commit": "eaed6cc9c06aa2013b5255349e4f26a6b17ab70f" },
   "nui.nvim": { "branch": "main", "commit": "53e907ffe5eedebdca1cd503b00aa8692068ca46" },
-  "nvim-autopairs": { "branch": "master", "commit": "b464658e9b880f463b9f7e6ccddd93fb0013f559" },
+  "nvim-autopairs": { "branch": "master", "commit": "d65a9678336c8b48753dba8bff49672cbeb7c892" },
   "nvim-dap": { "branch": "master", "commit": "b768c8d0ce6da614ac17ed097bf2d94e35fe1a58" },
   "nvim-dap-ui": { "branch": "master", "commit": "e94d98649dccb6a3884b66aabc2e07beb279e535" },
   "nvim-lint": { "branch": "master", "commit": "dfa45de973c3ce7bd1b9a6d346f896a68ad07e44" },

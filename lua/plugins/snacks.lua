@@ -110,14 +110,14 @@ return {
       mode = { "n", "t" },
     },
     {
-      "<leader>\\",
+      "-",
       function()
         Snacks.scratch()
       end,
       desc = "Toggle Scratch Buffer",
     },
     {
-      "<leader>|",
+      "_",
       function()
         require("utils.fzf").scratch_buffers()
       end,
@@ -204,7 +204,6 @@ return {
     notify = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
-    scroll = { enabled = true },
     statuscolumn = { enabled = true },
     terminal = {
       enabled = true,

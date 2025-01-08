@@ -8,6 +8,7 @@ return {
   opts = {
     top = {},
     right = {
+      { ft = "aerial", title = "Aerial", size = { width = 0.2 } },
       { ft = "codecompanion", title = "Copilot", size = { width = 0.5 } },
       { ft = "grug-far", title = "Search & Replace", size = { width = 0.5 } },
     },

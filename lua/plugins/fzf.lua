@@ -50,7 +50,12 @@ return {
       {
         "<leader>b",
         function()
-          require("fzf-lua").buffers()
+          local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+          if #buffers >= 2 then
+            require("fzf-lua").buffers()
+          else
+            print("Not enough buffers to show")
+          end
         end,
         desc = "Show buffers",
       },
@@ -59,7 +64,7 @@ return {
         function()
           require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
         end,
-        desc = "Show buffers",
+        desc = "Search config files",
       },
       {
         "<leader>f<backspace>",
@@ -93,11 +98,6 @@ return {
           prompt = "buffers: ",
           no_header = true,
           fzf_opts = { ["--delimiter"] = " ", ["--with-nth"] = "-1.." },
-          winopts = {
-            preview = {
-              hidden = "hidden",
-            },
-          },
         },
         git = {
           files = {

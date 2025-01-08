@@ -72,7 +72,7 @@ return {
     completion = {
       accept = { auto_brackets = { enabled = true } },
       documentation = { auto_show = true },
-      list = { selection = "manual" },
+      list = { selection = { preselect = true, auto_insert = false } },
       menu = {
         auto_show = true,
         draw = {
@@ -88,20 +88,7 @@ return {
 
     signature = { enabled = true },
 
-    snippets = {
-      expand = function(snippet)
-        require("luasnip").lsp_expand(snippet)
-      end,
-      active = function(filter)
-        if filter and filter.direction then
-          return require("luasnip").jumpable(filter.direction)
-        end
-        return require("luasnip").in_snippet()
-      end,
-      jump = function(direction)
-        require("luasnip").jump(direction)
-      end,
-    },
+    snippets = { preset = "luasnip" },
 
     sources = {
       default = {
@@ -110,7 +97,6 @@ return {
         "path",
         "buffer",
         "snippets",
-        "luasnip",
       },
 
       providers = {
@@ -135,11 +121,6 @@ return {
         snippets = {
           name = "snippets",
           module = "blink.cmp.sources.snippets",
-        },
-        luasnip = {
-          name = "luasnip",
-          module = "blink.cmp.sources.luasnip",
-          fallbacks = { "snippets" },
         },
       },
 

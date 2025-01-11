@@ -97,6 +97,7 @@ return {
         "path",
         "buffer",
         "snippets",
+        "codecompanion",
       },
 
       providers = {

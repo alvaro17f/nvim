@@ -13,7 +13,7 @@ local LSP_SERVERS = {
   "jsonls",
   "nil_ls",
   "rust_analyzer",
-  "sqlls",
+  "sqls",
   "lua_ls",
   "ols",
   "taplo",
@@ -29,6 +29,8 @@ local LSP_TOOLS = {
   "goimports",
   "prettierd",
   "shfmt",
+  "sqlfluff",
+  "sql-formatter",
   "stylelint",
   "stylua",
 }

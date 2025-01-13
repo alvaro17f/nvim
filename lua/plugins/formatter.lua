@@ -16,6 +16,7 @@ return {
         nix = { "nixfmt" },
         scss = { "prettierd", "prettier", "biome" },
         sh = { "shfmt" },
+        sql = { "sql_formatter" },
         typescript = { "prettierd", "prettier", "biome" },
         typescriptreact = { "prettierd", "prettier", "biome" },
       },

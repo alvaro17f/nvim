@@ -61,6 +61,7 @@ return {
       { mode = "v", "<leader>a", ":CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
       { mode = "n", "<leader>:", ":CodeCompanionCmd ", desc = "CodeCompanionCmd" },
       { mode = "v", "ga", ":CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
+      { mode = "n", "<leader>gc", ":CodeCompanion /commit<CR>", silent = true, desc = "CodeCompanion generate commit" },
     },
     config = function()
       require("codecompanion").setup({

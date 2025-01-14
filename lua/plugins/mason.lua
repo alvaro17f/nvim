@@ -3,7 +3,6 @@
 local LSP_SERVERS = {
   "astro",
   "bashls",
-  "biome",
   "cssls",
   "docker_compose_language_service",
   "dockerls",
@@ -24,7 +23,7 @@ local LSP_SERVERS = {
 
 local LSP_TOOLS = {
   "goimports",
-  "prettierd",
+  "prettier",
   "shfmt",
   "sqlfluff",
   "sql-formatter",

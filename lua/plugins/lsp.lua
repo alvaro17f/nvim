@@ -21,13 +21,7 @@ return {
   },
   config = function()
     ---------------------
-    -- capabilities
-    ---------------------
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
-
-    ---------------------
-    -- LSP servers
+    -- lsp servers
     ---------------------
     local servers = {
       astro = {},
@@ -36,11 +30,9 @@ return {
       docker_compose_language_service = {},
       dockerls = {},
       emmet_language_server = {
-        capabilities = capabilities,
         filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss" },
       },
       eslint = {
-        capabilities = capabilities,
         filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
         flags = os.getenv("DEBOUNCE_ESLINT") and {
           allow_incremental_sync = true,
@@ -57,7 +49,6 @@ return {
       html = {},
       jsonls = {},
       lua_ls = {
-        capabilities = capabilities,
         settings = {
           Lua = {
             -- make the language server recognize "vim" global
@@ -74,7 +65,6 @@ return {
       rust_analyzer = {},
       sqls = {},
       taplo = {
-        capabilities = capabilities,
         filetypes = { "toml" },
         settings = {
           evenBetterToml = {
@@ -103,6 +93,12 @@ return {
       "stylelint",
       "stylua",
     }
+
+    ---------------------
+    -- capabilities
+    ---------------------
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
     ---------------------
     -- mason

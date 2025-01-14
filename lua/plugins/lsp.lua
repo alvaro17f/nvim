@@ -230,13 +230,13 @@ return {
     -- error lens
     ---------------------
     vim.diagnostic.config({
-      virtual_text = true,
       severity_sort = true,
       underline = true,
-      float = {
-        border = "single",
-        source = true,
-        max_width = 100,
+      update_in_insert = false,
+      virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "●",
       },
     })
 

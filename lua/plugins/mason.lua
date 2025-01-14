@@ -17,6 +17,7 @@ local LSP_SERVERS = {
   "ols",
   "taplo",
   "tailwindcss",
+  "vtsls",
   "yamlls",
   "zls",
 }

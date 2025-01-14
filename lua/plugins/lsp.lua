@@ -87,6 +87,10 @@ return {
         lspconfig["eslint"].setup({
           capabilities = capabilities,
           filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
+          flags = os.getenv("DEBOUNCE_ESLINT") and {
+            allow_incremental_sync = true,
+            debounce_text_changes = 1000,
+          } or nil,
           on_attach = function(_, bufnr)
             vim.api.nvim_create_autocmd("BufWritePre", {
               buffer = bufnr,
@@ -137,6 +141,13 @@ return {
     ------------------
     vim.diagnostic.config({
       virtual_text = true,
+      severity_sort = true,
+      underline = true,
+      float = {
+        border = "single",
+        source = true,
+        max_width = 100,
+      },
     })
 
     ------------------

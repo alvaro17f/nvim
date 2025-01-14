@@ -23,10 +23,10 @@ return {
       default_format_opts = {
         lsp_format = "fallback",
         stop_after_first = true,
+        quiet = true,
       },
       format_on_save = {
-        lsp_fallback = true,
-        async = false,
+        lsp_format = "fallback",
         timeout_ms = 500,
       },
     })

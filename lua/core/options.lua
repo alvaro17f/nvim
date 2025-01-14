@@ -4,8 +4,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 ------------------------------------
-vim.g.have_nerd_font = false
-------------------------------------
 vim.opt.autochdir = true
 vim.opt.backup = false
 vim.opt.breakindent = true

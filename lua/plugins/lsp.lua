@@ -1,144 +1,202 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    {
+      "williamboman/mason.nvim",
+      opts = {
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      },
+      keys = {
+        { mode = "n", "<leader>,", ":Mason<CR>", desc = "Open mason" },
+      },
+    },
+    { "williamboman/mason-lspconfig.nvim" },
+    { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+  },
   config = function()
-    local lspconfig = require("lspconfig")
-    local mason_lspconfig = require("mason-lspconfig")
+    ---------------------
+    -- capabilities
+    ---------------------
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
+    ---------------------
+    -- LSP servers
+    ---------------------
+    local servers = {
+      astro = {},
+      bashls = {},
+      cssls = {},
+      docker_compose_language_service = {},
+      dockerls = {},
+      emmet_language_server = {
+        capabilities = capabilities,
+        filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss" },
+      },
+      eslint = {
+        capabilities = capabilities,
+        filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
+        flags = os.getenv("DEBOUNCE_ESLINT") and {
+          allow_incremental_sync = true,
+          debounce_text_changes = 1000,
+        } or nil,
+        on_attach = function(_, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+          })
+        end,
+      },
+      gopls = {},
+      html = {},
+      jsonls = {},
+      lua_ls = {
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            -- make the language server recognize "vim" global
+            diagnostics = {
+              globals = { "vim" },
+            },
+            completion = {
+              callSnippet = "Replace",
+            },
+          },
+        },
+      },
+      nil_ls = {},
+      rust_analyzer = {},
+      sqls = {},
+      taplo = {
+        capabilities = capabilities,
+        filetypes = { "toml" },
+        settings = {
+          evenBetterToml = {
+            formatter = {
+              inlineTableExpand = false,
+            },
+          },
+        },
+      },
+      ols = {},
+      tailwindcss = {},
+      vtsls = {},
+      yamlls = {},
+      zls = {},
+    }
+
+    ---------------------
+    -- LSP tools
+    ---------------------
+    local LSP_TOOLS = {
+      "goimports",
+      "prettier",
+      "shfmt",
+      "sqlfluff",
+      "sql-formatter",
+      "stylelint",
+      "stylua",
+    }
+
+    ---------------------
+    -- mason
+    ---------------------
+    local ensure_installed = vim.tbl_keys(servers or {})
+
+    if require("utils.flags").get_flags("debugger") == true then
+      local DEBUGGERS = require("utils.debugger").DEBUGGERS
+      vim.list_extend(ensure_installed, DEBUGGERS)
+    end
+
+    vim.list_extend(ensure_installed, LSP_TOOLS)
+
+    require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+    require("mason-lspconfig").setup_handlers({
+      function(server_name)
+        local server = servers[server_name] or {}
+        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+        require("lspconfig")[server_name].setup(server)
+      end,
+    })
+
+    ---------------------
+    -- keybinds
+    ---------------------
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(ev)
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf, silent = true }
+      callback = function(event)
+        local opts = { buffer = event.buf, silent = true }
 
-        -- set keybinds
         opts.desc = "Show LSP references"
         vim.keymap.set("n", "gr", function()
           require("fzf-lua").lsp_references({ jump_to_single_result = true })
-        end, opts) -- show definition, references
+        end, opts)
 
         opts.desc = "Go to declaration"
-        vim.keymap.set("n", "gk", vim.lsp.buf.declaration, opts) -- go to declaration
+        vim.keymap.set("n", "gk", vim.lsp.buf.declaration, opts)
 
         opts.desc = "Show LSP definitions"
         vim.keymap.set("n", "gd", function()
           require("fzf-lua").lsp_definitions({ jump_to_single_result = true })
-        end, opts) -- show lsp definitions
+        end, opts)
 
         opts.desc = "Show LSP implementations"
         vim.keymap.set("n", "gi", function()
           require("fzf-lua").lsp_implementations({ jump_to_single_result = true })
-        end, opts) -- show lsp implementations
+        end, opts)
 
         opts.desc = "Show LSP type definitions"
         vim.keymap.set("n", "gt", function()
           require("fzf-lua").lsp_typedefs()
-        end, opts) -- show lsp type definitions
+        end, opts)
 
         opts.desc = "See available code actions"
-        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
         opts.desc = "Smart rename"
-        vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts) -- smart rename
+        vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 
         opts.desc = "Show buffer diagnostics"
         vim.keymap.set("n", "gb", function()
           require("fzf-lua").diagnostics_document()
-        end, opts) -- show  diagnostics for file
+        end, opts)
 
         opts.desc = "Show line diagnostics"
-        vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts) -- show diagnostics for line
+        vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
 
         opts.desc = "Go to previous diagnostic"
-        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
         opts.desc = "Go to next diagnostic"
-        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
         opts.desc = "Show documentation for what is under cursor"
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
         opts.desc = "Restart LSP"
-        vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+        vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
       end,
     })
 
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+    ---------------------
+    -- diagnostic signs
+    ---------------------
+    local signs = { ERROR = " ", WARN = " ", HINT = "󰠠 ", INFO = " " }
+    local diagnostic_signs = {}
     for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+      diagnostic_signs[vim.diagnostic.severity[type]] = icon
     end
+    vim.diagnostic.config({ signs = { text = diagnostic_signs } })
 
-    mason_lspconfig.setup_handlers({
-      -- default handler for installed servers
-      function(server_name)
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-        })
-      end,
-
-      -- custom handlers for specific servers
-      ["eslint"] = function()
-        lspconfig["eslint"].setup({
-          capabilities = capabilities,
-          filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
-          flags = os.getenv("DEBOUNCE_ESLINT") and {
-            allow_incremental_sync = true,
-            debounce_text_changes = 1000,
-          } or nil,
-          on_attach = function(_, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              command = "EslintFixAll",
-            })
-          end,
-        })
-      end,
-      ["emmet_language_server"] = function()
-        lspconfig["emmet_language_server"].setup({
-          capabilities = capabilities,
-          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss" },
-        })
-      end,
-      ["lua_ls"] = function()
-        lspconfig["lua_ls"].setup({
-          capabilities = capabilities,
-          settings = {
-            Lua = {
-              -- make the language server recognize "vim" global
-              diagnostics = {
-                globals = { "vim" },
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-            },
-          },
-        })
-      end,
-      ["taplo"] = function()
-        lspconfig["taplo"].setup({
-          capabilities = capabilities,
-          filetypes = { "toml" },
-          settings = {
-            evenBetterToml = {
-              formatter = {
-                inlineTableExpand = false,
-              },
-            },
-          },
-        })
-      end,
-    })
-
-    ------------------
+    ---------------------
     -- error lens
-    ------------------
+    ---------------------
     vim.diagnostic.config({
       virtual_text = true,
       severity_sort = true,
@@ -150,9 +208,9 @@ return {
       },
     })
 
-    ------------------
+    ---------------------
     -- inlay hints
-    ------------------
+    ---------------------
     vim.lsp.inlay_hint.enable() -- enabled by default
     vim.keymap.set("n", "<leader>&", function()
       local enabled_icon = "✅"

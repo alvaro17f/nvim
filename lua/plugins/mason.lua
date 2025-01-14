@@ -17,15 +17,12 @@ local LSP_SERVERS = {
   "lua_ls",
   "ols",
   "taplo",
-  "ts_ls",
   "tailwindcss",
   "yamlls",
   "zls",
 }
 
 local LSP_TOOLS = {
-  "eslint",
-  "eslint_d",
   "goimports",
   "prettierd",
   "shfmt",

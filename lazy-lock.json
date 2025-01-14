@@ -47,6 +47,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "treewalker.nvim": { "branch": "main", "commit": "4992fa9d27792b7a573e4545c9b2c4e61aba4f44" },
   "trouble.nvim": { "branch": "main", "commit": "4d36b8979287f5facc03fd6d955ace67db667e1d" },
+  "typescript-tools.nvim": { "branch": "master", "commit": "35e397ce467bedbbbb5bfcd0aa79727b59a08d4a" },
   "vim-caddyfile": { "branch": "master", "commit": "24fe0720551883e407cb70ae1d7c03f162d1d5a0" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },
   "which-key.nvim": { "branch": "main", "commit": "1f8d414f61e0b05958c342df9b6a4c89ce268766" },

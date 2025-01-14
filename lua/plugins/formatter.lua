@@ -19,6 +19,7 @@ return {
         sql = { "sql_formatter" },
         typescript = { "prettierd", "prettier", "biome" },
         typescriptreact = { "prettierd", "prettier", "biome" },
+        ["*"] = { "trim_whitespace" },
       },
       default_format_opts = {
         lsp_format = "fallback",

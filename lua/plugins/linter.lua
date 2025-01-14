@@ -10,11 +10,7 @@ return {
 
     lint.linters_by_ft = {
       css = { "stylelint" },
-      javascript = { "eslint_d", "biomejs" },
-      javascriptreact = { "eslint_d", "biomejs" },
       scss = { "stylelint" },
-      typescript = { "eslint_d", "biomejs" },
-      typescriptreact = { "eslint_d", "biomejs" },
       sql = { "sqlfluff" },
     }
 

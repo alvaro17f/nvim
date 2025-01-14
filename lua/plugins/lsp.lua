@@ -83,17 +83,16 @@ return {
       end,
 
       -- custom handlers for specific servers
-      ["taplo"] = function()
-        lspconfig["taplo"].setup({
+      ["eslint"] = function()
+        lspconfig["eslint"].setup({
           capabilities = capabilities,
-          filetypes = { "toml" },
-          settings = {
-            evenBetterToml = {
-              formatter = {
-                inlineTableExpand = false,
-              },
-            },
-          },
+          filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
+          on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              command = "EslintFixAll",
+            })
+          end,
         })
       end,
       ["emmet_language_server"] = function()
@@ -113,6 +112,19 @@ return {
               },
               completion = {
                 callSnippet = "Replace",
+              },
+            },
+          },
+        })
+      end,
+      ["taplo"] = function()
+        lspconfig["taplo"].setup({
+          capabilities = capabilities,
+          filetypes = { "toml" },
+          settings = {
+            evenBetterToml = {
+              formatter = {
+                inlineTableExpand = false,
               },
             },
           },

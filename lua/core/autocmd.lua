@@ -13,7 +13,7 @@ require("utils.lsp").override_diagnostic_signs_handler()
 ------------------------------------
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
   callback = function()
-    vim.opt.undofile = require("utils.git").is_git_repo()
+    vim.o.undofile = require("utils.git").is_git_repo()
   end,
 })
 

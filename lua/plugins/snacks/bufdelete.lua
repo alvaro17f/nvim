@@ -2,7 +2,7 @@ return {
   "snacks.nvim",
   keys = {
     {
-      "<c-c>",
+      "<c-x>",
       function()
         Snacks.bufdelete()
       end,

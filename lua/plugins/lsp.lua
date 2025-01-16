@@ -163,7 +163,7 @@ return {
 
         opts.desc = "Show LSP references"
         vim.keymap.set("n", "gr", function()
-          require("fzf-lua").lsp_references({ jump_to_single_result = true })
+          Snacks.picker.lsp_references()
         end, opts)
 
         opts.desc = "Go to declaration"
@@ -171,17 +171,17 @@ return {
 
         opts.desc = "Show LSP definitions"
         vim.keymap.set("n", "gd", function()
-          require("fzf-lua").lsp_definitions({ jump_to_single_result = true })
+          Snacks.picker.lsp_definitions()
         end, opts)
 
         opts.desc = "Show LSP implementations"
         vim.keymap.set("n", "gi", function()
-          require("fzf-lua").lsp_implementations({ jump_to_single_result = true })
+          Snacks.picker.lsp_implementations()
         end, opts)
 
         opts.desc = "Show LSP type definitions"
         vim.keymap.set("n", "gt", function()
-          require("fzf-lua").lsp_typedefs()
+          Snacks.picker.lsp_type_definitions()
         end, opts)
 
         opts.desc = "See available code actions"
@@ -192,7 +192,7 @@ return {
 
         opts.desc = "Show buffer diagnostics"
         vim.keymap.set("n", "gb", function()
-          require("fzf-lua").diagnostics_document()
+          Snacks.picker.diagnostics_buffer()
         end, opts)
 
         opts.desc = "Show line diagnostics"

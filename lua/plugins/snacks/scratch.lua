@@ -11,7 +11,7 @@ return {
     {
       "_",
       function()
-        require("utils.fzf").scratch_buffers()
+        Snacks.scratch.select()
       end,
       desc = "Select Scratch Buffer",
     },

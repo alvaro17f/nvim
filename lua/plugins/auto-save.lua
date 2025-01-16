@@ -1,11 +1,11 @@
 local EXCLUDED_FILETYPES = {
-  "alpha",
-  "fzf",
   "lazy",
   "lazygit",
   "mason",
-  "oil",
-  "TelescopePrompt",
+  "minifiles",
+  "snacks_dashboard",
+  "snacks_terminal",
+  "snacks_picker_input",
   "yazi",
 }
 

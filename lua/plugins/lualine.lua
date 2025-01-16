@@ -14,18 +14,13 @@ return {
         globalstatus = true,
         disabled_filetypes = {
           statusline = {
-            "alpha",
-            "dashboard",
-            "fzf",
             "lazy",
             "lazygit",
             "mason",
             "minifiles",
-            "oil",
             "snacks_dashboard",
             "snacks_terminal",
-            "starter",
-            "TelescopePrompt",
+            "snacks_picker_input",
             "yazi",
           },
         },
@@ -58,12 +53,6 @@ return {
               modified = " ",
               removed = " ",
             },
-          },
-          {
-            require("nvim-possession").status,
-            cond = function()
-              return require("nvim-possession").status() ~= nil
-            end,
           },
           "filetype",
           {

@@ -1,4 +1,3 @@
---TODO:
 local ui = require("utils.ui")
 local function get_dashboard_header(header)
   return table.concat(ui.get_header(header), "\n")
@@ -16,9 +15,9 @@ return {
           { icon = " ", key = "n", desc = " New file", action = ":ene | startinsert" },
           {
             icon = " ",
-            key = "<leader>ww",
-            desc = " Restore session",
-            action = ":lua require('nvim-possession').list()",
+            key = "<backspace>",
+            desc = " Restore last session",
+            action = ":lua require('persistence').load({last = true})",
           },
           { icon = " ", key = "<leader>ff", desc = " Find files", action = ":lua Snacks.dashboard.pick('files')" },
           {

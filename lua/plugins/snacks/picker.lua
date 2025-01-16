@@ -98,8 +98,6 @@ return {
         input = {
           keys = {
             ["<Esc>"] = { "close", mode = { "n", "i" } },
-            ["<c-c>"] = { "bufdelete", mode = { "i", "n" } },
-            ["dd"] = false,
             ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
             ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
             ["<c-f>"] = false,
@@ -110,8 +108,6 @@ return {
         },
         list = {
           keys = {
-            ["<c-c>"] = "bufdelete",
-            ["dd"] = false,
             ["<c-d>"] = "preview_scroll_down",
             ["<c-u>"] = "preview_scroll_up",
             ["<c-f>"] = false,

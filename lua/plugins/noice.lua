@@ -3,6 +3,13 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    keys = {
+      {
+        "<leader>nm",
+        ":messages<CR>",
+        desc = "Show messages",
+      },
+    },
     opts = {},
   },
 }

@@ -14,6 +14,15 @@ return {
     },
     bottom = {
       {
+        ft = "help",
+        size = { height = 0.5 },
+        filter = function(buf)
+          return vim.bo[buf].buftype == "help"
+        end,
+      },
+      { ft = "noice", title = "Noice" },
+      { ft = "qf", title = "QuickFix" },
+      {
         ft = "snacks_terminal",
         size = { height = 0.5 },
         title = "Terminal %{b:snacks_terminal.id}",
@@ -24,15 +33,7 @@ return {
             and not vim.w[win].trouble_preview
         end,
       },
-      { ft = "qf", title = "QuickFix" },
       { ft = "trouble", title = "Trouble" },
-      {
-        ft = "help",
-        size = { height = 0.5 },
-        filter = function(buf)
-          return vim.bo[buf].buftype == "help"
-        end,
-      },
     },
     left = {},
 

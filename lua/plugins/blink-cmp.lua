@@ -1,3 +1,15 @@
+local sources_default = {
+  "lazydev",
+  "lsp",
+  "path",
+  "buffer",
+  "snippets",
+}
+
+if require("utils.flags").get_flags("copilot") then
+  table.insert(sources_default, "codecompanion")
+end
+
 return {
   "saghen/blink.cmp",
   event = { "InsertEnter" },
@@ -91,14 +103,7 @@ return {
     snippets = { preset = "luasnip" },
 
     sources = {
-      default = {
-        "lazydev",
-        "lsp",
-        "path",
-        "buffer",
-        "snippets",
-        "codecompanion",
-      },
+      default = sources_default,
 
       providers = {
         lazydev = {

@@ -27,6 +27,13 @@ return {
       desc = "Recent",
     },
     {
+      "<leader>fs",
+      function()
+        Snacks.picker.smart()
+      end,
+      desc = "Smart",
+    },
+    {
       "<leader>fh",
       function()
         Snacks.picker.help()

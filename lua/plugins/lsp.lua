@@ -137,7 +137,7 @@ return {
     ---------------------
     local ensure_installed = vim.tbl_keys(servers or {})
 
-    if require("utils.flags").get_flags("debugger") == true then
+    if vim.g.debugger then
       local DEBUGGERS = require("utils.debugger").DEBUGGERS
       vim.list_extend(ensure_installed, DEBUGGERS)
     end

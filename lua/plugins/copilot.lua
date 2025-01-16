@@ -1,4 +1,4 @@
-if require("utils.flags").get_flags("copilot") == false then
+if vim.g.copilot == false then
   return {}
 end
 

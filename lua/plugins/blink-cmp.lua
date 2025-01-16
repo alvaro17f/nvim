@@ -6,7 +6,7 @@ local sources_default = {
   "snippets",
 }
 
-if require("utils.flags").get_flags("copilot") then
+if vim.g.copilot then
   table.insert(sources_default, "codecompanion")
 end
 

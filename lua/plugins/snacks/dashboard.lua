@@ -1,10 +1,3 @@
-local ui = require("utils.ui")
-local function get_dashboard_header(header)
-  return table.concat(ui.get_header(header), "\n")
-end
-
-local header = ui.headers.neovim
-
 return {
   "snacks.nvim",
   opts = {
@@ -43,7 +36,7 @@ return {
           { icon = " ", key = "q", desc = " Quit", action = ":qa" },
         },
 
-        header = get_dashboard_header(header),
+        header = require("utils.ui").get_dashboard_header(vim.g.dashboard_header),
       },
     },
   },

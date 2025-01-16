@@ -20,7 +20,6 @@ return {
           return vim.bo[buf].buftype == "help"
         end,
       },
-      { ft = "noice", title = "Noice" },
       { ft = "qf", title = "QuickFix" },
       {
         ft = "snacks_terminal",

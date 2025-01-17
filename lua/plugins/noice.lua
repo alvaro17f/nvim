@@ -6,7 +6,7 @@ return {
     keys = {
       {
         "<leader>nm",
-        ":messages<CR>",
+        "<CMD>messages<CR>",
         desc = "Show messages",
       },
     },

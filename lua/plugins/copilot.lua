@@ -57,11 +57,17 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     keys = {
-      { mode = "n", "<leader>a", ":CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
-      { mode = "v", "<leader>a", ":CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
-      { mode = "n", "<leader>:", ":CodeCompanionCmd ", desc = "CodeCompanionCmd" },
-      { mode = "v", "ga", ":CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
-      { mode = "n", "<leader>gc", ":CodeCompanion /commit<CR>", silent = true, desc = "CodeCompanion generate commit" },
+      { mode = "n", "<leader>a", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
+      { mode = "v", "<leader>a", "<CMD>CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
+      { mode = "n", "<leader>:", "<CMD>CodeCompanionCmd ", desc = "CodeCompanionCmd" },
+      { mode = "v", "ga", "<CMD>CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
+      {
+        mode = "n",
+        "<leader>gc",
+        "<CMD>CodeCompanion /commit<CR>",
+        silent = true,
+        desc = "CodeCompanion generate commit",
+      },
     },
     config = function()
       require("codecompanion").setup({

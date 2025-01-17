@@ -34,7 +34,7 @@ return {
   "okuuva/auto-save.nvim",
   lazy = false,
   keys = {
-    { mode = "n", "<leader>*", ":ASToggle<CR>", desc = "Toggle auto-save" },
+    { mode = "n", "<leader>*", "<CMD>ASToggle<CR>", desc = "Toggle auto-save" },
   },
   opts = {
     enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)

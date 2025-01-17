@@ -3,7 +3,7 @@ if vim.fn.executable("yazi") == 1 then
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
     keys = {
-      { mode = "n", "<leader>/", ":Yazi<CR>", silent = true, desc = "Open Yazi" },
+      { mode = "n", "<leader>/", "<CMD>Yazi<CR>", silent = true, desc = "Open Yazi" },
     },
     opts = {
       open_for_directories = true, -- use yazi instead of netrw for directories
@@ -32,7 +32,7 @@ return {
   "echasnovski/mini.files",
   version = false,
   keys = {
-    { mode = "n", "<Leader>/", ":lua MiniFiles.open()<CR>", silent = true, desc = "Open file manager" },
+    { mode = "n", "<Leader>/", "<CMD>lua MiniFiles.open()<CR>", silent = true, desc = "Open file manager" },
   },
   config = function()
     require("mini.files").setup({

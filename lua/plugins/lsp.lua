@@ -13,7 +13,7 @@ return {
         },
       },
       keys = {
-        { mode = "n", "<leader>,", ":Mason<CR>", desc = "Open mason" },
+        { mode = "n", "<leader>,", "<CMD>Mason<CR>", desc = "Open mason" },
       },
     },
     { "williamboman/mason-lspconfig.nvim" },
@@ -211,7 +211,7 @@ return {
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
         opts.desc = "Restart LSP"
-        vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
+        vim.keymap.set("n", "<leader>lr", "<CMD>LspRestart<CR>", opts)
       end,
     })
 

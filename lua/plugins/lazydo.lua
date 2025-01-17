@@ -7,12 +7,12 @@ return {
     keys = {
       {
         "\\",
-        ":LazyDoToggle<CR>",
+        "<CMD>LazyDoToggle<CR>",
         desc = "Toggle LazyDo",
       },
       {
         "<leader>\\",
-        ":LazyDoPin bottomright<CR>",
+        "<CMD>LazyDoPin bottomright<CR>",
         desc = "Pin LazyDo",
       },
     },

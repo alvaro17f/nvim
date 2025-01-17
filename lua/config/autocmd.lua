@@ -4,11 +4,6 @@
 require("utils.flags").generate_flags_fn()
 
 ------------------------------------
---SINGLE DIAGNOSTIC ICON
-------------------------------------
-require("utils.lsp").override_diagnostic_signs_handler()
-
-------------------------------------
 --UNDOFILE ON GIT REPOSITORY ONLY
 ------------------------------------
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {

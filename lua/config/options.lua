@@ -34,7 +34,6 @@ vim.o.shiftwidth = 2
 vim.o.showmode = false
 vim.o.showtabline = 0
 vim.o.sidescrolloff = 999
-vim.o.signcolumn = "auto:1-2"
 vim.o.smartcase = true
 vim.o.smartindent = true
 vim.o.softtabstop = 2

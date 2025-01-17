@@ -8,12 +8,19 @@ return {
       {
         "\\",
         ":LazyDoToggle<CR>",
+        desc = "Toggle LazyDo",
       },
       {
         "<leader>\\",
         ":LazyDoPin bottomright<CR>",
+        desc = "Pin LazyDo",
       },
     },
-    opts = {},
+    opts = {
+      pin_window = {
+        enabled = false, --TODO: this helps to keep position at bottom right
+        position = "bottomright", -- "topright", "topleft", "bottomright", "bottomleft"
+      },
+    },
   },
 }

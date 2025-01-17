@@ -13,6 +13,7 @@ return {
 
     treesitter.setup({
       auto_install = true,
+      ensure_installed = { "regex" },
       highlight = { enable = true },
       indent = { enable = true },
     })

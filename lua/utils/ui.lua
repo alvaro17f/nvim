@@ -6,7 +6,7 @@ M.headers = {
 }
 
 local function get_header(header)
-  return vim.fn.readfile(vim.fn.stdpath("config") .. "/static/header/" .. header)
+  return vim.fn.readfile(vim.fn.stdpath("config") .. "/assets/dashboard/" .. header)
 end
 
 function M.get_dashboard_header(header)

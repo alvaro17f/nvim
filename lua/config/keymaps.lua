@@ -35,9 +35,6 @@ keymap("i", "<a-j>", "<down>", { noremap = true, silent = true, desc = "Down" })
 keymap("i", "<a-k>", "<up>", { noremap = true, silent = true, desc = "Up" })
 keymap("i", "<a-l>", "<right>", { noremap = true, silent = true, desc = "Right" })
 
---BLOCK TO LINES (& AVOID EX MODE)
-keymap("n", "Q", "gqq", { noremap = true, silent = true, desc = "Block to lines" })
-
 --MOVE LINES
 keymap("n", "<c-a-j>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
 keymap("n", "<c-a-k>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })

@@ -1,11 +1,19 @@
+local filetypes = {
+  "markdown",
+}
+
+if vim.g.copilot then
+  table.insert(filetypes, "codecompanion")
+end
+
 return {
-  "MeanderingProgrammer/render-markdown.nvim",
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "echasnovski/mini.icons",
-  },
+  "OXY2DEV/markview.nvim",
+  branch = "dev",
+  ft = filetypes,
   opts = {
-    file_types = { "markdown", "codecompanion" },
+    filetypes = filetypes,
+    preview = {
+      ignore_buftypes = {},
+    },
   },
-  ft = { "markdown", "codecompanion" },
 }

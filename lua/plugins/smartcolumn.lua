@@ -8,6 +8,7 @@ return {
       "grug-far",
       "help",
       "lazy",
+      "lazydo",
       "lazygit",
       "markdown",
       "mason",

@@ -9,6 +9,10 @@ return {
         "\\",
         ":LazyDoToggle<CR>",
       },
+      {
+        "<leader>\\",
+        ":LazyDoPin bottomright<CR>",
+      },
     },
     opts = {},
   },

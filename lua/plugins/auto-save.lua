@@ -1,5 +1,6 @@
 local EXCLUDED_FILETYPES = {
   "lazy",
+  "lazydo",
   "lazygit",
   "mason",
   "minifiles",

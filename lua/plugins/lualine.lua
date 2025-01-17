@@ -15,6 +15,7 @@ return {
         disabled_filetypes = {
           statusline = {
             "lazy",
+            "lazydo",
             "lazygit",
             "mason",
             "minifiles",

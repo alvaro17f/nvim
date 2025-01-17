@@ -12,9 +12,6 @@ return {
     },
     opts = {
       lsp = {
-        signature = {
-          enabled = false, -- provided by blink.cmp
-        },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,

@@ -32,7 +32,7 @@
   "nvim-lint": { "branch": "master", "commit": "dfa45de973c3ce7bd1b9a6d346f896a68ad07e44" },
   "nvim-lspconfig": { "branch": "master", "commit": "339ccc81e08793c3af9b83882a6ebd90c9cc0d3b" },
   "nvim-nio": { "branch": "master", "commit": "a428f309119086dc78dd4b19306d2d67be884eee" },
-  "nvim-treesitter": { "branch": "master", "commit": "fd59f984416f696d85119fd4d15ce0965b179944" },
+  "nvim-treesitter": { "branch": "master", "commit": "b952a0ab6caabd7839af6b562023bbdf149feb90" },
   "nvim-treesitter-context": { "branch": "master", "commit": "d0dd7ce5a9d0be1f28086e818e52fdc5c78975df" },
   "nvim-ts-autotag": { "branch": "main", "commit": "1cca23c9da708047922d3895a71032bc0449c52d" },
   "outline.nvim": { "branch": "main", "commit": "454aedc7cc6d5abd1e6776e87ccf8a3df119c207" },
@@ -40,7 +40,7 @@
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
   "render-markdown.nvim": { "branch": "main", "commit": "ad055861d17afe058bd835e82292e14a64b51b1d" },
   "smartcolumn.nvim": { "branch": "main", "commit": "f14fbea6f86cd29df5042897ca9e3ba10ba4d27f" },
-  "snacks.nvim": { "branch": "main", "commit": "afef949d88b6fa3dde8515b27066b132cfdb0a70" },
+  "snacks.nvim": { "branch": "main", "commit": "71f69e5e57f355f40251e274d45560af7d8dd365" },
   "suda": { "branch": "master", "commit": "9adda7d195222d4e2854efb2a88005a120296c47" },
   "symbol-usage.nvim": { "branch": "main", "commit": "0f9b3da014b7e41559b643e7461fcabb2a7dc83a" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
@@ -49,5 +49,5 @@
   "vim-caddyfile": { "branch": "master", "commit": "24fe0720551883e407cb70ae1d7c03f162d1d5a0" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },
   "which-key.nvim": { "branch": "main", "commit": "1f8d414f61e0b05958c342df9b6a4c89ce268766" },
-  "yazi.nvim": { "branch": "main", "commit": "15f21e19cda6094fd9df352aadf2dcee75c8ffa1" }
+  "yazi.nvim": { "branch": "main", "commit": "f57e1eed86b13eaf51f42a4ef68dbb19bc8d77a4" }
 }

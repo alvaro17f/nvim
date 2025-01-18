@@ -11,8 +11,8 @@ return {
   branch = "dev",
   ft = filetypes,
   opts = {
-    filetypes = filetypes,
     preview = {
+    filetypes = filetypes,
       ignore_buftypes = {},
     },
   },

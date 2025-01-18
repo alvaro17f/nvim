@@ -9,6 +9,7 @@ return {
     "rcarriga/nvim-dap-ui",
     "nvim-neotest/nvim-nio",
   },
+  import = "plugins.debugger",
   keys = {
     {
       mode = "n",
@@ -44,10 +45,6 @@ return {
     vim.fn.sign_define("DapBreakpointRejected", { text = "" })
     vim.fn.sign_define("DapLogPoint", { text = "" })
     vim.fn.sign_define("DapStopped", { text = "" })
-
-    dap.adapters = require("utils.debugger").ADAPTERS
-
-    dap.configurations = require("utils.debugger").CONFIGURATIONS
 
     dapui.setup()
 

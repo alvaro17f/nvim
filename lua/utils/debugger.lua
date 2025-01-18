@@ -1,12 +1,16 @@
 local M = {}
 
-local git = require("utils.git")
+M.DEBUGGERS = {
+  "codelldb",
+  "delve",
+  "js-debug-adapter",
+}
 
-local function debugger_executable_path(debugger_name)
+function M.debugger_executable_path(debugger_name)
   return vim.fn.stdpath("data") .. "/mason/bin/" .. debugger_name
 end
 
-local function findDebugTarget(targetPrefix, depth, buildCommand)
+function M.find_debug_target(targetPrefix, depth, buildCommand)
   local dap = require("dap")
   local targets = {}
   for entry in vim.fs.dir(targetPrefix, { depth = depth }) do
@@ -32,90 +36,5 @@ local function findDebugTarget(targetPrefix, depth, buildCommand)
     end)
   end)
 end
-
-local function find_program(lang)
-  local handlers = {
-    go = function()
-      return findDebugTarget(git.get_workspace_root() .. "/bin/", 2, { "go", "build", "-o", "./bin/" })
-    end,
-    rust = function()
-      return findDebugTarget(git.get_workspace_root() .. "/target/release/", 2, { "cargo", "build", "--release" })
-    end,
-    zig = function()
-      return findDebugTarget(git.get_workspace_root() .. "/zig-out/bin/", 2, { "zig", "build", "-Doptimize=Debug" })
-    end,
-  }
-
-  return handlers[lang] or "${file}"
-end
-
-local function generate_debugger_config(lang, debugger, additional_configs)
-  local base_config = {
-    {
-      type = debugger,
-      name = "Debug",
-      request = "launch",
-      program = find_program(lang),
-      cwd = git.get_workspace_root,
-      stopOnEntry = false,
-    },
-  }
-
-  if additional_configs then
-    for _, config in ipairs(additional_configs) do
-      config.type = debugger
-      table.insert(base_config, config)
-    end
-  end
-
-  return base_config
-end
-
-M.ADAPTERS = {
-  delve = {
-    type = "server",
-    port = "${port}",
-    executable = {
-      command = debugger_executable_path("dlv"),
-      args = { "dap", "-l", "127.0.0.1:${port}" },
-      detached = vim.fn.has("win32") == 0,
-    },
-  },
-  codelldb = {
-    type = "server",
-    port = "${port}",
-    executable = {
-      command = debugger_executable_path("codelldb"),
-      args = { "--port", "${port}" },
-      detached = vim.fn.has("win32") == 0,
-    },
-  },
-}
-
-M.DEBUGGERS = {}
-for key, _ in pairs(M.ADAPTERS) do
-  table.insert(M.DEBUGGERS, key)
-end
-
-M.CONFIGURATIONS = {
-  c = generate_debugger_config("c", "codelldb"),
-  cpp = generate_debugger_config("cpp", "codelldb"),
-  go = generate_debugger_config("go", "delve", {
-    {
-      name = "Debug test",
-      request = "launch",
-      mode = "test",
-      program = "${file}",
-    },
-    {
-      name = "Debug test (go.mod)",
-      request = "launch",
-      mode = "test",
-      program = "./${relativeFileDirname}",
-    },
-  }),
-  rust = generate_debugger_config("rust", "codelldb"),
-  zig = generate_debugger_config("zig", "codelldb"),
-}
 
 return M

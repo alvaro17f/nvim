@@ -31,6 +31,7 @@ return {
       pattern = "PersistenceSavePre",
       callback = function()
         require("edgy").close()
+        require("dapui").close()
       end,
     }),
   },

@@ -1,4 +1,5 @@
 local EXCLUDED_FILETYPES = {
+  "grug-far",
   "lazy",
   "lazydo",
   "lazygit",

@@ -10,6 +10,7 @@ end
 
 return {
   "sindrets/diffview.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   cmd = { "DiffviewOpen", "DiffviewFileHistory" },
   keys = {
     { mode = "n", "<leader>gh", "<CMD>DiffviewFileHistory<CR>", silent = true, desc = "Diff branch history" },

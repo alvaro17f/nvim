@@ -8,7 +8,7 @@ local icons = {
 
 return {
   "lewis6991/gitsigns.nvim",
-  event = "BufEnter",
+  event = { "BufReadPre", "BufNewFile" },
   keys = {
     {
       mode = "n",

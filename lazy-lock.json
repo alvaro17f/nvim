@@ -45,7 +45,7 @@
   "persistence.nvim": { "branch": "main", "commit": "f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d" },
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
   "smartcolumn.nvim": { "branch": "main", "commit": "f14fbea6f86cd29df5042897ca9e3ba10ba4d27f" },
-  "snacks.nvim": { "branch": "main", "commit": "9b6b11fbf2ad3397e32ddca2deca4649c5f00de4" },
+  "snacks.nvim": { "branch": "main", "commit": "384b9a7a36b5e30959fd89d3d857855105f65611" },
   "suda": { "branch": "master", "commit": "9adda7d195222d4e2854efb2a88005a120296c47" },
   "symbol-usage.nvim": { "branch": "main", "commit": "0f9b3da014b7e41559b643e7461fcabb2a7dc83a" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },

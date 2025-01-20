@@ -39,7 +39,7 @@ function M.get_flags(flag_to_check)
   return flags[flag_to_check]
 end
 
-function M.set_flags(flag, value)
+local function set_flags(flag, value)
   local flags = vim.fn.filereadable(path) == 1 and read_flags(path) or {}
   flags[flag] = value
   write_flags(path, flags)
@@ -78,14 +78,14 @@ local function toggle_flags_ui()
     end,
   }, function(choice)
     if choice then
-      M.set_flags(choice.flag, not choice.value)
+      set_flags(choice.flag, not choice.value)
       vim.notify(choice.flag .. " " .. (not choice.value and "enabled" or "disabled"), vim.log.levels.INFO)
       toggle_flags_ui()
     end
   end)
 end
 
-function M.generate_flags_fn()
+local function generate_flags_fn()
   vim.api.nvim_create_user_command("Flags", function()
     toggle_flags_ui()
   end, {})
@@ -100,13 +100,7 @@ function M.setup(opts)
       vim.api.nvim_set_keymap(key.mode, key.lhs, key.rhs, key.opts or {})
     end
   end
-  M.generate_flags_fn()
+  generate_flags_fn()
 end
-
-------------------------------------
--- KEYMAPS
-------------------------------------
-vim.keymap.set("n", "<leader>F", "<CMD>Flags<CR>", { silent = true, desc = "Flags" })
-------------------------------------
 
 return M

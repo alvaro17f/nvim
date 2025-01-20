@@ -1,5 +1,5 @@
 ------------------------------------
---OPTIONS
+-- OPTIONS
 ------------------------------------
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

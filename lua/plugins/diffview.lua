@@ -14,7 +14,7 @@ return {
   cmd = { "DiffviewOpen", "DiffviewFileHistory" },
   keys = {
     { mode = "n", "<leader>gh", "<CMD>DiffviewFileHistory<CR>", silent = true, desc = "Diff branch history" },
-    { mode = "v", "<leader>gd", "<CMD>DiffviewFileHistory<CR>", silent = true, desc = "Diff visual" },
+    { mode = "v", "<leader>gd", ":DiffviewFileHistory<CR>", silent = true, desc = "Diff visual" },
     { mode = "n", "<leader>gd", "<CMD>DiffviewFileHistory %<CR>", silent = true, desc = "Diff file" },
     { mode = "n", "<leader>gv", diffview_toggle, silent = true, desc = "Diff view" },
   },

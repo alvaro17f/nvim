@@ -1,16 +1,5 @@
 ------------------------------------
---FLAGS
-------------------------------------
-require("utils.flags").setup({
-  icons = true,
-  flags = {
-    copilot = false,
-    debugger = false,
-  },
-})
-
-------------------------------------
---UNDOFILE ON GIT REPOSITORY ONLY
+-- UNDOFILE ON GIT REPOSITORY ONLY
 ------------------------------------
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
   callback = function()
@@ -19,7 +8,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 })
 
 ------------------------------------
---HIGHLIGHT ON YANK
+-- HIGHLIGHT ON YANK
 ------------------------------------
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
@@ -30,11 +19,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 ------------------------------------
---DEPENDENCIES
+-- DEPENDENCIES
 ------------------------------------
 require("utils.dependencies").missing_dependencies_notification()
 
 ------------------------------------
---SNIPPETS
+-- SNIPPETS
 ------------------------------------
 require("utils.snippets")

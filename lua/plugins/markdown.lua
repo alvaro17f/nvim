@@ -12,7 +12,7 @@ return {
   ft = filetypes,
   opts = {
     preview = {
-    filetypes = filetypes,
+      filetypes = filetypes,
       ignore_buftypes = {},
     },
   },

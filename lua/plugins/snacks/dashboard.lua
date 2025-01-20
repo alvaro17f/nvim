@@ -11,7 +11,8 @@ return {
             key = "<backspace>",
             desc = " Restore last session",
             action = function()
-              require("persistence").load({ last = true })
+              local session = require("mini.sessions")
+              session.read(session.get_latest())
             end,
           },
           {

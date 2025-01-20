@@ -13,7 +13,7 @@ return {
     { "theHamsta/nvim-dap-virtual-text", opts = {} },
   },
   import = "plugins.debugger",
-  -- stylua: ignore
+  --stylua: ignore
   keys = {
     {mode = "n", "<Leader>db", function() require("dap").toggle_breakpoint() end, desc = "Debugger: breakpoint" },
     {mode = "n", "<Leader>dc", function() require("dap").continue() end, desc = "Debugger: run/continue" },

@@ -46,30 +46,6 @@ return {
       desc = "Delete session",
     },
     {
-      "<leader>wr",
-      function()
-        local sessions = vim.fn.globpath(sessions_directory, "*.vim", false, true)
-        for i, session in ipairs(sessions) do
-          sessions[i] = vim.fn.fnamemodify(session, ":t")
-        end
-
-        vim.ui.select(sessions, { prompt = "Select session to rename:" }, function(choice)
-          if choice then
-            local new_name = vim.fn.input("New session name: ")
-            if new_name == "" then
-              return vim.notify("Session rename canceled", vim.log.levels.ERROR)
-            end
-
-            local old_path = sessions_directory .. choice
-            local new_path = sessions_directory .. new_name .. ".vim"
-            os.rename(old_path, new_path)
-            vim.notify("Session renamed to " .. new_name, vim.log.levels.INFO)
-          end
-        end)
-      end,
-      desc = "Rename session",
-    },
-    {
       "<leader>w<backspace>",
       function()
         local session = require("mini.sessions")

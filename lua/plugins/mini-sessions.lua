@@ -59,7 +59,7 @@ return {
     autowrite = true,
     directory = sessions_directory,
     file = "", -- File for local session (use `''` to disable)
-    force = { read = false, write = true, delete = false },
+    force = { read = false, write = true, delete = true },
     hooks = {
       pre = {
         read = nil,

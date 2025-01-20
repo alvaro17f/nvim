@@ -31,7 +31,10 @@ return {
       pattern = "PersistenceSavePre",
       callback = function()
         require("edgy").close()
-        require("dapui").close()
+
+        if vim.g.debugger then
+          require("dapui").close()
+        end
       end,
     }),
   },

@@ -5,10 +5,6 @@ local DEFAULT_FLAGS = {
   debugger = false,
 }
 
-local function capitalize_first_letter(str)
-  return str:sub(1, 1):upper() .. str:sub(2)
-end
-
 local flags_path = vim.fn.stdpath("data") .. "/flags"
 
 local function read_flags(file)
@@ -82,22 +78,30 @@ local function get_all_flags()
 end
 
 function M.generate_flags_fn()
-  local function create_flag_command(flag)
-    vim.api.nvim_create_user_command("Flags" .. capitalize_first_letter(flag) .. "Enable", function()
-      M.set_flags(flag, true)
-      vim.notify(flag .. " enabled", vim.log.levels.INFO)
-    end, {})
+  vim.api.nvim_create_user_command("ToggleFlags", function()
+    local all_flags = get_all_flags()
+    local items = {}
 
-    vim.api.nvim_create_user_command("Flags" .. capitalize_first_letter(flag) .. "Disable", function()
-      M.set_flags(flag, false)
-      vim.notify(flag .. " disabled", vim.log.levels.INFO)
-    end, {})
-  end
+    for flag, value in pairs(all_flags) do
+      table.insert(items, {
+        label = flag .. " (" .. (value and "enabled" or "disabled") .. ")",
+        flag = flag,
+        value = value,
+      })
+    end
 
-  local all_flags = get_all_flags()
-  for flag, _ in pairs(all_flags) do
-    create_flag_command(flag)
-  end
+    vim.ui.select(items, {
+      prompt = "Select a flag to toggle:",
+      format_item = function(item)
+        return item.label
+      end,
+    }, function(choice)
+      if choice then
+        M.set_flags(choice.flag, not choice.value)
+        vim.notify(choice.flag .. " " .. (not choice.value and "enabled" or "disabled"), vim.log.levels.INFO)
+      end
+    end)
+  end, {})
 end
 
 return M

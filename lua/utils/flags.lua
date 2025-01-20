@@ -6,26 +6,30 @@ local path = vim.fn.stdpath("data") .. "/flags"
 
 local function read_flags(file)
   local flags = {}
-  local f = io.open(file, "r")
-  if f then
-    for line in f:lines() do
-      for k, v in string.gmatch(line, "(%w+)%s*=%s*(%w+)") do
-        flags[k] = v == "true"
-      end
-    end
-    f:close()
+  local f, err = io.open(file, "r")
+  if not f then
+    vim.notify("Error opening file: " .. err, vim.log.levels.ERROR)
+    return flags
   end
+  for line in f:lines() do
+    for k, v in string.gmatch(line, "(%w+)%s*=%s*(%w+)") do
+      flags[k] = v == "true"
+    end
+  end
+  f:close()
   return flags
 end
 
 local function write_flags(file, flags)
-  local f = io.open(file, "w")
-  if f then
-    for k, v in pairs(flags) do
-      f:write(string.format("%s = %s\n", k, tostring(v)))
-    end
-    f:close()
+  local f, err = io.open(file, "w")
+  if not f then
+    vim.notify("Error opening file: " .. err, vim.log.levels.ERROR)
+    return
   end
+  for k, v in pairs(flags) do
+    f:write(string.format("%s = %s\n", k, tostring(v)))
+  end
+  f:close()
 end
 
 function M.get_flags(flag_to_check)

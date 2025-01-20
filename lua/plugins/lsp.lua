@@ -96,6 +96,12 @@ return {
               },
             },
           },
+          javascript = {
+            updateImportsOnFileMove = { enabled = "always" },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+          },
           typescript = {
             updateImportsOnFileMove = { enabled = "always" },
             suggest = {

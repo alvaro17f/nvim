@@ -1,4 +1,15 @@
 ------------------------------------
+--FLAGS
+------------------------------------
+require("utils.flags").setup({
+  icons = true,
+  flags = {
+    copilot = false,
+    debugger = false,
+  },
+})
+
+------------------------------------
 --UNDOFILE ON GIT REPOSITORY ONLY
 ------------------------------------
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {

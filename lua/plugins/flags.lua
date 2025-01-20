@@ -1,10 +1,13 @@
 return {
-
-  require("utils.flags").setup({
-    vim.keymap.set("n", "<leader>F", "<CMD>Flags<CR>", { silent = true, desc = "Open Flags" }),
+  "alvaro17f/flags.nvim",
+  keys = {
+    { mode = "n", "<leader>F", "<CMD>Flags<CR>", silent = true, desc = "Open Flags" },
+  },
+  opts = {
+    icons = true,
     flags = {
-      copilot = true,
-      debugger = true,
+      copilot = false,
+      debugger = false,
     },
-  }),
+  },
 }

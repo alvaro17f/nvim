@@ -2,7 +2,7 @@
 return {
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
+    event = { "VeryLazy" },
     keys = {
       {
         "<leader>nm",

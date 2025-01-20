@@ -60,7 +60,7 @@ end
 
 return {
   "Wansmer/symbol-usage.nvim",
-  event = "LspAttach",
+  event = { "LspAttach" },
   config = function()
     require("symbol-usage").setup({
       text_format = text_format,

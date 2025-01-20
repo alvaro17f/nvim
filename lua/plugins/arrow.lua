@@ -1,5 +1,6 @@
 return {
   "otavioschwanck/arrow.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("arrow").setup({
       leader_key = ";", -- Recommended to be a single key

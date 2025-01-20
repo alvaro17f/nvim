@@ -1,7 +1,7 @@
 if vim.fn.executable("yazi") == 1 then
   return {
     "mikavilpas/yazi.nvim",
-    event = "VeryLazy",
+    event = { "VeryLazy" },
     keys = {
       { mode = "n", "<leader>/", "<CMD>Yazi<CR>", silent = true, desc = "Open Yazi" },
     },

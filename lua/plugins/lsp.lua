@@ -51,9 +51,6 @@ return {
       lua_ls = {
         settings = {
           Lua = {
-            diagnostics = {
-              globals = { "Snacks", "vim" },
-            },
             completion = {
               callSnippet = "Replace",
             },

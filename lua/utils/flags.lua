@@ -77,30 +77,35 @@ local function get_all_flags()
   return flags
 end
 
+local function toggle_flags_ui()
+  local all_flags = get_all_flags()
+  local items = {}
+
+  for flag, value in pairs(all_flags) do
+    table.insert(items, {
+      label = flag .. " (" .. (value and "enabled" or "disabled") .. ")",
+      flag = flag,
+      value = value,
+    })
+  end
+
+  vim.ui.select(items, {
+    prompt = "Select a flag to toggle:",
+    format_item = function(item)
+      return item.label
+    end,
+  }, function(choice)
+    if choice then
+      M.set_flags(choice.flag, not choice.value)
+      vim.notify(choice.flag .. " " .. (not choice.value and "enabled" or "disabled"), vim.log.levels.INFO)
+      toggle_flags_ui() -- Reopen the UI after toggling
+    end
+  end)
+end
+
 function M.generate_flags_fn()
   vim.api.nvim_create_user_command("ToggleFlags", function()
-    local all_flags = get_all_flags()
-    local items = {}
-
-    for flag, value in pairs(all_flags) do
-      table.insert(items, {
-        label = flag .. " (" .. (value and "enabled" or "disabled") .. ")",
-        flag = flag,
-        value = value,
-      })
-    end
-
-    vim.ui.select(items, {
-      prompt = "Select a flag to toggle:",
-      format_item = function(item)
-        return item.label
-      end,
-    }, function(choice)
-      if choice then
-        M.set_flags(choice.flag, not choice.value)
-        vim.notify(choice.flag .. " " .. (not choice.value and "enabled" or "disabled"), vim.log.levels.INFO)
-      end
-    end)
+    toggle_flags_ui()
   end, {})
 end
 

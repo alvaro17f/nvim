@@ -13,11 +13,7 @@ local function read_flags(file)
   if f then
     for line in f:lines() do
       for k, v in string.gmatch(line, "(%w+)%s*=%s*(%w+)") do
-        if v == "true" then
-          flags[k] = true
-        elseif v == "false" then
-          flags[k] = false
-        end
+        flags[k] = v == "true"
       end
     end
     f:close()
@@ -36,17 +32,10 @@ local function write_flags(file, flags)
 end
 
 function M.get_flags(flag_to_check)
-  local flags = {}
-  if vim.fn.filereadable(flags_path) == 1 then
-    flags = read_flags(flags_path)
-  end
+  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
 
   if flags[flag_to_check] == nil then
-    if DEFAULT_FLAGS[flag_to_check] ~= nil then
-      flags[flag_to_check] = DEFAULT_FLAGS[flag_to_check]
-    else
-      flags[flag_to_check] = false
-    end
+    flags[flag_to_check] = DEFAULT_FLAGS[flag_to_check] or false
     write_flags(flags_path, flags)
   end
 
@@ -54,19 +43,13 @@ function M.get_flags(flag_to_check)
 end
 
 function M.set_flags(flag, value)
-  local flags = {}
-  if vim.fn.filereadable(flags_path) == 1 then
-    flags = read_flags(flags_path)
-  end
+  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   flags[flag] = value
   write_flags(flags_path, flags)
 end
 
 local function get_all_flags()
-  local flags = {}
-  if vim.fn.filereadable(flags_path) == 1 then
-    flags = read_flags(flags_path)
-  end
+  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
 
   for k, v in pairs(DEFAULT_FLAGS) do
     if flags[k] == nil then
@@ -98,13 +81,13 @@ local function toggle_flags_ui()
     if choice then
       M.set_flags(choice.flag, not choice.value)
       vim.notify(choice.flag .. " " .. (not choice.value and "enabled" or "disabled"), vim.log.levels.INFO)
-      toggle_flags_ui() -- Reopen the UI after toggling
+      toggle_flags_ui()
     end
   end)
 end
 
 function M.generate_flags_fn()
-  vim.api.nvim_create_user_command("ToggleFlags", function()
+  vim.api.nvim_create_user_command("Flags", function()
     toggle_flags_ui()
   end, {})
 end

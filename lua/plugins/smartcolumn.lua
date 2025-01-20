@@ -1,25 +1,29 @@
+local filetypes = {
+  "checkhealth",
+  "grug-far",
+  "help",
+  "lazy",
+  "lazydo",
+  "lazygit",
+  "markdown",
+  "mason",
+  "minifiles",
+  "snacks_dashboard",
+  "snacks_terminal",
+  "snacks_picker_input",
+  "text",
+  "yazi",
+}
+
+if vim.g.copilot then
+  table.insert(filetypes, "codecompanion")
+end
+
 return {
   "m4xshen/smartcolumn.nvim",
-  event = { "BufReadPre", "BufNewFile" },
   opts = {
     colorcolumn = "80",
-    disabled_filetypes = {
-      "checkhealth",
-      "codecompanion",
-      "grug-far",
-      "help",
-      "lazy",
-      "lazydo",
-      "lazygit",
-      "markdown",
-      "mason",
-      "minifiles",
-      "snacks_dashboard",
-      "snacks_terminal",
-      "snacks_picker_input",
-      "text",
-      "yazi",
-    },
+    disabled_filetypes = filetypes,
     custom_colorcolumn = {},
     scope = "file",
   },

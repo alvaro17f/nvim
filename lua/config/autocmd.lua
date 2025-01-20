@@ -1,9 +1,4 @@
 ------------------------------------
---FLAGS
-------------------------------------
-require("utils.flags").generate_flags_fn()
-
-------------------------------------
 --UNDOFILE ON GIT REPOSITORY ONLY
 ------------------------------------
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {

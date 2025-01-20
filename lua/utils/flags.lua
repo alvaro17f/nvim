@@ -1,11 +1,8 @@
 local M = {}
 
-local DEFAULT_FLAGS = {
-  copilot = false,
-  debugger = false,
-}
+local default_flags = {}
 
-local flags_path = vim.fn.stdpath("data") .. "/flags"
+local path = vim.fn.stdpath("data") .. "/flags"
 
 local function read_flags(file)
   local flags = {}
@@ -32,26 +29,26 @@ local function write_flags(file, flags)
 end
 
 function M.get_flags(flag_to_check)
-  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
+  local flags = vim.fn.filereadable(path) == 1 and read_flags(path) or {}
 
   if flags[flag_to_check] == nil then
-    flags[flag_to_check] = DEFAULT_FLAGS[flag_to_check] or false
-    write_flags(flags_path, flags)
+    flags[flag_to_check] = default_flags[flag_to_check] or false
+    write_flags(path, flags)
   end
 
   return flags[flag_to_check]
 end
 
 function M.set_flags(flag, value)
-  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
+  local flags = vim.fn.filereadable(path) == 1 and read_flags(path) or {}
   flags[flag] = value
-  write_flags(flags_path, flags)
+  write_flags(path, flags)
 end
 
 local function get_all_flags()
-  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
+  local flags = vim.fn.filereadable(path) == 1 and read_flags(path) or {}
 
-  for k, v in pairs(DEFAULT_FLAGS) do
+  for k, v in pairs(default_flags) do
     if flags[k] == nil then
       flags[k] = v
     end
@@ -90,6 +87,17 @@ function M.generate_flags_fn()
   vim.api.nvim_create_user_command("Flags", function()
     toggle_flags_ui()
   end, {})
+end
+
+function M.setup(opts)
+  default_flags = opts.flags or {}
+  path = opts.path or path
+  if opts.keys then
+    for _, key in ipairs(opts.keys) do
+      vim.api.nvim_set_keymap(key.mode, key.lhs, key.rhs, key.opts or {})
+    end
+  end
+  M.generate_flags_fn()
 end
 
 return M

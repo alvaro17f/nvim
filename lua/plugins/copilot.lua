@@ -4,6 +4,11 @@ end
 
 local provider = "copilot"
 
+local code_companion_cmd = function()
+  local user_input = vim.fn.input("CodeCompanionCmd: ")
+  vim.cmd("CodeCompanionCmd " .. user_input)
+end
+
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -59,7 +64,7 @@ return {
     keys = {
       { mode = "n", "<leader>a", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
       { mode = "v", "<leader>a", "<CMD>CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
-      { mode = "n", "<leader>:", ":CodeCompanionCmd ", desc = "CodeCompanionCmd" },
+      { mode = "n", "<leader>:", code_companion_cmd, desc = "CodeCompanionCmd" },
       { mode = "v", "ga", "<CMD>CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
       {
         mode = "n",

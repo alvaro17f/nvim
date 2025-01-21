@@ -95,7 +95,7 @@ return {
         if #buffers == 1 then
           local buftype = vim.bo[buffers[1]].buftype
           local filename = vim.fn.expand("%:t")
-          if buftype == "" and filename:match("^tmp") then
+          if buftype == "" or filename:match("^tmp") then
             return
           end
         end

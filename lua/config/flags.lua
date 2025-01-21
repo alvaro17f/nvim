@@ -6,5 +6,6 @@ require("utils.flags").setup({
   flags = {
     copilot = false,
     debugger = false,
+    tests = false,
   },
 })

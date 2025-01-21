@@ -1,4 +1,9 @@
 ---@diagnostic disable: missing-fields
+
+if vim.g.tests == false then
+  return {}
+end
+
 local function count_failed_results(results, tree)
   local failed = 0
   for pos_id, result in pairs(results) do

@@ -7,6 +7,7 @@ vim.g.maplocalleader = " "
 vim.g.dashboard_header = require("utils.ui").headers.neovim
 vim.g.copilot = require("utils.flags").get_flags("copilot") or false
 vim.g.debugger = require("utils.flags").get_flags("debugger") or false
+vim.g.tests = require("utils.flags").get_flags("tests") or false
 ------------------------------------
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.shortmess:append({ c = true })

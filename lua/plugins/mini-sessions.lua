@@ -1,3 +1,4 @@
+local current_session = false
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
 
 return {
@@ -79,11 +80,22 @@ return {
         delete = nil,
       },
       post = {
-        read = nil,
+        read = function()
+          current_session = true
+        end,
         write = nil,
         delete = nil,
       },
     },
     verbose = { read = false, write = true, delete = true },
+
+    vim.api.nvim_create_autocmd("VimLeavePre", {
+      callback = function()
+        if not current_session then
+          local session = require("mini.sessions")
+          session.write("draft.vim")
+        end
+      end,
+    }),
   },
 }

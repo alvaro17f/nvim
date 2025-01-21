@@ -38,7 +38,10 @@ return {
       },
       hooks = {
         view_opened = function()
-          actions.toggle_files()
+          local lib = require("diffview.lib")
+          if lib.get_current_view().class:name() == "DiffView" then
+            actions.toggle_files()
+          end
         end,
       },
       --stylua: ignore

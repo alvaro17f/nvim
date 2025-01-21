@@ -8,6 +8,40 @@ local function diffview_toggle()
   end
 end
 
+vim.api.nvim_create_user_command("Ns", function()
+  vim.cmd([[
+		execute 'vsplit | enew'
+		setlocal buftype=nofile
+		setlocal bufhidden=hide
+		setlocal noswapfile
+	]])
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("ClipboardDiff", function()
+  local ftype = vim.api.nvim_eval("&filetype")
+  vim.cmd([[
+		tabnew %
+		Ns
+		normal! P
+		windo diffthis
+	]])
+  vim.cmd("set filetype=" .. ftype)
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("ClipboardDiffSelection", function()
+  vim.cmd([[
+		normal! gv"zy
+		execute 'tabnew | setlocal buftype=nofile bufhidden=hide noswapfile'
+		normal! V"zp
+		Ns
+		normal! Vp
+		windo diffthis
+	]])
+end, {
+  nargs = 0,
+  range = true,
+})
+
 return {
   "sindrets/diffview.nvim",
   event = { "BufReadPre", "BufNewFile" },
@@ -15,9 +49,11 @@ return {
   --stylua: ignore
   keys = {
     { mode = "n", "<leader>gh", "<CMD>DiffviewFileHistory<CR>", silent = true, desc = "Diff branch history" },
-    { mode = "v", "<leader>gd", "<ESC><CMD>'<,'>DiffviewFileHistory --follow<CR>", silent = true, desc = "Diff visual" },
     { mode = "n", "<leader>gd", "<CMD>DiffviewFileHistory --follow %<CR>", silent = true, desc = "Diff file" },
+    { mode = "v", "<leader>gd", "<ESC><CMD>'<,'>DiffviewFileHistory --follow<CR>", silent = true, desc = "Diff Selection" },
     { mode = "n", "<leader>gv", diffview_toggle, silent = true, desc = "Diff view" },
+    { mode = "n", "<leader>gc", "<CMD>ClipboardDiff<CR>", silent = true, desc = "Diff clipboard" },
+    { mode = "v", "<leader>gc", "<ESC><CMD>ClipboardDiffSelection<CR>", silent = true, desc = "Diff clipboard Selection" },
   },
   opts = function()
     local actions = require("diffview.actions")

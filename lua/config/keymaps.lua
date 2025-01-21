@@ -38,5 +38,5 @@ keymap("n", "<c-a-j>", "<CMD>m .+1<CR>==", { noremap = true, silent = true, desc
 keymap("n", "<c-a-k>", "<CMD>m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
 keymap("i", "<c-a-j>", "<Esc><CMD>m .+1<CR>==gi", { noremap = true, silent = true, desc = "Move line down" })
 keymap("i", "<c-a-k>", "<Esc><CMD>m .-2<CR>==gi", { noremap = true, silent = true, desc = "Move line up" })
-keymap("v", "<c-a-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move line down" })
-keymap("v", "<c-a-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move line up" })
+keymap("v", "<c-a-j>", "<ESC><CMD>'<,'>m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move line down" })
+keymap("v", "<c-a-k>", "<ESC><CMD>'<,'>m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move line up" })

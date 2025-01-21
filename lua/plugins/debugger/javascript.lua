@@ -3,92 +3,98 @@ return {
   opts = function()
     local dap = require("dap")
     local git = require("utils.git")
-    local debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
-    local cwd = vim.fs.root(0, "package.json") or git.get_workspace_root()
+    local debug_adapter_path = vim.env.MASON .. "/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
+    local cwd = vim.fs.root(0, "package.json") or git.get_git_root() or "${workspaceFolder}"
 
-    if not dap.adapters["pwa-node"] then
-      require("dap").adapters["pwa-node"] = {
+    local adapters = {
+      "bun",
+      "node",
+      "node-terminal",
+      "pwa-node",
+    }
+    local browser_adapters = {
+      "brave",
+      "chrome",
+      "pwa-brave",
+      "pwa-chrome",
+      "pwa-extensionHost",
+      "pwa-msedge",
+    }
+
+    for _, adapter in ipairs(adapters) do
+      dap.adapters[adapter] = {
         type = "server",
         host = "localhost",
         port = "${port}",
         executable = {
           command = "node",
           args = {
-            debugger_path,
+            debug_adapter_path,
             "${port}",
           },
         },
       }
     end
-    if not dap.adapters["node"] then
-      dap.adapters["node"] = function(cb, config)
-        if config.type == "node" then
-          config.type = "pwa-node"
-        end
-        local nativeAdapter = dap.adapters["pwa-node"]
-        if type(nativeAdapter) == "function" then
-          nativeAdapter(cb, config)
-        else
-          cb(nativeAdapter)
-        end
-      end
+
+    for _, adapter in ipairs(browser_adapters) do
+      dap.adapters[adapter] = {
+        type = "executable",
+        command = "node",
+        args = { debug_adapter_path },
+      }
     end
 
     local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
 
     local vscode = require("dap.ext.vscode")
-    vscode.type_to_filetypes["node"] = js_filetypes
-    vscode.type_to_filetypes["pwa-node"] = js_filetypes
+    local all_adapters = vim.tbl_extend("force", adapters, browser_adapters)
+    for _, adapter in ipairs(all_adapters) do
+      vscode.type_to_filetypes[adapter] = js_filetypes
+    end
 
     for _, language in ipairs(js_filetypes) do
-      if not dap.configurations[language] then
-        dap.configurations[language] = {
-          {
-            name = "Launch file",
-            type = "pwa-node",
-            request = "launch",
-            program = "${file}",
-            cwd = cwd,
-          },
-          {
-            name = "Attach",
-            type = "pwa-node",
-            request = "attach",
-            processId = require("dap.utils").pick_process,
-            cwd = cwd,
-          },
-          {
-            name = "Launch [Browser]",
-            type = "pwa-chrome",
-            request = "launch",
-            url = function()
-              local co = coroutine.running()
-              return coroutine.create(function()
-                vim.ui.input({
-                  prompt = "Enter URL: ",
-                  default = "http://localhost:3000",
-                }, function(url)
-                  if url == nil or url == "" then
-                    return
-                  else
-                    coroutine.resume(co, url)
-                  end
-                end)
+      dap.configurations[language] = dap.configurations[language] or {}
+      for _, adapter in ipairs(adapters) do
+        table.insert(dap.configurations[language], {
+          name = "Launch file [" .. adapter .. "]",
+          type = adapter,
+          request = "launch",
+          program = "${file}",
+          cwd = cwd,
+        })
+        table.insert(dap.configurations[language], {
+          name = "Attach [" .. adapter .. "]",
+          type = adapter,
+          request = "attach",
+          processId = require("dap.utils").pick_process,
+          cwd = cwd,
+        })
+      end
+      for _, adapter in ipairs(browser_adapters) do
+        table.insert(dap.configurations[language], {
+          name = "Browser [" .. adapter .. "]",
+          type = adapter,
+          request = "launch",
+          protocol = "inspector",
+          url = function()
+            local co = coroutine.running()
+            return coroutine.create(function()
+              vim.ui.input({
+                prompt = "Enter URL: ",
+                default = "http://localhost:4321",
+              }, function(url)
+                if url == nil or url == "" then
+                  return
+                else
+                  coroutine.resume(co, url)
+                end
               end)
-            end,
-            protocol = "inspector",
-            sourceMaps = true,
-            userDataDir = false,
-            webRoot = cwd,
-          },
-          {
-            name = "Attach [Browser]",
-            type = "pwa-chrome",
-            request = "attach",
-            port = 9222,
-            webroot = cwd,
-          },
-        }
+            end)
+          end,
+          sourceMaps = true,
+          userDataDir = false,
+          webRoot = cwd,
+        })
       end
     end
   end,

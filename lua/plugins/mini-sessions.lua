@@ -64,8 +64,14 @@ return {
       pre = {
         read = nil,
         write = function()
-          local edgy, dap, dapui = require("edgy"), require("dap"), require("dapui")
+          local edgy, diffview, dap, dapui = require("edgy"), require("diffview.lib"), require("dap"), require("dapui")
+
           edgy.close()
+
+          if diffview.get_current_view() then
+            vim.cmd.DiffviewClose()
+          end
+
           if vim.g.debugger and dap.session() ~= nil then
             dapui.close()
           end

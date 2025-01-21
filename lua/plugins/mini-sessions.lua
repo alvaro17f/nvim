@@ -91,6 +91,15 @@ return {
 
     vim.api.nvim_create_autocmd("VimLeavePre", {
       callback = function()
+        local buffers = vim.api.nvim_list_bufs()
+        if #buffers == 1 then
+          local buftype = vim.bo[buffers[1]].buftype
+          local filename = vim.fn.expand("%:t")
+          if buftype == "" and filename:match("^tmp") then
+            return
+          end
+        end
+
         if not current_session then
           local session = require("mini.sessions")
           session.write("draft.vim")

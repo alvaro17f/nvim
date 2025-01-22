@@ -68,7 +68,7 @@ return {
           open = function()
             require("trouble").open({
               mode = "quickfix",
-              focus = true,
+              focus = false,
               auto_preview = false,
             })
           end,

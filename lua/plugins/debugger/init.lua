@@ -25,6 +25,7 @@ return {
     {mode = "n", "<leader>do", function() require("dap").step_out() end, desc = "Debugger: step out" },
     {mode = "n", "<leader>dO", function() require("dap").step_over() end, desc = "Debugger: step over" },
     {mode = "n", "<leader>dP", function() require("dap").pause() end, desc = "Debugger: pause" },
+    {mode = "n", "<Leader>dr", function() require("dap").repl.toggle({ height = 15 }) end, desc = "Debugger: REPL toggle" },
     {mode = "n", "<Leader>du", function() require("dapui").toggle() end, desc = "Debugger: UI toggle" },
   },
   config = function()

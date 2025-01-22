@@ -38,13 +38,14 @@ return {
       }
     end
 
-    local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
-
-    local vscode = require("dap.ext.vscode")
-    local all_adapters = vim.tbl_extend("force", adapters, browser_adapters)
-    for _, adapter in ipairs(all_adapters) do
-      vscode.type_to_filetypes[adapter] = js_filetypes
-    end
+    local js_filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    }
 
     for _, language in ipairs(js_filetypes) do
       dap.configurations[language] = dap.configurations[language] or {}

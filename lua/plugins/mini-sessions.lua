@@ -1,6 +1,25 @@
 local current_session = false
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
 
+local function has_valid_buffers()
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    local buflisted = vim.bo[bufnr].buflisted
+    local readonly = vim.bo[bufnr].readonly
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+    if buflisted and not readonly then
+      if bufname ~= "" then
+        return true
+      end
+      local line_count = vim.api.nvim_buf_line_count(bufnr)
+      if line_count > 1 or (line_count == 1 and vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] ~= "") then
+        return true
+      end
+    end
+  end
+  return false
+end
+
 return {
   "echasnovski/mini.sessions",
   event = { "VeryLazy" },
@@ -90,17 +109,9 @@ return {
     verbose = { read = false, write = true, delete = true },
 
     vim.api.nvim_create_autocmd("VimLeavePre", {
-      callback = function()
-        local buffers = vim.api.nvim_list_bufs()
-        if #buffers == 1 then
-          local buftype = vim.bo[buffers[1]].buftype
-          local filename = vim.fn.expand("%:t")
-          if buftype == "" or filename:match("^tmp") then
-            return
-          end
-        end
 
-        if not current_session then
+      callback = function()
+        if has_valid_buffers() and not current_session then
           local session = require("mini.sessions")
           session.write("draft.vim")
         end

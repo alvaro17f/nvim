@@ -53,7 +53,7 @@
   "suda": { "branch": "master", "commit": "9adda7d195222d4e2854efb2a88005a120296c47" },
   "symbol-usage.nvim": { "branch": "main", "commit": "0f9b3da014b7e41559b643e7461fcabb2a7dc83a" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
-  "treewalker.nvim": { "branch": "main", "commit": "9a29abe2141d930321a88c3a1ff9d914f4fd3257" },
+  "treewalker.nvim": { "branch": "main", "commit": "38733b84229fa2d379c9969a9a4c2db776092cdc" },
   "trouble.nvim": { "branch": "main", "commit": "50481f414bd3c1a40122c1d759d7e424d5fafe84" },
   "vim-caddyfile": { "branch": "master", "commit": "24fe0720551883e407cb70ae1d7c03f162d1d5a0" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },

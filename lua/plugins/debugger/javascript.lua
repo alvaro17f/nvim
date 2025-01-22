@@ -7,18 +7,12 @@ return {
     local cwd = vim.fs.root(0, "package.json") or git.get_git_root() or "${workspaceFolder}"
 
     local adapters = {
-      "bun",
-      "node",
       "node-terminal",
       "pwa-node",
     }
     local browser_adapters = {
       "brave",
       "chrome",
-      "pwa-brave",
-      "pwa-chrome",
-      "pwa-extensionHost",
-      "pwa-msedge",
     }
 
     for _, adapter in ipairs(adapters) do
@@ -27,7 +21,7 @@ return {
         host = "localhost",
         port = "${port}",
         executable = {
-          command = "node",
+          command = vim.fn.exepath("node"),
           args = {
             debug_adapter_path,
             "${port}",
@@ -39,7 +33,7 @@ return {
     for _, adapter in ipairs(browser_adapters) do
       dap.adapters[adapter] = {
         type = "executable",
-        command = "node",
+        command = vim.fn.exepath("node"),
         args = { debug_adapter_path },
       }
     end

@@ -16,7 +16,7 @@ return {
     bottom = {
       {
         ft = "help",
-        size = { height = 0.5 },
+        size = { height = 0.7 },
         filter = function(buf)
           return vim.bo[buf].buftype == "help"
         end,

@@ -8,10 +8,12 @@ local filetypes = {
   "markdown",
   "mason",
   "minifiles",
+  "noice",
   "snacks_dashboard",
   "snacks_terminal",
   "snacks_picker_input",
   "text",
+  "trouble",
   "yazi",
 }
 

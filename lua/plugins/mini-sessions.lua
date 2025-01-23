@@ -165,7 +165,6 @@ return {
     verbose = { read = false, write = true, delete = true },
 
     vim.api.nvim_create_autocmd("VimLeavePre", {
-
       callback = function()
         if has_valid_buffers() and not current_session then
           local session = require("mini.sessions")

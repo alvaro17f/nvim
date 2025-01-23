@@ -12,7 +12,9 @@ return {
             desc = " Restore last session",
             action = function()
               local session = require("mini.sessions")
-              session.read(session.get_latest())
+              local latest_session_name = session.get_latest()
+              session.read(latest_session_name)
+              vim.notify("Session read: " .. latest_session_name, vim.log.levels.INFO)
             end,
           },
           {

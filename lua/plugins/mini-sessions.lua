@@ -20,6 +20,78 @@ local function has_valid_buffers()
   return false
 end
 
+local function session_selector()
+  local session = require("mini.sessions")
+
+  local items = {}
+
+  for name, value in pairs(session.detected) do
+    table.insert(items, {
+      text = name,
+      modify_time = value.modify_time,
+      path = value.path,
+      type = value.type,
+    })
+  end
+
+  table.sort(items, function(a, b)
+    return a.modify_time > b.modify_time
+  end)
+
+  Snacks.picker.pick({
+    source = "mini.sessions",
+    items = items,
+    format = "text",
+    layout = {
+      preset = "select",
+      layout = { title = " Select a session: " },
+    },
+    win = {
+      input = {
+        keys = {
+          ["<c-x>"] = { "delete", mode = "i" },
+        },
+      },
+    },
+    actions = {
+      delete = function(picker, item)
+        if item then
+          session.delete(item.text, { verbose = false })
+          vim.notify("Session deleted: " .. item.text, vim.log.levels.WARN)
+          picker:close()
+          session_selector()
+        end
+      end,
+    },
+    confirm = function(picker, item)
+      if item then
+        picker:close()
+        session.read(item.text, { verbose = false })
+        vim.notify("Session read: " .. item.text, vim.log.levels.INFO)
+      end
+    end,
+  })
+end
+
+local function session_maker()
+  local session = require("mini.sessions")
+  local session_name = vim.fn.input("Session name: ")
+
+  if session_name == "" then
+    return vim.notify("Session save canceled", vim.log.levels.ERROR)
+  end
+
+  session.write(session_name .. ".vim", { verbose = false })
+  vim.notify("Session created: " .. session_name, vim.log.levels.INFO)
+end
+
+local function session_restore()
+  local session = require("mini.sessions")
+  local latest_session_name = session.get_latest()
+  session.read(latest_session_name)
+  vim.notify("Session read: " .. latest_session_name, vim.log.levels.INFO)
+end
+
 return {
   "echasnovski/mini.sessions",
   event = { "VeryLazy" },
@@ -28,48 +100,21 @@ return {
     {
       "<leader>ww",
       function()
-        local session = require("mini.sessions")
-        session.select()
+        session_selector()
       end,
       desc = "Load session",
     },
     {
       "<leader>ws",
       function()
-        local session = require("mini.sessions")
-        local session_name = vim.fn.input("Session name: ")
-
-        if session_name == "" then
-          return vim.notify("Session save canceled", vim.log.levels.ERROR)
-        end
-
-        session.write(session_name .. ".vim")
+        session_maker()
       end,
       desc = "Save session",
     },
     {
-      "<leader>wd",
-      function()
-        local sessions_dir = sessions_directory
-        local sessions = vim.fn.globpath(sessions_dir, "*.vim", false, true)
-        for i, session in ipairs(sessions) do
-          sessions[i] = vim.fn.fnamemodify(session, ":t")
-        end
-
-        vim.ui.select(sessions, { prompt = "Select session to delete:" }, function(choice)
-          if choice then
-            local session = require("mini.sessions")
-            session.delete(choice)
-          end
-        end)
-      end,
-      desc = "Delete session",
-    },
-    {
       "<leader>w<backspace>",
       function()
-        local session = require("mini.sessions")
-        session.read(session.get_latest())
+        session_restore()
       end,
       desc = "Load last session",
     },

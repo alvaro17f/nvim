@@ -1,4 +1,4 @@
-local current_session = false
+local current_session = nil
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
 
 local function has_valid_buffers()
@@ -98,7 +98,7 @@ return {
   version = false,
   keys = {
     {
-      "<leader>ww",
+      "<leader>wl",
       function()
         session_selector()
       end,
@@ -117,6 +117,17 @@ return {
         session_restore()
       end,
       desc = "Load last session",
+    },
+    {
+      "<leader>ww",
+      function()
+        if current_session then
+          vim.notify("Current session: " .. current_session, vim.log.levels.INFO)
+        else
+          vim.notify("No current session", vim.log.levels.WARN)
+        end
+      end,
+      desc = "Current session",
     },
   },
   opts = {
@@ -144,8 +155,8 @@ return {
         delete = nil,
       },
       post = {
-        read = function()
-          current_session = true
+        read = function(item)
+          current_session = item.name
         end,
         write = nil,
         delete = nil,

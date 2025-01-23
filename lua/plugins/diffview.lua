@@ -52,8 +52,8 @@ return {
     { mode = "n", "<leader>gd", "<CMD>DiffviewFileHistory --follow %<CR>", silent = true, desc = "Diff file" },
     { mode = "v", "<leader>gd", "<ESC><CMD>'<,'>DiffviewFileHistory --follow<CR>", silent = true, desc = "Diff Selection" },
     { mode = "n", "<leader>gv", diffview_toggle, silent = true, desc = "Diff view" },
-    { mode = "n", "<leader>gc", "<CMD>ClipboardDiff<CR>", silent = true, desc = "Diff clipboard" },
-    { mode = "v", "<leader>gc", "<ESC><CMD>ClipboardDiffSelection<CR>", silent = true, desc = "Diff clipboard Selection" },
+    { mode = "n", "<leader>gp", "<CMD>ClipboardDiff<CR>", silent = true, desc = "Diff clipboard" },
+    { mode = "v", "<leader>gp", "<ESC><CMD>ClipboardDiffSelection<CR>", silent = true, desc = "Diff clipboard Selection" },
   },
   opts = function()
     local actions = require("diffview.actions")

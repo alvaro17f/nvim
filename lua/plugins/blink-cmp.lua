@@ -10,6 +10,17 @@ if vim.g.copilot then
   table.insert(sources_default, "codecompanion")
 end
 
+local border = {
+  { "╭", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╮", "FloatBorder" },
+  { "│", "FloatBorder" },
+  { "╯", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╰", "FloatBorder" },
+  { "│", "FloatBorder" },
+}
+
 return {
   "saghen/blink.cmp",
   event = { "InsertEnter" },
@@ -36,7 +47,6 @@ return {
     },
 
     appearance = {
-      use_nvim_cmp_as_default = true, -- Fallback highlight groups to nvim-cmp's highlight groups
       nerd_font_variant = "normal", -- 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       kind_icons = {
         Array = "  ",
@@ -83,10 +93,14 @@ return {
 
     completion = {
       accept = { auto_brackets = { enabled = true } },
-      documentation = { auto_show = true },
+      documentation = {
+        auto_show = true,
+        window = { border = border },
+      },
       list = { selection = { preselect = false, auto_insert = false } },
       menu = {
         auto_show = true,
+        border = border,
         draw = {
           columns = {
             { "kind_icon" },
@@ -98,7 +112,10 @@ return {
       },
     },
 
-    signature = { enabled = true },
+    signature = {
+      enabled = true,
+      window = { border = border },
+    },
 
     snippets = { preset = "luasnip" },
 

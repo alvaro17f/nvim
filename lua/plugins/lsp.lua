@@ -83,7 +83,6 @@ return {
           "typescriptreact",
           "typescript.tsx",
         },
-        single_file_support = false,
         settings = {
           typescript = {
             inlayHints = {

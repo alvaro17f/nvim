@@ -4,7 +4,7 @@ return {
   opts = {
     modes = {
       search = {
-        enabled = true,
+        enabled = false,
         mode = "fuzzy", -- "fuzzy" | "exact" | "search"
       },
     },

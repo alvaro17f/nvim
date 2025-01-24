@@ -1,21 +1,24 @@
+local git = require("utils.git")
+local picker_utils = require("utils.snacks.picker")
+
 return {
   "snacks.nvim",
   keys = {
     {
       "<leader>ff",
       function()
-        if require("utils.git").is_git_repo() then
-          return Snacks.picker.git_files({ cwd = require("utils.git").get_workspace_root() })
+        if git.is_git_repo() then
+          return Snacks.picker.git_files({ cwd = git.get_workspace_root() })
         end
 
-        Snacks.picker.files({ cwd = require("utils.git").get_workspace_root() })
+        Snacks.picker.files({ cwd = git.get_workspace_root() })
       end,
       desc = "Find files",
     },
     {
       "<leader>fg",
       function()
-        Snacks.picker.grep({ cwd = require("utils.git").get_workspace_root() })
+        Snacks.picker.grep({ cwd = git.get_workspace_root() })
       end,
       desc = "Grep",
     },
@@ -112,6 +115,38 @@ return {
             ["<c-u>"] = "preview_scroll_up",
             ["<c-f>"] = false,
             ["<c-b>"] = false,
+          },
+        },
+      },
+      sources = {
+        files = {
+          actions = {
+            switch_grep_files = function(picker, _)
+              picker_utils.is_grep = false
+              picker_utils.switch_grep_files(picker, _)
+            end,
+          },
+          win = {
+            input = {
+              keys = {
+                ["<Tab>"] = { "switch_grep_files", desc = "Switch to grep", mode = { "i", "v" } },
+              },
+            },
+          },
+        },
+        grep = {
+          actions = {
+            switch_grep_files = function(picker, _)
+              picker_utils.is_grep = true
+              picker_utils.switch_grep_files(picker, _)
+            end,
+          },
+          win = {
+            input = {
+              keys = {
+                ["<Tab>"] = { "switch_grep_files", desc = "Switch to grep", mode = { "i", "v" } },
+              },
+            },
           },
         },
       },

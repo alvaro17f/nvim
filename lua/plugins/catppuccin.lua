@@ -7,6 +7,14 @@ return {
     flavour = "mocha",
     transparent_background = true,
 
+    custom_highlights = function(colors)
+      return {
+        BlinkCmpMenuBorder = { fg = colors.blue },
+        BlinkCmpDocBorder = { fg = colors.sapphire },
+        BlinkCmpSignatureHelpBorder = { fg = colors.yellow },
+      }
+    end,
+
     integrations = {
       blink_cmp = true,
       diffview = true,

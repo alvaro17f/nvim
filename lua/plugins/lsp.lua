@@ -33,6 +33,7 @@ return {
         filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss" },
       },
       eslint = {
+        root_dir = vim.fs.root(0, { "package.json", ".eslintrc.json", ".eslintrc.js", ".git" }),
         filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
         flags = os.getenv("DEBOUNCE_ESLINT") and {
           allow_incremental_sync = true,
@@ -73,6 +74,7 @@ return {
       ols = {},
       tailwindcss = {},
       vtsls = {
+        root_dir = vim.fs.root(0, { "package.json", "tsconfig.json", "jsconfig.json", ".git" }),
         filetypes = {
           "javascript",
           "javascriptreact",

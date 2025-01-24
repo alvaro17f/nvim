@@ -58,5 +58,5 @@
   "vim-caddyfile": { "branch": "master", "commit": "24fe0720551883e407cb70ae1d7c03f162d1d5a0" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },
   "which-key.nvim": { "branch": "main", "commit": "6cebd86917df559a88de0f806b2989799c6e6423" },
-  "yazi.nvim": { "branch": "main", "commit": "501f3626f09511473ed1a30220c4ddb5a09896ef" }
+  "yazi.nvim": { "branch": "main", "commit": "27d62509a98d8a0d7fb9b5a33d483d7d08f0d3ee" }
 }

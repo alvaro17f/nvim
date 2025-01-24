@@ -30,7 +30,11 @@ return {
 
       lsp = {
         hover = {
-          enabled = false,
+          enabled = true,
+          view = "hover",
+          border = {
+            style = "rounded",
+          },
         },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -38,6 +42,14 @@ return {
         },
         signature = {
           enabled = false, -- provided by blink.cmp
+        },
+      },
+      views = {
+        hover = {
+          border = {
+            style = "rounded",
+          },
+          position = { row = 2, col = 2 },
         },
       },
     },

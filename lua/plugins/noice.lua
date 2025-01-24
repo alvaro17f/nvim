@@ -29,12 +29,15 @@ return {
       },
 
       lsp = {
-        signature = {
-          enabled = false, -- provided by blink.cmp
+        hover = {
+          enabled = false,
         },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
+        },
+        signature = {
+          enabled = false, -- provided by blink.cmp
         },
       },
     },

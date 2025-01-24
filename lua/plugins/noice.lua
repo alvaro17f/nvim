@@ -11,12 +11,27 @@ return {
       },
     },
     opts = {
-      presets = {
+      preset = {
         bottom_search = true,
         command_palette = true,
         lsp_doc_border = true,
       },
+      cmdline = {
+        view = "cmdline",
+        format = {
+          search_down = {
+            view = "cmdline",
+          },
+          search_up = {
+            view = "cmdline",
+          },
+        },
+      },
+
       lsp = {
+        signature = {
+          enabled = false, -- provided by blink.cmp
+        },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,

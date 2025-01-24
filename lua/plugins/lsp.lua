@@ -225,6 +225,10 @@ return {
     -- error lens
     ---------------------
     vim.diagnostic.config({
+      float = {
+        border = "rounded",
+        source = "always",
+      },
       severity_sort = true,
       underline = true,
       update_in_insert = false,

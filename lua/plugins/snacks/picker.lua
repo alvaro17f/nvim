@@ -129,7 +129,7 @@ return {
           win = {
             input = {
               keys = {
-                ["<Tab>"] = { "switch_grep_files", desc = "Switch to grep", mode = { "i", "v" } },
+                ["<c-\\>"] = { "switch_grep_files", desc = "Switch to grep", mode = { "i", "v" } },
               },
             },
           },
@@ -144,7 +144,7 @@ return {
           win = {
             input = {
               keys = {
-                ["<Tab>"] = { "switch_grep_files", desc = "Switch to grep", mode = { "i", "v" } },
+                ["<c-\\>"] = { "switch_grep_files", desc = "Switch to grep", mode = { "i", "v" } },
               },
             },
           },

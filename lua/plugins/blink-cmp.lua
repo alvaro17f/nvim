@@ -26,6 +26,8 @@ return {
   opts = {
     keymap = {
       preset = "default", -- "default" | "enter" | "super-tab"
+      ["<Tab>"] = {},
+      ["<S-Tab>"] = {},
       ["<CR>"] = { "accept", "fallback" },
       ["<C-p>"] = { "show", "select_prev", "fallback" },
       ["<C-n>"] = { "show", "select_next", "fallback" },

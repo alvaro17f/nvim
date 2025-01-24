@@ -28,7 +28,8 @@ return {
 
     context.setup({
       enable = true,
-      mode = "topline", -- 'cursor' 'topline'
+      mode = "cursor", -- 'cursor' 'topline'
+      max_lines = 3,
     })
   end,
 }

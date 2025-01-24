@@ -1,21 +1,21 @@
 return {
   "MagicDuck/grug-far.nvim",
   event = { "BufReadPre", "BufNewFile" },
+  --stylua: ignore
   keys = {
-    {
-      mode = { "n", "v" },
-      "<leader>r",
-      function()
-        require("grug-far").with_visual_selection()
-      end,
-      desc = "Search and replace",
-    },
+    { mode = "n", "<leader>r", function() require("grug-far").open() end, desc = "Search and replace" },
+    { mode = "v", "<leader>r", function() require("grug-far").with_visual_selection() end, desc = "Search and replace selection" },
   },
   config = function()
+    local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+
     require("grug-far").setup({
       engine = "ripgrep", -- 'astgrep'
+      headerMaxWidth = 80,
+      transient = true,
       prefills = {
         paths = vim.fn.expand("%"),
+        filesFilter = ext and ext ~= "" and "*." .. ext or nil,
       },
       keymaps = {
         replace = { n = "<localleader><enter>" },

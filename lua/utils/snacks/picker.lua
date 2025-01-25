@@ -1,5 +1,9 @@
 local M = {}
-M.is_grep = nil
+
+M.status = {
+  is_grep = nil,
+  is_git = nil,
+}
 
 function M.switch_grep_files(picker, _)
   local snacks = require("snacks")
@@ -7,15 +11,25 @@ function M.switch_grep_files(picker, _)
 
   picker:close()
 
-  if M.is_grep then
+  if M.status.is_grep then
     local pattern = picker.input.filter.search or picker.input.filter.pattern
-    snacks.picker.files({ cwd = cwd, pattern = pattern })
-    M.is_grep = false
+    if M.status.is_git then
+      snacks.picker.git_files({ cwd = cwd, pattern = pattern })
+    else
+      snacks.picker.files({ cwd = cwd, pattern = pattern })
+    end
+    M.status = {
+      is_grep = false,
+      is_git = M.status.is_git,
+    }
     return
   else
     local pattern = picker.input.filter.pattern or picker.input.filter.search
     snacks.picker.grep({ cwd = cwd, search = pattern })
-    M.is_grep = true
+    M.status = {
+      is_grep = true,
+      is_git = M.status.is_git,
+    }
   end
 end
 

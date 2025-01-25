@@ -122,7 +122,28 @@ return {
         files = {
           actions = {
             switch_grep_files = function(picker, _)
-              picker_utils.is_grep = false
+              picker_utils.status = {
+                is_grep = false,
+                is_git = false,
+              }
+              picker_utils.switch_grep_files(picker, _)
+            end,
+          },
+          win = {
+            input = {
+              keys = {
+                ["<c-\\>"] = { "switch_grep_files", desc = "Switch to grep", mode = { "i", "v" } },
+              },
+            },
+          },
+        },
+        git_files = {
+          actions = {
+            switch_grep_files = function(picker, _)
+              picker_utils.status = {
+                is_grep = false,
+                is_git = true,
+              }
               picker_utils.switch_grep_files(picker, _)
             end,
           },
@@ -137,14 +158,17 @@ return {
         grep = {
           actions = {
             switch_grep_files = function(picker, _)
-              picker_utils.is_grep = true
+              picker_utils.status = {
+                is_grep = true,
+                is_git = git.is_git_repo(),
+              }
               picker_utils.switch_grep_files(picker, _)
             end,
           },
           win = {
             input = {
               keys = {
-                ["<c-\\>"] = { "switch_grep_files", desc = "Switch to grep", mode = { "i", "v" } },
+                ["<c-\\>"] = { "switch_grep_files", desc = "Switch to files", mode = { "i", "v" } },
               },
             },
           },

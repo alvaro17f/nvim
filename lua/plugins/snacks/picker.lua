@@ -13,42 +13,42 @@ return {
 
         Snacks.picker.files({ cwd = git.get_workspace_root() })
       end,
-      desc = "Find files",
+      desc = "Picker: find files",
     },
     {
       "<leader>fg",
       function()
         Snacks.picker.grep({ cwd = git.get_workspace_root() })
       end,
-      desc = "Grep",
+      desc = "Picker: grep",
     },
     {
       "<leader>fr",
       function()
         Snacks.picker.recent()
       end,
-      desc = "Recent",
+      desc = "Picker: recent",
     },
     {
       "<leader>fs",
       function()
         Snacks.picker.smart()
       end,
-      desc = "Smart",
+      desc = "Picker: Smart",
     },
     {
       "<leader>fh",
       function()
         Snacks.picker.help()
       end,
-      desc = "Help Pages",
+      desc = "Picker: help",
     },
     {
       "<leader>fb",
       function()
         Snacks.picker.grep_buffers()
       end,
-      desc = "Grep Open Buffers",
+      desc = "Picker: grep buffers",
     },
     {
 
@@ -56,35 +56,42 @@ return {
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Buffers",
+      desc = "Picker: buffers",
     },
     {
       "<leader>cc",
       function()
         Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
       end,
-      desc = "Find config files",
+      desc = "Picker: nvim config",
     },
     {
       "<leader>f<backspace>",
       function()
         Snacks.picker.resume()
       end,
-      desc = "Resume",
+      desc = "Picker: resume",
     },
     {
       "<leader>fP",
       function()
         Snacks.picker.pickers()
       end,
-      desc = "Pickers",
+      desc = "Picker: pickers",
     },
     {
       "<leader>fp",
       function()
         Snacks.picker.projects()
       end,
-      desc = "Projects",
+      desc = "Picker: projects",
+    },
+    {
+      "<leader>fl",
+      function()
+        Snacks.picker.lines()
+      end,
+      desc = "Picker: lines",
     },
   },
   opts = {

@@ -1,5 +1,7 @@
 local M = {}
+
 local widths = { 0, 0, 0, 0 }
+
 local function generate_text(items)
   for _, item in ipairs(items) do
     item._path = item.file
@@ -69,22 +71,7 @@ function M.select_scratch()
   })
 end
 
-function M.new_scratch()
-  local filetypes = {
-    { text = "css" },
-    { text = "go" },
-    { text = "html" },
-    { text = "javascript" },
-    { text = "javascriptreact" },
-    { text = "lua" },
-    { text = "markdown" },
-    { text = "python" },
-    { text = "rust" },
-    { text = "typescript" },
-    { text = "typescriptreact" },
-    { text = "zig" },
-  }
-
+function M.new_scratch(filetypes)
   Snacks.picker.pick({
     source = "scratch",
     items = filetypes,

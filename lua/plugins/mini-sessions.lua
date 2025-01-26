@@ -46,10 +46,13 @@ local function session_selector()
       preset = "select",
       layout = { title = " Select a session: " },
     },
+    on_change = function()
+      vim.cmd.startinsert()
+    end,
     win = {
       input = {
         keys = {
-          ["<c-x>"] = { "delete", mode = "i" },
+          ["<c-x>"] = { "delete", mode = { "n", "i" } },
         },
       },
     },

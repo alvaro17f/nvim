@@ -1,5 +1,6 @@
 local M = {}
 
+local session = require("mini.sessions")
 function M.has_valid_buffers()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     local buflisted = vim.bo[bufnr].buflisted
@@ -20,8 +21,6 @@ function M.has_valid_buffers()
 end
 
 function M.select_session()
-  local session = require("mini.sessions")
-
   local items = {}
 
   for name, value in pairs(session.detected) do
@@ -76,7 +75,6 @@ function M.select_session()
 end
 
 function M.new_session()
-  local session = require("mini.sessions")
   local session_name = vim.fn.input("Session name: ")
 
   if session_name == "" then
@@ -88,7 +86,6 @@ function M.new_session()
 end
 
 function M.restore_session()
-  local session = require("mini.sessions")
   local latest_session_name = session.get_latest()
   session.read(latest_session_name)
   vim.notify("Session read: " .. latest_session_name, vim.log.levels.INFO)

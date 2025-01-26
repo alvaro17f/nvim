@@ -1,12 +1,13 @@
 local M = {}
 
+local snacks = require("snacks")
+
 M.status = {
   is_grep = nil,
   is_git = nil,
 }
 
 function M.switch_grep_files(picker, _)
-  local snacks = require("snacks")
   local cwd = picker.input.filter.cwd
 
   picker:close()

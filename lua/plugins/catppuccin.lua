@@ -36,7 +36,6 @@ return {
       },
       neotest = true,
       noice = true,
-      render_markdown = true,
       semantic_tokens = true,
       snacks = true,
       treesitter = true,

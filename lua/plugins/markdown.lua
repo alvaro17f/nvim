@@ -7,10 +7,12 @@ if vim.g.copilot then
 end
 
 return {
-  "MeanderingProgrammer/render-markdown.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  "OXY2DEV/markview.nvim",
   ft = filetypes,
   opts = {
-    file_types = filetypes,
+    preview = {
+      filetypes = filetypes,
+      ignore_buftypes = {},
+    },
   },
 }

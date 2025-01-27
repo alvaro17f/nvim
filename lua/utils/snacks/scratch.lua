@@ -1,5 +1,14 @@
 local M = {}
 
+local function generate_uuid()
+  local random = math.random
+  local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+  return string.gsub(template, "[xy]", function(c)
+    local v = (c == "x") and random(0, 0xf) or random(8, 0xb)
+    return string.format("%x", v)
+  end)
+end
+
 local column_widths = { 0, 0, 0, 0 }
 
 local function update_column_widths(item)
@@ -15,6 +24,7 @@ local function process_item(item)
   item.cwd = item.cwd and vim.fn.fnamemodify(item.cwd, ":p:~") or ""
   item.icon = item.icon or Snacks.util.icon(item.ft, "filetype")
   item.preview = { text = item.file }
+  item.name = "Scratch"
   update_column_widths(item)
 end
 
@@ -95,9 +105,9 @@ function M.new_scratch(filetypes)
         vim.schedule(function()
           local items = picker:items()
           if #items == 0 then
-            Snacks.scratch({ ft = picker:filter().pattern })
+            Snacks.scratch({ ft = picker:filter().pattern, name = generate_uuid() })
           else
-            Snacks.scratch({ ft = item.text })
+            Snacks.scratch({ ft = item.text, name = generate_uuid() })
           end
         end)
       end,

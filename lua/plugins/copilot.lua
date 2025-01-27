@@ -2,7 +2,7 @@ if vim.g.copilot == false then
   return {}
 end
 
-local provider = "copilot"
+local provider = vim.g.copilot
 
 local code_companion_cmd = function()
   local user_input = vim.fn.input("CodeCompanionCmd: ")

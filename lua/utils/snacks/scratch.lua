@@ -1,32 +1,40 @@
 local M = {}
 
-local widths = { 0, 0, 0, 0 }
+local column_widths = { 0, 0, 0, 0 }
 
-local function generate_text(items)
+local function update_column_widths(item)
+  column_widths[1] = math.max(column_widths[1], vim.api.nvim_strwidth(item.cwd))
+  column_widths[2] = math.max(column_widths[2], vim.api.nvim_strwidth(item.icon))
+  column_widths[3] = math.max(column_widths[3], vim.api.nvim_strwidth(item.name))
+  column_widths[4] = math.max(column_widths[4], vim.api.nvim_strwidth(item.branch))
+end
+
+local function process_item(item)
+  item._path = item.file
+  item.branch = item.branch and ("branch:%s"):format(item.branch) or ""
+  item.cwd = item.cwd and vim.fn.fnamemodify(item.cwd, ":p:~") or ""
+  item.icon = item.icon or Snacks.util.icon(item.ft, "filetype")
+  item.preview = { text = item.file }
+  update_column_widths(item)
+end
+
+local function process_items(items)
   for _, item in ipairs(items) do
-    item._path = item.file
-    item.branch = item.branch and ("branch:%s"):format(item.branch) or ""
-    item.cwd = item.cwd and vim.fn.fnamemodify(item.cwd, ":p:~") or ""
-    item.icon = item.icon or Snacks.util.icon(item.ft, "filetype")
-    item.preview = { text = item.file }
-    widths[1] = math.max(widths[1], vim.api.nvim_strwidth(item.cwd))
-    widths[2] = math.max(widths[2], vim.api.nvim_strwidth(item.icon))
-    widths[3] = math.max(widths[3], vim.api.nvim_strwidth(item.name))
-    widths[4] = math.max(widths[4], vim.api.nvim_strwidth(item.branch))
+    process_item(item)
   end
 end
 
-local function format_item_text(element)
-  local parts = { element.cwd, element.icon, element.name, element.branch }
+local function format_item_text(item)
+  local parts = { item.cwd, item.icon, item.name, item.branch }
   for i, part in ipairs(parts) do
-    parts[i] = part .. string.rep(" ", widths[i] - vim.api.nvim_strwidth(part))
+    parts[i] = part .. string.rep(" ", column_widths[i] - vim.api.nvim_strwidth(part))
   end
   return table.concat(parts, " ")
 end
 
 function M.select_scratch()
   local items = Snacks.scratch.list()
-  generate_text(items)
+  process_items(items)
 
   Snacks.picker.pick({
     source = "scratch",
@@ -60,7 +68,7 @@ function M.select_scratch()
           end
         end
         picker:close()
-        M.select_scratch()
+        M.select_scratch_buffer()
       end,
     },
     confirm = function(_, item)

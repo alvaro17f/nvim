@@ -68,7 +68,7 @@ function M.select_scratch()
           end
         end
         picker:close()
-        M.select_scratch_buffer()
+        M.select_scratch()
       end,
     },
     confirm = function(_, item)

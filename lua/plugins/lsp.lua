@@ -241,10 +241,8 @@ return {
     ---------------------
     -- vim.lsp.inlay_hint.enable() -- enabled by default
     vim.keymap.set("n", "<leader>&", function()
-      local enabled_icon = "✅"
-      local disabled_icon = "❌"
       local current_state = vim.lsp.inlay_hint.is_enabled()
-      local icon = current_state and disabled_icon or enabled_icon
+      local icon = current_state and " " or " "
       local message = current_state and "Inlay hints disabled" or "Inlay hints enabled"
       vim.lsp.inlay_hint.enable(not current_state)
       print(icon .. " " .. message)

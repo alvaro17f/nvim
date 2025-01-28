@@ -55,12 +55,12 @@ return {
               api_key = "OPENROUTER_API_KEY",
             },
             headers = {
-              ["X-Title"] = "Neovim - CodeCompanion",
+              ["X-Title"] = "codecompanion",
               ["HTTP-Referer"] = "https://neovim.io",
             },
             schema = {
               model = {
-                default = "deepseek/deepseek-r1",
+                default = "deepseek/deepseek-r1-distill-llama-70b",
               },
               temperature = {
                 default = 0.5,

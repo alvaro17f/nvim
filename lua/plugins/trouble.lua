@@ -6,9 +6,22 @@ return {
   },
   opts = {
     auto_close = true,
+    auto_preview = false,
+    multiline = false,
     focus = true,
+
+    vim.api.nvim_create_autocmd("BufRead", {
+      callback = function(ev)
+        if vim.bo[ev.buf].buftype == "quickfix" then
+          vim.schedule(function()
+            vim.cmd([[cclose]])
+            vim.cmd([[Trouble quickfix toggle]])
+          end)
+        end
+      end,
+    }),
   },
-  cmd = "Trouble",
+  cmd = { "Trouble", "TroubleToggle" },
   keys = {
     {
       mode = "n",
@@ -19,14 +32,14 @@ return {
     },
     {
       mode = "n",
-      "<leader>xd",
+      "<leader>xx",
       "<CMD>Trouble diagnostics toggle filter.buf=0<CR>",
       silent = true,
       desc = "Trouble: document diagnostics",
     },
     {
       mode = "n",
-      "<leader>xq",
+      "<c-q>",
       "<CMD>Trouble quickfix toggle<CR>",
       silent = true,
       desc = "Trouble: quickfix list",

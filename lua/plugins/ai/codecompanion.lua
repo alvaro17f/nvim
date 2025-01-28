@@ -1,17 +1,11 @@
-if not vim.g.copilot then
-  return {}
-end
-
-local plugins = {}
-
-local provider = vim.g.copilot
+local provider = vim.g.ai
 
 local codecompanion_cmd = function()
   local user_input = vim.fn.input("CodeCompanionCmd: ")
   vim.cmd("CodeCompanionCmd " .. user_input)
 end
 
-local codecompanion = {
+return {
   "olimorris/codecompanion.nvim",
   lazy = false,
   dependencies = {
@@ -78,56 +72,3 @@ local codecompanion = {
     })
   end,
 }
-
-local copilot = {
-  "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  build = ":Copilot auth",
-  lazy = false,
-  config = function()
-    local copilot = require("copilot")
-    local suggestion = require("copilot.suggestion")
-
-    copilot.setup({
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        hide_during_completion = true,
-        debounce = 75,
-        keymap = {
-          accept = false,
-          accept_word = false,
-          accept_line = false,
-          next = false,
-          prev = false,
-          dismiss = false,
-        },
-      },
-      panel = { enabled = false },
-
-      vim.keymap.set("i", "<Tab>", function()
-        if suggestion.is_visible() then
-          suggestion.accept()
-        else
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-        end
-      end, { desc = "Copilot accept suggestion" }),
-
-      vim.keymap.set("i", "<s-tab>", function()
-        if suggestion.is_visible() then
-          suggestion.next()
-        else
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-        end
-      end, { desc = "Copilot next suggestion" }),
-    })
-  end,
-}
-
-if vim.g.copilot == "copilot" then
-  table.insert(plugins, copilot)
-end
-
-table.insert(plugins, codecompanion)
-
-return plugins

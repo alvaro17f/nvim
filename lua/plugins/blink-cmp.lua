@@ -6,7 +6,7 @@ local sources_default = {
   "snippets",
 }
 
-if vim.g.copilot then
+if vim.g.ai then
   table.insert(sources_default, "codecompanion")
 end
 

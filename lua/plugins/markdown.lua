@@ -2,7 +2,7 @@ local filetypes = {
   "markdown",
 }
 
-if vim.g.copilot then
+if vim.g.ai then
   table.insert(filetypes, "codecompanion")
 end
 

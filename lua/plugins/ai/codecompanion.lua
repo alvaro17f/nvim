@@ -60,7 +60,7 @@ return {
             },
             schema = {
               model = {
-                default = "deepseek/deepseek-r1-distill-llama-70b",
+                default = "openrouter/auto",
               },
               temperature = {
                 default = 0.5,

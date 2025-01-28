@@ -49,7 +49,7 @@
   "outline.nvim": { "branch": "main", "commit": "d5c29ee3ff3b7d1bdd454b37698316e67808c36e" },
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
   "smartcolumn.nvim": { "branch": "main", "commit": "f14fbea6f86cd29df5042897ca9e3ba10ba4d27f" },
-  "snacks.nvim": { "branch": "main", "commit": "b72364f916905bbb355d5105d364e96de118766d" },
+  "snacks.nvim": { "branch": "main", "commit": "ac20c6ff5d0ac8747e164d592e8ae7e8f2581b2e" },
   "suda": { "branch": "master", "commit": "9adda7d195222d4e2854efb2a88005a120296c47" },
   "symbol-usage.nvim": { "branch": "main", "commit": "0f9b3da014b7e41559b643e7461fcabb2a7dc83a" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },

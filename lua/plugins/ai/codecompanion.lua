@@ -60,7 +60,7 @@ return {
             },
             schema = {
               model = {
-                default = "deepseek/deepseek-r1-distill-llama-70b",
+                default = "deepseek/deepseek-r1",
               },
               temperature = {
                 default = 0.5,

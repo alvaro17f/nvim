@@ -61,7 +61,7 @@ local codecompanion = {
               api_key = "OPENROUTER_API_KEY",
             },
             headers = {
-              ["X-Title"] = "Neovim - CodeCompanion",
+              ["X-Title"] = "codecompanion",
               ["HTTP-Referer"] = "https://neovim.io",
             },
             schema = {

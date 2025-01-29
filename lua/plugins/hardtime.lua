@@ -2,6 +2,12 @@ return {
   "m4xshen/hardtime.nvim",
   dependencies = { "MunifTanjim/nui.nvim" },
   opts = {
+    disabled_keys = {
+      ["<Up>"] = {},
+      ["<Down>"] = {},
+      ["<Left>"] = {},
+      ["<Right>"] = {},
+    },
     disabled_filetypes = {
       "qf",
       "netrw",
@@ -17,6 +23,15 @@ return {
       "snacks_picker_input",
       "yazi",
       "trouble",
+      "Trouble",
+      "diffview",
+      "checkhealth",
+      "dapui",
+      "lspinfo",
+      "noice",
+      "minifiles",
+      "notify",
+      "prompt",
     },
   },
 }

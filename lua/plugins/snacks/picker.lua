@@ -97,7 +97,10 @@ return {
   opts = {
     picker = {
       layout = {
-        preset = "default", -- "default", "dropdown", "ivy", "select", "telescope", "vertical", "vscode"
+        -- preset => "default", "dropdown", "ivy", "select", "telescope", "vertical", "vscode"
+        preset = function()
+          return vim.o.columns >= 120 and "default" or "vertical"
+        end,
       },
       formatters = {
         file = {

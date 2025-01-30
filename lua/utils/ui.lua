@@ -2,6 +2,7 @@ local M = {}
 
 M.headers = {
   eagle = "eagle.cat",
+  hack = "hack.cat",
   neovim = "neovim.cat",
 }
 

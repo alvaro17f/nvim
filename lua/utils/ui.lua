@@ -1,8 +1,8 @@
 local M = {}
 
 M.headers = {
+  anonymous = "anonymous.cat",
   eagle = "eagle.cat",
-  hack = "hack.cat",
   neovim = "neovim.cat",
 }
 

@@ -27,7 +27,6 @@ require("lazy").setup("plugins", {
   },
   rocks = { enabled = false }, -- disable luarocks
   ui = {
-    border = "double",
     custom_keys = {
       ["<C-r>"] = {
         function(_)

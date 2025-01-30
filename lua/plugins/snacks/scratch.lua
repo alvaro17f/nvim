@@ -4,6 +4,7 @@ local filetypes = {
   { text = "html" },
   { text = "javascript" },
   { text = "javascriptreact" },
+  { text = "json" },
   { text = "lua" },
   { text = "markdown" },
   { text = "python" },

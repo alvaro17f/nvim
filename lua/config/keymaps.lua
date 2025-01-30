@@ -22,16 +22,16 @@ keymap("n", "[b", "<CMD>bp<CR>", { noremap = true, silent = true, desc = "Buffer
 keymap("n", "]b", "<CMD>bn<CR>", { noremap = true, silent = true, desc = "Buffer next" })
 
 -- MOVE THROUGH WORKSPACES
-keymap("n", "<c-h>", "<CMD>wincmd h<CR>", { noremap = true, silent = true, desc = "Workspace left" })
-keymap("n", "<c-l>", "<CMD>wincmd l<CR>", { noremap = true, silent = true, desc = "Workspace right" })
-keymap("n", "<c-k>", "<CMD>wincmd k<CR>", { noremap = true, silent = true, desc = "Workspace up" })
-keymap("n", "<c-j>", "<CMD>wincmd j<CR>", { noremap = true, silent = true, desc = "Workspace down" })
+-- keymap("n", "<c-h>", "<CMD>wincmd h<CR>", { noremap = true, silent = true, desc = "Workspace left" })
+-- keymap("n", "<c-l>", "<CMD>wincmd l<CR>", { noremap = true, silent = true, desc = "Workspace right" })
+-- keymap("n", "<c-k>", "<CMD>wincmd k<CR>", { noremap = true, silent = true, desc = "Workspace up" })
+-- keymap("n", "<c-j>", "<CMD>wincmd j<CR>", { noremap = true, silent = true, desc = "Workspace down" })
 
 -- HJKL INSERT MODE
-keymap("i", "<a-h>", "<left>", { noremap = true, silent = true, desc = "Left" })
-keymap("i", "<a-j>", "<down>", { noremap = true, silent = true, desc = "Down" })
-keymap("i", "<a-k>", "<up>", { noremap = true, silent = true, desc = "Up" })
-keymap("i", "<a-l>", "<right>", { noremap = true, silent = true, desc = "Right" })
+-- keymap("i", "<a-h>", "<left>", { noremap = true, silent = true, desc = "Left" })
+-- keymap("i", "<a-j>", "<down>", { noremap = true, silent = true, desc = "Down" })
+-- keymap("i", "<a-k>", "<up>", { noremap = true, silent = true, desc = "Up" })
+-- keymap("i", "<a-l>", "<right>", { noremap = true, silent = true, desc = "Right" })
 
 -- MOVE LINES
 keymap("n", "<c-a-j>", "<CMD>m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })

@@ -39,6 +39,7 @@ return {
         },
       },
       adapters = {
+
         openai = function()
           return require("codecompanion.adapters").extend("openai", {
             name = "openai",
@@ -60,7 +61,7 @@ return {
             },
             schema = {
               model = {
-                default = "openrouter/auto",
+                default = "meta-llama/llama-3.2-90b-vision-instruct:free", -- "openrouter/auto"
               },
               temperature = {
                 default = 0.5,

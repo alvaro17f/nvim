@@ -61,15 +61,19 @@ function M.select_session()
           session.delete(item.text, { verbose = false })
           vim.notify("Session deleted: " .. item.text, vim.log.levels.WARN)
           picker:close()
-          M.select_session()
+          vim.schedule(function()
+            M.select_session()
+          end)
         end
       end,
     },
     confirm = function(picker, item)
       if item then
         picker:close()
-        session.read(item.text, { verbose = false })
-        vim.notify("Session read: " .. item.text, vim.log.levels.INFO)
+        vim.schedule(function()
+          session.read(item.text, { verbose = false })
+          vim.notify("Session read: " .. item.text, vim.log.levels.INFO)
+        end)
       end
     end,
   })

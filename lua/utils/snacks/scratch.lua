@@ -78,7 +78,10 @@ function M.select_scratch()
           end
         end
         picker:close()
-        M.select_scratch()
+
+        vim.schedule(function()
+          M.select_scratch()
+        end)
       end,
     },
     confirm = function(_, item)

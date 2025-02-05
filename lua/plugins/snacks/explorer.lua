@@ -1,12 +1,10 @@
-local cwd = require("utils.git").get_workspace_root()
-
 return {
   "snacks.nvim",
   keys = {
     {
       "<leader>e",
       function()
-        Snacks.explorer()
+        Snacks.explorer({ cwd = vim.fs.root(0, { ".git" }) })
       end,
       desc = "Picker: explorer",
     },
@@ -20,15 +18,6 @@ return {
         explorer = {
           auto_close = true,
           hidden = true,
-          cwd = cwd,
-          win = {
-            list = {
-              keys = {
-                ["h"] = "explorer_up",
-                ["l"] = "explorer_cd",
-              },
-            },
-          },
         },
       },
     },

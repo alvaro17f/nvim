@@ -34,7 +34,7 @@ return {
             and not vim.w[win].trouble_preview
         end,
       },
-      { ft = "trouble", title = "Trouble", size = { height = 0.4 } },
+      { ft = "trouble", title = "Trouble" },
     },
     left = {},
 

@@ -20,6 +20,22 @@ return {
       end,
       desc = "Multicursors",
     },
+    {
+      mode = { "n" },
+      "<Leader>M",
+      function()
+        vim.cmd("MCpattern")
+      end,
+      desc = "Multicursors pattern",
+    },
+    {
+      mode = { "v" },
+      "<Leader>M",
+      function()
+        vim.cmd("MCvisualPattern")
+      end,
+      desc = "Multicursors pattern",
+    },
   },
   opts = {
     hint_config = {

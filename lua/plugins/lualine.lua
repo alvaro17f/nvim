@@ -1,7 +1,7 @@
 -- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
 return {
   "nvim-lualine/lualine.nvim",
-  event = "VeryLazy",
+  event = { "VeryLazy" },
   dependencies = { "echasnovski/mini.icons" },
   config = function()
     local lualine = require("lualine")

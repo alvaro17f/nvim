@@ -6,6 +6,7 @@ require("utils.flags").setup({
   flags = {
     ai = { default = false, options = { "copilot", "openrouter", "openai", false } },
     debugger = false,
+    suggestions = false,
     tests = false,
   },
 })

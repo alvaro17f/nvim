@@ -39,7 +39,6 @@ return {
         },
       },
       adapters = {
-
         openai = function()
           return require("codecompanion.adapters").extend("openai", {
             name = "openai",

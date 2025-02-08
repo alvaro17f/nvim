@@ -60,7 +60,7 @@ return {
             },
             schema = {
               model = {
-                default = "meta-llama/llama-3.2-90b-vision-instruct:free", -- "openrouter/auto"
+                default = vim.env.OPENROUTER_MODEL or "openrouter/auto",
               },
               temperature = {
                 default = 0.5,

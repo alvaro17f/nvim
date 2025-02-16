@@ -144,8 +144,10 @@ return {
           module = "blink.cmp.sources.snippets",
         },
       },
+    },
 
-      cmdline = function()
+    cmdline = {
+      sources = function()
         local type = vim.fn.getcmdtype()
         if type == "/" or type == "?" then
           return { "buffer" }

@@ -18,5 +18,6 @@ return {
   },
   opts = {
     show_label = false,
+    silent = true,
   },
 }

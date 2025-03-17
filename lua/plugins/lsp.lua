@@ -1,3 +1,6 @@
+vim.g.zig_fmt_parse_errors = 0
+vim.g.zig_fmt_autosave = 0
+
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -118,7 +121,13 @@ return {
         },
       },
       yamlls = {},
-      zls = {},
+      zls = {
+        settings = {
+          zls = {
+            semantic_tokens = "partial",
+          },
+        },
+      },
     }
 
     ---------------------

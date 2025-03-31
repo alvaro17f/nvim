@@ -241,7 +241,7 @@ return {
     vim.diagnostic.config({
       float = { border = "rounded" },
       severity_sort = true,
-      virtual_lines = true,
+      virtual_lines = { current_line = true },
     })
 
     ---------------------

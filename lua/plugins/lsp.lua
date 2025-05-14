@@ -5,7 +5,7 @@ return {
   "neovim/nvim-lspconfig",
   dependencies = {
     {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       opts = {
         ui = {
           icons = {
@@ -19,7 +19,7 @@ return {
         { mode = "n", "<leader>,", "<CMD>Mason<CR>", desc = "Open mason" },
       },
     },
-    { "williamboman/mason-lspconfig.nvim" },
+    { "mason-org/mason-lspconfig.nvim" },
     { "WhoIsSethDaniel/mason-tool-installer.nvim" },
   },
   config = function()
@@ -136,12 +136,6 @@ return {
     }
 
     ---------------------
-    -- capabilities
-    ---------------------
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
-
-    ---------------------
     -- mason
     ---------------------
     local ensure_installed = vim.tbl_keys(servers or {})
@@ -154,13 +148,9 @@ return {
     vim.list_extend(ensure_installed, LSP_TOOLS)
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-    require("mason-lspconfig").setup_handlers({
-      function(server_name)
-        local server = servers[server_name] or {}
-        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-        require("lspconfig")[server_name].setup(server)
-      end,
-    })
+
+    local server_keys = vim.tbl_keys(servers or {})
+    require("mason-lspconfig").setup({ ensure_installed = server_keys, automatic_enable = true })
 
     ---------------------
     -- keybinds
@@ -170,11 +160,6 @@ return {
       callback = function(event)
         local opts = { buffer = event.buf, silent = true }
 
-        opts.desc = "Show LSP references"
-        vim.keymap.set("n", "gr", function()
-          Snacks.picker.lsp_references()
-        end, opts)
-
         opts.desc = "Go to declaration"
         vim.keymap.set("n", "gk", vim.lsp.buf.declaration, opts)
 
@@ -183,21 +168,26 @@ return {
           Snacks.picker.lsp_definitions()
         end, opts)
 
+        opts.desc = "Show LSP references"
+        vim.keymap.set("n", "grr", function()
+          Snacks.picker.lsp_references()
+        end, opts)
+
+        opts.desc = "See available code actions"
+        vim.keymap.set({ "n", "v" }, "gra", vim.lsp.buf.code_action, opts)
+
         opts.desc = "Show LSP implementations"
-        vim.keymap.set("n", "gi", function()
+        vim.keymap.set("n", "gri", function()
           Snacks.picker.lsp_implementations()
         end, opts)
+
+        opts.desc = "Smart rename"
+        vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts)
 
         opts.desc = "Show LSP type definitions"
         vim.keymap.set("n", "gt", function()
           Snacks.picker.lsp_type_definitions()
         end, opts)
-
-        opts.desc = "See available code actions"
-        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
-        opts.desc = "Smart rename"
-        vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 
         opts.desc = "Show buffer diagnostics"
         vim.keymap.set("n", "gb", function()
@@ -241,7 +231,13 @@ return {
     vim.diagnostic.config({
       float = { border = "rounded" },
       severity_sort = true,
-      virtual_lines = { current_line = true },
+      underline = true,
+      update_in_insert = false,
+      virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "●",
+      },
     })
 
     ---------------------

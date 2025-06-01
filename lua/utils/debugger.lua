@@ -2,12 +2,6 @@
 
 local M = {}
 
-M.DEBUGGERS = {
-  "codelldb",
-  "delve",
-  "js-debug-adapter",
-}
-
 function M.debugger_icons()
   vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 

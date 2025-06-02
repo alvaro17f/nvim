@@ -13,15 +13,12 @@ return {
   },
   settings = {
     Lua = {
-      runtime = {
-        version = "LuaJIT",
-      },
-      completion = {
-        callSnippet = "Replace",
-      },
       diagnostics = {
         enable = true,
-        -- enable = false,
+        globals = {
+          "vim",
+          "Snacks",
+        },
       },
       workspace = {
         checkThirdParty = false,

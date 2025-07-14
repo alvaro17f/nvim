@@ -52,7 +52,6 @@ function M.select_scratch()
     format = "text",
     layout = {
       layout = { title = " Select Scratch Buffer: " },
-      preview = true,
       preset = function()
         return vim.o.columns >= 120 and "default" or "vertical"
       end,
@@ -84,9 +83,15 @@ function M.select_scratch()
         end)
       end,
     },
-    confirm = function(_, item)
+    confirm = function(picker, item)
       if item then
-        Snacks.scratch.open({ icon = item.icon, file = item.file, name = item.name, ft = item.ft })
+        picker:close()
+        Snacks.scratch.open({
+          icon = item.icon,
+          file = item.file,
+          name = item.name,
+          ft = item.ft,
+        })
       end
     end,
   })
@@ -99,7 +104,6 @@ function M.new_scratch(filetypes)
     format = "text",
     layout = {
       preset = "vscode",
-      preview = false,
       layout = { title = " Select a filetype: " },
     },
     actions = {

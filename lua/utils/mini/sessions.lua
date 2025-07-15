@@ -79,7 +79,7 @@ function M.select_session()
   })
 end
 
-function M.new_session()
+function M.new_session(restore)
   local session_name = vim.fn.input("Session name: ")
 
   if session_name == "" then
@@ -88,6 +88,11 @@ function M.new_session()
 
   session.write(session_name .. ".vim", { verbose = false })
   vim.notify("Session created: " .. session_name, vim.log.levels.INFO)
+
+  if restore then
+    session.read(session_name .. ".vim", { verbose = false })
+    vim.notify("Session read: " .. session_name, vim.log.levels.INFO)
+  end
 end
 
 function M.restore_session()

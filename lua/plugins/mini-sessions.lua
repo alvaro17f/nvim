@@ -16,7 +16,7 @@ return {
     {
       "<leader>ws",
       function()
-        require("utils.mini.sessions").new_session()
+        require("utils.mini.sessions").new_session(true)
       end,
       desc = "Save session",
     },

@@ -11,6 +11,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "franco-ruggeri/codecompanion-spinner.nvim",
   },
   keys = {
     { mode = "n", "<leader>a", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
@@ -68,6 +69,9 @@ return {
             },
           })
         end,
+      },
+      extensions = {
+        spinner = {},
       },
     })
   end,

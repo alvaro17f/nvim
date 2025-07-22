@@ -1,33 +1,32 @@
 -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters | :h conform-formatters
-local formatter = require("utils.formmatter")
 return {
   "stevearc/conform.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufWritePre" },
+  cmd = { "ConformInfo" },
   config = function()
+    local formatters = require("utils.formatter")
     require("conform").setup({
       formatters_by_ft = {
-        css = formatter.css(),
-        go = { "gofmt", "goimports", stop_after_first = false },
-        html = formatter.typescript(),
-        javascript = formatter.typescript(),
-        javascriptreact = formatter.typescript(),
-        json = formatter.typescript(),
+        css = formatters.css(),
+        go = { "gofmt", "goimports" },
+        html = formatters.typescript(),
+        javascript = formatters.typescript(),
+        javascriptreact = formatters.typescript(),
+        json = formatters.typescript(),
         lua = { "stylua" },
-        markdown = formatter.typescript(),
         nix = { "nixfmt" },
         odin = { "odinfmt" },
         rust = { "rustfmt" },
-        scss = formatter.css(),
+        scss = formatters.css(),
         sh = { "shfmt" },
         sql = { "sql_formatter" },
-        typescript = formatter.typescript(),
-        typescriptreact = formatter.typescript(),
+        typescript = formatters.typescript(),
+        typescriptreact = formatters.typescript(),
         zig = { "zigfmt" },
         ["*"] = { "trim_newlines", "trim_whitespace" },
       },
       default_format_opts = {
         lsp_format = "fallback",
-        stop_after_first = true,
         quiet = true,
       },
       format_on_save = {

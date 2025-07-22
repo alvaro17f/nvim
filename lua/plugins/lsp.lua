@@ -1,9 +1,13 @@
 local LSP_TOOLS = {
+  "biome",
+  "eslint_d",
   "goimports",
+  "jsonlint",
   "prettier",
+  "shellcheck",
   "shfmt",
-  "sqlfluff",
   "sql-formatter",
+  "sqlfluff",
   "stylelint",
   "stylua",
 }

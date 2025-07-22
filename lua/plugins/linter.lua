@@ -6,9 +6,15 @@ return {
     local lint = require("lint")
 
     lint.linters_by_ft = {
-      css = { "stylelint" },
-      scss = { "stylelint" },
+      css = { "stylelint", "biomejs" },
+      javascript = { "biomejs", "eslint_d" },
+      javascriptreact = { "biomejs", "eslint_d" },
+      json = { "biomejs", "jsonlint" },
+      scss = { "stylelint", "biomejs" },
+      sh = { "shellcheck" },
       sql = { "sqlfluff" },
+      typescript = { "biomejs", "eslint_d" },
+      typescriptreact = { "biomejs", "eslint_d" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

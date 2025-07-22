@@ -1,28 +1,29 @@
 -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters | :h conform-formatters
+local formatter = require("utils.formmatter")
 return {
   "stevearc/conform.nvim",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("conform").setup({
       formatters_by_ft = {
-        css = { "prettier" },
+        css = formatter.css(),
         go = { "gofmt", "goimports", stop_after_first = false },
-        html = { "prettier" },
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
-        json = { "prettier" },
+        html = formatter.typescript(),
+        javascript = formatter.typescript(),
+        javascriptreact = formatter.typescript(),
+        json = formatter.typescript(),
         lua = { "stylua" },
-        markdown = { "prettier" },
+        markdown = formatter.typescript(),
         nix = { "nixfmt" },
         odin = { "odinfmt" },
         rust = { "rustfmt" },
-        scss = { "prettier" },
+        scss = formatter.css(),
         sh = { "shfmt" },
         sql = { "sql_formatter" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
+        typescript = formatter.typescript(),
+        typescriptreact = formatter.typescript(),
         zig = { "zigfmt" },
-        ["*"] = { "trim_whitespace" },
+        ["*"] = { "trim_newlines", "trim_whitespace" },
       },
       default_format_opts = {
         lsp_format = "fallback",

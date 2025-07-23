@@ -12,7 +12,7 @@ return {
       json = { "biomejs", "jsonlint" },
       scss = { "stylelint", "biomejs" },
       sh = { "shellcheck" },
-      sql = { "sqlfluff" },
+      sql = { "sqruff" },
       typescript = { "biomejs", "eslint_d" },
       typescriptreact = { "biomejs", "eslint_d" },
     }

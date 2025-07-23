@@ -5,8 +5,7 @@ local LSP_TOOLS = {
   "prettier",
   "shellcheck",
   "shfmt",
-  "sql-formatter",
-  "sqlfluff",
+  "sqruff",
   "stylelint",
   "stylua",
 }

@@ -19,7 +19,7 @@ return {
         rust = { "rustfmt" },
         scss = formatters.css(),
         sh = { "shfmt" },
-        sql = { "sql_formatter" },
+        sql = { "sqruff" },
         typescript = formatters.typescript(),
         typescriptreact = formatters.typescript(),
         zig = { "zigfmt" },

@@ -14,13 +14,13 @@ return {
     "franco-ruggeri/codecompanion-spinner.nvim",
   },
   keys = {
-    { mode = "n", "<leader>a", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
-    { mode = "v", "<leader>a", "<CMD>CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
+    { mode = "n", "<leader>oa", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
+    { mode = "v", "<leader>oa", "<CMD>CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
     { mode = "n", "<leader>:", codecompanion_cmd, desc = "CodeCompanionCmd" },
-    { mode = "v", "ga", "<CMD>CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
+    { mode = "v", "<leader>oA", "<CMD>CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
     {
       mode = "n",
-      "<leader>gc",
+      "<leader>oc",
       "<CMD>CodeCompanion /commit<CR>",
       silent = true,
       desc = "CodeCompanion generate commit",

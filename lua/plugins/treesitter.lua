@@ -4,7 +4,8 @@ return {
     "windwp/nvim-ts-autotag",
     "nvim-treesitter/nvim-treesitter-context",
   },
-  event = { "BufReadPre", "BufNewFile" },
+  lazy = false,
+  branch = "master", -- WARN: 'main' branch will become the default in the future
   build = ":TSUpdate",
   config = function()
     local treesitter = require("nvim-treesitter.configs")

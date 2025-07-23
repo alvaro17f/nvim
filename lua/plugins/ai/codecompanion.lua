@@ -13,18 +13,13 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "franco-ruggeri/codecompanion-spinner.nvim",
   },
+  --stylua: ignore
   keys = {
-    { mode = "n", "<leader>oo", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
-    { mode = { "n", "v" }, "<leader>oa", "<CMD>CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
+    { mode = "n", "<leader>oa", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
+    { mode = { "n", "v" }, "<leader>oi", "<CMD>CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
     { mode = "n", "<leader>:", codecompanion_cmd, desc = "CodeCompanionCmd" },
     { mode = "v", "<leader>oA", "<CMD>CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
-    {
-      mode = "n",
-      "<leader>oc",
-      "<CMD>CodeCompanion /commit<CR>",
-      silent = true,
-      desc = "CodeCompanion generate commit",
-    },
+    { mode = "n", "<leader>oc", "<CMD>CodeCompanion /commit<CR>", silent = true, desc = "CodeCompanion generate commit" },
   },
   config = function()
     require("codecompanion").setup({

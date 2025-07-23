@@ -12,6 +12,8 @@ return {
       { ft = "grug-far", title = "Search & Replace", size = { width = 0.5 } },
       { ft = "neotest-summary", title = "neotest", size = { width = 0.3 } },
       { ft = "Outline", title = "Outline", size = { width = 0.2 } },
+      { ft = "opencode_output", title = "Opencode", size = { width = 0.4 } },
+      { ft = "opencode_input", title = "Opencode", size = { width = 0.4, height = 0.2 } },
     },
     bottom = {
       {

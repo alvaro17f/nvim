@@ -10,6 +10,10 @@ elseif vim.g.suggestions then
   table.insert(plugins, require("plugins.ai.neocodeium"))
 end
 
-table.insert(plugins, require("plugins.ai.codecompanion"))
+if vim.g.copilot == "opencode" then
+  table.insert(plugins, require("plugins.ai.opencode"))
+elseif vim.g.copilot == "codecompanion" then
+  table.insert(plugins, require("plugins.ai.codecompanion"))
+end
 
 return plugins

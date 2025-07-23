@@ -1,5 +1,4 @@
 local LSP_TOOLS = {
-  "biome",
   "eslint_d",
   "goimports",
   "jsonlint",

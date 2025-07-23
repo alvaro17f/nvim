@@ -14,8 +14,8 @@ return {
     "franco-ruggeri/codecompanion-spinner.nvim",
   },
   keys = {
-    { mode = "n", "<leader>oa", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
-    { mode = "v", "<leader>oa", "<CMD>CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
+    { mode = "n", "<leader>oo", "<CMD>CodeCompanionChat Toggle<CR>", silent = true, desc = "CodeCompanion toggle" },
+    { mode = { "n", "v" }, "<leader>oa", "<CMD>CodeCompanionActions<CR>", silent = true, desc = "CodeCompanion actions" },
     { mode = "n", "<leader>:", codecompanion_cmd, desc = "CodeCompanionCmd" },
     { mode = "v", "<leader>oA", "<CMD>CodeCompanionChat Add<CR>", silent = true, desc = "CodeCompanion add" },
     {

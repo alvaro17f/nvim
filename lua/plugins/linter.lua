@@ -7,29 +7,14 @@ return {
 
     lint.linters_by_ft = {
       css = { "stylelint", "biomejs" },
-      javascript = { "biomejs", "eslint_d" },
-      javascriptreact = { "biomejs", "eslint_d" },
+      javascript = { "biomejs" },
+      javascriptreact = { "biomejs" },
       json = { "biomejs", "jsonlint" },
       scss = { "stylelint", "biomejs" },
       sh = { "shellcheck" },
       sql = { "sqruff" },
-      typescript = { "biomejs", "eslint_d" },
-      typescriptreact = { "biomejs", "eslint_d" },
-    }
-
-    lint.linters = {
-      eslint_d = {
-        args = {
-          "--no-warn-ignored", -- <-- this is the key argument
-          "--format",
-          "json",
-          "--stdin",
-          "--stdin-filename",
-          function()
-            return vim.api.nvim_buf_get_name(0)
-          end,
-        },
-      },
+      typescript = { "biomejs" },
+      typescriptreact = { "biomejs" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

@@ -16,7 +16,6 @@ return {
         open_output = "<leader>oo", -- Opens and focuses on output window
         toggle_focus = "<leader>ot", -- Toggle focus between opencode and last window
         close = "<leader>oq", -- Close UI windows
-        toggle_fullscreen = "<leader>of", -- Toggle between normal and fullscreen mode
         select_session = "<leader>os", -- Select and load a opencode session
         configure_provider = "<leader>op", -- Quick provider and model switch from predefined list
         diff_open = "<leader>od", -- Opens a diff tab of a modified file since the last opencode prompt
@@ -27,6 +26,7 @@ return {
         diff_revert_this_last_prompt = "<leader>ort", -- Revert current file changes since the last opencode prompt
         diff_revert_all = "<leader>orA", -- Revert all file changes since the last opencode session
         diff_revert_this = "<leader>orT", -- Revert current file changes since the last opencode session
+        swap_position = "<leader>ox", -- Swap Opencode pane left/right
       },
       window = {
         submit = "<cr>", -- Submit prompt (normal mode)
@@ -45,23 +45,18 @@ return {
         debug_output = "<leader>oO", -- Open raw output in new buffer for debugging
       },
     },
-    -- ui = {
-    --   floating = true, -- Use floating windows for input and output
-    --   window_width = 0.40, -- Width as percentage of editor width
-    --   input_height = 0.15, -- Input height as percentage of window height
-    --   fullscreen = false, -- Start in fullscreen mode (default: false)
-    --   layout = "right", -- Options: "center" or "right"
-    --   floating_height = 0.8, -- Height as percentage of editor height for "center" layout
-    --   display_model = true, -- Display model name on top winbar
-    --   display_context_size = true, -- Display context size on top winbar
-    --   display_cost = true, -- Display cost on top winbar
-    --   window_highlight = "Normal:OpencodeBackground,FloatBorder:OpencodeBorder", -- Highlight group for the opencode window
-    --   output = {
-    --     tools = {
-    --       show_output = true, -- Show tools output [diffs, cmd output, etc.] (default: true)
-    --     },
-    --   },
-    -- },
+    ui = {
+      position = "right", -- 'right' (default) or 'left'. Position of the UI split
+      window_width = 0.40, -- Width as percentage of editor width
+      input_height = 0.15, -- Input height as percentage of window height
+      display_model = true, -- Display model name on top winbar
+      window_highlight = "Normal:OpencodeBackground,FloatBorder:OpencodeBorder", -- Highlight group for the opencode window
+      output = {
+        tools = {
+          show_output = true, -- Show tools output [diffs, cmd output, etc.] (default: true)
+        },
+      },
+    },
     context = {
       cursor_data = true, -- send cursor position and current line to opencode
       diagnostics = {

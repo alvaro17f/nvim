@@ -48,6 +48,7 @@ vim.o.termguicolors = true
 vim.o.timeoutlen = 300
 vim.o.updatetime = 250
 vim.o.wrap = false
+vim.o.winborder = "rounded"
 ------------------------------------
 vim.schedule(function()
   vim.o.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"

@@ -12,8 +12,16 @@ return {
       { ft = "grug-far", title = "Search & Replace", size = { width = 0.5 } },
       { ft = "neotest-summary", title = "neotest", size = { width = 0.3 } },
       { ft = "Outline", title = "Outline", size = { width = 0.2 } },
-      { ft = "opencode_output", title = "Opencode", size = { width = 0.4 } },
-      { ft = "opencode_input", title = "Opencode", size = { width = 0.4, height = 0.2 } },
+      {
+        ft = "snacks_terminal",
+        title = "Opencode",
+        size = { width = 0.4 },
+        filter = function(_, win)
+          return vim.w[win].snacks_win
+            and vim.w[win].snacks_win.position == "right"
+            and vim.w[win].snacks_win.relative == "editor"
+        end,
+      },
     },
     bottom = {
       {
@@ -27,8 +35,8 @@ return {
       { ft = "qf", title = "QuickFix" },
       {
         ft = "snacks_terminal",
-        size = { height = 0.5 },
         title = "Terminal %{b:snacks_terminal.id}",
+        size = { height = 0.5 },
         filter = function(_, win)
           return vim.w[win].snacks_win
             and vim.w[win].snacks_win.position == "bottom"

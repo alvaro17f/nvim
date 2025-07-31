@@ -12,8 +12,6 @@ vim.g.debugger = require("utils.flags").get_flags("debugger") or false
 vim.g.suggestions = require("utils.flags").get_flags("suggestions") or false
 vim.g.tests = require("utils.flags").get_flags("tests") or false
 ------------------------------------
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-vim.opt.shortmess:append({ c = true })
 vim.o.autochdir = true
 vim.o.backup = false
 vim.o.breakindent = true
@@ -29,12 +27,14 @@ vim.o.inccommand = "split"
 vim.o.incsearch = true
 vim.o.laststatus = 3
 vim.o.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.scrolloff = 999
 vim.o.shiftround = true
 vim.o.shiftwidth = 2
+vim.opt.shortmess:append({ c = true })
 vim.o.showmode = false
 vim.o.showtabline = 0
 vim.o.sidescrolloff = 999
@@ -48,8 +48,8 @@ vim.o.tabstop = 2
 vim.o.termguicolors = true
 vim.o.timeoutlen = 300
 vim.o.updatetime = 250
-vim.o.wrap = false
 vim.o.winborder = "rounded"
+vim.o.wrap = false
 ------------------------------------
 vim.schedule(function()
   vim.o.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"

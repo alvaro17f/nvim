@@ -6,27 +6,9 @@ return {
   opts = {
     flavour = "mocha",
     transparent_background = true,
-
-    custom_highlights = function(colors)
-      return {
-        BlinkCmpMenuBorder = { fg = colors.blue },
-        BlinkCmpDocBorder = { fg = colors.sapphire },
-        BlinkCmpSignatureHelpBorder = { fg = colors.blue },
-      }
-    end,
-
+    auto_integrations = true,
     integrations = {
-      blink_cmp = true,
-      dap = true,
-      dap_ui = true,
-      diffview = true,
-      gitsigns = true,
-      grug_far = true,
-      lsp_trouble = true,
-      markdown = true,
-      mason = true,
       native_lsp = {
-        enabled = true,
         underlines = {
           errors = { "undercurl" },
           hints = { "undercurl" },
@@ -34,13 +16,6 @@ return {
           information = { "undercurl" },
         },
       },
-      neotest = true,
-      noice = true,
-      semantic_tokens = true,
-      snacks = true,
-      treesitter = true,
-      treesitter_context = true,
-      which_key = true,
     },
   },
   config = function(_, opts)

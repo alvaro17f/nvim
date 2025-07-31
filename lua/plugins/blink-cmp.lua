@@ -2,38 +2,19 @@ local sources_default = {
   "lazydev",
   "lsp",
   "path",
-  "buffer",
   "snippets",
+  "buffer",
 }
 
 if vim.g.ai and vim.g.ai == "codecompanion" then
   table.insert(sources_default, "codecompanion")
 end
 
-local border = {
-  { "╭", "FloatBorder" },
-  { "─", "FloatBorder" },
-  { "╮", "FloatBorder" },
-  { "│", "FloatBorder" },
-  { "╯", "FloatBorder" },
-  { "─", "FloatBorder" },
-  { "╰", "FloatBorder" },
-  { "│", "FloatBorder" },
-}
-
 return {
   "saghen/blink.cmp",
-  event = { "InsertEnter" },
-  dependencies = {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-    build = "make install_jsregexp",
-    dependencies = { "rafamadriz/friendly-snippets" },
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end,
-  },
   version = "*",
+  event = { "InsertEnter" },
+  dependencies = { "rafamadriz/friendly-snippets" },
   opts = {
     keymap = {
       preset = "default", -- "default" | "enter" | "super-tab"
@@ -47,7 +28,7 @@ return {
     },
 
     appearance = {
-      nerd_font_variant = "normal", -- 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      nerd_font_variant = "mono",
       kind_icons = {
         Array = "  ",
         Boolean = " 󰨙 ",
@@ -92,15 +73,22 @@ return {
     },
 
     completion = {
-      accept = { auto_brackets = { enabled = true } },
+      accept = {
+        auto_brackets = {
+          enabled = true,
+        },
+      },
       documentation = {
         auto_show = true,
-        window = { border = border },
       },
-      list = { selection = { preselect = false, auto_insert = false } },
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = false,
+        },
+      },
       menu = {
         auto_show = true,
-        border = border,
         draw = {
           columns = {
             { "kind_icon" },
@@ -114,10 +102,7 @@ return {
 
     signature = {
       enabled = true,
-      window = { border = border },
     },
-
-    snippets = { preset = "luasnip" },
 
     sources = {
       default = sources_default,

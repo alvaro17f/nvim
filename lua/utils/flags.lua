@@ -32,11 +32,14 @@ local function read_flags(file)
   end
 
   for line in f:lines() do
-    for k, v in string.gmatch(line, '(%w+)%s*=%s*"?(%w+)"?') do
+    for k, v in string.gmatch(line, '([^%s=]+)%s*=%s*"?([^"\n]*)"?') do
+      v = v:match('^"?(.*)"?$') or v -- Remove surrounding quotes
       if v == "true" then
         flags[k] = true
       elseif v == "false" then
         flags[k] = false
+      elseif v:match("^%d+$") then
+        flags[k] = tonumber(v)
       else
         flags[k] = v
       end
@@ -135,7 +138,7 @@ local function format_label(flag, value)
     default = function()
       label = label .. " (" .. tostring(value) .. ")"
     end,
-  };
+  }
 
   (type_handlers[type(value)] or type_handlers.default)()
 

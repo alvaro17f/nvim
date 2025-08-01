@@ -2,7 +2,7 @@ local M = {}
 
 local default_flags = {}
 local show_icons = false
-local path = vim.fn.stdpath("data") .. "/flags"
+local flags_path = vim.fn.stdpath("data") .. "/flags"
 
 local function read_file(file)
   local f, err = io.open(file, "r")
@@ -97,22 +97,22 @@ local function clean_flags(file)
 end
 
 function M.get_flags(flag_to_check)
-  local flags = vim.fn.filereadable(path) == 1 and read_flags(path) or {}
+  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   if flags[flag_to_check] == nil then
     flags[flag_to_check] = default_flags[flag_to_check] or false
-    write_flags(path, flags)
+    write_flags(flags_path, flags)
   end
   return flags[flag_to_check]
 end
 
 local function set_flags(flag, value)
-  local flags = vim.fn.filereadable(path) == 1 and read_flags(path) or {}
+  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   flags[flag] = value
-  write_flags(path, flags)
+  write_flags(flags_path, flags)
 end
 
 local function get_all_flags()
-  local flags = vim.fn.filereadable(path) == 1 and read_flags(path) or {}
+  local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   for k, v in pairs(default_flags) do
     if flags[k] == nil then
       if type(v) == "table" and v.default then
@@ -146,7 +146,7 @@ local function format_label(flag, value)
 end
 
 local function toggle_flags_ui()
-  clean_flags(path)
+  clean_flags(flags_path)
 
   local items = {}
 
@@ -207,20 +207,38 @@ local function generate_flags_fn()
   end, {})
 end
 
-local function setup_keymaps(keys)
-  for _, key in ipairs(keys) do
-    vim.api.nvim_set_keymap(key.mode, key.lhs, key.rhs, key.opts or {})
-  end
-end
-
 function M.setup(opts)
   default_flags = opts.flags or {}
-  path = opts.path or path
+  flags_path = opts.path or flags_path
   show_icons = opts.icons or false
-  if opts.keys then
-    setup_keymaps(opts.keys)
-  end
   generate_flags_fn()
+end
+
+function M.get_options_by_path(path, extra_opts)
+  local options = {}
+
+  local success, files = pcall(vim.fn.readdir, path)
+  if not success then
+    return options
+  end
+
+  for _, option in pairs(files) do
+    if option:match("init.lua$") then
+      goto continue
+    elseif option:match("%.lua$") then
+      option = option:gsub("%.lua$", "")
+    end
+
+    table.insert(options, option)
+
+    ::continue::
+  end
+
+  if extra_opts then
+    vim.list_extend(options, extra_opts)
+  end
+
+  return options
 end
 
 return M

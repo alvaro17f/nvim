@@ -2,10 +2,6 @@ local filetypes = {
   "markdown",
 }
 
-if vim.g.ai and vim.g.copilot == "codecompanion" then
-  table.insert(filetypes, "codecompanion")
-end
-
 local plugins = {
   markview = {
     "OXY2DEV/markview.nvim",
@@ -29,4 +25,4 @@ local plugins = {
   },
 }
 
-return plugins.render_markdown
+return plugins.markview

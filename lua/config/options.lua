@@ -6,11 +6,10 @@ vim.g.maplocalleader = " "
 ------------------------------------
 vim.g.dashboard_header = require("utils.ui").headers.neovim
 vim.g.ai = require("utils.flags").get_flags("ai") or false
-vim.g.copilot = require("utils.flags").get_flags("copilot") or "opencode"
-vim.g.theme = require("utils.flags").get_flags("theme") or false
 vim.g.debugger = require("utils.flags").get_flags("debugger") or false
 vim.g.suggestions = require("utils.flags").get_flags("suggestions") or false
 vim.g.tests = require("utils.flags").get_flags("tests") or false
+vim.g.theme = require("utils.flags").get_flags("theme") or false
 ------------------------------------
 vim.o.autochdir = true
 vim.o.backup = false

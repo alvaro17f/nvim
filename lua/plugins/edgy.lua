@@ -8,7 +8,6 @@ return {
   opts = {
     top = {},
     right = {
-      { ft = "codecompanion", title = "CodeCompanion", size = { width = 0.5 } },
       { ft = "grug-far", title = "Search & Replace", size = { width = 0.5 } },
       { ft = "neotest-summary", title = "neotest", size = { width = 0.3 } },
       { ft = "Outline", title = "Outline", size = { width = 0.2 } },

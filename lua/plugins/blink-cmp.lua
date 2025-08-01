@@ -6,10 +6,6 @@ local sources_default = {
   "buffer",
 }
 
-if vim.g.ai and vim.g.ai == "codecompanion" then
-  table.insert(sources_default, "codecompanion")
-end
-
 return {
   "saghen/blink.cmp",
   version = "*",

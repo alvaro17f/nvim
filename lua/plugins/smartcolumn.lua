@@ -1,4 +1,4 @@
-local filetypes = {
+local disabled_filetypes = {
   "checkhealth",
   "grug-far",
   "help",
@@ -17,15 +17,11 @@ local filetypes = {
   "yazi",
 }
 
-if vim.g.ai then
-  table.insert(filetypes, "codecompanion")
-end
-
 return {
   "m4xshen/smartcolumn.nvim",
   opts = {
     colorcolumn = "80",
-    disabled_filetypes = filetypes,
+    disabled_filetypes = disabled_filetypes,
     custom_colorcolumn = {},
     scope = "file",
   },

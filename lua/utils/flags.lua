@@ -33,7 +33,7 @@ local function read_flags(file)
 
   for line in f:lines() do
     for k, v in string.gmatch(line, '([^%s=]+)%s*=%s*"?([^"\n]*)"?') do
-      v = v:match('^"?(.*)"?$') or v -- Remove surrounding quotes
+      v = v:match('^"?(.*)"?$') or v
       if v == "true" then
         flags[k] = true
       elseif v == "false" then

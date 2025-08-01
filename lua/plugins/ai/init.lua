@@ -4,7 +4,7 @@ end
 
 local plugins = {}
 
-if vim.g.suggestions then
+if vim.g.suggestions and vim.g.ai ~= "copilot" then
   table.insert(plugins, require("plugins.ai.neocodeium"))
 end
 

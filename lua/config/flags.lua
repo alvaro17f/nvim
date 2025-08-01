@@ -8,9 +8,9 @@ require("utils.flags").setup({
   flags = {
     ai = { default = false, options = { "opencode", "copilot", false } },
     debugger = false,
-    logo = { default = logos.neovim, options = logos },
+    logo = { default = logos[1], options = logos },
     suggestions = false,
     tests = false,
-    theme = { default = "catppuccin", options = { "catppuccin", "vague", false } },
+    theme = { default = "catppuccin", options = { "catppuccin", "vague", "dracula", false } },
   },
 })

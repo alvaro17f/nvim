@@ -6,7 +6,10 @@ return {
     port = nil,
     auto_reload = true,
     terminal = {
-      win = { position = "right" },
+      win = {
+        enter = true,
+        position = "right",
+      },
     },
   },
   -- stylua: ignore

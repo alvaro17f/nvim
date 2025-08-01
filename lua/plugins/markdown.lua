@@ -2,13 +2,8 @@ local filetypes = {
   "markdown",
 }
 
-if vim.g.ai then
-  local ai_filetypes = {
-    codecompanion = "codecompanion",
-    opencode = "opencode_output",
-  }
-
-  table.insert(filetypes, ai_filetypes[vim.g.copilot])
+if vim.g.ai and vim.g.copilot == "codecompanion" then
+  table.insert(filetypes, "codecompanion")
 end
 
 local plugins = {

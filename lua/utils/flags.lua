@@ -98,11 +98,13 @@ end
 
 function M.get_flags(flag_to_check)
   local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
-  if flags[flag_to_check] == nil then
+
+  if flag_to_check and flags[flag_to_check] == nil then
     flags[flag_to_check] = default_flags[flag_to_check] or false
     write_flags(flags_path, flags)
   end
-  return flags[flag_to_check]
+
+  return flag_to_check and flags[flag_to_check] or flags
 end
 
 local function set_flags(flag, value)
@@ -166,11 +168,13 @@ local function toggle_flags_ui()
       vim.notify(choice.flag .. " " .. (new_value and "enabled" or "disabled"), vim.log.levels.INFO)
       toggle_flags_ui()
     end,
+
     table = function(choice)
       local options = default_flags[choice.flag].options
       if type(options[1]) == "boolean" then
         options = { true, false }
       end
+
       vim.ui.select(options, {
         prompt = "Select a value for: [" .. choice.flag .. "]",
         format_item = function(item)
@@ -202,9 +206,7 @@ local function toggle_flags_ui()
 end
 
 local function generate_flags_fn()
-  vim.api.nvim_create_user_command("Flags", function()
-    toggle_flags_ui()
-  end, {})
+  vim.api.nvim_create_user_command("Flags", toggle_flags_ui, {})
 end
 
 function M.setup(opts)

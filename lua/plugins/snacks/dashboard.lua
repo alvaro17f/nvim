@@ -54,7 +54,7 @@ return {
           { icon = " ", key = "q", desc = " Quit", action = "<CMD>qa<CR>" },
         },
 
-        header = require("utils.ui").get_dashboard_header(vim.g.dashboard_header),
+        header = require("utils.ui").get_logo(),
       },
     },
   },

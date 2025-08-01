@@ -1,17 +1,22 @@
 local M = {}
 
-M.headers = {
-  anonymous = "anonymous.cat",
-  eagle = "eagle.cat",
-  neovim = "neovim.cat",
-}
+local logos_path = vim.fn.stdpath("config") .. "/assets/dashboard/"
 
-local function get_header(header)
-  return vim.fn.readfile(vim.fn.stdpath("config") .. "/assets/dashboard/" .. header)
+function M.get_logos()
+  local logos = {}
+  for _, logo in pairs(vim.fn.readdir(logos_path)) do
+    table.insert(logos, logo)
+  end
+
+  return logos
 end
 
-function M.get_dashboard_header(header)
-  return table.concat(get_header(header), "\n")
+function M.get_logo()
+  if not vim.tbl_contains(M.get_logos(), vim.g.logo) then
+    return ""
+  end
+
+  return table.concat(vim.fn.readfile(logos_path .. vim.g.logo), "\n")
 end
 
 return M

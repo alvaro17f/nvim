@@ -1,4 +1,5 @@
 local contextual_filenames = {
+  "default",
   "index",
   "style",
 }
@@ -33,8 +34,8 @@ return {
           for part in filepath:gmatch("[^/]+") do
             table.insert(path_parts, part)
           end
-          if #path_parts > 1 then
-            filename = path_parts[#path_parts - 1] .. "/" .. filename
+          if #path_parts > 2 then
+            filename = path_parts[#path_parts - 2] .. "/" .. path_parts[#path_parts - 1] .. "/" .. filename
           end
         elseif filename == "" then
           filename = "[No Name]"

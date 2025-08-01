@@ -1,3 +1,4 @@
+-- https://github.com/catppuccin/nvim#configuration
 return {
   "catppuccin/nvim",
   name = "catppuccin",
@@ -6,6 +7,17 @@ return {
   opts = {
     flavour = "mocha",
     transparent_background = true,
+    float = {
+      transparent = true,
+      solid = true,
+    },
+    custom_highlights = function(colors)
+      return {
+        BlinkCmpMenuBorder = { fg = colors.blue },
+        BlinkCmpDocBorder = { fg = colors.sapphire },
+        BlinkCmpSignatureHelpBorder = { fg = colors.blue },
+      }
+    end,
     auto_integrations = true,
     integrations = {
       native_lsp = {

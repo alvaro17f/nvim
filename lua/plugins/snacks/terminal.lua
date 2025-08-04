@@ -24,9 +24,16 @@ return {
       win = {
         keys = {
           term_normal = {
-            "<esc><esc>",
-            function()
-              return "<C-\\><C-n>"
+            "<esc>",
+            function(self)
+              self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
+              if self.esc_timer:is_active() then
+                self.esc_timer:stop()
+                vim.cmd("stopinsert")
+              else
+                self.esc_timer:start(200, 0, function() end)
+                return "<esc>"
+              end
             end,
             mode = "t",
             expr = true,

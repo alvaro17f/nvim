@@ -18,6 +18,18 @@ return {
         explorer = {
           auto_close = true,
           hidden = true,
+          win = {
+            input = {
+              keys = {
+                ["<Esc>"] = false,
+              },
+            },
+            list = {
+              keys = {
+                ["<Esc>"] = false,
+              },
+            },
+          },
         },
       },
     },

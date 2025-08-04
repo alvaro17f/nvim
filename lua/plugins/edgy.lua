@@ -45,7 +45,16 @@ return {
       },
       { ft = "trouble", title = "Trouble" },
     },
-    left = {},
+    left = {
+      {
+        ft = "snacks_layout_box",
+        title = "Explorer",
+        size = { width = 0.25 },
+        filter = function(_, win)
+          return vim.api.nvim_win_get_config(win).relative == ""
+        end,
+      },
+    },
 
     animate = { enabled = false },
     options = {

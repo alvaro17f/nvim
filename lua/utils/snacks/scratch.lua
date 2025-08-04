@@ -65,7 +65,7 @@ function M.select_scratch()
     win = {
       input = {
         keys = {
-          ["<c-x>"] = { "delete", mode = { "i", "n" } },
+          ["<c-c>"] = { "delete", mode = { "i", "n" } },
         },
       },
     },

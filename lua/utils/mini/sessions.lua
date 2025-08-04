@@ -51,7 +51,7 @@ function M.select_session()
     win = {
       input = {
         keys = {
-          ["<c-x>"] = { "delete", mode = { "n", "i" } },
+          ["<c-c>"] = { "delete", mode = { "n", "i" } },
         },
       },
     },

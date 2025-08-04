@@ -111,6 +111,7 @@ return {
         input = {
           keys = {
             ["<Esc>"] = { "close", mode = { "n", "i" } },
+            ["<c-c>"] = false,
             ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
             ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
             ["<c-f>"] = false,
@@ -121,6 +122,7 @@ return {
         },
         list = {
           keys = {
+            ["<c-c>"] = false,
             ["<c-d>"] = "preview_scroll_down",
             ["<c-u>"] = "preview_scroll_up",
             ["<c-f>"] = false,
@@ -181,6 +183,16 @@ return {
                 ["<c-\\>"] = { "switch_grep_files", desc = "Switch to files", mode = { "i", "v" } },
               },
             },
+          },
+        },
+        buffers = {
+          win = {
+            input = {
+              keys = {
+                ["<c-c>"] = { "bufdelete", mode = { "n", "i" } },
+              },
+            },
+            list = { keys = { ["<c-c>"] = "bufdelete" } },
           },
         },
       },

@@ -3,7 +3,7 @@
 ------------------------------------
 local options_by_path = require("utils.flags").get_options_by_path
 
-local logos = options_by_path(vim.fn.stdpath("config") .. "/assets/dashboard/")
+local logos = options_by_path(vim.fn.stdpath("config") .. "/assets/logos/")
 local themes = options_by_path(vim.fn.stdpath("config") .. "/lua/plugins/themes/", { false })
 
 require("utils.flags").setup({

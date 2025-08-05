@@ -98,13 +98,11 @@ end
 
 function M.get_flags(flag_to_check)
   local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
-
-  if flag_to_check and flags[flag_to_check] == nil then
+  if flags[flag_to_check] == nil then
     flags[flag_to_check] = default_flags[flag_to_check] or false
     write_flags(flags_path, flags)
   end
-
-  return flag_to_check and flags[flag_to_check] or flags
+  return flags[flag_to_check]
 end
 
 local function set_flags(flag, value)

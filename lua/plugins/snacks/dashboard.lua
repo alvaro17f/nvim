@@ -54,7 +54,7 @@ return {
           { icon = " ", key = "q", desc = " Quit", action = "<CMD>qa<CR>" },
         },
 
-        header = require("utils.ui").get_logo(),
+        header = require("utils.snacks.dashboard").get_logo(),
       },
     },
   },

@@ -73,6 +73,5 @@
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim)
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
-- [vim-maximizer](https://github.com/szw/vim-maximizer)
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
 - [yazi.nvim](https://github.com/mikavilpas/yazi.nvim)

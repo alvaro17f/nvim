@@ -1,7 +1,7 @@
 ------------------------------------
 -- KEYMAPS
 ------------------------------------
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- QUIT
 keymap("n", "ZQ", "<CMD>quitall!<CR>", { noremap = true, silent = true, desc = "Quit all" })

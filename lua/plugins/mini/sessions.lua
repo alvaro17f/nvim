@@ -1,6 +1,6 @@
 local current_session = nil
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
-local require_safe = require("utils.core").require_safe
+local require_safe = require("utils").require_safe
 
 return {
   "echasnovski/mini.sessions",

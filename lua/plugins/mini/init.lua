@@ -1,1 +1,1 @@
-return { require("utils.core").require_modules() }
+return { require("utils").require_modules() }

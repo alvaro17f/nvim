@@ -39,7 +39,7 @@ local formatters = {
 
 return {
   typescript = function(bufnr)
-    local project_root = vim.fs.root(0, "package.json") or require("utils.git").get_git_root()
+    local project_root = vim.fs.root(0, "package.json") or require("utils.git").get_workspace_root()
 
     local package_json = vim.fs.joinpath(project_root, "package.json")
     if vim.fn.filereadable(package_json) == 1 then
@@ -59,7 +59,7 @@ return {
   css = function(bufnr)
     local sources = {}
 
-    local project_root = vim.fs.root(0, "package.json") or require("utils.git").get_git_root()
+    local project_root = vim.fs.root(0, "package.json") or require("utils.git").get_workspace_root()
 
     local package_json = vim.fs.joinpath(project_root, "package.json")
     if vim.fn.filereadable(package_json) == 1 then

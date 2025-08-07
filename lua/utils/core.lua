@@ -19,4 +19,9 @@ function M.require_modules(path)
   return modules
 end
 
+function M.require_safe(module)
+  local ok, result = pcall(require, module)
+  return ok and result or nil
+end
+
 return M

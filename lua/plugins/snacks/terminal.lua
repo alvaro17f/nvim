@@ -1,23 +1,24 @@
 return {
   "snacks.nvim",
-  keys = {
-    {
-      mode = { "n", "t" },
-      "<C-\\>",
-      function()
-        Snacks.terminal.toggle()
-      end,
-      silent = true,
-      desc = "Toggle terminal",
-    },
-    {
-      "<c-_>",
-      function()
-        Snacks.terminal()
-      end,
-      desc = "which_key_ignore",
-    },
-  },
+  -- INFO: disabled keymaps in favor of floaterm
+  -- keys = {
+  --   {
+  --     mode = { "n", "t" },
+  --     "<C-\\>",
+  --     function()
+  --       Snacks.terminal.toggle()
+  --     end,
+  --     silent = true,
+  --     desc = "Toggle terminal",
+  --   },
+  --   {
+  --     "<c-_>",
+  --     function()
+  --       Snacks.terminal()
+  --     end,
+  --     desc = "which_key_ignore",
+  --   },
+  -- },
   opts = {
     terminal = {
       enabled = true,

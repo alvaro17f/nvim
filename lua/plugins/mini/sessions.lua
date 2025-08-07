@@ -1,5 +1,6 @@
 local current_session = nil
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
+local require_safe = require("utils.core").require_safe
 
 return {
   "echasnovski/mini.sessions",
@@ -49,16 +50,23 @@ return {
       pre = {
         read = nil,
         write = function()
-          local edgy, diffview, dap, dapui = require("edgy"), require("diffview.lib"), require("dap"), require("dapui")
+          local edgy = require_safe("edgy")
+          local diffview = require_safe("diffview.lib")
+          local dap = require_safe("dap")
+          local dapui = require_safe("dapui")
 
-          edgy.close()
+          if edgy then
+            edgy.close()
+          end
 
-          if diffview.get_current_view() then
+          if diffview and diffview.get_current_view() then
             vim.cmd.DiffviewClose()
           end
 
-          if vim.g.debugger and dap.session() ~= nil then
-            dapui.close()
+          if dap and dap.session() ~= nil then
+            if dapui then
+              dapui.close()
+            end
           end
         end,
         delete = nil,

@@ -3,9 +3,40 @@ return {
   name = "tokyonight",
   lazy = false,
   priority = 1000,
-  opts = {},
+  opts = {
+    style = "moon",
+    light_style = "day",
+    transparent = true,
+    terminal_colors = true,
+    styles = {
+      comments = { italic = true },
+      keywords = { italic = true },
+      functions = {},
+      variables = {},
+      sidebars = "transparent",
+      floats = "transparent",
+    },
+    day_brightness = 0.3,
+    dim_inactive = false,
+    lualine_bold = true,
+
+    ---@param colors ColorScheme
+    on_colors = function(colors) end,
+
+    ---@param highlights tokyonight.Highlights
+    ---@param colors ColorScheme
+    on_highlights = function(highlights, colors) end,
+
+    cache = true,
+
+    ---@type table<string, boolean|{enabled:boolean}>
+    plugins = {
+      all = package.loaded.lazy == nil,
+      auto = true,
+    },
+  },
   config = function(_, opts)
     require("tokyonight").setup(opts)
-    vim.cmd.colorscheme("tokyonight-moon")
+    vim.cmd.colorscheme("tokyonight")
   end,
 }

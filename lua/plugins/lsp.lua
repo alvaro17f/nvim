@@ -38,9 +38,12 @@ return {
     { "WhoIsSethDaniel/mason-tool-installer.nvim" },
   },
   config = function()
-    require("utils.lsp").setup_mason(LSP_TOOLS, DEBUGGERS)
-    require("utils.lsp").setup_keybindings()
-    require("utils.lsp").setup_diagnostics()
-    require("utils.lsp").setup_inlay_hints(false)
+    local lsp_utils = require("utils.lsp")
+
+    lsp_utils.setup_mason(LSP_TOOLS, DEBUGGERS)
+    lsp_utils.setup_keybindings()
+    lsp_utils.setup_diagnostics()
+    lsp_utils.setup_inlay_hints(false)
+    lsp_utils.setup_colors()
   end,
 }

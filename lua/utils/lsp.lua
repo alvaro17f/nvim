@@ -127,4 +127,8 @@ M.setup_inlay_hints = function(enabled_by_default)
   end, { noremap = true, silent = false, desc = "Toggle inlay hints" })
 end
 
+M.setup_colors = function()
+  vim.lsp.document_color.enable()
+end
+
 return M

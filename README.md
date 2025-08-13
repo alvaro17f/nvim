@@ -25,7 +25,6 @@
 - [auto-save.nvim](https://github.com/okuuva/auto-save.nvim)
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [catppuccin](https://github.com/catppuccin/nvim)
-- [ccc](https://github.com/uga-rosa/ccc.nvim)
 - [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - [edgy.nvim](https://github.com/folke/edgy.nvim)

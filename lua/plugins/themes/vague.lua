@@ -3,7 +3,11 @@ return {
   name = "vague",
   lazy = false,
   priority = 1000,
-  config = function()
+  opts = {
+    transparent = true, -- don't set background
+  },
+  config = function(_, opts)
+    require("vague").setup(opts)
     vim.cmd.colorscheme("vague")
   end,
 }

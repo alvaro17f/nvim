@@ -1,4 +1,4 @@
-if not vim.g.theme then
+if vim.g.theme == false then
   return {}
 end
 

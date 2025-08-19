@@ -1,4 +1,4 @@
-if not vim.g.ai then
+if vim.g.ai == false then
   return {}
 end
 

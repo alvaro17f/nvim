@@ -59,10 +59,17 @@ return {
           },
           "filetype",
           {
-            require("noice").api.status.mode.get,
-            cond = require("noice").api.status.mode.has,
+            "macro",
+            fmt = function()
+              local reg = vim.fn.reg_recording()
+              if reg ~= "" then
+                return "Recording @" .. reg
+              end
+              return nil
+            end,
             color = { fg = "#ff9e64" },
-          }, --showmode
+            draw_empty = false,
+          },
         },
         lualine_y = { "encoding" },
         lualine_z = { "progress", "location" },

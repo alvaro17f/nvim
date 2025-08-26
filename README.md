@@ -9,10 +9,10 @@
   [![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)](https://www.lua.org/)
   
   <p align="center">
-    <a href="#features">Features</a> •
-    <a href="#requirements">Requirements</a> •
-    <a href="#flags">Flags</a> •
-    <a href="#plugins">Plugins</a>
+    <a href="#-features">Features</a> •
+    <a href="#-requirements">Requirements</a> •
+    <a href="#-flags">Flags</a> •
+    <a href="#-plugins">Plugins</a>
   </p>
 </div>
 

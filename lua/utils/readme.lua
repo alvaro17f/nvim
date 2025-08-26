@@ -2,16 +2,14 @@ local M = {}
 
 local function extract_plugin_urls(content)
   local urls = {}
-
   for call in content:gmatch("vim%.pack%.add%b()") do
-    for url in call:gmatch("[\"'](https?://[^\"']*)[\"']") do
+    for url in call:gmatch("['\"](https?://[^'\"]*)['\"]") do
       url = url:gsub("%.git$", "")
       if not vim.tbl_contains(urls, url) then
         table.insert(urls, url)
       end
     end
   end
-
   return urls
 end
 
@@ -20,28 +18,51 @@ local function read_file(filepath)
   if not fd then
     return
   end
-
   local content = fd:read("*a")
   fd:close()
   return content
 end
 
-local function process_files(files, plugins, seen)
-  for _, file in ipairs(files) do
-    local content = read_file(file)
-    if content then
-      local urls = extract_plugin_urls(content)
-      for _, url in ipairs(urls) do
-        if not seen[url] then
-          local name = url:match(".*/(.*)$")
-          if name then
-            table.insert(plugins, ("- [%s](%s)"):format(name, url))
-            seen[url] = true
+local function get_plugin_dirs()
+  local config = vim.fn.stdpath("config")
+  local dirs = { config .. "/plugin/", config .. "/lua/plugins/" }
+
+  local subdirs = vim.fn.readdir(dirs[2], function(name)
+    return vim.fn.isdirectory(dirs[2] .. name) == 1
+  end)
+
+  if subdirs then
+    for _, subdir in ipairs(subdirs) do
+      table.insert(dirs, dirs[2] .. subdir .. "/")
+    end
+  end
+
+  return dirs
+end
+
+local function collect_plugins()
+  local plugins, seen = {}, {}
+
+  for _, dir in ipairs(get_plugin_dirs()) do
+    for _, file in ipairs(vim.fn.glob(dir .. "*.lua", false, true)) do
+      local content = read_file(file)
+      if content then
+        local urls = extract_plugin_urls(content)
+        for _, url in ipairs(urls) do
+          if not seen[url] then
+            local name = url:match(".*/(.*)$")
+            if name then
+              table.insert(plugins, ("- [%s](%s)"):format(name, url))
+              seen[url] = true
+            end
           end
         end
       end
     end
   end
+
+  table.sort(plugins)
+  return plugins
 end
 
 function M.generate_readme()
@@ -127,31 +148,10 @@ function M.generate_readme()
     "",
   }
 
-  local plugins, seen = {}, {}
-
+  local plugins = collect_plugins()
   local config = vim.fn.stdpath("config")
-  local dirs = {
-    config .. "/plugin/",
-    config .. "/lua/plugins/",
-  }
-
-  local subdirs = vim.fn.readdir(dirs[2], function(name)
-    return vim.fn.isdirectory(dirs[2] .. name) == 1
-  end)
-
-  if subdirs then
-    for _, subdir in ipairs(subdirs) do
-      table.insert(dirs, dirs[2] .. subdir .. "/")
-    end
-  end
-
-  for _, dir in ipairs(dirs) do
-    process_files(vim.fn.glob(dir .. "*.lua", false, true), plugins, seen)
-  end
-
-  table.sort(plugins)
-
   local file = io.open(config .. "/README.md", "w")
+
   if file then
     file:write(table.concat(header, "\n"), "\n")
     file:write(table.concat(plugins, "\n"), "\n")

@@ -2,20 +2,50 @@ local M = {}
 
 local function extract_plugin_urls(content)
   local urls = {}
-  for line in content:gmatch("[^\r\n]+") do
-    local url = line:match("[\"'](https://github.com/[^\"']*)[\"']")
-      or line:match("[\"'](https?://github.com/[^\"']*)[\"']")
 
-    if url and url:match("github.com") then
-      url = url:gsub("%.git$", ""):gsub("[\",']*", "")
-      table.insert(urls, url)
+  for call in content:gmatch("vim%.pack%.add%b()") do
+    for url in call:gmatch("[\"'](https?://[^\"']*)[\"']") do
+      url = url:gsub("%.git$", "")
+      if not vim.tbl_contains(urls, url) then
+        table.insert(urls, url)
+      end
     end
   end
+
   return urls
 end
 
+local function read_file(filepath)
+  local fd = io.open(filepath, "r")
+  if not fd then
+    return
+  end
+
+  local content = fd:read("*a")
+  fd:close()
+  return content
+end
+
+local function process_files(files, plugins, seen)
+  for _, file in ipairs(files) do
+    local content = read_file(file)
+    if content then
+      local urls = extract_plugin_urls(content)
+      for _, url in ipairs(urls) do
+        if not seen[url] then
+          local name = url:match(".*/(.*)$")
+          if name then
+            table.insert(plugins, ("- [%s](%s)"):format(name, url))
+            seen[url] = true
+          end
+        end
+      end
+    end
+  end
+end
+
 function M.generate_readme()
-  local file_content = {
+  local header = {
     '<div align="center">',
     '  <img src="assets/readme/neovim.png" alt="Neovim Logo" width="500"/>',
     "  ",
@@ -97,81 +127,39 @@ function M.generate_readme()
     "",
   }
 
-  local plugins_md = {}
-  local seen_plugins = {}
+  local plugins, seen = {}, {}
 
-  local plugin_files = vim.fn.glob(vim.fn.stdpath("config") .. "/plugin/*.lua", false, true)
-  for _, file in ipairs(plugin_files) do
-    local fd = io.open(file, "r")
-    if fd then
-      local content = fd:read("*all")
-      fd:close()
+  local config = vim.fn.stdpath("config")
+  local dirs = {
+    config .. "/plugin/",
+    config .. "/lua/plugins/",
+  }
 
-      local urls = extract_plugin_urls(content)
-      for _, url in ipairs(urls) do
-        if not seen_plugins[url] then
-          local plugin_name = url:match(".*/(.*)$")
-          if plugin_name then
-            plugin_name = plugin_name:gsub("%.git$", "")
-            table.insert(plugins_md, ("- [%s](%s)"):format(plugin_name, url))
-            seen_plugins[url] = true
-          end
-        end
-      end
+  local subdirs = vim.fn.readdir(dirs[2], function(name)
+    return vim.fn.isdirectory(dirs[2] .. name) == 1
+  end)
+
+  if subdirs then
+    for _, subdir in ipairs(subdirs) do
+      table.insert(dirs, dirs[2] .. subdir .. "/")
     end
   end
 
-  local plugins_base_dir = vim.fn.stdpath("config") .. "/lua/plugins/"
-  local plugin_dirs = { plugins_base_dir }
-  local subdirs = vim.fn.readdir(plugins_base_dir, function(name)
-    return vim.fn.isdirectory(plugins_base_dir .. name) == 1
-  end)
-
-  for _, subdir in ipairs(subdirs) do
-    table.insert(plugin_dirs, plugins_base_dir .. subdir .. "/")
+  for _, dir in ipairs(dirs) do
+    process_files(vim.fn.glob(dir .. "*.lua", false, true), plugins, seen)
   end
 
-  for _, dir in ipairs(plugin_dirs) do
-    local files = vim.fn.glob(dir .. "*.lua", false, true)
-    for _, file in ipairs(files) do
-      local fd = io.open(file, "r")
-      if fd then
-        local content = fd:read("*all")
-        fd:close()
-        local urls = extract_plugin_urls(content)
-        for _, url in ipairs(urls) do
-          if not seen_plugins[url] then
-            local plugin_name = url:match(".*/(.*)$")
-            if plugin_name then
-              plugin_name = plugin_name:gsub("%.git$", "")
-              table.insert(plugins_md, ("- [%s](%s)"):format(plugin_name, url))
-              seen_plugins[url] = true
-            end
-          end
-        end
-      end
-    end
+  table.sort(plugins)
+
+  local file = io.open(config .. "/README.md", "w")
+  if file then
+    file:write(table.concat(header, "\n"), "\n")
+    file:write(table.concat(plugins, "\n"), "\n")
+    file:close()
+    vim.notify("README.md updated successfully", vim.log.levels.INFO)
+  else
+    vim.notify("Error opening README.md", vim.log.levels.ERROR)
   end
-
-  table.sort(plugins_md, function(a, b)
-    return a:lower() < b:lower()
-  end)
-
-  for _, p in ipairs(plugins_md) do
-    table.insert(file_content, p)
-  end
-
-  table.insert(file_content, "")
-
-  local readme_path = vim.fn.stdpath("config") .. "/README.md"
-  local file, err = io.open(readme_path, "w")
-  if not file then
-    vim.notify("Error opening README.md: " .. err, vim.log.levels.ERROR, {})
-    return
-  end
-  file:write(table.concat(file_content, "\n"))
-  file:close()
-  vim.notify("README.md updated", vim.log.levels.INFO, {})
 end
 
 return M

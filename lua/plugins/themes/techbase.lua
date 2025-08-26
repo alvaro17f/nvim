@@ -1,15 +1,12 @@
-return {
-  "mcauley-penney/techbase.nvim",
-  name = "techbase",
-  lazy = false,
-  priority = 1000,
-  opts = {
-    italic_comments = true,
-    transparent = true,
-    hl_overrides = {},
-  },
-  config = function(_, opts)
-    require("techbase").setup(opts)
-    vim.cmd.colorscheme("techbase")
-  end,
-}
+vim.pack.add(
+  { { src = "https://github.com/mcauley-penney/techbase.nvim", name = "techbase" } },
+  { load = true, confirm = false }
+)
+
+require("techbase").setup({
+  italic_comments = true,
+  transparent = true,
+  hl_overrides = {},
+})
+
+vim.cmd.colorscheme("techbase")

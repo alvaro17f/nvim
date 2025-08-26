@@ -23,7 +23,7 @@ function M.debugger_icons()
 end
 
 function M.debugger_executable_path(debugger_name)
-  return vim.env.MASON .. "/bin/" .. debugger_name
+  return vim.fn.stdpath("data") .. "/mason/bin/" .. debugger_name
 end
 
 function M.find_debug_target(targetPrefix, depth, buildCommand)

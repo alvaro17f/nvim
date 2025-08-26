@@ -1,6 +1,7 @@
-return {
-  "snacks.nvim",
-  opts = {
-    scope = { enabled = true },
-  },
+local M = {}
+
+M.config = {
+  scope = { enabled = true },
 }
+
+return M

@@ -1,38 +1,59 @@
 local M = {}
 
 local get_lsp_servers = function()
-  local servers = {}
+  local files = vim.g.mason
+      and vim.tbl_map(function(file)
+        return vim.fn.stdpath("config") .. "/lsp/" .. file
+      end, vim.fn.readdir(vim.fn.stdpath("config") .. "/lsp"))
+    or vim.api.nvim_get_runtime_file("lsp/*", true)
 
-  -- vim.api.nvim_get_runtime_file("lsp/*", true)
-  for _, v in ipairs(vim.fn.readdir(os.getenv("HOME") .. "/.config/nvim/lsp")) do
-    local name = vim.fn.fnamemodify(v, ":t:r")
-    table.insert(servers, name)
-  end
-
-  return servers
+  return vim
+    .iter(files)
+    :map(function(file)
+      return vim.fn.fnamemodify(file, ":t:r")
+    end)
+    :totable()
 end
 
-M.setup_mason = function(LSP_TOOLS, DEBUGGERS)
+function M.setup_lsp(LSP_TOOLS, DEBUGGERS)
   local tools = {}
 
-  if vim.g.debugger then
-    vim.list_extend(tools, DEBUGGERS)
-  end
-
-  vim.list_extend(tools, LSP_TOOLS)
-
-  require("mason-tool-installer").setup({ ensure_installed = tools })
-
   local servers = get_lsp_servers()
-  -- if using mason-lspconfig:
-  require("mason-lspconfig").setup({ ensure_installed = servers, automatic_enable = true })
-  -- otherwise:
-  -- vim.lsp.enable(servers)
+
+  if vim.g.mason then
+    vim.pack.add({
+      "https://github.com/mason-org/mason.nvim",
+      "https://github.com/mason-org/mason-lspconfig.nvim",
+      "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+    }, { load = true, confirm = false })
+
+    require("mason").setup({
+      ui = {
+        icons = {
+          package_installed = "",
+          package_pending = "",
+          package_uninstalled = "",
+        },
+      },
+    })
+
+    vim.keymap.set("n", "<leader>,", "<CMD>Mason<CR>", { desc = "Open mason" })
+
+    if vim.g.debugger then
+      vim.list_extend(tools, DEBUGGERS)
+    end
+
+    vim.list_extend(tools, LSP_TOOLS)
+
+    require("mason-tool-installer").setup({ ensure_installed = tools })
+    require("mason-lspconfig").setup({ ensure_installed = servers, automatic_enable = true })
+  else
+    vim.lsp.enable(servers)
+  end
 end
 
-M.setup_keybindings = function()
+function M.setup_keybindings()
   vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(event)
       local opts = { buffer = event.buf, silent = true }
 
@@ -92,10 +113,10 @@ M.setup_keybindings = function()
   })
 end
 
-M.setup_diagnostics = function()
-  local signs = { ERROR = " ", WARN = " ", HINT = "󰠠 ", INFO = " " }
+function M.setup_diagnostics()
+  local diagnostic_icons = require("utils.icons").diagnostics
   local diagnostic_signs = {}
-  for type, icon in pairs(signs) do
+  for type, icon in pairs(diagnostic_icons) do
     diagnostic_signs[vim.diagnostic.severity[type]] = icon
   end
 
@@ -113,7 +134,7 @@ M.setup_diagnostics = function()
   })
 end
 
-M.setup_inlay_hints = function(enabled_by_default)
+function M.setup_inlay_hints(enabled_by_default)
   if enabled_by_default then
     vim.lsp.inlay_hint.enable()
   end
@@ -127,7 +148,7 @@ M.setup_inlay_hints = function(enabled_by_default)
   end, { noremap = true, silent = false, desc = "Toggle inlay hints" })
 end
 
-M.setup_colors = function()
+function M.setup_colors()
   vim.lsp.document_color.enable()
 end
 

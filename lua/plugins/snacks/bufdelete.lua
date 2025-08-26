@@ -1,12 +1,9 @@
-return {
-  "snacks.nvim",
-  keys = {
-    {
-      "<c-c>",
-      function()
-        Snacks.bufdelete()
-      end,
-      desc = "Delete buffer",
-    },
-  },
+local M = {}
+
+M.keymaps = {
+  vim.keymap.set("n", "<c-c>", function()
+    Snacks.bufdelete()
+  end, { desc = "Close buffer" }),
 }
+
+return M

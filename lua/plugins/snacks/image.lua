@@ -1,6 +1,7 @@
-return {
-  "snacks.nvim",
-  opts = {
-    image = {},
-  },
+local M = {}
+
+M.config = {
+  image = {},
 }
+
+return M

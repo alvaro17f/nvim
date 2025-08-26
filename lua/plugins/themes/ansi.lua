@@ -1,10 +1,4 @@
-return {
-  "stevedylandev/ansi-nvim",
-  name = "ansi",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    vim.cmd.colorscheme("ansi")
-    vim.opt.termguicolors = false
-  end,
-}
+vim.pack.add({ { "https://github.com/stevedylandev/ansi-nvim", name = "ansi" } }, { load = true, confirm = false })
+
+vim.cmd.colorscheme("ansi")
+vim.opt.termguicolors = false

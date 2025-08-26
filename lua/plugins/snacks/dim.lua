@@ -1,6 +1,7 @@
-return {
-  "snacks.nvim",
-  opts = {
-    dim = { enabled = true },
-  },
+local M = {}
+
+M.config = {
+  dim = { enabled = true },
 }
+
+return M

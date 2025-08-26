@@ -1,12 +1,9 @@
-return {
-  "snacks.nvim",
-  keys = {
-    {
-      "<leader>z",
-      function()
-        Snacks.zen()
-      end,
-      desc = "Toggle zen mode",
-    },
-  },
+local M = {}
+
+M.keymaps = {
+  vim.keymap.set("n", "<leader>z", function()
+    Snacks.zen()
+  end, { desc = "Zen" }),
 }
+
+return M

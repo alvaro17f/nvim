@@ -1,6 +1,7 @@
-return {
-  "snacks.nvim",
-  opts = {
-    statuscolumn = { enabled = true },
-  },
+local M = {}
+
+M.config = {
+  statuscolumn = { enabled = true },
 }
+
+return M

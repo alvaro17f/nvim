@@ -1,13 +1,5 @@
-return {
-  "vague2k/vague.nvim",
-  name = "vague",
-  lazy = false,
-  priority = 1000,
-  opts = {
-    transparent = true, -- don't set background
-  },
-  config = function(_, opts)
-    require("vague").setup(opts)
-    vim.cmd.colorscheme("vague")
-  end,
-}
+vim.pack.add({ { src = "https://github.com/vague2k/vague.nvim", name = "vague" } }, { load = true, confirm = false })
+
+require("vague").setup({ transparent = true })
+vim.cmd("colorscheme vague")
+vim.cmd(":hi statusline guibg=NONE")

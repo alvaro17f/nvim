@@ -1,5 +1,22 @@
 local M = {}
 
+local filetypes = {
+  { text = "css" },
+  { text = "go" },
+  { text = "html" },
+  { text = "javascript" },
+  { text = "javascriptreact" },
+  { text = "json" },
+  { text = "lua" },
+  { text = "markdown" },
+  { text = "odin" },
+  { text = "python" },
+  { text = "rust" },
+  { text = "typescript" },
+  { text = "typescriptreact" },
+  { text = "zig" },
+}
+
 local function generate_uuid()
   local random = math.random
   local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
@@ -97,7 +114,7 @@ function M.select_scratch()
   })
 end
 
-function M.new_scratch(filetypes)
+function M.new_scratch()
   Snacks.picker.pick({
     source = "scratch",
     items = filetypes,

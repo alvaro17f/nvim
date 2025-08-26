@@ -1,8 +1,8 @@
 ------------------------------------
 -- NVIM
 ------------------------------------
-require("config.flags")
-require("config.options")
-require("config.lazy")
-require("config.keymaps")
-require("config.autocmd")
+require("core.ui")
+require("core.flags")
+require("core.autocmd")
+require("core.options")
+require("core.keymaps")

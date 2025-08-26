@@ -1,6 +1,7 @@
-return {
-  "snacks.nvim",
-  opts = {
-    quickfile = { enabled = true },
-  },
+local M = {}
+
+M.config = {
+  quickfile = { enabled = true },
 }
+
+return M

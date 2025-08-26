@@ -77,7 +77,6 @@ This system allows you to create a personalized development environment by enabl
 
 ## 🔌 Plugins
 
-- [ansi-nvim](https://github.com/stevedylandev/ansi-nvim)
 - [arrow.nvim](https://github.com/otavioschwanck/arrow.nvim)
 - [auto-save.nvim](https://github.com/okuuva/auto-save.nvim)
 - [blink.cmp](https://github.com/saghen/blink.cmp)

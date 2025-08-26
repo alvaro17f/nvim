@@ -71,7 +71,7 @@ function M.generate_readme()
     "- **Advanced Search & Replace**: Powerful text manipulation across entire projects",
     "- **Code Navigation**: Smart motion and tree-based navigation for complex codebases",
     "",
-    "## ⚡️ Requirements",
+    "## 📦 Requirements",
     "",
     "- [Nerd Font](https://www.nerdfonts.com/)",
     "- [lazygit](https://github.com/jesseduffield/lazygit)",

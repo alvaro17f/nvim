@@ -9,6 +9,10 @@ M.config = {
         height = 0,
       },
     },
+    theme = {
+      activeBorderColor = { fg = "Function", bold = true },
+      optionsTextColor = { fg = "Identifier" },
+    },
   },
 }
 

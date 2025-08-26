@@ -48,6 +48,9 @@ end
 function M.update_plugins()
   local all_plugins = vim.pack.get()
   vim.pack.update(all_plugins[#all_plugins + 1], { force = true })
+  vim.defer_fn(function()
+    require("utils.readme").generate_readme()
+  end, 1000)
 end
 
 function M.require_safe(module)

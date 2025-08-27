@@ -37,14 +37,23 @@ local function display_update_log()
         vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
         vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
 
-        Snacks.win({
-          buf = buf,
-          width = math.min(80, vim.o.columns - 4),
-          height = math.min(20, #trimmed_updates),
-          row = 2,
-          wo = {
-            winblend = 10,
-          },
+        local win_config = {
+          relative = "editor",
+          width = math.min(120, vim.o.columns - 4),
+          height = math.min(30, #trimmed_updates + 5),
+          row = math.max(2, (vim.o.lines - math.min(30, #trimmed_updates + 5)) / 2),
+          col = (vim.o.columns - math.min(120, vim.o.columns - 4)) / 2,
+          style = "minimal",
+          border = "rounded",
+        }
+
+        local win = vim.api.nvim_open_win(buf, true, win_config)
+        vim.api.nvim_set_option_value("winblend", 0, { win = win })
+
+        vim.api.nvim_buf_set_keymap(buf, "n", "q", "<cmd>close<CR>", {
+          noremap = true,
+          silent = true,
+          nowait = true,
         })
       end
     end

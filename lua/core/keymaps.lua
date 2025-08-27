@@ -6,6 +6,13 @@ local keymap = vim.keymap.set
 -- QUIT
 keymap("n", "ZQ", "<CMD>quitall!<CR>", { noremap = true, silent = true, desc = "Quit all" })
 
+-- AUTO SAVE
+keymap("n", "<leader>*", function()
+  vim.g.autosave = not vim.g.autosave
+  local icon = vim.g.autosave and " " or " "
+  vim.notify(icon .. " Auto save: " .. (vim.g.autosave and "enabled" or "disabled"), vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "Toggle auto save" })
+
 -- UPDATE
 keymap("n", "<leader>.", function()
   require("utils.pack").update()

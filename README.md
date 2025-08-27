@@ -78,7 +78,6 @@ This system allows you to create a personalized development environment by enabl
 ## 🔌 Plugins
 
 - [arrow.nvim](https://github.com/otavioschwanck/arrow.nvim)
-- [auto-save.nvim](https://github.com/okuuva/auto-save.nvim)
 - [blink.cmp](https://github.com/saghen/blink.cmp)
 - [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua)

@@ -3,10 +3,14 @@
 ------------------------------------
 vim.g.mapleader = " "
 vim.g.maplocalleader = vim.g.mapleader
+
+vim.g.autosave = true
 ------------------------------------
 vim.o.autochdir = true
 vim.o.autocomplete = false
 vim.o.autoread = true
+vim.o.autowrite = vim.g.autosave
+vim.o.autowriteall = vim.g.autosave
 vim.o.backup = false
 vim.o.breakindent = true
 vim.o.cmdheight = 0

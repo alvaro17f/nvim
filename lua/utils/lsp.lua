@@ -54,7 +54,9 @@ end
 
 function M.setup_keybindings()
   vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "LSP keybindings",
     callback = function(event)
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
       local opts = { buffer = event.buf, silent = true }
 
       opts.desc = "Go to declaration"
@@ -109,6 +111,21 @@ function M.setup_keybindings()
 
       opts.desc = "Restart LSP"
       vim.keymap.set("n", "grl", "<CMD>LspRestart<CR>", opts)
+
+      if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+        if vim.g.inlayhints then
+          vim.lsp.inlay_hint.enable()
+        end
+
+        opts.desc = "Toggle inlay hints"
+        vim.keymap.set("n", "<leader>&", function()
+          local current_state = vim.lsp.inlay_hint.is_enabled()
+          local icon = current_state and " " or " "
+          local message = current_state and "Inlay hints disabled" or "Inlay hints enabled"
+          vim.lsp.inlay_hint.enable(not current_state)
+          print(icon .. " " .. message)
+        end, opts)
+      end
     end,
   })
 end
@@ -132,20 +149,6 @@ function M.setup_diagnostics()
       prefix = "●",
     },
   })
-end
-
-function M.setup_inlay_hints(enabled_by_default)
-  if enabled_by_default then
-    vim.lsp.inlay_hint.enable()
-  end
-
-  vim.keymap.set("n", "<leader>&", function()
-    local current_state = vim.lsp.inlay_hint.is_enabled()
-    local icon = current_state and " " or " "
-    local message = current_state and "Inlay hints disabled" or "Inlay hints enabled"
-    vim.lsp.inlay_hint.enable(not current_state)
-    print(icon .. " " .. message)
-  end, { noremap = true, silent = false, desc = "Toggle inlay hints" })
 end
 
 function M.setup_colors()

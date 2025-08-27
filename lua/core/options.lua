@@ -3,8 +3,9 @@
 ------------------------------------
 vim.g.mapleader = " "
 vim.g.maplocalleader = vim.g.mapleader
-
+------------------------------------
 vim.g.autosave = true
+vim.g.inlayhints = false
 ------------------------------------
 vim.o.autochdir = true
 vim.o.autocomplete = false

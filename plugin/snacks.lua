@@ -1,6 +1,5 @@
 vim.pack.add({ "https://github.com/folke/snacks.nvim" }, { load = true, confirm = false })
 
-local Snacks = require("snacks")
 local utils = require("utils")
 
 local snacks_path = vim.fn.stdpath("config") .. "/lua/plugins/snacks/"

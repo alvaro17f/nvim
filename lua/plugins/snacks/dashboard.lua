@@ -1,7 +1,5 @@
 local M = {}
 
-local Snacks = require("snacks")
-
 M.config = {
   dashboard = {
     enabled = true,

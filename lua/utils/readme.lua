@@ -150,15 +150,30 @@ function M.generate_readme()
 
   local plugins = collect_plugins()
   local config = vim.fn.stdpath("config")
-  local file = io.open(config .. "/README.md", "w")
+  local readme_path = config .. "/README.md"
 
+  local current_content = ""
+  local file = io.open(readme_path, "r")
   if file then
-    file:write(table.concat(header, "\n"), "\n")
-    file:write(table.concat(plugins, "\n"), "\n")
+    current_content = file:read("*a")
     file:close()
-    vim.notify("README.md updated successfully", vim.log.levels.INFO)
-  else
-    vim.notify("Error opening README.md", vim.log.levels.ERROR)
+  end
+
+  local new_content = table.concat(header, "\n") .. "\n" .. table.concat(plugins, "\n") .. "\n"
+
+  local function normalize(content)
+    return content and content:gsub("\r\n", "\n"):gsub("\r", "\n") or ""
+  end
+
+  if normalize(current_content) ~= normalize(new_content) then
+    file = io.open(readme_path, "w")
+    if file then
+      file:write(new_content)
+      file:close()
+      vim.notify("README.md updated successfully", vim.log.levels.INFO)
+    else
+      vim.notify("Error opening README.md", vim.log.levels.ERROR)
+    end
   end
 end
 

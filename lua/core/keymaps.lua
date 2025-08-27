@@ -8,7 +8,7 @@ keymap("n", "ZQ", "<CMD>quitall!<CR>", { noremap = true, silent = true, desc = "
 
 -- UPDATE
 keymap("n", "<leader>.", function()
-  require("utils").update_plugins()
+  require("utils.pack").update()
 end, { noremap = true, silent = true, desc = "Update plugins" })
 
 -- FLAGS

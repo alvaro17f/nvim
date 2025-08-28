@@ -113,6 +113,16 @@ local function on_attach()
         vim.diagnostic.jump({ count = 1, float = true })
       end, opts)
 
+      opts.desc = "Go to previous error"
+      vim.keymap.set("n", "[e", function()
+        vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.ERROR })
+      end, opts)
+
+      opts.desc = "Go to next error"
+      vim.keymap.set("n", "]e", function()
+        vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR })
+      end, opts)
+
       opts.desc = "Show documentation for what is under cursor"
       vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 

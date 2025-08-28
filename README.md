@@ -1,13 +1,13 @@
 <div align="center">
   <img src="assets/readme/neovim.png" alt="Neovim Logo" width="500"/>
-  
+
   # 🌌 Cosmic Neovim Configuration
-  
+
   *Where elegance meets efficiency in the vast expanse of code*
-  
+
   [![Neovim](https://img.shields.io/badge/Neovim-%2311AB00.svg?style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io/)
   [![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)](https://www.lua.org/)
-  
+
   <p align="center">
     <a href="#-features">Features</a> •
     <a href="#-requirements">Requirements</a> •
@@ -75,59 +75,7 @@ Press `<Leader>F` (by default, Leader is Space) to open the Flags interface wher
 
 This system allows you to create a personalized development environment by enabling or disabling features based on your current project needs.
 
-## 🔌 Plugins
-
-- [arrow.nvim](https://github.com/otavioschwanck/arrow.nvim)
-- [blink.cmp](https://github.com/saghen/blink.cmp)
-- [conform.nvim](https://github.com/stevearc/conform.nvim)
-- [copilot.lua](https://github.com/zbirenbaum/copilot.lua)
-- [edgy.nvim](https://github.com/folke/edgy.nvim)
-- [everforest-nvim](https://github.com/neanias/everforest-nvim)
-- [flash.nvim](https://github.com/folke/flash.nvim)
-- [floaterm](https://github.com/nvzone/floaterm)
-- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim)
-- [helpview.nvim](https://github.com/OXY2DEV/helpview.nvim)
-- [lazydev.nvim](https://github.com/folke/lazydev.nvim)
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- [markview.nvim](https://github.com/OXY2DEV/markview.nvim)
-- [mini.files](https://github.com/echasnovski/mini.files)
-- [mini.icons](https://github.com/echasnovski/mini.icons)
-- [mini.pairs](https://github.com/echasnovski/mini.pairs)
-- [mini.sessions](https://github.com/echasnovski/mini.sessions)
-- [mini.surround](https://github.com/echasnovski/mini.surround)
-- [neocodeium](https://github.com/monkoose/neocodeium)
-- [neotest-jest](https://github.com/nvim-neotest/neotest-jest)
-- [neotest-plenary](https://github.com/nvim-neotest/neotest-plenary)
-- [neotest-vitest](https://github.com/marilari88/neotest-vitest)
-- [neotest](https://github.com/nvim-neotest/neotest)
-- [npm-info.nvim](https://github.com/pxnditxyr/npm-info.nvim)
-- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
-- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
-- [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
-- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
-- [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
-- [nvim](https://github.com/catppuccin/nvim)
-- [one-small-step-for-vimkind](https://github.com/jbyuki/one-small-step-for-vimkind)
-- [onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim)
-- [opencode.nvim](https://github.com/NickvanDyke/opencode.nvim)
-- [oxocarbon.nvim](https://github.com/nyoom-engineering/oxocarbon.nvim)
-- [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
-- [poimandres.nvim](https://github.com/olivercederborg/poimandres.nvim)
-- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
-- [smartcolumn.nvim](https://github.com/m4xshen/smartcolumn.nvim)
-- [snacks.nvim](https://github.com/folke/snacks.nvim)
-- [techbase.nvim](https://github.com/mcauley-penney/techbase.nvim)
-- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
-- [treewalker.nvim](https://github.com/aaronik/treewalker.nvim)
-- [trouble.nvim](https://github.com/folke/trouble.nvim)
-- [vague.nvim](https://github.com/vague2k/vague.nvim)
-- [volt](https://github.com/nvzone/volt)
-- [which-key.nvim](https://github.com/folke/which-key.nvim)
-- [yazi.nvim](https://github.com/mikavilpas/yazi.nvim)
+---
+<p align="center">
+  made with ❤️ and :coffee:
+</p>

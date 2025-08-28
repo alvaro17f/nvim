@@ -64,7 +64,6 @@ function M.update()
   vim.pack.update(nil, { force = true })
 
   vim.defer_fn(function()
-    require("utils.readme").generate_readme()
     display_update_log()
   end, 1000)
 end

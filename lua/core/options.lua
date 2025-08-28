@@ -4,6 +4,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = vim.g.mapleader
 ------------------------------------
+vim.g.autocomplete = false
 vim.g.autosave = true
 vim.g.inlayhints = false
 ------------------------------------

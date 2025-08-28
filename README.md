@@ -11,8 +11,7 @@
   <p align="center">
     <a href="#-features">Features</a> •
     <a href="#-requirements">Requirements</a> •
-    <a href="#-flags">Flags</a> •
-    <a href="#-plugins">Plugins</a>
+    <a href="#-flags">Flags</a>
   </p>
 </div>
 

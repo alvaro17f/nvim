@@ -14,7 +14,7 @@ ui.enable({
 ------------------------------------
 -- WINBAR
 ------------------------------------
-vim.api.nvim_create_autocmd("WinResized", {
+vim.api.nvim_create_autocmd("WinScrolled", {
   callback = function(args)
     if
       not vim.api.nvim_win_get_config(0).zindex -- Not a floating window

@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ "InsertLeavePre", "TextChanged", "TextChangedP" },
       vim.defer_fn(function()
         vim.cmd("silent! write")
         print("󰄳 auto-save: saved at " .. vim.fn.strftime("%H:%M:%S"))
-      end, 1000)
+      end, 500)
     end
   end,
 })

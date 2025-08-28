@@ -1,17 +1,7 @@
 ------------------------------------
 -- AUTOCMD
 ------------------------------------
-vim.api.nvim_create_autocmd({ "InsertLeavePre", "TextChanged", "TextChangedP" }, {
-  desc = "Auto save",
-  callback = function()
-    if vim.g.autosave and vim.bo.modifiable and vim.bo.modified then
-      vim.defer_fn(function()
-        vim.cmd("silent! write")
-        print("󰄳 auto-save: saved at " .. vim.fn.strftime("%H:%M:%S"))
-      end, 500)
-    end
-  end,
-})
+require("utils.autosave")
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight on yank",

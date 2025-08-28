@@ -71,9 +71,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd("PackChanged", {
   desc = "Update treesitter parsers",
   callback = function(event)
-    if event.data.spec.name == "nvim-treesitter" and event.data.kind == "update" then
+    if event.data.spec and event.data.spec.name == "nvim-treesitter" and event.data.kind == "update" then
       vim.schedule(function()
-        vim.cmd("TSUpdate")
+        treesitter.update()
       end)
     end
   end,

@@ -19,10 +19,6 @@ local filetypes = {
   "yazi",
 }
 
-if vim.g.ai then
-  table.insert(filetypes, "codecompanion")
-end
-
 require("smartcolumn").setup({
   colorcolumn = "80",
   disabled_filetypes = filetypes,

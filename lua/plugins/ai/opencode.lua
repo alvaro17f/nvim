@@ -24,4 +24,5 @@ require("opencode").setup({
   vim.keymap.set("n", "<leader>oy", function() require("opencode").command("messages_copy") end, { desc = "Copy last message", })
   vim.keymap.set("t", "<S-C-u>", function() require("opencode").command("messages_half_page_up") end, { desc = "Scroll messages up" })
   vim.keymap.set("t", "<S-C-d>", function() require("opencode").command("messages_half_page_down") end, { desc = "Scroll messages down" })
+  vim.keymap.set('n', '<leader>oe', function() require('opencode').prompt("Explain @cursor and its context") end, { desc = "Explain code near cursor" })
 -- stylua: ignore end

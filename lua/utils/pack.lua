@@ -61,12 +61,11 @@ local function display_update_log()
 end
 
 function M.update()
-  local all_plugins = vim.pack.get()
-  vim.pack.update(all_plugins[#all_plugins + 1], { force = true })
+  vim.pack.update(nil, { force = true })
 
   vim.defer_fn(function()
-    display_update_log()
     require("utils.readme").generate_readme()
+    display_update_log()
   end, 1000)
 end
 

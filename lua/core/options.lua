@@ -45,6 +45,7 @@ vim.o.swapfile = false
 vim.o.tabstop = 2
 vim.o.termguicolors = true
 vim.o.timeoutlen = 300
+vim.o.undofile = true
 vim.o.updatetime = 250
 vim.o.winborder = "rounded"
 vim.o.wrap = false

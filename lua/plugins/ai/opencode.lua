@@ -9,6 +9,9 @@ require("opencode").setup({
     win = {
       enter = true,
       position = "right",
+      bo = {
+        filetype = "opencode_terminal",
+      },
     },
   },
 })

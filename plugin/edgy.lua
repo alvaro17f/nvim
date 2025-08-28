@@ -8,16 +8,7 @@ require("edgy").setup({
   right = {
     { ft = "grug-far", title = "Search & Replace", size = { width = 0.5 } },
     { ft = "neotest-summary", title = "neotest", size = { width = 0.3 } },
-    {
-      ft = "snacks_terminal",
-      title = "Opencode",
-      size = { width = 0.4 },
-      filter = function(_, win)
-        return vim.w[win].snacks_win
-          and vim.w[win].snacks_win.position == "right"
-          and vim.w[win].snacks_win.relative == "editor"
-      end,
-    },
+    { ft = "opencode_terminal", title = "Opencode", size = { width = 0.4 } },
   },
   bottom = {
     {

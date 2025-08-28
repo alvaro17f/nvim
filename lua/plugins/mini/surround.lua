@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/echasnovski/mini.surround" }, { load = true, confirm = false })
+vim.pack.add({ "https://github.com/nvim-mini/mini.surround" }, { load = true, confirm = false })
 
 require("mini.surround").setup({
   mappings = {

@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/echasnovski/mini.sessions" }, { load = true, confirm = false })
+vim.pack.add({ "https://github.com/nvim-mini/mini.sessions" }, { load = true, confirm = false })
 
 local current_session = nil
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"

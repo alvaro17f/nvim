@@ -107,7 +107,6 @@ This system allows you to create a personalized development environment by enabl
 - [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint)
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-nio](https://github.com/nvim-neotest/nvim-nio)
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)

@@ -1,5 +1,3 @@
-vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { load = true, confirm = false })
-
 local LSP_TOOLS = {
   "eslint_d",
   "goimports",
@@ -18,9 +16,6 @@ local DEBUGGERS = {
   "js-debug-adapter",
 }
 
-local lsp_utils = require("utils.lsp")
+local lsp = require("utils.lsp")
 
-lsp_utils.setup_lsp(LSP_TOOLS, DEBUGGERS)
-lsp_utils.setup_keybindings()
-lsp_utils.setup_diagnostics()
-lsp_utils.setup_colors()
+lsp.setup(LSP_TOOLS, DEBUGGERS)

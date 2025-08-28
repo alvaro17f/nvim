@@ -1,6 +1,6 @@
 local M = {}
 
-local get_lsp_servers = function()
+local function get_lsp_servers()
   local files = vim.g.mason
       and vim.tbl_map(function(file)
         return vim.fn.stdpath("config") .. "/lsp/" .. file
@@ -15,8 +15,8 @@ local get_lsp_servers = function()
     :totable()
 end
 
-function M.setup_lsp(LSP_TOOLS, DEBUGGERS)
-  local tools = {}
+local function enable(LSP_TOOLS, DEBUGGERS)
+  vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { load = true, confirm = false })
 
   local servers = get_lsp_servers()
 
@@ -27,7 +27,11 @@ function M.setup_lsp(LSP_TOOLS, DEBUGGERS)
       "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
     }, { load = true, confirm = false })
 
-    require("mason").setup({
+    local mason = require("mason")
+    local mason_tool_installer = require("mason-tool-installer")
+    local mason_lspconfig = require("mason-lspconfig")
+
+    mason.setup({
       ui = {
         icons = {
           package_installed = "",
@@ -39,22 +43,24 @@ function M.setup_lsp(LSP_TOOLS, DEBUGGERS)
 
     vim.keymap.set("n", "<leader>,", "<CMD>Mason<CR>", { desc = "Open mason" })
 
+    local tools = {}
+
     if vim.g.debugger then
       vim.list_extend(tools, DEBUGGERS)
     end
 
     vim.list_extend(tools, LSP_TOOLS)
 
-    require("mason-tool-installer").setup({ ensure_installed = tools })
-    require("mason-lspconfig").setup({ ensure_installed = servers, automatic_enable = true })
+    mason_tool_installer.setup({ ensure_installed = tools })
+    mason_lspconfig.setup({ ensure_installed = servers, automatic_enable = true })
   else
     vim.lsp.enable(servers)
   end
 end
 
-function M.setup_keybindings()
+local function on_attach()
   vim.api.nvim_create_autocmd("LspAttach", {
-    desc = "LSP keybindings",
+    desc = "LSP Setup",
     callback = function(event)
       local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
       local methods = vim.lsp.protocol.Methods
@@ -113,7 +119,7 @@ function M.setup_keybindings()
       opts.desc = "Restart LSP"
       vim.keymap.set("n", "grl", "<CMD>LspRestart<CR>", opts)
 
-      if client:supports_method(methods.textDocument_completion, event.buf) then
+      if client:supports_method(methods.textDocument_competion, event.buf) then
         if vim.g.autocomplete then
           vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
 
@@ -122,9 +128,13 @@ function M.setup_keybindings()
             vim.lsp.completion.get()
           end, opts)
         end
+
+        if client:supports_method(methods.textDocument_documentColor, event.buf) then
+          vim.lsp.document_color.enable(true, event.buf, { style = "virtual" })
+        end
       end
 
-      if client and client:supports_method(methods.textDocument_inlayHint, event.buf) then
+      if client:supports_method(methods.textDocument_inlayHint, event.buf) then
         if vim.g.inlayhints then
           vim.lsp.inlay_hint.enable()
         end
@@ -142,7 +152,7 @@ function M.setup_keybindings()
   })
 end
 
-function M.setup_diagnostics()
+local function diagnostics()
   local diagnostic_icons = require("utils.icons").diagnostics
   local diagnostic_signs = {}
   for type, icon in pairs(diagnostic_icons) do
@@ -163,8 +173,10 @@ function M.setup_diagnostics()
   })
 end
 
-function M.setup_colors()
-  vim.lsp.document_color.enable()
+function M.setup(LSP_TOOLS, DEBUGGERS)
+  enable(LSP_TOOLS, DEBUGGERS)
+  on_attach()
+  diagnostics()
 end
 
 return M

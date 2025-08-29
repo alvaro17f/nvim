@@ -2,8 +2,7 @@ vim.pack.add({ "https://github.com/Bekaboo/deadcolumn.nvim" }, { load = true, co
 
 require("deadcolumn").setup({
   blending = {
-    colorcode = "#1e1e2e",
-    hlgroup = { "NonText", "bg" },
+    hlgroup = { "DiffText", "bg" }, --:help highlight-gruoups
     threshold = 0.75,
   },
   warning = {

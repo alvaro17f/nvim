@@ -1,6 +1,8 @@
 vim.pack.add({ "https://github.com/MagicDuck/grug-far.nvim" }, { load = true, confirm = false })
 
-require("grug-far").setup({
+local grug_far = require("grug-far")
+
+grug_far.setup({
   engine = "ripgrep", -- 'astgrep'
   headerMaxWidth = 80,
   transient = true,
@@ -27,9 +29,9 @@ require("grug-far").setup({
 })
 
 vim.keymap.set("n", "<leader>r", function()
-  require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
+  grug_far.open({ prefills = { paths = vim.fn.expand("%") } })
 end, { desc = "Replace" })
 
 vim.keymap.set("v", "<leader>r", function()
-  require("grug-far").with_visual_selection({ prefills = { paths = vim.fn.expand("%") } })
+  grug_far.with_visual_selection({ prefills = { paths = vim.fn.expand("%") } })
 end, { desc = "Replace" })

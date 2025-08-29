@@ -25,10 +25,7 @@ require("tokyonight").setup({
 
   ---@param highlights tokyonight.Highlights
   ---@param colors ColorScheme
-  on_highlights = function(highlights, colors)
-    highlights.WinBar = { bg = colors.none }
-    highlights.WinBarNC = { bg = colors.none }
-  end,
+  on_highlights = function(highlights, colors) end,
 
   cache = true,
 

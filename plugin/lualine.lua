@@ -43,6 +43,25 @@ lualine.setup({
       {
         "filename",
         path = 3,
+        file_status = false,
+        fmt = function(str)
+          local directory = str:match("(.*/)(.*)")
+          if directory then
+            return directory
+          end
+          return " "
+        end,
+        separator = { right = "" },
+        padding = { left = 1, right = 0 },
+      },
+      {
+        "filename",
+        path = 0,
+        file_status = false,
+        color = function()
+          return { fg = "cyan", gui = vim.bo.modified and "italic,bold" or "bold" }
+        end,
+        padding = { left = 0, right = 1 },
       },
     },
     lualine_x = {

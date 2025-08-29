@@ -3,14 +3,16 @@
 local M = {}
 
 function M.debugger_icons()
+  local icons = require("utils.icons").debugger
+
   vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
   local dap_icons = {
-    Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-    Breakpoint = " ",
-    BreakpointCondition = " ",
-    BreakpointRejected = { " ", "DiagnosticError" },
-    LogPoint = ".>",
+    Stopped = { icons.stopped, "DiagnosticWarn", "DapStoppedLine" },
+    Breakpoint = icons.breakpoint,
+    BreakpointCondition = icons.breakpoint_condition,
+    BreakpointRejected = { icons.breakpoint_rejected, "DiagnosticError" },
+    LogPoint = icons.log_point,
   }
 
   for name, sign in pairs(dap_icons) do

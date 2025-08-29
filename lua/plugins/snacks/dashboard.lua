@@ -1,13 +1,15 @@
 local M = {}
 
+local icons = require("utils.icons").snacks.dashboard
+
 M.config = {
   dashboard = {
     enabled = true,
     preset = {
       keys = {
-        { icon = " ", key = "n", desc = " New file", action = "<CMD>ene | startinsert<CR>" },
+        { icon = icons.file, key = "n", desc = " New file", action = "<CMD>ene | startinsert<CR>" },
         {
-          icon = " ",
+          icon = icons.restore,
           key = "<backspace>",
           desc = " Restore last session",
           action = function()
@@ -18,7 +20,7 @@ M.config = {
           end,
         },
         {
-          icon = " ",
+          icon = icons.find,
           key = "<leader>ff",
           desc = " Find files",
           action = function()
@@ -26,7 +28,7 @@ M.config = {
           end,
         },
         {
-          icon = " ",
+          icon = icons.grep,
           key = "<leader>fg",
           desc = " Grep text",
           action = function()
@@ -34,7 +36,7 @@ M.config = {
           end,
         },
         {
-          icon = " ",
+          icon = icons.recent,
           key = "<leader>fr",
           desc = " Recent files",
           action = function()
@@ -42,7 +44,7 @@ M.config = {
           end,
         },
         {
-          icon = " ",
+          icon = icons.config,
           key = "<leader>cc",
           desc = " Config",
           action = function()
@@ -50,14 +52,14 @@ M.config = {
           end,
         },
         {
-          icon = "󰒲 ",
+          icon = icons.update,
           key = "<leader>.",
           desc = " Update",
           action = function()
             require("utils.pack").update()
           end,
         },
-        { icon = " ", key = "q", desc = " Quit", action = "<CMD>qa<CR>" },
+        { icon = icons.quit, key = "q", desc = " Quit", action = "<CMD>qa<CR>" },
       },
       header = require("utils.snacks.dashboard").get_logo(),
     },

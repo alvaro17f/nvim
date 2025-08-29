@@ -2,6 +2,7 @@
 -- KEYMAPS
 ------------------------------------
 local keymap = vim.keymap.set
+local icons = require("utils.icons")
 
 -- QUIT
 keymap("n", "ZQ", "<CMD>quitall!<CR>", { noremap = true, silent = true, desc = "Quit all" })
@@ -9,7 +10,7 @@ keymap("n", "ZQ", "<CMD>quitall!<CR>", { noremap = true, silent = true, desc = "
 -- AUTO SAVE
 keymap("n", "<leader>*", function()
   vim.g.autosave = not vim.g.autosave
-  local icon = vim.g.autosave and " " or " "
+  local icon = vim.g.autosave and icons.core.toggle.enabled or icons.core.toggle.disabled
   vim.notify(icon .. " Auto save: " .. (vim.g.autosave and "enabled" or "disabled"), vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "Toggle auto save" })
 

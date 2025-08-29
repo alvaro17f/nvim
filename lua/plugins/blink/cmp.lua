@@ -3,13 +3,7 @@ vim.pack.add({
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 }, { load = true, confirm = false })
 
-local sources_default = {
-  "lazydev",
-  "lsp",
-  "path",
-  "snippets",
-  "buffer",
-}
+local icons = require("utils.icons")
 
 require("blink.cmp").setup({
   keymap = {
@@ -25,7 +19,7 @@ require("blink.cmp").setup({
 
   appearance = {
     nerd_font_variant = "mono",
-    kind_icons = require("utils.icons").symbol_kinds,
+    kind_icons = icons.kind,
   },
 
   completion = {
@@ -61,7 +55,13 @@ require("blink.cmp").setup({
   },
 
   sources = {
-    default = sources_default,
+    default = {
+      "lazydev",
+      "lsp",
+      "path",
+      "snippets",
+      "buffer",
+    },
 
     providers = {
       lazydev = {

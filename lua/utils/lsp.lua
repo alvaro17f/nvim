@@ -1,5 +1,7 @@
 local M = {}
 
+local icons = require("utils.icons")
+
 local function get_lsp_servers()
   local files = vim.g.mason
       and vim.tbl_map(function(file)
@@ -33,11 +35,7 @@ local function enable(LSP_TOOLS, DEBUGGERS)
 
     mason.setup({
       ui = {
-        icons = {
-          package_installed = "",
-          package_pending = "",
-          package_uninstalled = "",
-        },
+        icons = icons.mason,
       },
     })
 
@@ -152,7 +150,7 @@ local function on_attach()
         opts.desc = "Toggle inlay hints"
         vim.keymap.set("n", "<leader>&", function()
           local current_state = vim.lsp.inlay_hint.is_enabled()
-          local icon = current_state and " " or " "
+          local icon = current_state and icons.core.toggle.disabled or icons.core.toggle.enabled
           local message = current_state and "Inlay hints disabled" or "Inlay hints enabled"
           vim.lsp.inlay_hint.enable(not current_state)
           print(icon .. " " .. message)
@@ -163,22 +161,23 @@ local function on_attach()
 end
 
 local function diagnostics()
-  local diagnostic_icons = require("utils.icons").diagnostics
   local diagnostic_signs = {}
-  for type, icon in pairs(diagnostic_icons) do
-    diagnostic_signs[vim.diagnostic.severity[type]] = icon
+  for type, icon in pairs(icons.diagnostics) do
+    diagnostic_signs[vim.diagnostic.severity[type:upper()]] = icon
   end
 
   vim.diagnostic.config({
     float = { border = "rounded" },
     severity_sort = true,
-    signs = diagnostic_signs,
+    signs = {
+      text = diagnostic_signs,
+    },
     underline = true,
     update_in_insert = false,
     virtual_text = {
       spacing = 4,
       source = "if_many",
-      prefix = "●",
+      prefix = icons.core.bullet,
     },
   })
 end

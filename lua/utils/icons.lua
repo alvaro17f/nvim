@@ -1,49 +1,47 @@
 local M = {}
 
---- Diagnostic severities.
+M.core = {
+  arrows = {
+    right = "",
+    left = "",
+    up = "",
+    down = "",
+  },
+  bullet = "●",
+  toggle = {
+    enabled = " ",
+    disabled = " ",
+  },
+}
+
+M.debugger = {
+  stopped = "󰁕 ",
+  breakpoint = " ",
+  breakpoint_condition = " ",
+  breakpoint_rejected = " ",
+  log_point = ".>",
+}
+
 M.diagnostics = {
-  ERROR = " ",
-  WARN = " ",
-  HINT = "󰠠 ",
-  INFO = " ",
+  error = " ",
+  warn = " ",
+  hint = "󰠠 ", -- " "
+  info = " ",
 }
 
---- For folding.
-M.arrows = {
-  right = "",
-  left = "",
-  up = "",
-  down = "",
+M.diff = {
+  added = " ",
+  modified = " ",
+  removed = " ",
 }
 
---- LSP symbol kinds.
-M.symbol_kinds = {
-  Array = "󰅪",
-  Class = "",
-  Color = "󰏘",
-  Constant = "󰏿",
-  Constructor = "",
-  Enum = "",
-  EnumMember = "",
-  Event = "",
-  Field = "󰜢",
-  File = "󰈙",
-  Folder = "󰉋",
-  Function = "󰆧",
-  Interface = "",
-  Keyword = "󰌋",
-  Method = "󰆧",
-  Module = "",
-  Operator = "󰆕",
-  Property = "󰜢",
-  Reference = "󰈇",
-  Snippet = "",
-  Struct = "",
-  Text = "",
-  TypeParameter = "",
-  Unit = "",
-  Value = "",
-  Variable = "󰀫",
+M.gitsigns = {
+  add = "▎",
+  change = "▎",
+  delete = "",
+  topdelete = "",
+  changedelete = "▎",
+  untracked = "▎",
 }
 
 M.kind = {
@@ -88,18 +86,61 @@ M.kind = {
   Variable = " 󰫧 ",
 }
 
---- Shared icons that don't really fit into a category.
-M.misc = {
-  bug = "",
-  dashed_bar = "┊",
-  ellipsis = "…",
-  git = "",
-  palette = "󰏘",
-  robot = "󰚩",
-  search = "",
-  terminal = "",
-  toolbox = "󰦬",
-  vertical_bar = "│",
+M.kind_alt = {
+  Array = "󰅪",
+  Class = "",
+  Color = "󰏘",
+  Constant = "󰏿",
+  Constructor = "",
+  Enum = "",
+  EnumMember = "",
+  Event = "",
+  Field = "󰜢",
+  File = "󰈙",
+  Folder = "󰉋",
+  Function = "󰆧",
+  Interface = "",
+  Keyword = "󰌋",
+  Method = "󰆧",
+  Module = "",
+  Operator = "󰆕",
+  Property = "󰜢",
+  Reference = "󰈇",
+  Snippet = "",
+  Struct = "",
+  Text = "",
+  TypeParameter = "",
+  Unit = "",
+  Value = "",
+  Variable = "󰀫",
+}
+
+M.lualine = {
+  clock = " ",
+  separator = {
+    component = { left = "", right = "" },
+    rounded = { left = "", right = "" },
+    section = { left = "", right = "" },
+  },
+}
+
+M.mason = {
+  package_installed = "",
+  package_pending = "",
+  package_uninstalled = "",
+}
+
+M.snacks = {
+  dashboard = {
+    config = " ",
+    file = " ",
+    find = " ",
+    grep = " ",
+    quit = " ",
+    recent = " ",
+    restore = " ",
+    update = " ",
+  },
 }
 
 return M

@@ -2,13 +2,14 @@ vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" }, { load = true, 
 
 vim.o.showmode = false
 
+local icons = require("utils.icons")
 local lualine = require("lualine")
 
 lualine.setup({
   options = {
     theme = "auto",
-    component_separators = { left = "", right = "" }, -- 
-    section_separators = { left = "", right = "" },
+    component_separators = icons.lualine.separator.component,
+    section_separators = icons.lualine.separator.section,
     globalstatus = true,
     disabled_filetypes = {
       statusline = {
@@ -33,12 +34,7 @@ lualine.setup({
     lualine_c = {
       {
         "diagnostics",
-        symbols = {
-          error = " ",
-          warn = " ",
-          hint = " ",
-          info = " ",
-        },
+        symbols = icons.diagnostics,
       },
       {
         "filename",
@@ -46,10 +42,7 @@ lualine.setup({
         file_status = false,
         fmt = function(str)
           local directory = str:match("(.*/)(.*)")
-          if directory then
-            return directory
-          end
-          return " "
+          return directory or " "
         end,
         separator = { right = "" },
         padding = { left = 1, right = 0 },
@@ -67,11 +60,7 @@ lualine.setup({
     lualine_x = {
       {
         "diff",
-        symbols = {
-          added = " ",
-          modified = " ",
-          removed = " ",
-        },
+        symbols = icons.diff,
       },
       { "filetype" },
       { "encoding" },
@@ -95,9 +84,9 @@ lualine.setup({
     lualine_z = {
       {
         function()
-          return "  " .. os.date("%R")
+          return icons.lualine.clock .. os.date("%R")
         end,
-        separator = { left = "", right = "" },
+        separator = icons.lualine.separator.rounded,
         left_padding = 2,
       },
     },

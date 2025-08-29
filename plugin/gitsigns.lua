@@ -1,12 +1,14 @@
 vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" }, { load = true, confirm = false })
 
+local icons = require("utils.icons").gitsigns
+
 local signs = {
-  add = { text = "▎" },
-  change = { text = "▎" },
-  delete = { text = "" },
-  topdelete = { text = "" },
-  changedelete = { text = "▎" },
-  untracked = { text = "▎" },
+  add = { text = icons.add },
+  change = { text = icons.change },
+  delete = { text = icons.delete },
+  topdelete = { text = icons.topdelete },
+  changedelete = { text = icons.changedelete },
+  untracked = { text = icons.untracked },
 }
 
 local gitsigns = require("gitsigns")

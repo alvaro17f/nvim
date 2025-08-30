@@ -1,6 +1,10 @@
-vim.g.markdown_plugin = "markview"
+vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, { load = true, confirm = false })
+
 vim.g.markdown_filetypes = {
   "markdown",
 }
 
-return { require("plugins.markdown." .. vim.g.markdown_plugin) }
+require("render-markdown").setup({
+  anti_conceal = { enabled = false },
+  file_types = vim.g.markdown_filetypes,
+})

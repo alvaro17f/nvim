@@ -15,22 +15,9 @@ require("mini.sessions").setup({
       read = nil,
       write = function()
         local edgy = require_safe("edgy")
-        local diffview = require_safe("diffview.lib")
-        local dap = require_safe("dap")
-        local dapui = require_safe("dapui")
 
         if edgy then
           edgy.close()
-        end
-
-        if diffview and diffview.get_current_view() then
-          vim.cmd.DiffviewClose()
-        end
-
-        if dap and dap.session() ~= nil then
-          if dapui then
-            dapui.close()
-          end
         end
       end,
       delete = nil,

@@ -18,16 +18,24 @@ local gitsigns = require("gitsigns")
 gitsigns.setup({
   preview_config = { border = "rounded" },
   current_line_blame = true,
-  sign_priority = 0,
   signs = signs,
   signs_staged = signs,
+  numhl = true,
+})
+
+-- https://github.com/lewis6991/gitsigns.nvim/discussions/1373
+vim.api.nvim_create_autocmd("User", {
+  pattern = "GitSignsUpdate",
+  callback = function()
+    vim.cmd("redrawstatus")
+  end,
 })
 
 vim.keymap.set("n", "<leader>g;", function()
   gitsigns.toggle_linehl()
   gitsigns.toggle_deleted()
   gitsigns.toggle_word_diff()
-end, { desc = "Preview hunk inline" })
+end, { desc = "Toggle diff" })
 
 vim.keymap.set("n", "[g", function()
   gitsigns.nav_hunk("prev", { target = "all" })

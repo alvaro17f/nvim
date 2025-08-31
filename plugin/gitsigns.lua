@@ -49,10 +49,6 @@ vim.keymap.set("n", "<leader>gb", function()
   gitsigns.blame_line()
 end, { desc = "Blame line" })
 
-vim.keymap.set("n", "<leader>gb", function()
-  gitsigns.blame_line()
-end, { desc = "Diff this" })
-
 vim.keymap.set("n", "<leader>gd", function()
   gitsigns.diffthis("~")
 
@@ -68,4 +64,4 @@ vim.keymap.set("n", "<leader>gd", function()
     vim.wo.diff = false
     return ""
   end, { desc = "Close diff" })
-end)
+end, { desc = "Diff this" })

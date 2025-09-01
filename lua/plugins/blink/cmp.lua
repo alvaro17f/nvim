@@ -19,7 +19,7 @@ require("blink.cmp").setup({
 
   appearance = {
     nerd_font_variant = "mono",
-    kind_icons = icons.kind,
+    kind_icons = icons.kind.v1,
   },
 
   completion = {

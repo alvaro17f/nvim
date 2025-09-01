@@ -27,14 +27,12 @@ end
 local function ts_start(bufnr, parser_name)
   vim.treesitter.start(bufnr, parser_name)
 
-  vim.schedule(function()
-    vim.bo[bufnr].syntax = "ON"
-    vim.wo.foldlevel = 99
-    vim.wo.foldmethod = "expr"
-    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    vim.wo.foldtext = "v:lua.vim.lsp.foldtext()" --"v:lua.vim.treesitter.foldtext()"
-    vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-  end)
+  vim.bo[bufnr].syntax = "ON"
+  vim.wo.foldlevel = 99
+  vim.wo.foldmethod = "expr"
+  vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  vim.wo.foldtext = "v:lua.vim.lsp.foldtext()" --"v:lua.vim.treesitter.foldtext()"
+  vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {

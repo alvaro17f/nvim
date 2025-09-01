@@ -2,11 +2,26 @@ local M = {}
 
 local icons = require("utils.icons")
 
+local function set_global_config()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+  local ok, blink = pcall(require, "blink.cmp")
+  if ok then
+    capabilities = blink.get_lsp_capabilities(nil, true)
+    capabilities.textDocument.onTypeFormatting = { dynamicRegistration = false }
+  end
+
+  vim.lsp.config("*", {
+    capabilities = capabilities,
+    root_markers = { ".git" },
+  })
+end
+
 local function get_lsp_servers()
   local files = vim.g.mason
       and vim.tbl_map(function(file)
-        return vim.fn.stdpath("config") .. "/lsp/" .. file
-      end, vim.fn.readdir(vim.fn.stdpath("config") .. "/lsp"))
+        return vim.fn.stdpath("config") .. "/after/lsp/" .. file
+      end, vim.fn.readdir(vim.fn.stdpath("config") .. "/after/lsp"))
     or vim.api.nvim_get_runtime_file("lsp/*.lua", true)
 
   return vim
@@ -156,6 +171,10 @@ local function on_attach()
           print(icon .. " " .. message)
         end, opts)
       end
+
+      if client:supports_method(methods.textDocument_onTypeFormatting, event.buf) then
+        vim.lsp.on_type_formatting.enable(true, { client_id = client.id })
+      end
     end,
   })
 end
@@ -183,6 +202,7 @@ local function diagnostics()
 end
 
 function M.setup(LSP_TOOLS, DEBUGGERS)
+  set_global_config()
   enable(LSP_TOOLS, DEBUGGERS)
   on_attach()
   diagnostics()

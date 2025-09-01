@@ -4,7 +4,6 @@ return {
     Lua = {
       runtime = {
         version = "LuaJIT",
-        path = vim.split(package.path, ";"),
       },
       diagnostics = {
         enable = true,
@@ -14,12 +13,11 @@ return {
         },
       },
       workspace = {
+        checkThirdParty = false,
         library = {
           vim.env.VIMRUNTIME,
-          "${3rd}/luv/library",
-          "${3rd}/busted/library",
+          vim.fn.stdpath("config"),
         },
-        checkThirdParty = false,
       },
       telemetry = {
         enable = false,

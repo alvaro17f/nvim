@@ -6,7 +6,7 @@ vim.pack.add(
 require("tokyonight").setup({
   style = "moon",
   light_style = "day",
-  transparent = true,
+  transparent = false,
   terminal_colors = true,
   styles = {
     comments = { italic = true },

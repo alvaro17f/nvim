@@ -8,6 +8,7 @@ M.core = {
     down = "",
   },
   bullet = "●",
+  heading = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " },
   toggle = {
     enabled = " ",
     disabled = " ",

@@ -33,14 +33,14 @@ vim.api.nvim_create_autocmd("FileType", {
         return
       end
 
-      vim.treesitter.start(buf, language)
-
-      vim.bo[buf].syntax = "on"
-      vim.wo.foldlevel = 99
-      vim.wo.foldmethod = "expr"
-      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      vim.wo.foldtext = "v:lua.vim.lsp.foldtext()" --"v:lua.vim.treesitter.foldtext()"
-      vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      if pcall(vim.treesitter.start, buf, language) then
+        vim.bo[buf].syntax = "ON"
+        vim.wo.foldlevel = 99
+        vim.wo.foldmethod = "expr"
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo.foldtext = "v:lua.vim.lsp.foldtext()" --"v:lua.vim.treesitter.foldtext()"
+        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end
     end)
   end,
 })

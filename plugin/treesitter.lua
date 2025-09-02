@@ -11,58 +11,37 @@ local treesitter = require("nvim-treesitter")
 
 treesitter.setup()
 
-local ensure_installed = { "regex" }
-local already_installed = treesitter.get_installed()
-local parsers_to_install = vim
-  .iter(ensure_installed)
-  :filter(function(parser)
-    return not vim.tbl_contains(already_installed, parser)
-  end)
-  :totable()
+local ensure_installed = {
+  "lua",
+  "markdown",
+  "markdown_inline",
+  "regex",
+  "vimdoc",
+}
 
-if #parsers_to_install > 0 then
-  treesitter.install(parsers_to_install)
-end
+treesitter.install(ensure_installed)
 
-local function ts_start(bufnr, parser_name)
-  vim.treesitter.start(bufnr, parser_name)
-
-  vim.bo[bufnr].syntax = "ON"
-  vim.wo.foldlevel = 99
-  vim.wo.foldmethod = "expr"
-  vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-  vim.wo.foldtext = "v:lua.vim.lsp.foldtext()" --"v:lua.vim.treesitter.foldtext()"
-  vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-end
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd("FileType", {
   desc = "Enable Treesitter",
-  callback = function(event)
-    local bufnr = event.buf
-    local filetype = event.match
+  callback = function(args)
+    local buf = args.buf
+    local filetype = args.match
+    local language = vim.treesitter.language.get_lang(filetype) or filetype
 
-    if filetype == "" then
-      return
-    end
+    treesitter.install({ language }):await(function()
+      if not vim.treesitter.language.add(language) then
+        return
+      end
 
-    local parser_name = vim.treesitter.language.get_lang(filetype)
-    if not parser_name then
-      vim.notify(vim.inspect("No treesitter parser found for filetype: " .. filetype), vim.log.levels.WARN)
-      return
-    end
+      vim.treesitter.start(buf, language)
 
-    if not vim.tbl_contains(treesitter.get_available(), parser_name) then
-      return
-    end
-
-    if not vim.tbl_contains(already_installed, parser_name) then
-      treesitter.install({ parser_name }):await(function()
-        ts_start(bufnr, parser_name)
-      end)
-      return
-    end
-
-    ts_start(bufnr, parser_name)
+      vim.bo[buf].syntax = "on"
+      vim.wo.foldlevel = 99
+      vim.wo.foldmethod = "expr"
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo.foldtext = "v:lua.vim.lsp.foldtext()" --"v:lua.vim.treesitter.foldtext()"
+      vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end)
   end,
 })
 

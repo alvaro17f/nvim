@@ -19,16 +19,15 @@ local ensure_installed = {
   "vimdoc",
 }
 
-treesitter.install(ensure_installed)
-
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Enable Treesitter",
   callback = function(args)
     local buf = args.buf
     local filetype = args.match
     local language = vim.treesitter.language.get_lang(filetype) or filetype
+    local parsers = vim.tbl_extend("force", ensure_installed, { language })
 
-    treesitter.install({ language }):await(function()
+    treesitter.install(parsers):await(function()
       if not vim.treesitter.language.add(language) then
         return
       end

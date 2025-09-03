@@ -13,7 +13,6 @@ local function set_global_config()
 
   vim.lsp.config("*", {
     capabilities = capabilities,
-    root_markers = { ".git" },
   })
 end
 

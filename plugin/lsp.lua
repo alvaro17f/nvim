@@ -1,12 +1,9 @@
 local LSP_TOOLS = {
-  "eslint_d",
   "goimports",
   "jsonlint",
-  "prettier",
   "shellcheck",
   "shfmt",
   "sqruff",
-  "stylelint",
   "stylua",
 }
 

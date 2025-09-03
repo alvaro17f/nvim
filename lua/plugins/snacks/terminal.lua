@@ -29,13 +29,13 @@ M.config = {
 }
 
 M.keymaps = {
-  -- vim.keymap.set({ "n", "t" }, "<C-\\>", function()
-  -- 	Snacks.terminal.toggle()
-  -- end, { desc = "Toggle Terminal" }),
-  --
-  -- vim.keymap.set("n", "<C-_>", function()
-  -- 	Snacks.terminal()
-  -- end, { desc = "which_key_ignore" }),
+  vim.keymap.set({ "n", "t" }, "<C-\\>", function()
+    Snacks.terminal.toggle()
+  end, { desc = "Toggle Terminal" }),
+
+  vim.keymap.set("n", "<C-_>", function()
+    Snacks.terminal()
+  end, { desc = "which_key_ignore" }),
 }
 
 return M

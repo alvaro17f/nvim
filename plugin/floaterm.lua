@@ -5,4 +5,4 @@ vim.pack.add({
 
 require("floaterm").setup()
 
-vim.keymap.set({ "n", "t" }, "<C-\\>", "<CMD>FloatermToggle<CR>", { desc = "Toggle floaterm" })
+vim.keymap.set({ "n", "t" }, "<C-S-\\>", "<CMD>FloatermToggle<CR>", { desc = "Toggle floaterm" })

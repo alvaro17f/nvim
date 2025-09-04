@@ -1,6 +1,5 @@
 local LSP_TOOLS = {
   "goimports",
-  "jsonlint",
   "shellcheck",
   "shfmt",
   "sqruff",

@@ -17,7 +17,7 @@ require("utils.flags").setup({
     mason = false,
     suggestions = false,
     tests = false,
-    theme = { default = "tokyonight", options = themes },
+    theme = { default = "catppuccin", options = themes },
   },
 })
 

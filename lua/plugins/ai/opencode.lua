@@ -1,6 +1,7 @@
 vim.pack.add({ "https://github.com/NickvanDyke/opencode.nvim" }, { load = true, confirm = false })
 
-require("opencode").setup({
+vim.o.autoread = true
+vim.g.opencode_opts = {
   provider_id = "openrouter",
   model_id = vim.env.OPENROUTER_MODEL,
   port = nil,
@@ -14,7 +15,7 @@ require("opencode").setup({
       },
     },
   },
-})
+}
 
 -- stylua: ignore start
   vim.keymap.set({ "n", "t" }, "<C-/>", function() require("opencode").toggle() end, { desc = "Toggle embedded opencode" })

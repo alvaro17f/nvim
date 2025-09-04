@@ -3,52 +3,38 @@ vim.pack.add({ "https://github.com/stevearc/conform.nvim" }, { load = true, conf
 
 local conform = require("conform")
 
-local get_cwd = function(formatter, self, ctx)
-  conform.get_formatter_config(formatter, ctx.buf).cwd(self, ctx)
-end
-
 local formatters = {
-  css = {
-    "stylelint",
+  frontend = {
     "prettier",
     "prettierd",
     "biome",
     "biome-check",
     "biome-organize-imports",
-    "eslint_d",
   },
   go = { "gofmt", "goimports" },
   lua = { "stylua" },
   nix = { "nixfmt" },
   sh = { "shfmt" },
   sql = { "sqruff" },
-  typescript = {
-    "prettier",
-    "prettierd",
-    "biome",
-    "biome-check",
-    "biome-organize-imports",
-    "eslint_d",
-  },
 }
 
 conform.setup({
   formatters_by_ft = {
-    astro = formatters.typescript,
-    css = formatters.css,
+    astro = formatters.frontend,
+    css = formatters.frontend,
     go = formatters.go,
-    html = formatters.typescript,
-    javascript = formatters.typescript,
-    javascriptreact = formatters.typescript,
-    json = formatters.typescript,
-    jsonc = formatters.typescript,
+    html = formatters.frontend,
+    javascript = formatters.frontend,
+    javascriptreact = formatters.frontend,
+    json = formatters.frontend,
+    jsonc = formatters.frontend,
     lua = formatters.lua,
     nix = formatters.nix,
-    scss = formatters.css,
+    scss = formatters.frontend,
     sh = formatters.sh,
     sql = formatters.sql,
-    typescript = formatters.typescript,
-    typescriptreact = formatters.typescript,
+    typescript = formatters.frontend,
+    typescriptreact = formatters.frontend,
     -- ["_"] = { "trim_newlines", "trim_whitespace" },
   },
   formatters = {
@@ -61,26 +47,17 @@ conform.setup({
     ["biome-organize-imports"] = {
       require_cwd = true,
     },
-    ["eslint_d"] = {
-      require_cwd = true,
-      condition = function(self, ctx)
-        return not get_cwd("biome", self, ctx) and not get_cwd("prettier", self, ctx)
-      end,
-    },
     ["prettier"] = {
       require_cwd = true,
       condition = function(self, ctx)
-        return not get_cwd("biome", self, ctx)
+        return not conform.get_formatter_config("biome", ctx.buf).cwd(self, ctx)
       end,
     },
     ["prettierd"] = {
       require_cwd = true,
       condition = function(self, ctx)
-        return not get_cwd("biome", self, ctx)
+        return not conform.get_formatter_config("biome", ctx.buf).cwd(self, ctx)
       end,
-    },
-    ["stylelint"] = {
-      require_cwd = true,
     },
   },
   default_format_opts = { lsp_format = "fallback" },

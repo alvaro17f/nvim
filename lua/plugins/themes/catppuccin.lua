@@ -17,8 +17,8 @@ require("catppuccin").setup({
   end,
   auto_integrations = true,
   integrations = {
-    ---@diagnostic disable-next-line: missing-fields
     native_lsp = {
+      enabled = true,
       underlines = {
         errors = { "undercurl" },
         hints = { "undercurl" },

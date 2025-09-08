@@ -8,13 +8,6 @@ require("catppuccin").setup({
     transparent = true,
     solid = true,
   },
-  custom_highlights = function(colors)
-    return {
-      BlinkCmpMenuBorder = { fg = colors.blue },
-      BlinkCmpDocBorder = { fg = colors.sapphire },
-      BlinkCmpSignatureHelpBorder = { fg = colors.blue },
-    }
-  end,
   auto_integrations = true,
   integrations = {
     native_lsp = {

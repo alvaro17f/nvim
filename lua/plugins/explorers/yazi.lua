@@ -3,7 +3,6 @@ vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
 }, { load = true, confirm = false })
 
-vim.keymap.set("n", "<leader>/", "<CMD>Yazi<CR>", { desc = "Yazi" })
 require("yazi").setup({
   open_for_directories = true, -- use yazi instead of netrw for directories
   open_multiple_tabs = true,
@@ -24,3 +23,5 @@ require("yazi").setup({
     ya_emit_open = true,
   },
 })
+
+vim.keymap.set("n", "<leader>/", "<CMD>Yazi<CR>", { desc = "Yazi" })

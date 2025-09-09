@@ -17,6 +17,7 @@ local formatters = {
   nix = { "nixfmt" },
   sh = { "shfmt" },
   sql = { "sqruff" },
+  typst = { "typstyle" },
 }
 
 conform.setup({
@@ -37,6 +38,7 @@ conform.setup({
     sql = formatters.sql,
     typescript = formatters.frontend,
     typescriptreact = formatters.frontend,
+    typst = formatters.typst,
     -- ["_"] = { "trim_newlines", "trim_whitespace" },
   },
   formatters = {

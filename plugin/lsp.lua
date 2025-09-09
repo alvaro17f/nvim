@@ -5,6 +5,7 @@ local LSP_TOOLS = {
   "shfmt",
   "sqruff",
   "stylua",
+  "typstyle",
 }
 
 local DEBUGGERS = {

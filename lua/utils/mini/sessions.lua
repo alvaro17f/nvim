@@ -97,8 +97,13 @@ end
 
 function M.restore_session()
   local latest_session_name = session.get_latest()
-  session.read(latest_session_name)
-  vim.notify("Session read: " .. latest_session_name, vim.log.levels.INFO)
+
+  if latest_session_name ~= nil then
+    session.read(latest_session_name)
+    vim.notify("Session read: " .. latest_session_name, vim.log.levels.INFO)
+  else
+    vim.notify("No sessions found", vim.log.levels.ERROR)
+  end
 end
 
 return M

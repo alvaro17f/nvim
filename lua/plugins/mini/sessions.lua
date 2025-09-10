@@ -2,9 +2,12 @@ vim.pack.add({ "https://github.com/nvim-mini/mini.sessions" }, { load = true, co
 
 local current_session = nil
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
-local require_safe = require("utils").require_safe
 
-require("mini.sessions").setup({
+local mini_sessions = require("mini.sessions")
+local require_safe = require("utils").require_safe
+local utils = require("utils.mini.sessions")
+
+mini_sessions.setup({
   autoread = false,
   autowrite = true,
   directory = sessions_directory,
@@ -34,7 +37,7 @@ require("mini.sessions").setup({
 
   vim.api.nvim_create_autocmd("VimLeavePre", {
     callback = function()
-      if require("utils.mini.sessions").has_valid_buffers() and not current_session then
+      if utils.has_valid_buffers() and not current_session then
         local session = require("mini.sessions")
         session.write("draft.vim")
       end
@@ -43,15 +46,15 @@ require("mini.sessions").setup({
 })
 
 vim.keymap.set("n", "<leader>wl", function()
-  require("utils.mini.sessions").select_session()
+  utils.select_session()
 end, { desc = "Load Session" })
 
 vim.keymap.set("n", "<leader>ws", function()
-  require("utils.mini.sessions").new_session(true)
+  utils.new_session(true)
 end, { desc = "Save Session" })
 
 vim.keymap.set("n", "<leader>w<backspace>", function()
-  require("utils.mini.sessions").restore_session()
+  utils.restore_session()
 end, { desc = "Restore Last Session" })
 
 vim.keymap.set("n", "<leader>ww", function()

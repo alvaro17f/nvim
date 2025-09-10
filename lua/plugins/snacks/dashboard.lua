@@ -13,10 +13,7 @@ M.config = {
           key = "<backspace>",
           desc = " Restore last session",
           action = function()
-            local session = require("mini.sessions")
-            local latest_session_name = session.get_latest()
-            session.read(latest_session_name)
-            vim.notify("Session read: " .. latest_session_name, vim.log.levels.INFO)
+            require("utils.mini.sessions").restore_session()
           end,
         },
         {

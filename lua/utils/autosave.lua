@@ -1,12 +1,12 @@
 local timers = {}
 local DELAY = 500
 
-local function should_save(bufnr)
+local should_save = function(bufnr)
   local bo = vim.bo[bufnr]
   return bo.modifiable and bo.buflisted and bo.buftype == "" and bo.modified
 end
 
-local function save(bufnr)
+local save = function(bufnr)
   if not vim.api.nvim_buf_is_valid(bufnr) or vim.api.nvim_buf_get_name(bufnr) == "" then
     return
   end
@@ -19,7 +19,7 @@ local function save(bufnr)
   print("󰄳 auto-save: saved at " .. vim.fn.strftime("%H:%M:%S"))
 end
 
-local function cleanup(bufnr)
+local cleanup = function(bufnr)
   local timer = timers[bufnr]
   if timer then
     timer:stop()

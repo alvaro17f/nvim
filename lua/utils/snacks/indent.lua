@@ -1,6 +1,6 @@
 local M = {}
 
-local function is_ignored_filetype(ignored_filetypes, filetype)
+local is_ignored_filetype = function(ignored_filetypes, filetype)
   return vim.tbl_contains(ignored_filetypes, filetype)
 end
 

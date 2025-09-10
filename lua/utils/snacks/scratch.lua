@@ -17,7 +17,7 @@ local filetypes = {
   { text = "zig" },
 }
 
-local function generate_uuid()
+local generate_uuid = function()
   local random = math.random
   local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
   return string.gsub(template, "[xy]", function(c)
@@ -28,14 +28,14 @@ end
 
 local column_widths = { 0, 0, 0, 0 }
 
-local function update_column_widths(item)
+local update_column_widths = function(item)
   column_widths[1] = math.max(column_widths[1], vim.api.nvim_strwidth(item.cwd))
   column_widths[2] = math.max(column_widths[2], vim.api.nvim_strwidth(item.icon))
   column_widths[3] = math.max(column_widths[3], vim.api.nvim_strwidth(item.name))
   column_widths[4] = math.max(column_widths[4], vim.api.nvim_strwidth(item.branch))
 end
 
-local function process_item(item)
+local process_item = function(item)
   item._path = item.file
   item.branch = item.branch and ("branch:%s"):format(item.branch) or ""
   item.cwd = item.cwd and vim.fn.fnamemodify(item.cwd, ":p:~") or ""
@@ -45,13 +45,13 @@ local function process_item(item)
   update_column_widths(item)
 end
 
-local function process_items(items)
+local process_items = function(items)
   for _, item in ipairs(items) do
     process_item(item)
   end
 end
 
-local function format_item_text(item)
+local format_item_text = function(item)
   local parts = { item.cwd, item.icon, item.name, item.branch }
   for i, part in ipairs(parts) do
     parts[i] = part .. string.rep(" ", column_widths[i] - vim.api.nvim_strwidth(part))

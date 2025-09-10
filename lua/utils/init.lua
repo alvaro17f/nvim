@@ -10,7 +10,7 @@ function M.deep_merge(target, source)
   end
 end
 
-local function load_module_files(path, process_fn)
+local load_module_files = function(path, process_fn)
   local modules_path = path or debug.getinfo(2, "S").source:sub(2):match("(.*/)")
   local success, files = pcall(vim.fn.readdir, modules_path)
   if not success then

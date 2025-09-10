@@ -2,7 +2,7 @@ if vim.g.tests == false then
   return {}
 end
 
-local function count_failed_results(results, tree)
+local count_failed_results = function(results, tree)
   local failed = 0
   for pos_id, result in pairs(results) do
     if result.status == "failed" and tree:get_key(pos_id) then
@@ -12,7 +12,7 @@ local function count_failed_results(results, tree)
   return failed
 end
 
-local function refresh_trouble(failed)
+local refresh_trouble = function(failed)
   local trouble = require("trouble")
   if trouble.is_open() then
     trouble.refresh()

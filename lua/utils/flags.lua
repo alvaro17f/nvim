@@ -4,7 +4,7 @@ local default_flags = {}
 local show_icons = false
 local flags_path = vim.fn.stdpath("data") .. "/flags"
 
-local function read_file(file)
+local read_file = function(file)
   local f, err = io.open(file, "r")
   if not f then
     vim.notify("Error opening file: " .. err, vim.log.levels.ERROR)
@@ -13,7 +13,7 @@ local function read_file(file)
   return f
 end
 
-local function write_file(file, content)
+local write_file = function(file, content)
   local f, err = io.open(file, "w")
   if not f then
     vim.notify("Error opening file: " .. err, vim.log.levels.ERROR)
@@ -24,7 +24,7 @@ local function write_file(file, content)
   return true
 end
 
-local function read_flags(file)
+local read_flags = function(file)
   local flags = {}
   local f = read_file(file)
   if not f then
@@ -49,7 +49,7 @@ local function read_flags(file)
   return flags
 end
 
-local function write_flags(file, flags)
+local write_flags = function(file, flags)
   local type_handlers = {
     boolean = function(k, v)
       return string.format("%s = %s\n", k, tostring(v))
@@ -86,7 +86,7 @@ local function write_flags(file, flags)
   return write_file(file, content)
 end
 
-local function clean_flags(file)
+local clean_flags = function(file)
   local flags = read_flags(file)
   for k in pairs(flags) do
     if default_flags[k] == nil then
@@ -105,13 +105,13 @@ function M.get_flags(flag_to_check)
   return flags[flag_to_check]
 end
 
-local function set_flags(flag, value)
+local set_flags = function(flag, value)
   local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   flags[flag] = value
   write_flags(flags_path, flags)
 end
 
-local function get_all_flags()
+local get_all_flags = function()
   local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   for k, v in pairs(default_flags) do
     if flags[k] == nil then
@@ -125,7 +125,7 @@ local function get_all_flags()
   return flags
 end
 
-local function format_label(flag, value)
+local format_label = function(flag, value)
   local icon = (value == true and " ") or (value == false and " ") or " "
   local label = show_icons and (icon .. " " .. flag) or flag
 
@@ -145,7 +145,7 @@ local function format_label(flag, value)
   return label
 end
 
-local function toggle_flags_ui()
+local toggle_flags_ui = function()
   clean_flags(flags_path)
 
   local items = {}
@@ -203,7 +203,7 @@ local function toggle_flags_ui()
   end)
 end
 
-local function generate_flags_fn()
+local generate_flags_fn = function()
   vim.api.nvim_create_user_command("Flags", toggle_flags_ui, {})
 end
 

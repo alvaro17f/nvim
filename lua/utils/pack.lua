@@ -1,6 +1,6 @@
 local M = {}
 
-local function pack_clean()
+local pack_clean = function()
   local plugins = vim.pack.get()
   local unused_plugins = {}
 

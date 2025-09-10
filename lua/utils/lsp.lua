@@ -2,7 +2,7 @@ local M = {}
 
 local icons = require("utils.icons")
 
-local function set_global_config()
+local set_global_config = function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
   local ok, blink = pcall(require, "blink.cmp")
@@ -16,7 +16,7 @@ local function set_global_config()
   })
 end
 
-local function get_lsp_servers()
+local get_lsp_servers = function()
   local files = vim.g.mason
       and vim.tbl_map(function(file)
         return vim.fn.stdpath("config") .. "/after/lsp/" .. file
@@ -31,7 +31,7 @@ local function get_lsp_servers()
     :totable()
 end
 
-local function enable(LSP_TOOLS, DEBUGGERS)
+local enable = function(LSP_TOOLS, DEBUGGERS)
   vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { load = true, confirm = false })
 
   local servers = get_lsp_servers()
@@ -70,7 +70,7 @@ local function enable(LSP_TOOLS, DEBUGGERS)
   end
 end
 
-local function on_attach()
+local on_attach = function()
   vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP Setup",
     callback = function(args)
@@ -178,7 +178,7 @@ local function on_attach()
   })
 end
 
-local function diagnostics()
+local diagnostics = function()
   local diagnostic_signs = {}
   for type, icon in pairs(icons.diagnostics) do
     diagnostic_signs[vim.diagnostic.severity[type:upper()]] = icon

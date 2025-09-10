@@ -7,6 +7,9 @@ local icons = require("utils.icons")
 -- QUIT
 keymap("n", "ZQ", "<CMD>quitall!<CR>", { noremap = true, silent = true, desc = "Quit all" })
 
+-- RESTART
+keymap("n", "ZR", "<CMD>restart<CR>", { noremap = true, silent = true, desc = "Restart" })
+
 -- AUTO SAVE
 keymap("n", "<leader>*", function()
   vim.g.autosave = not vim.g.autosave

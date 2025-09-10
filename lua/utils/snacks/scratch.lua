@@ -9,6 +9,7 @@ local filetypes = {
   { text = "json" },
   { text = "lua" },
   { text = "markdown" },
+  { text = "nix" },
   { text = "odin" },
   { text = "python" },
   { text = "rust" },

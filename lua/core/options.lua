@@ -9,6 +9,9 @@ vim.g.autosave = true
 vim.g.inlayhints = false
 ------------------------------------
 vim.cmd.filetype("plugin indent on")
+if vim.fn.exists("syntax_on") ~= 1 then
+  vim.cmd("syntax enable")
+end
 ------------------------------------
 vim.o.autochdir = true
 vim.o.autocomplete = false

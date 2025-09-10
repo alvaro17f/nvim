@@ -29,8 +29,8 @@ local function cleanup(bufnr)
 end
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-  callback = function(event)
-    local bufnr = event.buf
+  callback = function(args)
+    local bufnr = args.buf
     if not should_save(bufnr) then
       return
     end
@@ -55,14 +55,14 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 })
 
 vim.api.nvim_create_autocmd("InsertEnter", {
-  callback = function(event)
-    cleanup(event.buf)
+  callback = function(args)
+    cleanup(args.buf)
   end,
 })
 
 vim.api.nvim_create_autocmd("BufUnload", {
-  callback = function(event)
-    cleanup(event.buf)
+  callback = function(args)
+    cleanup(args.buf)
   end,
 })
 

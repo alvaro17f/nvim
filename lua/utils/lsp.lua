@@ -73,10 +73,10 @@ end
 local function on_attach()
   vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP Setup",
-    callback = function(event)
-      local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+    callback = function(args)
+      local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
       local methods = vim.lsp.protocol.Methods
-      local opts = { noremap = true, silent = true, buffer = event.buf }
+      local opts = { noremap = true, silent = true, buffer = args.buf }
 
       opts.desc = "Go to declaration"
       vim.keymap.set("n", "gk", vim.lsp.buf.declaration, opts)
@@ -141,9 +141,9 @@ local function on_attach()
       opts.desc = "Restart LSP"
       vim.keymap.set("n", "grl", "<CMD>LspRestart<CR>", opts)
 
-      if client:supports_method(methods.textDocument_competion, event.buf) then
+      if client:supports_method(methods.textDocument_competion, args.buf) then
         if vim.g.autocomplete then
-          vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+          vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 
           opts.desc = "Trigger completion"
           vim.keymap.set("i", "<c-space>", function()
@@ -151,12 +151,12 @@ local function on_attach()
           end, opts)
         end
 
-        if client:supports_method(methods.textDocument_documentColor, event.buf) then
-          vim.lsp.document_color.enable(true, event.buf, { style = "virtual" })
+        if client:supports_method(methods.textDocument_documentColor, args.buf) then
+          vim.lsp.document_color.enable(true, args.buf, { style = "virtual" })
         end
       end
 
-      if client:supports_method(methods.textDocument_inlayHint, event.buf) then
+      if client:supports_method(methods.textDocument_inlayHint, args.buf) then
         if vim.g.inlayhints then
           vim.lsp.inlay_hint.enable()
         end
@@ -171,7 +171,7 @@ local function on_attach()
         end, opts)
       end
 
-      if client:supports_method(methods.textDocument_onTypeFormatting, event.buf) then
+      if client:supports_method(methods.textDocument_onTypeFormatting, args.buf) then
         vim.lsp.on_type_formatting.enable(true, { client_id = client.id })
       end
     end,

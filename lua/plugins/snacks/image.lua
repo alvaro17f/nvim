@@ -1,7 +1,9 @@
 local M = {}
 
 M.config = {
-  image = {},
+  image = {
+    enabled = true,
+  },
 }
 
 return M

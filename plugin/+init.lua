@@ -1,3 +1,3 @@
 require("plugins.themes")
-require("plugins.snacks")
 require("plugins.treesitter")
+require("plugins.snacks")

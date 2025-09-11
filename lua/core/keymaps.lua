@@ -33,6 +33,14 @@ keymap("n", "<leader>P", '"*P', { noremap = true, silent = true, desc = "Paste b
 
 -- BUFFERS
 keymap("n", "<leader><tab>", "<CMD>b#<CR>", { noremap = true, silent = true, desc = "Buffer switch back & forth" })
+keymap("n", "[b", "<CMD>bp<CR>", { noremap = true, silent = true, desc = "Buffer previous" })
+keymap("n", "]b", "<CMD>bn<CR>", { noremap = true, silent = true, desc = "Buffer next" })
+
+-- MOVE THROUGH WORKSPACES
+keymap("n", "<c-h>", "<CMD>wincmd h<CR>", { noremap = true, silent = true, desc = "Workspace left" })
+keymap("n", "<c-l>", "<CMD>wincmd l<CR>", { noremap = true, silent = true, desc = "Workspace right" })
+keymap("n", "<c-k>", "<CMD>wincmd k<CR>", { noremap = true, silent = true, desc = "Workspace up" })
+keymap("n", "<c-j>", "<CMD>wincmd j<CR>", { noremap = true, silent = true, desc = "Workspace down" })
 
 -- HJKL INSERT MODE
 keymap("i", "<a-h>", "<left>", { noremap = true, silent = true, desc = "Left" })

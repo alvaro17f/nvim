@@ -1,5 +1,16 @@
 local M = {}
 
+M.color = function(group, prop)
+  prop = prop or "fg"
+  group = type(group) == "table" and group or { group }
+  for _, g in ipairs(group) do
+    local hl = vim.api.nvim_get_hl(0, { name = g, link = false })
+    if hl[prop] then
+      return string.format("#%06x", hl[prop])
+    end
+  end
+end
+
 M.deep_merge = function(target, source)
   for k, v in pairs(source) do
     if type(v) == "table" and type(target[k]) == "table" then

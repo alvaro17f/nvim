@@ -23,7 +23,9 @@ keymap("n", "<leader>.", function()
 end, { noremap = true, silent = true, desc = "Update plugins" })
 
 -- FLAGS
-keymap("n", "<leader>F", "<CMD>Flags<CR>", { noremap = true, silent = true, desc = "Flags" })
+keymap("n", "<leader>F", function()
+  require("utils.flags").toggle()
+end, { noremap = true, silent = true, desc = "Flags" })
 
 -- PASTE YANK, NOT DELETED
 keymap("n", "<leader>p", '"*p', { noremap = true, silent = true, desc = "Paste after from computer" })

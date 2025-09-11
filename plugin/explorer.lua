@@ -1,5 +1,5 @@
-if vim.g.explorer == false then
+if Flags.explorer == false then
   return {}
 end
 
-return { require("plugins.explorers." .. vim.g.explorer) }
+return { require("plugins.explorers." .. Flags.explorer) }

@@ -5,7 +5,7 @@ local suggestion = require("copilot.suggestion")
 
 copilot.setup({
   suggestion = {
-    enabled = vim.g.suggestions,
+    enabled = Flags.suggestions,
     auto_trigger = true,
     hide_during_completion = true,
     debounce = 75,

@@ -1,6 +1,6 @@
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
-if vim.g.debugger == false then
+if Flags.debugger == false then
   return {}
 end
 

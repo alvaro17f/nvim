@@ -1,4 +1,4 @@
-if vim.g.tests == false then
+if Flags.tests == false then
   return {}
 end
 

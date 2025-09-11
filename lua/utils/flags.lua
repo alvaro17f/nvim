@@ -145,7 +145,7 @@ local format_label = function(flag, value)
   return label
 end
 
-local toggle_flags_ui = function()
+M.toggle = function()
   clean_flags(flags_path)
 
   local items = {}
@@ -164,7 +164,7 @@ local toggle_flags_ui = function()
       local new_value = not choice.value
       set_flags(choice.flag, new_value)
       vim.notify(choice.flag .. " " .. (new_value and "enabled" or "disabled"), vim.log.levels.INFO)
-      toggle_flags_ui()
+      M.toggle()
     end,
 
     table = function(choice)
@@ -182,7 +182,7 @@ local toggle_flags_ui = function()
         if selected ~= nil then
           set_flags(choice.flag, selected)
           vim.notify(choice.flag .. " set to " .. tostring(selected), vim.log.levels.INFO)
-          toggle_flags_ui()
+          M.toggle()
         end
       end)
     end,
@@ -204,7 +204,7 @@ local toggle_flags_ui = function()
 end
 
 local generate_flags_fn = function()
-  vim.api.nvim_create_user_command("Flags", toggle_flags_ui, {})
+  vim.api.nvim_create_user_command("Flags", M.toggle, {})
 end
 
 function M.setup(opts)

@@ -17,7 +17,7 @@ local set_global_config = function()
 end
 
 local get_lsp_servers = function()
-  local files = vim.g.mason
+  local files = Flags.mason
       and vim.tbl_map(function(file)
         return vim.fn.stdpath("config") .. "/after/lsp/" .. file
       end, vim.fn.readdir(vim.fn.stdpath("config") .. "/after/lsp"))
@@ -36,7 +36,7 @@ local enable = function(LSP_TOOLS, DEBUGGERS)
 
   local servers = get_lsp_servers()
 
-  if vim.g.mason then
+  if Flags.mason then
     vim.pack.add({
       "https://github.com/mason-org/mason.nvim",
       "https://github.com/mason-org/mason-lspconfig.nvim",
@@ -57,7 +57,7 @@ local enable = function(LSP_TOOLS, DEBUGGERS)
 
     local tools = {}
 
-    if vim.g.debugger then
+    if Flags.debugger then
       vim.list_extend(tools, DEBUGGERS)
     end
 

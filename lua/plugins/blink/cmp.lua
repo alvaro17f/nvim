@@ -1,4 +1,5 @@
 vim.pack.add({
+  { src = "https://github.com/alexandre-abrioux/blink-cmp-npm.nvim" },
   { src = "https://github.com/rafamadriz/friendly-snippets" },
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 }, { load = true, confirm = false })
@@ -56,6 +57,7 @@ require("blink.cmp").setup({
 
   sources = {
     default = {
+      "npm",
       "lazydev",
       "lsp",
       "path",
@@ -64,6 +66,17 @@ require("blink.cmp").setup({
     },
 
     providers = {
+      npm = {
+        name = "npm",
+        module = "blink-cmp-npm",
+        async = true,
+        score_offset = 100,
+        opts = {
+          ignore = {},
+          only_semantic_versions = true,
+          only_latest_version = false,
+        },
+      },
       lazydev = {
         name = "lazydev",
         module = "lazydev.integrations.blink",

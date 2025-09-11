@@ -27,10 +27,16 @@ lualine.setup({
   },
   sections = {
     lualine_a = {
-      "mode",
+      {
+        "mode",
+        icon = icons.lualine.logo.vim,
+      },
     },
     lualine_b = {
-      "branch",
+      {
+        "branch",
+        icon = icons.lualine.git.commit,
+      },
     },
     lualine_c = {
       {
@@ -70,7 +76,7 @@ lualine.setup({
         fmt = function()
           local reg = vim.fn.reg_recording()
           if reg ~= "" then
-            return "recording @" .. reg
+            return icons.lualine.recording .. " recording: @" .. reg
           end
           return nil
         end,
@@ -86,9 +92,8 @@ lualine.setup({
     },
     lualine_z = {
       {
-        function()
-          return icons.lualine.clock .. os.date("%R")
-        end,
+        "datetime",
+        style = icons.lualine.clock .. " %H:%M",
         separator = icons.lualine.separator.rounded,
         left_padding = 2,
       },

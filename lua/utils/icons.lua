@@ -127,6 +127,16 @@ M.kind = {
 
 M.lualine = {
   clock = " ",
+  git = {
+    branch = "",
+    commit = " ",
+    logo = " ",
+  },
+  logo = {
+    vim = " ",
+    nvim = " ",
+  },
+  recording = " ",
   separator = {
     component = { left = "", right = "" },
     rounded = { left = "", right = "" },

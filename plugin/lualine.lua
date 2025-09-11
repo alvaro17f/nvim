@@ -2,8 +2,9 @@ vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" }, { load = true, 
 
 vim.o.showmode = false
 
-local icons = require("utils.icons")
 local lualine = require("lualine")
+local color = Snacks.util.color
+local icons = require("utils.icons")
 
 lualine.setup({
   options = {
@@ -52,7 +53,7 @@ lualine.setup({
         path = 0,
         file_status = false,
         color = function()
-          return { fg = "cyan", gui = vim.bo.modified and "italic,bold" or "bold" }
+          return { fg = color("Title"), gui = vim.bo.modified and "italic,bold" or "bold" }
         end,
         padding = { left = 0, right = 1 },
       },
@@ -73,7 +74,9 @@ lualine.setup({
           end
           return nil
         end,
-        color = { fg = "#ff9e64" },
+        color = function()
+          return { fg = color("MiniIconsOrange"), gui = "bold" }
+        end,
         draw_empty = false,
       },
     },

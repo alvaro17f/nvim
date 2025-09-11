@@ -2,10 +2,18 @@ local M = {}
 
 M.core = {
   arrows = {
-    right = "",
-    left = "",
-    up = "",
-    down = "",
+    simple = {
+      right = "",
+      left = "",
+      up = "",
+      down = "",
+    },
+    double = {
+      right = "",
+      left = "",
+      up = "",
+      down = "",
+    },
   },
   bullet = "●",
   heading = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " },

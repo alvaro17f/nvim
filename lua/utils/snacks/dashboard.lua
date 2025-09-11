@@ -2,7 +2,7 @@ local M = {}
 
 local logos_path = vim.fn.stdpath("config") .. "/assets/logos/"
 
-function M.get_logo()
+M.get_logo = function()
   if Flags.logo == false then
     Flags.logo = "neovim"
   end

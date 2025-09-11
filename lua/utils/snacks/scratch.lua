@@ -60,7 +60,7 @@ local format_item_text = function(item)
   return table.concat(parts, " ")
 end
 
-function M.select_scratch()
+M.select_scratch = function()
   local items = Snacks.scratch.list()
   process_items(items)
 
@@ -115,7 +115,7 @@ function M.select_scratch()
   })
 end
 
-function M.new_scratch()
+M.new_scratch = function()
   Snacks.picker.pick({
     source = "scratch",
     items = filetypes,

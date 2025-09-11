@@ -2,7 +2,7 @@
 
 local M = {}
 
-function M.debugger_icons()
+M.debugger_icons = function()
   local icons = require("utils.icons").debugger
 
   vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
@@ -24,11 +24,11 @@ function M.debugger_icons()
   end
 end
 
-function M.debugger_executable_path(debugger_name)
+M.debugger_executable_path = function(debugger_name)
   return vim.fn.stdpath("data") .. "/mason/bin/" .. debugger_name
 end
 
-function M.find_debug_target(targetPrefix, depth, buildCommand)
+M.find_debug_target = function(targetPrefix, depth, buildCommand)
   local dap = require("dap")
   local targets = {}
   for entry in vim.fs.dir(targetPrefix, { depth = depth }) do

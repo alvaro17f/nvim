@@ -1,6 +1,6 @@
 local M = {}
 
-function M.deep_merge(target, source)
+M.deep_merge = function(target, source)
   for k, v in pairs(source) do
     if type(v) == "table" and type(target[k]) == "table" then
       M.deep_merge(target[k], v)
@@ -31,7 +31,7 @@ local load_module_files = function(path, process_fn)
   end
 end
 
-function M.get_config(path)
+M.get_config = function(path)
   local modules = {}
   load_module_files(path, function(module_result)
     if module_result.config then
@@ -41,16 +41,16 @@ function M.get_config(path)
   return modules
 end
 
-function M.load_keymaps(path)
+M.load_keymaps = function(path)
   load_module_files(path, function(_) end)
 end
 
-function M.require_safe(module)
+M.require_safe = function(module)
   local ok, result = pcall(require, module)
   return ok and result or nil
 end
 
-function M.require_modules(path)
+M.require_modules = function(path)
   local modules = {}
   local modules_path = path or debug.getinfo(2, "S").source:sub(2):match("(.*/)")
   local folder_name = modules_path:match("([^/]+)/?$")

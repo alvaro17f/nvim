@@ -5,7 +5,7 @@ M.status = {
   is_git = nil,
 }
 
-function M.switch_grep_files(picker, _)
+M.switch_grep_files = function(picker, _)
   local cwd = picker.input.filter.cwd
 
   picker:close()

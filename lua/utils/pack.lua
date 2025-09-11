@@ -30,7 +30,7 @@ local pack_clean = function()
   end
 end
 
-function M.update()
+M.update = function()
   vim.pack.update(nil, { force = false })
   pack_clean()
 end

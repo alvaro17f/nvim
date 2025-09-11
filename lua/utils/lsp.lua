@@ -200,7 +200,7 @@ local diagnostics = function()
   })
 end
 
-function M.setup(LSP_TOOLS, DEBUGGERS)
+M.setup = function(LSP_TOOLS, DEBUGGERS)
   set_global_config()
   enable(LSP_TOOLS, DEBUGGERS)
   on_attach()

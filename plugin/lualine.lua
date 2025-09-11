@@ -2,9 +2,9 @@ vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" }, { load = true, 
 
 vim.o.showmode = false
 
-local lualine = require("lualine")
-local color = Snacks.util.color
+local color = require("utils").color
 local icons = require("utils.icons")
+local lualine = require("lualine")
 
 lualine.setup({
   options = {
@@ -49,17 +49,25 @@ lualine.setup({
         file_status = false,
         fmt = function(str)
           local directory = str:match("(.*/)(.*)")
-          return directory or " "
+          directory = vim.fn.trim(directory, "/", 2)
+          return directory or "?"
         end,
-        separator = { right = "" },
-        padding = { left = 1, right = 0 },
+        icon = {
+          icons.core.arrows.double.right,
+          align = "right",
+          color = function()
+            return { fg = color("lualine_a_replace", "bg") }
+          end,
+        },
+        separator = "",
+        padding = 1,
       },
       {
         "filename",
         path = 0,
         file_status = false,
         color = function()
-          return { fg = color("Title"), gui = vim.bo.modified and "italic,bold" or "bold" }
+          return { fg = color("lualine_a_normal", "bg"), gui = vim.bo.modified and "italic,bold" or "bold" }
         end,
         padding = { left = 0, right = 1 },
       },
@@ -81,7 +89,7 @@ lualine.setup({
           return nil
         end,
         color = function()
-          return { fg = color("MiniIconsOrange"), gui = "bold" }
+          return { fg = color("lualine_a_replace", "bg"), gui = "bold" }
         end,
         draw_empty = false,
       },

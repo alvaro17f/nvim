@@ -66,7 +66,7 @@ lualine.setup({
         path = 3,
         file_status = false,
         fmt = function(str)
-          local directory = vim.fn.trim(str:match("(.*/)(.*)"), "/", 2)
+          local directory = str:match("(.*)/.*$")
           return not directory:match("v:null") and directory or "<>"
         end,
         icon = {

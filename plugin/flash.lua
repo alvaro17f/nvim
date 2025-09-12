@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/folke/flash.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/folke/flash.nvim" })
 
 require("flash").setup({
   modes = {

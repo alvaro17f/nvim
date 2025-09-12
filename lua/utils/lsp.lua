@@ -32,16 +32,16 @@ local get_lsp_servers = function()
 end
 
 local enable = function(LSP_TOOLS, DEBUGGERS)
-  vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { load = true, confirm = false })
+  Pack.add({ "https://github.com/neovim/nvim-lspconfig" })
 
   local servers = get_lsp_servers()
 
   if Flags.mason then
-    vim.pack.add({
+    Pack.add({
       "https://github.com/mason-org/mason.nvim",
       "https://github.com/mason-org/mason-lspconfig.nvim",
       "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
-    }, { load = true, confirm = false })
+    })
 
     local mason = require("mason")
     local mason_tool_installer = require("mason-tool-installer")

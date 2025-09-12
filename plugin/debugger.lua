@@ -4,13 +4,13 @@ if Flags.debugger == false then
   return {}
 end
 
-vim.pack.add({
+Pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/jbyuki/one-small-step-for-vimkind",
   "https://github.com/theHamsta/nvim-dap-virtual-text",
   "https://github.com/miroshQa/debugmaster.nvim",
   "https://github.com/mfussenegger/nvim-dap",
-}, { load = true, confirm = false })
+})
 
 local dm = require("debugmaster")
 local utils = require("utils")

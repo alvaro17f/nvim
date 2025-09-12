@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" })
 
 vim.g.markdown_filetypes = {
   "markdown",

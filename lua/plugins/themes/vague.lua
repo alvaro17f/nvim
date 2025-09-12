@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/vague2k/vague.nvim", name = "vague" } }, { load = true, confirm = false })
+Pack.add({ { src = "https://github.com/vague2k/vague.nvim", name = "vague" } })
 
 require("vague").setup({ transparent = true })
 

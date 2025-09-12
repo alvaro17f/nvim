@@ -1,4 +1,4 @@
-vim.pack.add(
+Pack.add(
   { { src = "https://github.com/nyoom-engineering/oxocarbon.nvim", name = "oxocarbon" } },
   { load = true, confirm = false }
 )

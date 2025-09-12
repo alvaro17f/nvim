@@ -1,5 +1,5 @@
 -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters | :h conform-formatters
-vim.pack.add({ "https://github.com/stevearc/conform.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/stevearc/conform.nvim" })
 
 local conform = require("conform")
 

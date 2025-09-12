@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/aaronik/treewalker.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/aaronik/treewalker.nvim" })
 
 require("treewalker").setup({
   highlight = true,

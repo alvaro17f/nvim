@@ -21,7 +21,7 @@ package.preload["trouble.view.treesitter"] = function()
   return M
 end
 
-vim.pack.add({ "https://github.com/folke/trouble.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/folke/trouble.nvim" })
 
 require("trouble").setup({
   auto_close = true,

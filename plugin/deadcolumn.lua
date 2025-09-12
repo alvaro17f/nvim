@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/Bekaboo/deadcolumn.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/Bekaboo/deadcolumn.nvim" })
 
 local color = require("utils").color
 

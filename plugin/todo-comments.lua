@@ -1,7 +1,7 @@
-vim.pack.add({
+Pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/folke/todo-comments.nvim",
-}, { load = true, confirm = false })
+})
 
 require("todo-comments").setup()
 

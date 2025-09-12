@@ -1,5 +1,5 @@
 -- https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters
-vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/mfussenegger/nvim-lint" })
 
 local lint = require("lint")
 

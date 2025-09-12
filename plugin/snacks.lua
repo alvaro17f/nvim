@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/folke/snacks.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/folke/snacks.nvim" })
 
 local utils = require("utils")
 

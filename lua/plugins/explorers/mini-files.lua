@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/echasnovski/mini.files" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/echasnovski/mini.files" })
 
 vim.keymap.set("n", "<leader>/", "<CMD>lua MiniFiles.open()<CR>", { desc = "MiniFiles" })
 require("mini.files").setup({

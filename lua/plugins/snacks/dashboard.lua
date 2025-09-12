@@ -53,7 +53,7 @@ M.config = {
           key = "<leader>.",
           desc = " Update",
           action = function()
-            require("utils.pack").update()
+            Pack.update()
           end,
         },
         { icon = icons.quit, key = "q", desc = " Quit", action = "<CMD>qa<CR>" },

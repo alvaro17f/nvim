@@ -1,6 +1,6 @@
-vim.pack.add({
+Pack.add({
   { src = "https://github.com/chomosuke/typst-preview.nvim" },
-}, { load = true, confirm = false })
+})
 
 vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Typst",

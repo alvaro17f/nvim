@@ -1,7 +1,7 @@
-vim.pack.add({
+Pack.add({
   "https://github.com/mikavilpas/yazi.nvim",
   "https://github.com/nvim-lua/plenary.nvim",
-}, { load = true, confirm = false })
+})
 
 require("yazi").setup({
   open_for_directories = true, -- use yazi instead of netrw for directories

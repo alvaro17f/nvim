@@ -1,4 +1,4 @@
-vim.pack.add(
+Pack.add(
   { { src = "https://github.com/folke/tokyonight.nvim", name = "tokyonight" } },
   { load = true, confirm = false }
 )

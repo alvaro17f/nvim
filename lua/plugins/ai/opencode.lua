@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/NickvanDyke/opencode.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/NickvanDyke/opencode.nvim" })
 
 vim.o.autoread = true
 vim.g.opencode_opts = {

@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/rose-pine/neovim", name = "rose-pine" } }, { load = true, confirm = false })
+Pack.add({ { src = "https://github.com/rose-pine/neovim", name = "rose-pine" } })
 
 require("rose-pine").setup({
   variant = "moon", -- auto, main, moon, or dawn

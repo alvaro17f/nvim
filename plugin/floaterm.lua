@@ -1,7 +1,7 @@
-vim.pack.add({
+Pack.add({
   { src = "https://github.com/nvzone/floaterm" },
   { src = "https://github.com/nvzone/volt" },
-}, { load = true, confirm = false })
+})
 
 require("floaterm").setup()
 

@@ -1,4 +1,4 @@
-vim.pack.add({ { src = "https://github.com/everviolet/nvim", name = "evergarden" } }, { load = true, confirm = false })
+Pack.add({ { src = "https://github.com/everviolet/nvim", name = "evergarden" } })
 
 require("evergarden").setup({
   theme = {

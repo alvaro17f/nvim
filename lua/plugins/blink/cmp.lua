@@ -1,8 +1,8 @@
-vim.pack.add({
+Pack.add({
   { src = "https://github.com/alexandre-abrioux/blink-cmp-npm.nvim" },
   { src = "https://github.com/rafamadriz/friendly-snippets" },
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
-}, { load = true, confirm = false })
+})
 
 local icons = require("utils.icons")
 

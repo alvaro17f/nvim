@@ -22,13 +22,13 @@ local refresh_trouble = function(failed)
   end
 end
 
-vim.pack.add({
+Pack.add({
   "https://github.com/nvim-neotest/nvim-nio",
   "https://github.com/nvim-neotest/neotest-plenary",
   "https://github.com/nvim-neotest/neotest-jest",
   "https://github.com/marilari88/neotest-vitest",
   "https://github.com/nvim-neotest/neotest",
-}, { load = true, confirm = false })
+})
 
 local neotest_ns = vim.api.nvim_create_namespace("neotest")
 vim.diagnostic.config({

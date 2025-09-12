@@ -1,9 +1,9 @@
-vim.pack.add({
+Pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
   { src = "https://github.com/windwp/nvim-ts-autotag" },
-}, { load = true, confirm = false })
+})
 
 local autotag = require("nvim-ts-autotag")
 local context = require("treesitter-context")

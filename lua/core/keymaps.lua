@@ -19,7 +19,7 @@ end, { noremap = true, silent = true, desc = "Toggle auto save" })
 
 -- UPDATE
 keymap("n", "<leader>.", function()
-  require("utils.pack").update()
+  Pack.update()
 end, { noremap = true, silent = true, desc = "Update plugins" })
 
 -- FLAGS

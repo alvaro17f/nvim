@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/monkoose/neocodeium" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/monkoose/neocodeium" })
 
 require("neocodeium").setup({
   show_label = false,

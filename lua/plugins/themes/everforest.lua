@@ -1,4 +1,4 @@
-vim.pack.add(
+Pack.add(
   { { src = "https://github.com/neanias/everforest-nvim", name = "everforest" } },
   { load = true, confirm = false }
 )

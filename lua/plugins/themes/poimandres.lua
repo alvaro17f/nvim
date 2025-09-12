@@ -1,4 +1,4 @@
-vim.pack.add(
+Pack.add(
   { { src = "https://github.com/olivercederborg/poimandres.nvim", name = "poimandres" } },
   { load = true, confirm = false }
 )

@@ -1,4 +1,4 @@
-local M = {}
+_G.Pack = {}
 
 local pack_clean = function()
   local plugins = vim.pack.get()
@@ -30,9 +30,19 @@ local pack_clean = function()
   end
 end
 
-M.update = function()
-  vim.pack.update(nil, { force = false })
-  pack_clean()
+--- @param specs (string|vim.pack.Spec)[] List of plugin specifications. String item
+--- @param opts? vim.pack.keyset.add
+Pack.add = function(specs, opts)
+  opts = opts or { load = true, confirm = false }
+
+  vim.pack.add(specs, opts)
 end
 
-return M
+--- @param names? string[] List of plugin names to update. Must be managed
+--- @param opts? vim.pack.keyset.update
+Pack.update = function(names, opts)
+  opts = opts or { force = false }
+
+  vim.pack.update(names or nil, opts)
+  pack_clean()
+end

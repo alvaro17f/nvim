@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/otavioschwanck/arrow.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/otavioschwanck/arrow.nvim" })
 
 require("arrow").setup({
   show_icons = true,

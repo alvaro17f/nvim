@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/folke/edgy.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/folke/edgy.nvim" })
 
 vim.o.laststatus = 3
 vim.o.splitkeep = "screen"

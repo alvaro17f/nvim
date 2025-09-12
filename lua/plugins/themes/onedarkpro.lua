@@ -1,4 +1,4 @@
-vim.pack.add(
+Pack.add(
   { { src = "https://github.com/olimorris/onedarkpro.nvim", name = "onedarkpro" } },
   { load = true, confirm = false }
 )

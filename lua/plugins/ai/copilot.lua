@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/zbirenbaum/copilot.lua" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/zbirenbaum/copilot.lua" })
 
 local copilot = require("copilot")
 local suggestion = require("copilot.suggestion")

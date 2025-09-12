@@ -1,6 +1,6 @@
 ---@diagnostic disable: param-type-mismatch
 
-vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" }, { load = true, confirm = false })
+Pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
 
 local icons = require("utils.icons").gitsigns.v1
 

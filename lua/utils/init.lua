@@ -61,21 +61,39 @@ M.require_safe = function(module)
   return ok and result or nil
 end
 
-M.require_modules = function(path)
-  local modules = {}
+M.require_modules = function(path, recursive)
   local modules_path = path or debug.getinfo(2, "S").source:sub(2):match("(.*/)")
-  local folder_name = modules_path:match("([^/]+)/?$")
+  modules_path = modules_path:gsub("/?$", "/")
 
-  local success, files = pcall(vim.fn.readdir, modules_path)
-  if not success then
-    return modules
+  recursive = recursive or true
+
+  local module_prefix = ""
+  local _, lua_end = modules_path:find(".*/lua/")
+  if lua_end then
+    module_prefix = modules_path:sub(lua_end + 1):gsub("/$", ""):gsub("/", ".")
   end
 
-  for _, module in pairs(files) do
-    if module:match("%.lua$") and not module:match("init.lua$") then
-      require("plugins." .. folder_name .. "." .. module:gsub("%.lua$", ""))
+  local function require_recursive(dir_path, sub_prefix)
+    local success, files = pcall(vim.fn.readdir, dir_path)
+    if not success then
+      return
+    end
+
+    for _, item in pairs(files) do
+      local full_path = dir_path .. item
+      local stat = vim.loop.fs_stat(full_path)
+      if stat and stat.type == "directory" and recursive then
+        require_recursive(full_path .. "/", sub_prefix .. item .. ".")
+      elseif item:match("%.lua$") and not item:match("init.lua$") then
+        local module_name = (module_prefix ~= "" and module_prefix .. "." or "")
+          .. sub_prefix
+          .. item:gsub("%.lua$", "")
+        require(module_name)
+      end
     end
   end
+
+  require_recursive(modules_path, "")
 end
 
 return M

@@ -21,8 +21,25 @@ M.deep_merge = function(target, source)
   end
 end
 
+M.require_safe = function(module)
+  local ok, result = pcall(require, module)
+  return ok and result or nil
+end
+
+local process_path = function(path)
+  local modules_path
+
+  if path and not path:match("/lua/") then
+    modules_path = vim.fn.stdpath("config") .. "/lua/" .. path:gsub("^/", "")
+  else
+    modules_path = path or debug.getinfo(3, "S").source:sub(2):match("(.*/)")
+  end
+
+  return modules_path:gsub("/?$", "/")
+end
+
 local load_module_files = function(path, process_fn)
-  local modules_path = path or debug.getinfo(2, "S").source:sub(2):match("(.*/)")
+  local modules_path = process_path(path)
   local success, files = pcall(vim.fn.readdir, modules_path)
   if not success then
     return
@@ -56,21 +73,8 @@ M.load_keymaps = function(path)
   load_module_files(path, function(_) end)
 end
 
-M.require_safe = function(module)
-  local ok, result = pcall(require, module)
-  return ok and result or nil
-end
-
 M.require_modules = function(path, recursive)
-  local modules_path
-
-  if path and not path:match("/lua/") then
-    modules_path = vim.fn.stdpath("config") .. "/lua/" .. path:gsub("^/", "")
-  else
-    modules_path = path or debug.getinfo(2, "S").source:sub(2):match("(.*/)")
-  end
-
-  modules_path = modules_path:gsub("/?$", "/")
+  local modules_path = process_path(path)
 
   recursive = recursive or true
 

@@ -49,7 +49,7 @@ mini_sessions.setup({
     callback = function()
       if utils.has_valid_buffers() and not current_session then
         local session = require("mini.sessions")
-        session.write("draft.vim")
+        session.write("draft")
       end
     end,
   }),

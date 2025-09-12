@@ -86,11 +86,11 @@ M.new_session = function(restore)
     return vim.notify("Session save canceled", vim.log.levels.ERROR)
   end
 
-  session.write(session_name .. ".vim", { verbose = false })
+  session.write(session_name, { verbose = false })
   vim.notify("Session created: " .. session_name, vim.log.levels.INFO)
 
   if restore then
-    session.read(session_name .. ".vim", { verbose = false })
+    session.read(session_name, { verbose = false })
     vim.notify("Session read: " .. session_name, vim.log.levels.INFO)
   end
 end

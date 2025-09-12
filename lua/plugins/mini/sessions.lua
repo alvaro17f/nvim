@@ -28,6 +28,11 @@ mini_sessions.setup({
     post = {
       read = function(item)
         current_session = item.name
+
+        if require_safe("arrow") then
+          require("arrow.git").refresh_git_branch()
+          require("arrow.persist").load_cache_file()
+        end
       end,
       write = nil,
       delete = nil,

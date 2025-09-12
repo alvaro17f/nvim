@@ -7,6 +7,19 @@ local mini_sessions = require("mini.sessions")
 local require_safe = require("utils").require_safe
 local utils = require("utils.mini.sessions")
 
+local edgy = function()
+  if require_safe("edgy") then
+    require("edgy").close()
+  end
+end
+
+local arrow = function()
+  if require_safe("arrow") then
+    require("arrow.git").refresh_git_branch()
+    require("arrow.persist").load_cache_file()
+  end
+end
+
 mini_sessions.setup({
   autoread = false,
   autowrite = true,
@@ -17,22 +30,14 @@ mini_sessions.setup({
     pre = {
       read = nil,
       write = function()
-        local edgy = require_safe("edgy")
-
-        if edgy then
-          edgy.close()
-        end
+        edgy()
       end,
       delete = nil,
     },
     post = {
       read = function(item)
         current_session = item.name
-
-        if require_safe("arrow") then
-          require("arrow.git").refresh_git_branch()
-          require("arrow.persist").load_cache_file()
-        end
+        arrow()
       end,
       write = nil,
       delete = nil,

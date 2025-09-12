@@ -96,6 +96,7 @@ local clean_flags = function(file)
   write_flags(file, flags)
 end
 
+---@param flag_to_check string
 M.get_flags = function(flag_to_check)
   local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   if flags[flag_to_check] == nil then
@@ -207,6 +208,7 @@ local generate_flags_fn = function()
   vim.api.nvim_create_user_command("Flags", M.toggle, {})
 end
 
+---@param opts {flags: table, icons: boolean, path?: string}
 M.setup = function(opts)
   default_flags = opts.flags or {}
   flags_path = opts.path or flags_path
@@ -214,6 +216,8 @@ M.setup = function(opts)
   generate_flags_fn()
 end
 
+---@param path string
+---@param extra_opts? table
 M.get_options_by_path = function(path, extra_opts)
   local options = {}
 

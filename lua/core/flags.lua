@@ -1,6 +1,15 @@
 ------------------------------------
 -- FLAGS
 ------------------------------------
+---@class Flags
+---@field ai boolean|string
+---@field debugger boolean
+---@field explorer string
+---@field logo string
+---@field mason boolean
+---@field suggestions boolean
+---@field tests boolean
+---@field theme string
 _G.Flags = {}
 
 local flags_utils = require("utils.flags")

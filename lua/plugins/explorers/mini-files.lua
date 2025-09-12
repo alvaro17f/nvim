@@ -1,7 +1,8 @@
 Pack.add({ "https://github.com/echasnovski/mini.files" })
 
-vim.keymap.set("n", "<leader>/", "<CMD>lua MiniFiles.open()<CR>", { desc = "MiniFiles" })
-require("mini.files").setup({
+local MiniFiles = require("mini.files")
+
+MiniFiles.setup({
   content = {
     filter = nil,
     prefix = nil,
@@ -25,7 +26,7 @@ require("mini.files").setup({
   },
 
   options = {
-    permanent_delete = true,
+    permanent_delete = false,
     use_as_default_explorer = true,
   },
 
@@ -37,3 +38,23 @@ require("mini.files").setup({
     width_preview = 50,
   },
 })
+
+local set_mark = function(id, path, desc)
+  MiniFiles.set_bookmark(id, path, { desc = desc })
+end
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesExplorerOpen",
+  callback = function()
+    set_mark("'", vim.fn.getcwd, "Working directory")
+    set_mark("n", vim.fn.stdpath("config"), "Nvim config")
+    set_mark("c", "~/.config", "Config directory")
+    set_mark("d", "~/Downloads", "Downloads directory")
+    set_mark("h", "~", "Home directory")
+    set_mark("l", "~/.local", "Local directory")
+    set_mark("w", "~/Workspace", "Workspace directory")
+    set_mark("x", "~/Documents", "Documents directory")
+  end,
+})
+
+vim.keymap.set("n", "<leader>/", "<CMD>lua MiniFiles.open()<CR>", { desc = "MiniFiles" })

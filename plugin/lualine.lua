@@ -2,9 +2,27 @@ vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" }, { load = true, 
 
 vim.o.showmode = false
 
+local lualine = require("lualine")
 local color = require("utils").color
 local icons = require("utils.icons")
-local lualine = require("lualine")
+
+local arrow = function()
+  local require_safe = require("utils").require_safe
+
+  if require_safe("arrow") then
+    return {
+      function()
+        local statusline = require("arrow.statusline")
+        return statusline.is_on_arrow_file() and statusline.text_for_statusline_with_icons() or ""
+      end,
+      color = function()
+        return { fg = color("lualine_a_command", "bg"), gui = "bold" }
+      end,
+    }
+  end
+
+  return ""
+end
 
 lualine.setup({
   options = {
@@ -94,6 +112,7 @@ lualine.setup({
       },
     },
     lualine_y = {
+      arrow(),
       { "progress" },
       { "location" },
     },

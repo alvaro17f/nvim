@@ -22,9 +22,7 @@ virtual_text.setup({})
 
 dm.plugins.osv_integration.enabled = true
 
-local path = vim.fn.stdpath("config") .. "/lua/plugins/debugger/"
-
-utils.require_modules(path)
+utils.require_modules("plugins/debugger")
 
 ----------------------------
 -- vscode launch.json file

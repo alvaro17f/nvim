@@ -62,7 +62,14 @@ M.require_safe = function(module)
 end
 
 M.require_modules = function(path, recursive)
-  local modules_path = path or debug.getinfo(2, "S").source:sub(2):match("(.*/)")
+  local modules_path
+
+  if path and not path:match("/lua/") then
+    modules_path = vim.fn.stdpath("config") .. "/lua/" .. path:gsub("^/", "")
+  else
+    modules_path = path or debug.getinfo(2, "S").source:sub(2):match("(.*/)")
+  end
+
   modules_path = modules_path:gsub("/?$", "/")
 
   recursive = recursive or true

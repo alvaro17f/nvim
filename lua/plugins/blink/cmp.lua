@@ -98,6 +98,9 @@ require("blink.cmp").setup({
       snippets = {
         name = "snippets",
         module = "blink.cmp.sources.snippets",
+        should_show_items = function(ctx)
+          return ctx.trigger.initial_kind ~= "trigger_character"
+        end,
       },
     },
   },

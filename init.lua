@@ -1,9 +1,9 @@
 ------------------------------------
 -- NVIM
 ------------------------------------
-require("core.pack")
 require("core.ui")
+require("core.pack")
 require("core.flags")
-require("core.autocmds")
 require("core.options")
 require("core.keymaps")
+require("core.autocmds")

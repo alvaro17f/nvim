@@ -1,7 +1,4 @@
-Pack.add(
-  { { src = "https://github.com/mcauley-penney/techbase.nvim", name = "techbase" } },
-  { load = true, confirm = false }
-)
+Pack.add({ { src = "https://github.com/mcauley-penney/techbase.nvim", name = "techbase" } })
 
 require("techbase").setup({
   italic_comments = true,

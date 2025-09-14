@@ -1,7 +1,4 @@
-Pack.add(
-  { { src = "https://github.com/folke/tokyonight.nvim", name = "tokyonight" } },
-  { load = true, confirm = false }
-)
+Pack.add({ { src = "https://github.com/folke/tokyonight.nvim", name = "tokyonight" } })
 
 require("tokyonight").setup({
   style = "moon",

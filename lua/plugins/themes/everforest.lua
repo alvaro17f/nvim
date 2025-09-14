@@ -1,7 +1,4 @@
-Pack.add(
-  { { src = "https://github.com/neanias/everforest-nvim", name = "everforest" } },
-  { load = true, confirm = false }
-)
+Pack.add({ { src = "https://github.com/neanias/everforest-nvim", name = "everforest" } })
 
 require("everforest").setup({
   background = "hard", -- "soft", "medium" or "hard"

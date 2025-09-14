@@ -1,7 +1,4 @@
-Pack.add(
-  { { src = "https://github.com/olivercederborg/poimandres.nvim", name = "poimandres" } },
-  { load = true, confirm = false }
-)
+Pack.add({ { src = "https://github.com/olivercederborg/poimandres.nvim", name = "poimandres" } })
 
 local p = require("poimandres.palette")
 

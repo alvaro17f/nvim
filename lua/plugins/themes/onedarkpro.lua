@@ -1,7 +1,4 @@
-Pack.add(
-  { { src = "https://github.com/olimorris/onedarkpro.nvim", name = "onedarkpro" } },
-  { load = true, confirm = false }
-)
+Pack.add({ { src = "https://github.com/olimorris/onedarkpro.nvim", name = "onedarkpro" } })
 
 require("onedarkpro").setup({
   options = {

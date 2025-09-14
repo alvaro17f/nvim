@@ -3,7 +3,7 @@ Pack.add({ "https://github.com/nvim-mini/mini.sessions" })
 local current_session = nil
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
 
-local mini_sessions = require("mini.sessions")
+local MiniSessions = require("mini.sessions")
 local require_safe = require("utils").require_safe
 local utils = require("utils.mini.sessions")
 
@@ -20,7 +20,7 @@ local arrow = function()
   end
 end
 
-mini_sessions.setup({
+MiniSessions.setup({
   autoread = false,
   autowrite = true,
   directory = sessions_directory,

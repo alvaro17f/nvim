@@ -1,6 +1,8 @@
 Pack.add({ "https://github.com/nvim-mini/mini.surround" })
 
-require("mini.surround").setup({
+local MiniSurround = require("mini.surround")
+
+MiniSurround.setup({
   mappings = {
     add = "<leader>sa", -- Add surrounding in Normal and Visual modes
     delete = "<leader>sd", -- Delete surrounding

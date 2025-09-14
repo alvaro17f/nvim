@@ -27,6 +27,7 @@ vim.o.completefuzzycollect = "keyword,files,whole_line"
 vim.o.completeopt = "fuzzy,menuone,noselect,popup"
 vim.o.cursorline = true
 vim.o.expandtab = true
+vim.o.fillchars = "eob: "
 vim.o.hidden = true
 vim.o.hlsearch = false
 vim.o.ignorecase = true

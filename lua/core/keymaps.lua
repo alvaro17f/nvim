@@ -2,6 +2,7 @@
 -- KEYMAPS
 ------------------------------------
 local keymap = vim.keymap.set
+local flags_utils = require("utils.flags")
 local icons = require("utils.icons")
 
 -- QUIT
@@ -24,7 +25,7 @@ end, { noremap = true, silent = true, desc = "Update plugins" })
 
 -- FLAGS
 keymap("n", "<leader>F", function()
-  require("utils.flags").toggle()
+  flags_utils.toggle()
 end, { noremap = true, silent = true, desc = "Flags" })
 
 -- PASTE YANK, NOT DELETED

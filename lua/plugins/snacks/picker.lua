@@ -2,6 +2,7 @@ local M = {}
 
 local git = require("utils.git")
 local picker_utils = require("utils.snacks.picker")
+local scratch_utils = require("utils.snacks.scratch")
 
 M.config = {
   picker = {
@@ -167,11 +168,11 @@ M.keymaps = {
   end, { desc = "Rename" }),
 
   vim.keymap.set("n", "-", function()
-    require("utils.snacks.scratch").new_scratch()
+    scratch_utils.new_scratch()
   end, { desc = "New Scratch" }),
 
   vim.keymap.set("n", "_", function()
-    require("utils.snacks.scratch").select_scratch()
+    scratch_utils.select_scratch()
   end, { desc = "Select Scratch" }),
 
   vim.keymap.set("n", "|", function()

@@ -1,9 +1,11 @@
 Pack.add({
-  "https://github.com/mikavilpas/yazi.nvim",
   "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/mikavilpas/yazi.nvim",
 })
 
-require("yazi").setup({
+local yazi = require("yazi")
+
+yazi.setup({
   open_for_directories = true, -- use yazi instead of netrw for directories
   open_multiple_tabs = true,
   keymaps = {
@@ -24,4 +26,4 @@ require("yazi").setup({
   },
 })
 
-vim.keymap.set("n", "<leader>/", "<CMD>Yazi<CR>", { desc = "Yazi" })
+vim.keymap.set("n", "<leader>/", yazi.toggle, { desc = "Yazi" })

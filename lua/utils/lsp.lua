@@ -151,10 +151,10 @@ local on_attach = function()
             vim.lsp.completion.get()
           end, opts)
         end
+      end
 
-        if client:supports_method(methods.textDocument_documentColor, args.buf) then
-          vim.lsp.document_color.enable(true, args.buf, { style = "virtual" })
-        end
+      if client:supports_method(methods.textDocument_documentColor, args.buf) then
+        vim.lsp.document_color.enable(true, args.buf, { style = "virtual" })
       end
 
       if client:supports_method(methods.textDocument_inlayHint, args.buf) then

@@ -63,7 +63,8 @@ lualine.setup({
         file_status = false,
         fmt = function(str)
           local directory = str:match("(.*)/.*$")
-          return not directory:match("v:null") and directory or "<>"
+          local is_directory = directory and not directory:match("v:null")
+          return is_directory and directory or "<>"
         end,
         icon = {
           Utils.icons.core.arrows.double.right,

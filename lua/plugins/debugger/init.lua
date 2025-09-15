@@ -20,7 +20,7 @@ virtual_text.setup({})
 
 dm.plugins.osv_integration.enabled = true
 
-Utils.require_modules("plugins/debugger")
+Utils.require_modules()
 
 ----------------------------
 -- vscode launch.json file

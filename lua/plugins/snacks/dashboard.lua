@@ -1,6 +1,6 @@
 local M = {}
 
-local icons = require("utils.icons").snacks.dashboard
+local icons = Utils.icons.snacks.dashboard
 local dashboard_utils = require("plugins.snacks.utils.dashboard")
 local sessions_utils = require("plugins.mini.utils.sessions")
 

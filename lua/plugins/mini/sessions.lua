@@ -4,17 +4,16 @@ local current_session = nil
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
 
 local MiniSessions = require("mini.sessions")
-local require_safe = require("utils").require_safe
 local utils = require("plugins.mini.utils.sessions")
 
 local edgy = function()
-  if require_safe("edgy") then
+  if Utils.require_safe("edgy") then
     require("edgy").close()
   end
 end
 
 local arrow = function()
-  if require_safe("arrow") then
+  if Utils.require_safe("arrow") then
     require("arrow.git").refresh_git_branch()
     require("arrow.persist").load_cache_file()
   end

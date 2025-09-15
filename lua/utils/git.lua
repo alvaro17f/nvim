@@ -1,12 +1,12 @@
-local M = {}
+_G.Utils.git = {}
 
-M.is_git_repo = function()
+Utils.git.is_git_repo = function()
   vim.fn.system("git rev-parse --is-inside-work-tree >/dev/null 2>&1")
   return vim.v.shell_error == 0
 end
 
-M.get_workspace_root = function()
-  if not M.is_git_repo() then
+Utils.git.get_workspace_root = function()
+  if not Utils.git.is_git_repo() then
     return vim.fn.getcwd()
   end
 
@@ -17,5 +17,3 @@ M.get_workspace_root = function()
 
   return output:gsub("%s*$", "")
 end
-
-return M

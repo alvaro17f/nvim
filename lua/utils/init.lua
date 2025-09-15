@@ -1,6 +1,6 @@
-local M = {}
+_G.Utils = {}
 
-M.color = function(group, prop)
+Utils.color = function(group, prop)
   prop = prop or "fg"
   group = type(group) == "table" and group or { group }
   for _, g in ipairs(group) do
@@ -12,17 +12,17 @@ M.color = function(group, prop)
   return nil
 end
 
-M.deep_merge = function(target, source)
+Utils.deep_merge = function(target, source)
   for k, v in pairs(source) do
     if type(v) == "table" and type(target[k]) == "table" then
-      M.deep_merge(target[k], v)
+      Utils.deep_merge(target[k], v)
     else
       target[k] = v
     end
   end
 end
 
-M.require_safe = function(module)
+Utils.require_safe = function(module)
   local ok, result = pcall(require, module)
   return ok and result or nil
 end
@@ -41,7 +41,7 @@ end
 
 ---@param path string
 ---@param early? table
-M.require_inits = function(path, early)
+Utils.require_inits = function(path, early)
   if not path then
     return
   end
@@ -77,7 +77,7 @@ M.require_inits = function(path, early)
   end
 end
 
-M.require_modules = function(path, process_fn)
+Utils.require_modules = function(path, process_fn)
   if type(process_fn) ~= "function" then
     process_fn = function(...) end
   end
@@ -111,14 +111,17 @@ M.require_modules = function(path, process_fn)
   end
 end
 
-M.get_config = function(path)
+Utils.get_config = function(path)
   local config = {}
-  M.require_modules(path, function(module_result)
+  Utils.require_modules(path, function(module_result)
     if module_result.config then
-      M.deep_merge(config, module_result.config)
+      Utils.deep_merge(config, module_result.config)
     end
   end)
   return config
 end
 
-return M
+---------------------
+-- require all utils
+---------------------
+Utils.require_modules()

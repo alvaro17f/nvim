@@ -4,8 +4,6 @@ Pack.add({
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 })
 
-local icons = require("utils.icons")
-
 require("blink.cmp").setup({
   keymap = {
     preset = "default", -- "default" | "enter" | "super-tab"
@@ -20,7 +18,7 @@ require("blink.cmp").setup({
 
   appearance = {
     nerd_font_variant = "mono",
-    kind_icons = icons.kind.v1,
+    kind_icons = Utils.icons.kind.v1,
   },
 
   completion = {

@@ -3,20 +3,16 @@ Pack.add({ "https://github.com/nvim-lualine/lualine.nvim" })
 vim.o.showmode = false
 
 local lualine = require("lualine")
-local color = require("utils").color
-local icons = require("utils.icons")
 
 local arrow = function()
-  local require_safe = require("utils").require_safe
-
-  if require_safe("arrow") then
+  if Utils.require_safe("arrow") then
     return {
       function()
         local statusline = require("arrow.statusline")
         return statusline.is_on_arrow_file() and statusline.text_for_statusline_with_icons() or ""
       end,
       color = function()
-        return { fg = color("lualine_a_command", "bg"), gui = "bold" }
+        return { fg = Utils.color("lualine_a_command", "bg"), gui = "bold" }
       end,
     }
   end
@@ -27,8 +23,8 @@ end
 lualine.setup({
   options = {
     theme = "auto",
-    component_separators = icons.lualine.separator.component,
-    section_separators = icons.lualine.separator.section,
+    component_separators = Utils.icons.lualine.separator.component,
+    section_separators = Utils.icons.lualine.separator.section,
     globalstatus = true,
     disabled_filetypes = {
       statusline = {
@@ -47,19 +43,19 @@ lualine.setup({
     lualine_a = {
       {
         "mode",
-        icon = icons.lualine.logo.vim,
+        icon = Utils.icons.lualine.logo.vim,
       },
     },
     lualine_b = {
       {
         "branch",
-        icon = icons.lualine.git.commit,
+        icon = Utils.icons.lualine.git.commit,
       },
     },
     lualine_c = {
       {
         "diagnostics",
-        symbols = icons.diagnostics,
+        symbols = Utils.icons.diagnostics,
       },
       {
         "filename",
@@ -70,10 +66,10 @@ lualine.setup({
           return not directory:match("v:null") and directory or "<>"
         end,
         icon = {
-          icons.core.arrows.double.right,
+          Utils.icons.core.arrows.double.right,
           align = "right",
           color = function()
-            return { fg = color("lualine_a_replace", "bg") }
+            return { fg = Utils.color("lualine_a_replace", "bg") }
           end,
         },
         separator = "",
@@ -84,7 +80,7 @@ lualine.setup({
         path = 0,
         file_status = false,
         color = function()
-          return { fg = color("lualine_a_normal", "bg"), gui = vim.bo.modified and "italic,bold" or "bold" }
+          return { fg = Utils.color("lualine_a_normal", "bg"), gui = vim.bo.modified and "italic,bold" or "bold" }
         end,
         padding = { left = 0, right = 1 },
       },
@@ -92,7 +88,7 @@ lualine.setup({
     lualine_x = {
       {
         "diff",
-        symbols = icons.diff,
+        symbols = Utils.icons.diff,
       },
       { "filetype" },
       { "encoding" },
@@ -101,12 +97,12 @@ lualine.setup({
         fmt = function()
           local reg = vim.fn.reg_recording()
           if reg ~= "" then
-            return icons.lualine.recording .. " recording: @" .. reg
+            return Utils.icons.lualine.recording .. " recording: @" .. reg
           end
           return nil
         end,
         color = function()
-          return { fg = color("lualine_a_replace", "bg"), gui = "bold" }
+          return { fg = Utils.color("lualine_a_replace", "bg"), gui = "bold" }
         end,
         draw_empty = false,
       },
@@ -119,8 +115,8 @@ lualine.setup({
     lualine_z = {
       {
         "datetime",
-        style = icons.lualine.clock .. " %H:%M",
-        separator = icons.lualine.separator.rounded,
+        style = Utils.icons.lualine.clock .. " %H:%M",
+        separator = Utils.icons.lualine.separator.rounded,
         left_padding = 2,
       },
     },

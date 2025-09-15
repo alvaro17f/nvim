@@ -1,7 +1,5 @@
 local M = {}
 
-local git = require("utils.git")
-
 M.config = {
   lazygit = {
     enabled = true,
@@ -20,8 +18,8 @@ M.config = {
 
 M.keymaps = {
   vim.keymap.set("n", "<leader>gg", function()
-    if git.is_git_repo() then
-      Snacks.lazygit({ cwd = git.get_workspace_root() })
+    if Utils.git.is_git_repo() then
+      Snacks.lazygit({ cwd = Utils.git.get_workspace_root() })
     elseif vim.bo.filetype == "snacks_dashboard" then
       Snacks.lazygit({ cwd = vim.fn.stdpath("config") })
     else
@@ -31,8 +29,8 @@ M.keymaps = {
 }
 
 vim.keymap.set("n", "<leader>gl", function()
-  if git.is_git_repo() then
-    Snacks.lazygit.log({ cwd = git.get_workspace_root() })
+  if Utils.git.is_git_repo() then
+    Snacks.lazygit.log({ cwd = Utils.git.get_workspace_root() })
   elseif vim.bo.filetype == "snacks_dashboard" then
     Snacks.lazygit.log({ cwd = vim.fn.stdpath("config") })
   else
@@ -41,7 +39,7 @@ vim.keymap.set("n", "<leader>gl", function()
 end, { desc = "Lazygit log" })
 
 vim.keymap.set("n", "<leader>gh", function()
-  if git.is_git_repo() then
+  if Utils.git.is_git_repo() then
     Snacks.lazygit.log_file()
   else
     print("You're not in a git repository")

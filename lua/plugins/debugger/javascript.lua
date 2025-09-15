@@ -1,7 +1,6 @@
 local dap = require("dap")
-local git = require("utils.git")
 local debug_adapter_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
-local cwd = vim.fs.root(0, "package.json") or git.get_workspace_root() or "${workspaceFolder}"
+local cwd = vim.fs.root(0, "package.json") or Utils.git.get_workspace_root() or "${workspaceFolder}"
 
 local adapters = {
   "node-terminal",

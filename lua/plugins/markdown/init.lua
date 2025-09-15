@@ -4,7 +4,7 @@ vim.g.markdown_filetypes = {
   "markdown",
 }
 
-local icons = require("utils.icons").core.heading
+local icons = Utils.icons.core.heading
 
 require("render-markdown").setup({
   anti_conceal = { enabled = false },

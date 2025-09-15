@@ -86,6 +86,6 @@ require("neotest").setup({
   vim.keymap.set("n", "<leader>ts", function() require("neotest").summary.toggle() end, { desc = "Toggle Summary (Neotest)" })
   vim.keymap.set("n", "<leader>tS", function() require("neotest").run.stop() end, { desc = "Stop (Neotest)" })
   vim.keymap.set("n", "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, { desc = "Run File (Neotest)" })
-  vim.keymap.set("n", "<leader>tT", function() require("neotest").run.run(require("utils.git").get_workspace_root()) end, { desc = "Run All Test Files (Neotest)" })
+  vim.keymap.set("n", "<leader>tT", function() require("neotest").run.run(Utils.git.get_workspace_root()) end, { desc = "Run All Test Files (Neotest)" })
   vim.keymap.set("n", "<leader>tw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, { desc = "Toggle Watch (Neotest)" })
 --stylua: ignore end

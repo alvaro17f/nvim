@@ -1,1 +1,1 @@
-require("utils").require_modules()
+Utils.require_modules()

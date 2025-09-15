@@ -1,12 +1,10 @@
 local dap = require("dap")
-local debugger_utils = require("utils.debugger")
-local git = require("utils.git")
 
 dap.adapters.delve = {
   type = "server",
   port = "${port}",
   executable = {
-    command = debugger_utils.debugger_executable_path("dlv"),
+    command = Utils.debugger.debugger_executable_path("dlv"),
     args = { "dap", "-l", "127.0.0.1:${port}" },
     detached = vim.fn.has("win32") == 0,
   },
@@ -17,12 +15,12 @@ dap.configurations.go = {
     type = "delve",
     name = "Debug",
     request = "launch",
-    program = debugger_utils.find_debug_target(
-      git.get_workspace_root() .. "/bin/",
+    program = Utils.debugger.find_debug_target(
+      Utils.git.get_workspace_root() .. "/bin/",
       2,
       { "go", "build", "-o", "./bin/" }
     ),
-    cwd = git.get_workspace_root,
+    cwd = Utils.git.get_workspace_root,
     stopOnEntry = false,
   },
   {

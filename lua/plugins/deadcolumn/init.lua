@@ -1,7 +1,5 @@
 Pack.add({ "https://github.com/Bekaboo/deadcolumn.nvim" })
 
-local color = require("utils").color
-
 require("deadcolumn").setup({
   blending = {
     hlgroup = { "Whitespace", "fg" }, --:help highlight-gruoups
@@ -9,6 +7,6 @@ require("deadcolumn").setup({
   },
   warning = {
     alpha = 0.9,
-    colorcode = color("Error"),
+    colorcode = Utils.color("Error"),
   },
 })

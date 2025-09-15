@@ -1,9 +1,8 @@
 ---@diagnostic disable: assign-type-mismatch
+_G.Utils.debugger = {}
 
-local M = {}
-
-M.debugger_icons = function()
-  local icons = require("utils.icons").debugger
+Utils.debugger.debugger_icons = function()
+  local icons = Utils.icons.debugger
 
   vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
@@ -24,11 +23,11 @@ M.debugger_icons = function()
   end
 end
 
-M.debugger_executable_path = function(debugger_name)
+Utils.debugger.debugger_executable_path = function(debugger_name)
   return vim.fn.stdpath("data") .. "/mason/bin/" .. debugger_name
 end
 
-M.find_debug_target = function(targetPrefix, depth, buildCommand)
+Utils.debugger.find_debug_target = function(targetPrefix, depth, buildCommand)
   local dap = require("dap")
   local targets = {}
   for entry in vim.fs.dir(targetPrefix, { depth = depth }) do
@@ -54,5 +53,3 @@ M.find_debug_target = function(targetPrefix, depth, buildCommand)
     end)
   end)
 end
-
-return M

@@ -1,6 +1,5 @@
 local M = {}
 
-local git = require("utils.git")
 local picker_utils = require("plugins.snacks.utils.picker")
 local scratch_utils = require("plugins.snacks.utils.scratch")
 
@@ -82,7 +81,7 @@ M.config = {
           switch_grep_files = function(picker, _)
             picker_utils.status = {
               is_grep = true,
-              is_git = git.is_git_repo(),
+              is_git = Utils.git.is_git_repo(),
             }
             picker_utils.switch_grep_files(picker, _)
           end,
@@ -112,15 +111,15 @@ M.config = {
 M.keymaps = {
 
   vim.keymap.set("n", "<leader>ff", function()
-    if git.is_git_repo() then
-      return Snacks.picker.git_files({ cwd = git.get_workspace_root() })
+    if Utils.git.is_git_repo() then
+      return Snacks.picker.git_files({ cwd = Utils.git.get_workspace_root() })
     end
 
-    Snacks.picker.files({ cwd = git.get_workspace_root() })
+    Snacks.picker.files({ cwd = Utils.git.get_workspace_root() })
   end, { desc = "Find Files" }),
 
   vim.keymap.set("n", "<leader>fg", function()
-    Snacks.picker.grep({ cwd = git.get_workspace_root() })
+    Snacks.picker.grep({ cwd = Utils.git.get_workspace_root() })
   end, { desc = "Grep Files" }),
 
   vim.keymap.set("n", "<leader>fr", function()

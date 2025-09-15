@@ -14,6 +14,4 @@ local DEBUGGERS = {
   "js-debug-adapter",
 }
 
-local lsp = require("utils.lsp")
-
-lsp.setup(LSP_TOOLS, DEBUGGERS)
+Utils.lsp.setup(LSP_TOOLS, DEBUGGERS)

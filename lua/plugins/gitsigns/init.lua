@@ -2,7 +2,7 @@
 
 Pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
 
-local icons = require("utils.icons").gitsigns.v1
+local icons = Utils.icons.gitsigns.v1
 
 local signs = {
   add = { text = icons.add },

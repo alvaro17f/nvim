@@ -1,8 +1,6 @@
 Pack.add({ "https://github.com/folke/snacks.nvim" })
 
-local utils = require("utils")
-
-local opts = utils.get_config("plugins/snacks")
+local opts = Utils.get_config("plugins/snacks")
 
 Snacks.setup(opts)
 

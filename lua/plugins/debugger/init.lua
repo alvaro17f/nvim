@@ -13,16 +13,14 @@ Pack.add({
 })
 
 local dm = require("debugmaster")
-local utils = require("utils")
-local utils_debugger = require("utils.debugger")
 local virtual_text = require("nvim-dap-virtual-text")
 
-utils_debugger.debugger_icons()
+Utils.debugger.debugger_icons()
 virtual_text.setup({})
 
 dm.plugins.osv_integration.enabled = true
 
-utils.require_modules("plugins/debugger")
+Utils.require_modules("plugins/debugger")
 
 ----------------------------
 -- vscode launch.json file

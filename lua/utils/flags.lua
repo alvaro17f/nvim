@@ -1,4 +1,4 @@
-local M = {}
+_G.Utils.flags = {}
 
 local default_flags = {}
 local show_icons = false
@@ -97,7 +97,7 @@ local clean_flags = function(file)
 end
 
 ---@param flag_to_check string
-M.get_flags = function(flag_to_check)
+Utils.flags.get_flags = function(flag_to_check)
   local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   if flags[flag_to_check] == nil then
     flags[flag_to_check] = default_flags[flag_to_check] or false
@@ -146,7 +146,7 @@ local format_label = function(flag, value)
   return label
 end
 
-M.toggle = function()
+Utils.flags.toggle = function()
   clean_flags(flags_path)
 
   local items = {}
@@ -165,7 +165,7 @@ M.toggle = function()
       local new_value = not choice.value
       set_flags(choice.flag, new_value)
       vim.notify(choice.flag .. " " .. (new_value and "enabled" or "disabled"), vim.log.levels.INFO)
-      M.toggle()
+      Utils.flags.toggle()
     end,
 
     table = function(choice)
@@ -183,7 +183,7 @@ M.toggle = function()
         if selected ~= nil then
           set_flags(choice.flag, selected)
           vim.notify(choice.flag .. " set to " .. tostring(selected), vim.log.levels.INFO)
-          M.toggle()
+          Utils.flags.toggle()
         end
       end)
     end,
@@ -205,11 +205,11 @@ M.toggle = function()
 end
 
 local generate_flags_fn = function()
-  vim.api.nvim_create_user_command("Flags", M.toggle, {})
+  vim.api.nvim_create_user_command("Flags", Utils.flags.toggle, {})
 end
 
 ---@param opts {flags: table, icons: boolean, path?: string}
-M.setup = function(opts)
+Utils.flags.setup = function(opts)
   default_flags = opts.flags or {}
   flags_path = opts.path or flags_path
   show_icons = opts.icons or false
@@ -218,7 +218,7 @@ end
 
 ---@param path string
 ---@param extra_opts? table
-M.get_options_by_path = function(path, extra_opts)
+Utils.flags.get_options_by_path = function(path, extra_opts)
   local options = {}
 
   local success, files = pcall(vim.fn.readdir, path)
@@ -244,5 +244,3 @@ M.get_options_by_path = function(path, extra_opts)
 
   return options
 end
-
-return M

@@ -12,11 +12,9 @@
 ---@field theme string
 _G.Flags = {}
 
-local flags_utils = require("utils.flags")
-
-local explorers = flags_utils.get_options_by_path(vim.fn.stdpath("config") .. "/lua/plugins/explorers/", { false })
-local logos = flags_utils.get_options_by_path(vim.fn.stdpath("config") .. "/assets/logos/")
-local themes = flags_utils.get_options_by_path(vim.fn.stdpath("config") .. "/lua/plugins/themes/", { false })
+local explorers = Utils.flags.get_options_by_path(vim.fn.stdpath("config") .. "/lua/plugins/explorers/", { false })
+local logos = Utils.flags.get_options_by_path(vim.fn.stdpath("config") .. "/assets/logos/")
+local themes = Utils.flags.get_options_by_path(vim.fn.stdpath("config") .. "/lua/plugins/themes/", { false })
 
 local flags = {
   ai = { default = false, options = { "opencode", "copilot", false } },
@@ -29,7 +27,7 @@ local flags = {
   theme = { default = "catppuccin", options = themes },
 }
 
-flags_utils.setup({
+Utils.flags.setup({
   icons = true,
   flags = flags,
 })
@@ -38,5 +36,5 @@ flags_utils.setup({
 -- GLOBAL FLAGS
 ------------------------------------
 for flag_name, _ in pairs(flags) do
-  Flags[flag_name] = flags_utils.get_flags(flag_name) or false
+  Flags[flag_name] = Utils.flags.get_flags(flag_name) or false
 end

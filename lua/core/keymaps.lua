@@ -2,8 +2,6 @@
 -- KEYMAPS
 ------------------------------------
 local keymap = vim.keymap.set
-local flags_utils = require("utils.flags")
-local icons = require("utils.icons")
 
 -- QUIT
 keymap("n", "ZQ", "<CMD>quitall!<CR>", { noremap = true, silent = true, desc = "Quit all" })
@@ -14,7 +12,7 @@ keymap("n", "ZR", "<CMD>restart<CR>", { noremap = true, silent = true, desc = "R
 -- AUTO SAVE
 keymap("n", "<leader>*", function()
   vim.g.autosave = not vim.g.autosave
-  local icon = vim.g.autosave and icons.core.toggle.enabled or icons.core.toggle.disabled
+  local icon = vim.g.autosave and Utils.icons.core.toggle.enabled or Utils.icons.core.toggle.disabled
   vim.notify(icon .. " Auto save: " .. (vim.g.autosave and "enabled" or "disabled"), vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "Toggle auto save" })
 
@@ -25,7 +23,7 @@ end, { noremap = true, silent = true, desc = "Update plugins" })
 
 -- FLAGS
 keymap("n", "<leader>F", function()
-  flags_utils.toggle()
+  Utils.flags.toggle()
 end, { noremap = true, silent = true, desc = "Flags" })
 
 -- PASTE YANK, NOT DELETED

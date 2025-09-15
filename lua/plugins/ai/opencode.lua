@@ -1,9 +1,8 @@
 Pack.add({ "https://github.com/NickvanDyke/opencode.nvim" })
 
 vim.o.autoread = true
+
 vim.g.opencode_opts = {
-  provider_id = "openrouter",
-  model_id = vim.env.OPENROUTER_MODEL,
   port = nil,
   auto_reload = true,
   terminal = {

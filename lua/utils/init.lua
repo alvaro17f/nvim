@@ -1,17 +1,21 @@
 _G.Utils = _G.Utils or {}
 
+---@param group string|string[] hl group to get color from
+---@param prop? string property to get. Defaults to "fg"
 Utils.color = function(group, prop)
   prop = prop or "fg"
   group = type(group) == "table" and group or { group }
+  ---@cast group string[]
   for _, g in ipairs(group) do
     local hl = vim.api.nvim_get_hl(0, { name = g, link = false })
     if hl[prop] then
       return string.format("#%06x", hl[prop])
     end
   end
-  return nil
 end
 
+---@param target table
+---@param source table
 Utils.deep_merge = function(target, source)
   for k, v in pairs(source) do
     if type(v) == "table" and type(target[k]) == "table" then
@@ -22,11 +26,13 @@ Utils.deep_merge = function(target, source)
   end
 end
 
+---@param module string
 Utils.require_safe = function(module)
   local ok, result = pcall(require, module)
   return ok and result or nil
 end
 
+---@param path? string
 local process_path = function(path)
   if path and not path:match("/lua/") then
     return vim.fn.stdpath("config") .. "/lua/" .. path:gsub("^/", ""):gsub("/?$", "/")
@@ -77,6 +83,8 @@ Utils.require_inits = function(path, early)
   end
 end
 
+---@param path? string
+---@param process_fn? function
 Utils.require_modules = function(path, process_fn)
   if type(process_fn) ~= "function" then
     process_fn = function(...) end
@@ -104,6 +112,7 @@ Utils.require_modules = function(path, process_fn)
   end
 end
 
+---@param path? string
 Utils.get_config = function(path)
   local config = {}
   Utils.require_modules(path, function(module_result)

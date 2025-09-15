@@ -39,12 +39,12 @@ M.config = {
     sources = {
       files = {
         actions = {
-          switch_grep_files = function(picker, _)
+          switch_grep_files = function(picker)
             Utils.snacks.picker.status = {
               is_grep = false,
               is_git = false,
             }
-            Utils.snacks.picker.switch_grep_files(picker, _)
+            Utils.snacks.picker.switch_grep_files(picker)
           end,
         },
         win = {
@@ -57,12 +57,12 @@ M.config = {
       },
       git_files = {
         actions = {
-          switch_grep_files = function(picker, _)
+          switch_grep_files = function(picker)
             Utils.snacks.picker.status = {
               is_grep = false,
               is_git = true,
             }
-            Utils.snacks.picker.switch_grep_files(picker, _)
+            Utils.snacks.picker.switch_grep_files(picker)
           end,
         },
         win = {
@@ -75,12 +75,12 @@ M.config = {
       },
       grep = {
         actions = {
-          switch_grep_files = function(picker, _)
+          switch_grep_files = function(picker)
             Utils.snacks.picker.status = {
               is_grep = true,
               is_git = Utils.git.is_git_repo(),
             }
-            Utils.snacks.picker.switch_grep_files(picker, _)
+            Utils.snacks.picker.switch_grep_files(picker)
           end,
         },
         win = {

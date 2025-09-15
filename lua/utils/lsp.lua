@@ -30,6 +30,8 @@ local get_lsp_servers = function()
     :totable()
 end
 
+---@param LSP_TOOLS string[]
+---@param DEBUGGERS string[]
 local enable = function(LSP_TOOLS, DEBUGGERS)
   Pack.add({ "https://github.com/neovim/nvim-lspconfig" })
 
@@ -199,6 +201,8 @@ local diagnostics = function()
   })
 end
 
+---@param LSP_TOOLS string[]
+---@param DEBUGGERS string[]
 Utils.lsp.setup = function(LSP_TOOLS, DEBUGGERS)
   set_global_config()
   enable(LSP_TOOLS, DEBUGGERS)

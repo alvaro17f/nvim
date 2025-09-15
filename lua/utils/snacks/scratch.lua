@@ -31,6 +31,7 @@ end
 
 local column_widths = { 0, 0, 0, 0 }
 
+---@param item table
 local update_column_widths = function(item)
   column_widths[1] = math.max(column_widths[1], vim.api.nvim_strwidth(item.cwd))
   column_widths[2] = math.max(column_widths[2], vim.api.nvim_strwidth(item.icon))
@@ -38,6 +39,7 @@ local update_column_widths = function(item)
   column_widths[4] = math.max(column_widths[4], vim.api.nvim_strwidth(item.branch))
 end
 
+---@param item table
 local process_item = function(item)
   item._path = item.file
   item.branch = item.branch and ("branch:%s"):format(item.branch) or ""
@@ -48,12 +50,14 @@ local process_item = function(item)
   update_column_widths(item)
 end
 
+---@param items table
 local process_items = function(items)
   for _, item in ipairs(items) do
     process_item(item)
   end
 end
 
+---@param item table
 local format_item_text = function(item)
   local parts = { item.cwd, item.icon, item.name, item.branch }
   for i, part in ipairs(parts) do

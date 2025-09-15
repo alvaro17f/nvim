@@ -5,6 +5,7 @@ local default_flags = {}
 local show_icons = false
 local flags_path = vim.fn.stdpath("data") .. "/flags"
 
+---@param file string
 local read_file = function(file)
   local f, err = io.open(file, "r")
   if not f then
@@ -14,6 +15,8 @@ local read_file = function(file)
   return f
 end
 
+---@param file string
+---@param content string
 local write_file = function(file, content)
   local f, err = io.open(file, "w")
   if not f then
@@ -25,6 +28,7 @@ local write_file = function(file, content)
   return true
 end
 
+---@param file string
 local read_flags = function(file)
   local flags = {}
   local f = read_file(file)
@@ -50,6 +54,8 @@ local read_flags = function(file)
   return flags
 end
 
+---@param file string
+---@param flags table
 local write_flags = function(file, flags)
   local type_handlers = {
     boolean = function(k, v)
@@ -87,6 +93,7 @@ local write_flags = function(file, flags)
   return write_file(file, content)
 end
 
+---@param file string
 local clean_flags = function(file)
   local flags = read_flags(file)
   for k in pairs(flags) do
@@ -107,12 +114,15 @@ Utils.flags.get_flags = function(flag_to_check)
   return flags[flag_to_check]
 end
 
+---@param flag string
+---@param value any
 local set_flags = function(flag, value)
   local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   flags[flag] = value
   write_flags(flags_path, flags)
 end
 
+---@return table
 local get_all_flags = function()
   local flags = vim.fn.filereadable(flags_path) == 1 and read_flags(flags_path) or {}
   for k, v in pairs(default_flags) do
@@ -127,6 +137,8 @@ local get_all_flags = function()
   return flags
 end
 
+---@param flag string
+---@param value any
 local format_label = function(flag, value)
   local icon = (value == true and " ") or (value == false and " ") or " "
   local label = show_icons and (icon .. " " .. flag) or flag

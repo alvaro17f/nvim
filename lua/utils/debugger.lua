@@ -24,10 +24,14 @@ Utils.debugger.debugger_icons = function()
   end
 end
 
+---@param debugger_name string
 Utils.debugger.debugger_executable_path = function(debugger_name)
   return vim.fn.stdpath("data") .. "/mason/bin/" .. debugger_name
 end
 
+---@param targetPrefix string
+---@param depth number
+---@param buildCommand string
 Utils.debugger.find_debug_target = function(targetPrefix, depth, buildCommand)
   local dap = require("dap")
   local targets = {}

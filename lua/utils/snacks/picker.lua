@@ -7,7 +7,8 @@ Utils.snacks.picker.status = {
   is_git = nil,
 }
 
-Utils.snacks.picker.switch_grep_files = function(picker, _)
+---@param picker table
+Utils.snacks.picker.switch_grep_files = function(picker)
   local cwd = picker.input.filter.cwd
 
   picker:close()

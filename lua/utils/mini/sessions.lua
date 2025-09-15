@@ -36,6 +36,8 @@ Utils.mini.sessions.select_session = function()
     })
   end
 
+  ---@param a table
+  ---@param b table
   table.sort(items, function(a, b)
     return a.modify_time > b.modify_time
   end)
@@ -82,6 +84,7 @@ Utils.mini.sessions.select_session = function()
   })
 end
 
+---@param restore boolean
 Utils.mini.sessions.new_session = function(restore)
   local session_name = vim.fn.input("Session name: ")
 

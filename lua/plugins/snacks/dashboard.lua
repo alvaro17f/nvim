@@ -1,8 +1,8 @@
 local M = {}
 
 local icons = require("utils.icons").snacks.dashboard
-local dashboard_utils = require("utils.snacks.dashboard")
-local sessions_utils = require("utils.mini.sessions")
+local dashboard_utils = require("plugins.snacks.utils.dashboard")
+local sessions_utils = require("plugins.mini.utils.sessions")
 
 M.config = {
   dashboard = {

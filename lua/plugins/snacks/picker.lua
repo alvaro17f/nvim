@@ -1,8 +1,8 @@
 local M = {}
 
 local git = require("utils.git")
-local picker_utils = require("utils.snacks.picker")
-local scratch_utils = require("utils.snacks.scratch")
+local picker_utils = require("plugins.snacks.utils.picker")
+local scratch_utils = require("plugins.snacks.utils.scratch")
 
 M.config = {
   picker = {

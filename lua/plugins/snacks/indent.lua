@@ -8,7 +8,7 @@ M.config = {
   indent = {
     enabled = true,
     filter = function(buf)
-      return require("utils.snacks.indent").is_enabled(buf, ignored_filetypes)
+      return require("plugins.snacks.utils.indent").is_enabled(buf, ignored_filetypes)
     end,
   },
 }

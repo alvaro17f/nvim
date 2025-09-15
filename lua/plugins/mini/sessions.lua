@@ -5,7 +5,7 @@ local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
 
 local MiniSessions = require("mini.sessions")
 local require_safe = require("utils").require_safe
-local utils = require("utils.mini.sessions")
+local utils = require("plugins.mini.utils.sessions")
 
 local edgy = function()
   if require_safe("edgy") then

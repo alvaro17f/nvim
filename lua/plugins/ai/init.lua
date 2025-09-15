@@ -1,13 +1,11 @@
-if Flags.ai == false then
-  return {}
-end
-
 local plugins = {}
 
-if Flags.suggestions and Flags.ai ~= "copilot" then
-  table.insert(plugins, require("plugins.ai.neocodeium"))
+if Flags.ai_chat then
+  table.insert(plugins, require("plugins.ai." .. Flags.ai_chat))
 end
 
-table.insert(plugins, require("plugins.ai." .. Flags.ai))
+if Flags.ai_suggestions == "neocodeium" then
+  table.insert(plugins, require("plugins.ai.neocodeium"))
+end
 
 return plugins

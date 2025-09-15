@@ -153,6 +153,28 @@ local on_attach = function()
         end
       end
 
+      if client:supports_method(methods.textDocument_inlineCompletion, args.buf) then
+        vim.lsp.inline_completion.enable(Flags.ai_suggestions == "lsp")
+
+        vim.keymap.set("i", "<Tab>", function()
+          if not vim.lsp.inline_completion.get({ bufnr = args.buf }) then
+            return "<Tab>"
+          end
+        end, {
+          expr = true,
+          replace_keycodes = true,
+          desc = "Apply the currently displayed completion suggestion",
+        })
+
+        vim.keymap.set("i", "<a-n>", function()
+          vim.lsp.inline_completion.select({ bufnr = args.buf, count = 1 })
+        end, { desc = "Show next inline completion suggestion" })
+
+        vim.keymap.set("i", "<a-p>", function()
+          vim.lsp.inline_completion.select({ bufnr = args.buf, count = -1 })
+        end, { desc = "Show previous inline completion suggestion" })
+      end
+
       if client:supports_method(methods.textDocument_documentColor, args.buf) then
         vim.lsp.document_color.enable(true, args.buf, { style = "virtual" })
       end

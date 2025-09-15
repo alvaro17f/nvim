@@ -4,7 +4,6 @@ local current_session = nil
 local sessions_directory = vim.fn.stdpath("data") .. "/sessions/"
 
 local MiniSessions = require("mini.sessions")
-local utils = require("plugins.mini.utils.sessions")
 
 local edgy = function()
   if Utils.require_safe("edgy") then
@@ -46,7 +45,7 @@ MiniSessions.setup({
 
   vim.api.nvim_create_autocmd("VimLeavePre", {
     callback = function()
-      if utils.has_valid_buffers() and not current_session then
+      if Utils.mini.sessions.has_valid_buffers() and not current_session then
         local session = require("mini.sessions")
         session.write("draft")
       end
@@ -55,15 +54,15 @@ MiniSessions.setup({
 })
 
 vim.keymap.set("n", "<leader>wl", function()
-  utils.select_session()
+  Utils.mini.sessions.select_session()
 end, { desc = "Load Session" })
 
 vim.keymap.set("n", "<leader>ws", function()
-  utils.new_session(true)
+  Utils.mini.sessions.new_session(true)
 end, { desc = "Save Session" })
 
 vim.keymap.set("n", "<leader>w<backspace>", function()
-  utils.restore_session()
+  Utils.mini.sessions.restore_session()
 end, { desc = "Restore Last Session" })
 
 vim.keymap.set("n", "<leader>ww", function()

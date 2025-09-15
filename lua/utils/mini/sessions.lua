@@ -1,8 +1,12 @@
-local M = {}
+_G.Utils.mini = {
+  sessions = {},
+}
 
-local session = require("mini.sessions")
+local session = function()
+  return require("mini.sessions")
+end
 
-M.has_valid_buffers = function()
+Utils.mini.sessions.has_valid_buffers = function()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     local buflisted = vim.bo[bufnr].buflisted
     local readonly = vim.bo[bufnr].readonly
@@ -21,10 +25,10 @@ M.has_valid_buffers = function()
   return false
 end
 
-M.select_session = function()
+Utils.mini.sessions.select_session = function()
   local items = {}
 
-  for name, value in pairs(session.detected) do
+  for name, value in pairs(session().detected) do
     table.insert(items, {
       text = name,
       modify_time = value.modify_time,
@@ -58,11 +62,11 @@ M.select_session = function()
     actions = {
       delete = function(picker, item)
         if item then
-          session.delete(item.text, { verbose = false })
+          session().delete(item.text, { verbose = false })
           vim.notify("Session deleted: " .. item.text, vim.log.levels.WARN)
           picker:close()
           vim.schedule(function()
-            M.select_session()
+            Utils.mini.sessions.select_session()
           end)
         end
       end,
@@ -71,7 +75,7 @@ M.select_session = function()
       if item then
         picker:close()
         vim.schedule(function()
-          session.read(item.text, { verbose = false })
+          session().read(item.text, { verbose = false })
           vim.notify("Session read: " .. item.text, vim.log.levels.INFO)
         end)
       end
@@ -79,31 +83,29 @@ M.select_session = function()
   })
 end
 
-M.new_session = function(restore)
+Utils.mini.sessions.new_session = function(restore)
   local session_name = vim.fn.input("Session name: ")
 
   if session_name == "" then
     return vim.notify("Session save canceled", vim.log.levels.ERROR)
   end
 
-  session.write(session_name, { verbose = false })
+  session().write(session_name, { verbose = false })
   vim.notify("Session created: " .. session_name, vim.log.levels.INFO)
 
   if restore then
-    session.read(session_name, { verbose = false })
+    session().read(session_name, { verbose = false })
     vim.notify("Session read: " .. session_name, vim.log.levels.INFO)
   end
 end
 
-M.restore_session = function()
-  local latest_session_name = session.get_latest()
+Utils.mini.sessions.restore_session = function()
+  local latest_session_name = session().get_latest()
 
   if latest_session_name ~= nil then
-    session.read(latest_session_name)
+    session().read(latest_session_name)
     vim.notify("Session read: " .. latest_session_name, vim.log.levels.INFO)
   else
     vim.notify("No sessions found", vim.log.levels.ERROR)
   end
 end
-
-return M

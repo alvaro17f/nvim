@@ -1,8 +1,6 @@
 local M = {}
 
 local icons = Utils.icons.snacks.dashboard
-local dashboard_utils = require("plugins.snacks.utils.dashboard")
-local sessions_utils = require("plugins.mini.utils.sessions")
 
 M.config = {
   dashboard = {
@@ -15,7 +13,7 @@ M.config = {
           key = "<backspace>",
           desc = " Restore last session",
           action = function()
-            sessions_utils.restore_session()
+            Utils.mini.sessions.restore_session()
           end,
         },
         {
@@ -60,7 +58,7 @@ M.config = {
         },
         { icon = icons.quit, key = "q", desc = " Quit", action = "<CMD>qa<CR>" },
       },
-      header = dashboard_utils.get_logo(),
+      -- header = Utils.snacks.dashboard.get_logo(), --TODO: fix this
     },
     sections = {
       { section = "header" },

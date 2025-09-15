@@ -1,8 +1,5 @@
 local M = {}
 
-local picker_utils = require("plugins.snacks.utils.picker")
-local scratch_utils = require("plugins.snacks.utils.scratch")
-
 M.config = {
   picker = {
     layout = {
@@ -43,11 +40,11 @@ M.config = {
       files = {
         actions = {
           switch_grep_files = function(picker, _)
-            picker_utils.status = {
+            Utils.snacks.picker.status = {
               is_grep = false,
               is_git = false,
             }
-            picker_utils.switch_grep_files(picker, _)
+            Utils.snacks.picker.switch_grep_files(picker, _)
           end,
         },
         win = {
@@ -61,11 +58,11 @@ M.config = {
       git_files = {
         actions = {
           switch_grep_files = function(picker, _)
-            picker_utils.status = {
+            Utils.snacks.picker.status = {
               is_grep = false,
               is_git = true,
             }
-            picker_utils.switch_grep_files(picker, _)
+            Utils.snacks.picker.switch_grep_files(picker, _)
           end,
         },
         win = {
@@ -79,11 +76,11 @@ M.config = {
       grep = {
         actions = {
           switch_grep_files = function(picker, _)
-            picker_utils.status = {
+            Utils.snacks.picker.status = {
               is_grep = true,
               is_git = Utils.git.is_git_repo(),
             }
-            picker_utils.switch_grep_files(picker, _)
+            Utils.snacks.picker.switch_grep_files(picker, _)
           end,
         },
         win = {
@@ -167,11 +164,11 @@ M.keymaps = {
   end, { desc = "Rename" }),
 
   vim.keymap.set("n", "-", function()
-    scratch_utils.new_scratch()
+    Utils.snacks.scratch.new_scratch()
   end, { desc = "New Scratch" }),
 
   vim.keymap.set("n", "_", function()
-    scratch_utils.select_scratch()
+    Utils.snacks.scratch.select_scratch()
   end, { desc = "Select Scratch" }),
 
   vim.keymap.set("n", "|", function()

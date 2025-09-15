@@ -1,4 +1,6 @@
-local M = {}
+_G.Utils.snacks = {
+  scratch = {},
+}
 
 local filetypes = {
   { text = "css" },
@@ -60,7 +62,7 @@ local format_item_text = function(item)
   return table.concat(parts, " ")
 end
 
-M.select_scratch = function()
+Utils.snacks.scratch.select_scratch = function()
   local items = Snacks.scratch.list()
   process_items(items)
 
@@ -97,7 +99,7 @@ M.select_scratch = function()
         picker:close()
 
         vim.schedule(function()
-          M.select_scratch()
+          Utils.snacks.scratch.select_scratch()
         end)
       end,
     },
@@ -115,7 +117,7 @@ M.select_scratch = function()
   })
 end
 
-M.new_scratch = function()
+Utils.snacks.scratch.new_scratch = function()
   Snacks.picker.pick({
     source = "scratch",
     items = filetypes,
@@ -139,5 +141,3 @@ M.new_scratch = function()
     },
   })
 end
-
-return M

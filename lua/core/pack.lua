@@ -1,4 +1,4 @@
-_G.Pack = {}
+_G.Pack = _G.Pack or {}
 
 local pack_clean = function()
   local plugins = vim.pack.get()

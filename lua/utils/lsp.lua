@@ -1,4 +1,5 @@
-_G.Utils.lsp = {}
+_G.Utils = _G.Utils or {}
+_G.Utils.lsp = _G.Utils.lsp or {}
 
 local set_global_config = function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()

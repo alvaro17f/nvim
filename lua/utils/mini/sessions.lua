@@ -1,6 +1,5 @@
-_G.Utils.mini = {
-  sessions = {},
-}
+_G.Utils.mini = _G.Utils.mini or {}
+_G.Utils.mini.sessions = _G.Utils.mini.sessions or {}
 
 local session = function()
   return require("mini.sessions")

@@ -1,6 +1,6 @@
-_G.Utils.snacks = {
-  dashboard = {},
-}
+_G.Utils = _G.Utils or {}
+_G.Utils.snacks = _G.Utils.snacks or {}
+_G.Utils.snacks.dashboard = _G.Utils.snacks.dashboard or {}
 
 local logos_path = vim.fn.stdpath("config") .. "/assets/logos/"
 

@@ -1,4 +1,4 @@
-_G.Utils = {}
+_G.Utils = _G.Utils or {}
 
 Utils.color = function(group, prop)
   prop = prop or "fg"

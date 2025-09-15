@@ -58,7 +58,7 @@ M.config = {
         },
         { icon = icons.quit, key = "q", desc = " Quit", action = "<CMD>qa<CR>" },
       },
-      -- header = Utils.snacks.dashboard.get_logo(), --TODO: fix this
+      header = Utils.snacks.dashboard.get_logo(),
     },
     sections = {
       { section = "header" },

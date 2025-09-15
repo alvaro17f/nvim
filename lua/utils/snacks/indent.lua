@@ -1,6 +1,6 @@
-_G.Utils.snacks = {
-  indent = {},
-}
+_G.Utils = _G.Utils or {}
+_G.Utils.snacks = _G.Utils.snacks or {}
+_G.Utils.snacks.indent = _G.Utils.snacks.indent or {}
 
 local is_ignored_filetype = function(ignored_filetypes, filetype)
   return vim.tbl_contains(ignored_filetypes, filetype)

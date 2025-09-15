@@ -1,4 +1,5 @@
-_G.Utils.git = {}
+_G.Utils = _G.Utils or {}
+_G.Utils.git = _G.Utils.git or {}
 
 Utils.git.is_git_repo = function()
   vim.fn.system("git rev-parse --is-inside-work-tree >/dev/null 2>&1")

@@ -1,5 +1,6 @@
 ---@diagnostic disable: assign-type-mismatch
-_G.Utils.debugger = {}
+_G.Utils = _G.Utils or {}
+_G.Utils.debugger = _G.Utils.debugger or {}
 
 Utils.debugger.debugger_icons = function()
   local icons = Utils.icons.debugger

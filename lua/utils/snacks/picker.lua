@@ -1,6 +1,6 @@
-_G.Utils.snacks = {
-  picker = {},
-}
+_G.Utils = _G.Utils or {}
+_G.Utils.snacks = _G.Utils.snacks or {}
+_G.Utils.snacks.picker = _G.Utils.snacks.picker or {}
 
 Utils.snacks.picker.status = {
   is_grep = nil,

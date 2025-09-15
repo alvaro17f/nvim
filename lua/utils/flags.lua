@@ -1,4 +1,5 @@
-_G.Utils.flags = {}
+_G.Utils = _G.Utils or {}
+_G.Utils.flags = _G.Utils.flags or {}
 
 local default_flags = {}
 local show_icons = false

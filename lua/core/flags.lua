@@ -10,7 +10,7 @@
 ---@field suggestions boolean
 ---@field tests boolean
 ---@field theme string
-_G.Flags = {}
+_G.Flags = _G.Flags or {}
 
 local explorers = Utils.flags.get_options_by_path(vim.fn.stdpath("config") .. "/lua/plugins/explorers/", { false })
 local logos = Utils.flags.get_options_by_path(vim.fn.stdpath("config") .. "/assets/logos/")

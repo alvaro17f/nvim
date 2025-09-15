@@ -1,6 +1,6 @@
-_G.Utils.snacks = {
-  scratch = {},
-}
+_G.Utils = _G.Utils or {}
+_G.Utils.snacks = _G.Utils.snacks or {}
+_G.Utils.snacks.scratch = _G.Utils.snacks.scratch or {}
 
 local filetypes = {
   { text = "css" },

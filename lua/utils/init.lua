@@ -39,6 +39,44 @@ local process_path = function(path)
   return modules_path and modules_path:gsub("/?$", "/") or ""
 end
 
+---@param path string
+---@param early? table
+M.require_inits = function(path, early)
+  if not path then
+    return
+  end
+
+  local modules_path = process_path(path)
+
+  local _, lua_end = modules_path:find(".*/lua/")
+  local module_prefix = lua_end and modules_path:sub(lua_end + 1):gsub("/$", ""):gsub("/", ".") or ""
+
+  if early ~= nil then
+    assert(type(early) == "table", "early must be a table (list) or nil")
+    for _, fname in ipairs(early) do
+      assert(type(fname) == "string", "file names in early must be strings")
+      local full_module_name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
+      local ok, err = pcall(require, full_module_name)
+      if not ok then
+        vim.notify(string.format("[init] Failed to load early '%s': %s", full_module_name, err), vim.log.levels.WARN)
+      end
+    end
+  end
+
+  local init_files = vim.fn.globpath(modules_path, "**/init.lua", false, true)
+  for _, file in ipairs(init_files) do
+    local rel = file:sub(#modules_path + 1)
+    rel = rel:gsub("/init%.lua$", "")
+    local module_name = rel:gsub("/", ".")
+    if module_prefix ~= "" then
+      module_name = module_prefix .. (module_name ~= "" and "." .. module_name or "")
+    end
+    if module_name ~= "" then
+      pcall(require, module_name)
+    end
+  end
+end
+
 M.require_modules = function(path, process_fn)
   if type(process_fn) ~= "function" then
     process_fn = function(...) end

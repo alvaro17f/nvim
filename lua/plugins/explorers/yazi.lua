@@ -7,7 +7,7 @@ local yazi = require("yazi")
 
 yazi.setup({
   open_for_directories = true, -- use yazi instead of netrw for directories
-  open_multiple_tabs = true,
+  open_multiple_tabs = false,
   keymaps = {
     show_help = "<f1>",
     open_file_in_vertical_split = "<c-v>",
@@ -21,9 +21,9 @@ yazi.setup({
     change_working_directory = ";",
   },
   future_features = {
-    ya_emit_reveal = true,
-    ya_emit_open = true,
+    use_cwd_file = true,
+    new_shell_escaping = true,
   },
 })
 
-vim.keymap.set("n", "<leader>/", yazi.toggle, { desc = "Yazi" })
+vim.keymap.set("n", "<leader>/", "<CMD>Yazi cwd<CR>", { desc = "Yazi" })

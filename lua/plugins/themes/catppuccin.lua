@@ -21,6 +21,10 @@ catppuccin.setup({
         information = { "undercurl" },
       },
     },
+    snacks = {
+      enabled = true,
+      indent_scope_color = "teal",
+    },
   },
 })
 

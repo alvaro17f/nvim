@@ -25,7 +25,7 @@ gitsigns.setup({
 
 -- https://github.com/lewis6991/gitsigns.nvim/discussions/1373
 vim.api.nvim_create_autocmd("User", {
-  pattern = "GitSignsUpdate",
+  pattern = { "GitSignsUpdate" },
   callback = function()
     vim.cmd("redrawstatus")
   end,

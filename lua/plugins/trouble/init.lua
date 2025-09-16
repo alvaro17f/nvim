@@ -1,6 +1,8 @@
 Pack.add({ "https://github.com/folke/trouble.nvim" })
 
-require("trouble").setup({
+local trouble = require("trouble")
+
+trouble.setup({
   auto_close = true,
   auto_preview = false,
   multiline = false,

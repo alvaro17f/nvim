@@ -1,3 +1,5 @@
 Pack.add({ "https://github.com/pxnditxyr/npm-info.nvim" })
 
-require("npm-info").setup({ show_installed = false })
+local npm_info = require("npm-info")
+
+npm_info.setup({ show_installed = false })

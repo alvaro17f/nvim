@@ -1,7 +1,9 @@
 -- https://github.com/catppuccin/nvim#configuration
 Pack.add({ { src = "https://github.com/catppuccin/nvim", name = "catppuccin" } })
 
-require("catppuccin").setup({
+local catppuccin = require("catppuccin")
+
+catppuccin.setup({
   flavour = "mocha",
   transparent_background = true,
   float = {

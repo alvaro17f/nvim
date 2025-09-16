@@ -1,6 +1,8 @@
 Pack.add({ { src = "https://github.com/olimorris/onedarkpro.nvim", name = "onedarkpro" } })
 
-require("onedarkpro").setup({
+local onedarkpro = require("onedarkpro")
+
+onedarkpro.setup({
   options = {
     cursorline = true, -- Use cursorline highlighting?
     transparency = true, -- Use a transparent background?

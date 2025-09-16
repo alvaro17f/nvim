@@ -1,6 +1,8 @@
 Pack.add({ "https://github.com/folke/flash.nvim" })
 
-require("flash").setup({
+local flash = require("flash")
+
+flash.setup({
   modes = {
     search = {
       enabled = false,
@@ -21,5 +23,5 @@ require("flash").setup({
 })
 
 --stylua: ignore start
-vim.keymap.set({"n", "x", "o"}, "s", function() require("flash").jump() end, { desc = "Flash" })
+vim.keymap.set({"n", "x", "o"}, "s",  flash.jump , { desc = "Flash" })
 --stylua: ignore end

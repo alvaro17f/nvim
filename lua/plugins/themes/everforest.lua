@@ -1,6 +1,8 @@
 Pack.add({ { src = "https://github.com/neanias/everforest-nvim", name = "everforest" } })
 
-require("everforest").setup({
+local everforest = require("everforest")
+
+everforest.setup({
   background = "hard", -- "soft", "medium" or "hard"
   transparent_background_level = 2, -- 0 to 2
   italics = true,

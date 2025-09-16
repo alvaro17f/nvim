@@ -1,10 +1,12 @@
 Pack.add({ "https://github.com/aaronik/treewalker.nvim" })
 
-require("treewalker").setup({
+local treewalker = require("treewalker")
+
+treewalker.setup({
   highlight = true,
 })
 
-vim.keymap.set("n", "<a-s-j>", "<CMD>Treewalker Down<CR>", { desc = "Treewalker Down" })
-vim.keymap.set("n", "<a-s-k>", "<CMD>Treewalker Up<CR>", { desc = "Treewalker Up" })
-vim.keymap.set("n", "<a-s-h>", "<CMD>Treewalker Left<CR>", { desc = "Treewalker Left" })
-vim.keymap.set("n", "<a-s-l>", "<CMD>Treewalker Right<CR>", { desc = "Treewalker Right" })
+vim.keymap.set("n", "<a-s-j>", treewalker.move_down, { desc = "Treewalker Down" })
+vim.keymap.set("n", "<a-s-k>", treewalker.move_up, { desc = "Treewalker Up" })
+vim.keymap.set("n", "<a-s-h>", treewalker.move_out, { desc = "Treewalker Left" })
+vim.keymap.set("n", "<a-s-l>", treewalker.move_in, { desc = "Treewalker Right" })

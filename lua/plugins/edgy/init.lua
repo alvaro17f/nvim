@@ -3,7 +3,9 @@ Pack.add({ "https://github.com/folke/edgy.nvim" })
 vim.o.laststatus = 3
 vim.o.splitkeep = "screen"
 
-require("edgy").setup({
+local edgy = require("edgy")
+
+edgy.setup({
   top = {},
   right = {
     { ft = "grug-far", title = "Search & Replace", size = { width = 0.5 } },

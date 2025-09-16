@@ -1,6 +1,8 @@
 Pack.add({ { src = "https://github.com/folke/tokyonight.nvim", name = "tokyonight" } })
 
-require("tokyonight").setup({
+local tokyonight = require("tokyonight")
+
+tokyonight.setup({
   style = "moon",
   light_style = "day",
   transparent = false,

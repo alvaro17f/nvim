@@ -44,7 +44,7 @@ local set_mark = function(id, path, desc)
 end
 
 vim.api.nvim_create_autocmd("User", {
-  pattern = "MiniFilesExplorerOpen",
+  pattern = { "MiniFilesExplorerOpen" },
   callback = function()
     set_mark("'", vim.fn.getcwd, "Working directory")
     set_mark("n", vim.fn.stdpath("config"), "Nvim config")

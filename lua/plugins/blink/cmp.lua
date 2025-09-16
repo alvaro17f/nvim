@@ -4,7 +4,9 @@ Pack.add({
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 })
 
-require("blink.cmp").setup({
+local blink_cmp = require("blink.cmp")
+
+blink_cmp.setup({
   keymap = {
     preset = "default", -- "default" | "enter" | "super-tab"
     ["<CR>"] = { "accept", "fallback" },

@@ -4,7 +4,9 @@ vim.g.markdown_filetypes = {
   "markdown",
 }
 
-require("render-markdown").setup({
+local render_markdown = require("render-markdown")
+
+render_markdown.setup({
   anti_conceal = { enabled = false },
   file_types = vim.g.markdown_filetypes,
   heading = {

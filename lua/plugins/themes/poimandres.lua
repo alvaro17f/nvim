@@ -1,8 +1,9 @@
 Pack.add({ { src = "https://github.com/olivercederborg/poimandres.nvim", name = "poimandres" } })
 
-local p = require("poimandres.palette")
+local palette = require("poimandres.palette")
+local poimandres = require("poimandres")
 
-require("poimandres").setup({
+poimandres.setup({
   bold_vert_split = false,
   dim_nc_background = false,
   disable_background = true,
@@ -13,8 +14,8 @@ require("poimandres").setup({
     LspReferenceText = { link = "Visual" },
     LspReferenceRead = { link = "Visual" },
     LspReferenceWrite = { link = "Visual" },
-    NormalFloat = { bg = p.none, fg = p.text },
-    FloatBorder = { bg = p.none, fg = p.text },
+    NormalFloat = { bg = palette.none, fg = palette.text },
+    FloatBorder = { bg = palette.none, fg = palette.text },
   },
 })
 

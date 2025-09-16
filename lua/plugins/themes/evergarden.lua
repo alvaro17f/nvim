@@ -1,6 +1,8 @@
 Pack.add({ { src = "https://github.com/everviolet/nvim", name = "evergarden" } })
 
-require("evergarden").setup({
+local evergarden = require("evergarden")
+
+evergarden.setup({
   theme = {
     variant = "fall", -- 'winter'|'fall'|'spring'|'summer'
     accent = "green",

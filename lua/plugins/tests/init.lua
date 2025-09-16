@@ -14,12 +14,24 @@ end
 
 local refresh_trouble = function(failed)
   local trouble = require("trouble")
+
   if trouble.is_open() then
     trouble.refresh()
     if failed == 0 then
       trouble.close()
     end
   end
+end
+
+local trouble_quickfix = function()
+  local trouble = require("trouble")
+
+  trouble.open({
+    mode = "quickfix",
+    auto_preview = false,
+    focus = false,
+    multiline = false,
+  })
 end
 
 Pack.add({
@@ -40,7 +52,9 @@ vim.diagnostic.config({
   },
 }, neotest_ns)
 
-require("neotest").setup({
+local neotest = require("neotest")
+
+neotest.setup({
   adapters = {
     require("neotest-plenary"),
     require("neotest-jest"),
@@ -49,14 +63,7 @@ require("neotest").setup({
   status = { virtual_text = true },
   output = { open_on_run = false },
   quickfix = {
-    open = function()
-      require("trouble").open({
-        mode = "quickfix",
-        auto_preview = false,
-        focus = false,
-        multiline = false,
-      })
-    end,
+    open = trouble_quickfix(),
   },
   consumers = {
     trouble = function(client)
@@ -79,13 +86,13 @@ require("neotest").setup({
 
 
 --stylua: ignore start
-  vim.keymap.set("n", "<leader>tl", function() require("neotest").run.run_last() end, { desc = "Run Last (Neotest)" })
-  vim.keymap.set("n", "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, { desc = "Show Output (Neotest)" })
-  vim.keymap.set("n", "<leader>tO", function() require("neotest").output_panel.toggle() end, { desc = "Toggle Output Panel (Neotest)" })
-  vim.keymap.set("n", "<leader>tr", function() require("neotest").run.run() end, { desc = "Run Nearest (Neotest)" })
-  vim.keymap.set("n", "<leader>ts", function() require("neotest").summary.toggle() end, { desc = "Toggle Summary (Neotest)" })
-  vim.keymap.set("n", "<leader>tS", function() require("neotest").run.stop() end, { desc = "Stop (Neotest)" })
-  vim.keymap.set("n", "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, { desc = "Run File (Neotest)" })
-  vim.keymap.set("n", "<leader>tT", function() require("neotest").run.run(Utils.git.get_workspace_root()) end, { desc = "Run All Test Files (Neotest)" })
-  vim.keymap.set("n", "<leader>tw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, { desc = "Toggle Watch (Neotest)" })
+  vim.keymap.set("n", "<leader>tl", function() neotest.run.run_last() end, { desc = "Run Last (Neotest)" })
+  vim.keymap.set("n", "<leader>to", function() neotest.output.open({ enter = true, auto_close = true }) end, { desc = "Show Output (Neotest)" })
+  vim.keymap.set("n", "<leader>tO", function() neotest.output_panel.toggle() end, { desc = "Toggle Output Panel (Neotest)" })
+  vim.keymap.set("n", "<leader>tr", function() neotest.run.run() end, { desc = "Run Nearest (Neotest)" })
+  vim.keymap.set("n", "<leader>ts", function() neotest.summary.toggle() end, { desc = "Toggle Summary (Neotest)" })
+  vim.keymap.set("n", "<leader>tS", function() neotest.run.stop() end, { desc = "Stop (Neotest)" })
+  vim.keymap.set("n", "<leader>tt", function() neotest.run.run(vim.fn.expand("%")) end, { desc = "Run File (Neotest)" })
+  vim.keymap.set("n", "<leader>tT", function() neotest.run.run(Utils.git.get_workspace_root()) end, { desc = "Run All Test Files (Neotest)" })
+  vim.keymap.set("n", "<leader>tw", function() neotest.watch.toggle(vim.fn.expand("%")) end, { desc = "Toggle Watch (Neotest)" })
 --stylua: ignore end

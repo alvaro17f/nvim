@@ -1,12 +1,13 @@
 Pack.add({ "https://github.com/monkoose/neocodeium" })
 
-require("neocodeium").setup({
+local neocodeium = require("neocodeium")
+
+neocodeium.setup({
   show_label = false,
   silent = true,
 })
 
 vim.keymap.set("i", "<Tab>", function()
-  local neocodeium = require("neocodeium")
   if neocodeium.visible() then
     neocodeium.accept()
   else

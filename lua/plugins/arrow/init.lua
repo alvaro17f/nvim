@@ -2,7 +2,9 @@ Pack.add({ "https://github.com/otavioschwanck/arrow.nvim" })
 
 local global_bookmarks = true
 
-require("arrow").setup({
+local arrow = require("arrow")
+
+arrow.setup({
   show_icons = true,
   leader_key = ";",
   buffer_leader_key = "m",

@@ -12,7 +12,9 @@ vim.api.nvim_create_autocmd("User", {
     _G.bt = function()
       Snacks.debug.backtrace()
     end
-    vim.print = _G.dd
+    vim.print = function(_, ...)
+      dd(...)
+    end
 
     --stylua: ignore start
     Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")

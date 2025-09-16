@@ -1,5 +1,7 @@
 Pack.add({ { src = "https://github.com/folke/tokyonight.nvim", name = "tokyonight" } })
 
+vim.o.winborder = ""
+
 local tokyonight = require("tokyonight")
 
 tokyonight.setup({
@@ -19,16 +21,17 @@ tokyonight.setup({
   dim_inactive = false,
   lualine_bold = true,
 
-  ---@param colors ColorScheme
-  on_colors = function(colors) end,
+  on_colors = function() end,
 
-  ---@param highlights tokyonight.Highlights
-  ---@param colors ColorScheme
-  on_highlights = function(highlights, colors) end,
+  on_highlights = function(hl, c)
+    hl.WinBar = {
+      bg = c.bg,
+      fg = c.fg,
+    }
+  end,
 
   cache = true,
 
-  ---@type table<string, boolean|{enabled:boolean}>
   plugins = {
     all = package.loaded.lazy == nil,
     auto = true,

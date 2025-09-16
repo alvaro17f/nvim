@@ -2,6 +2,16 @@ if Flags.tests == false then
   return {}
 end
 
+Pack.add({
+  "https://github.com/nvim-neotest/nvim-nio",
+  "https://github.com/nvim-neotest/neotest-plenary",
+  "https://github.com/nvim-neotest/neotest-jest",
+  "https://github.com/marilari88/neotest-vitest",
+  "https://github.com/nvim-neotest/neotest",
+})
+
+local neotest = require("neotest")
+
 local count_failed_results = function(results, tree)
   local failed = 0
   for pos_id, result in pairs(results) do
@@ -23,26 +33,6 @@ local refresh_trouble = function(failed)
   end
 end
 
-local trouble_quickfix = function()
-  local trouble = require("trouble")
-
-  trouble.open({
-    mode = "quickfix",
-    auto_preview = false,
-    focus = false,
-    multiline = false,
-  })
-end
-
-Pack.add({
-  "https://github.com/nvim-neotest/nvim-nio",
-  "https://github.com/nvim-neotest/neotest-plenary",
-  "https://github.com/nvim-neotest/neotest-jest",
-  "https://github.com/marilari88/neotest-vitest",
-  "https://github.com/nvim-neotest/neotest",
-})
-
-local neotest_ns = vim.api.nvim_create_namespace("neotest")
 vim.diagnostic.config({
   virtual_text = {
     format = function(diagnostic)
@@ -50,9 +40,7 @@ vim.diagnostic.config({
       return message
     end,
   },
-}, neotest_ns)
-
-local neotest = require("neotest")
+}, vim.api.nvim_create_namespace("neotest"))
 
 neotest.setup({
   adapters = {
@@ -63,7 +51,16 @@ neotest.setup({
   status = { virtual_text = true },
   output = { open_on_run = false },
   quickfix = {
-    open = trouble_quickfix(),
+    open = function()
+      local trouble = require("trouble")
+
+      trouble.open({
+        mode = "quickfix",
+        auto_preview = false,
+        focus = false,
+        multiline = false,
+      })
+    end,
   },
   consumers = {
     trouble = function(client)

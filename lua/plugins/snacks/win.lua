@@ -21,6 +21,21 @@ M.keymaps = {
       },
     })
   end, { desc = "News" }),
+
+  vim.keymap.set("n", "<leader>L", function()
+    Snacks.win({
+      file = vim.fn.stdpath("state") .. "/nvim-pack.log",
+      width = 0.6,
+      height = 0.6,
+      wo = {
+        spell = false,
+        wrap = false,
+        signcolumn = "yes",
+        statuscolumn = " ",
+        conceallevel = 3,
+      },
+    })
+  end, { desc = "Logs" }),
 }
 
 return M

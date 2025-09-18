@@ -1,11 +1,13 @@
 Pack.add({ { src = "https://github.com/olimorris/onedarkpro.nvim", name = "onedarkpro" } })
 
+vim.o.winborder = ""
+
 local onedarkpro = require("onedarkpro")
 
 onedarkpro.setup({
   options = {
     cursorline = true, -- Use cursorline highlighting?
-    transparency = true, -- Use a transparent background?
+    transparency = false, -- Use a transparent background?
     terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
     lualine_transparency = true, -- Center bar transparency?
     highlight_inactive_windows = false, -- When the window is out of focus, change the normal background?
@@ -39,4 +41,4 @@ onedarkpro.setup({
   },
 })
 
-vim.cmd.colorscheme("onedark_vivid") -- "onedark" "onelight" "onedark_vivid" "onedark_dark" "vaporwave"
+vim.cmd.colorscheme("vaporwave") -- "onedark" "onelight" "onedark_vivid" "onedark_dark" "vaporwave"

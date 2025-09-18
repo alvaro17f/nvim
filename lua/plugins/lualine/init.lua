@@ -73,8 +73,7 @@ lualine.setup({
             return { fg = Utils.color("lualine_a_replace", "bg") }
           end,
         },
-        separator = "",
-        padding = 1,
+        separator = { right = "" },
       },
       {
         "filename",
@@ -83,7 +82,6 @@ lualine.setup({
         color = function()
           return { fg = Utils.color("lualine_a_normal", "bg"), gui = vim.bo.modified and "italic,bold" or "bold" }
         end,
-        padding = { left = 0, right = 1 },
       },
     },
     lualine_x = {

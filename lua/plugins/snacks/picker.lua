@@ -106,7 +106,6 @@ M.config = {
 }
 
 M.keymaps = {
-
   vim.keymap.set("n", "<leader>ff", function()
     if Utils.git.is_git_repo() then
       return Snacks.picker.git_files({ cwd = Utils.git.get_workspace_root() })

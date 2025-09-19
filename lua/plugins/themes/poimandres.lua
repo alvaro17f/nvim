@@ -1,5 +1,7 @@
 Pack.add({ { src = "https://github.com/olivercederborg/poimandres.nvim", name = "poimandres" } })
 
+vim.o.winborder = ""
+
 local palette = require("poimandres.palette")
 local poimandres = require("poimandres")
 
@@ -16,6 +18,7 @@ poimandres.setup({
     LspReferenceWrite = { link = "Visual" },
     NormalFloat = { bg = palette.none, fg = palette.text },
     FloatBorder = { bg = palette.none, fg = palette.text },
+    WinBar = { bg = palette.none, fg = palette.text },
   },
 })
 

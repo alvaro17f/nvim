@@ -1,5 +1,7 @@
 Pack.add({ { src = "https://github.com/everviolet/nvim", name = "evergarden" } })
 
+vim.o.winborder = ""
+
 local evergarden = require("evergarden")
 
 evergarden.setup({

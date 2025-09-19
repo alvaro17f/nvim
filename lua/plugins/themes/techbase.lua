@@ -4,7 +4,7 @@ local techbase = require("techbase")
 
 techbase.setup({
   italic_comments = true,
-  transparent = true,
+  transparent = false,
   hl_overrides = {},
 })
 

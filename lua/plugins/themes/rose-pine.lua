@@ -1,12 +1,14 @@
 Pack.add({ { src = "https://github.com/rose-pine/neovim", name = "rose-pine" } })
 
+vim.o.winborder = ""
+
 local rose_pine = require("rose-pine")
 
 rose_pine.setup({
   variant = "moon", -- auto, main, moon, or dawn
   dark_variant = "main", -- main, moon, or dawn
   dim_inactive_windows = false,
-  extend_background_behind_borders = false,
+  extend_background_behind_borders = true,
 
   enable = {
     terminal = true,

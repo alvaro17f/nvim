@@ -106,8 +106,13 @@ Utils.require_inits = function(path, load)
 end
 
 ---@param path? string
+---@param load? {early?: string[], after?: string[]}
 ---@param process_fn? function
-Utils.require_modules = function(path, process_fn)
+Utils.require_modules = function(path, load, process_fn)
+  if type(load) == "function" then
+    process_fn = load
+    load = nil
+  end
   if type(process_fn) ~= "function" then
     process_fn = function(...) end
   end
@@ -116,6 +121,26 @@ Utils.require_modules = function(path, process_fn)
   local lua_files = vim.fn.globpath(modules_path, "**/*.lua", false, true)
   local _, lua_end = modules_path:find(".*/lua/")
   local module_prefix = lua_end and modules_path:sub(lua_end + 1):gsub("/$", ""):gsub("/", ".") or ""
+
+  load = load or {}
+  local early = load.early or {}
+  local after = load.after or {}
+
+  local early_set = {}
+  local after_set = {}
+  local modules = { early = {}, normal = {}, after = {} }
+
+  for _, fname in ipairs(early) do
+    local full_module_name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
+    early_set[full_module_name] = true
+    table.insert(modules.early, full_module_name)
+  end
+
+  for _, fname in ipairs(after) do
+    local full_module_name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
+    after_set[full_module_name] = true
+    table.insert(modules.after, full_module_name)
+  end
 
   for _, file in ipairs(lua_files) do
     if not file:match("/init%.lua$") then
@@ -126,6 +151,14 @@ Utils.require_modules = function(path, process_fn)
         module_name = module_prefix .. "." .. module_name
       end
 
+      if not early_set[module_name] and not after_set[module_name] then
+        table.insert(modules.normal, module_name)
+      end
+    end
+  end
+
+  for _, category in ipairs({ "early", "normal", "after" }) do
+    for _, module_name in ipairs(modules[category]) do
       local ok, result = pcall(require, module_name)
       if ok and result and type(result) == "table" then
         process_fn(result, module_name)
@@ -137,7 +170,7 @@ end
 ---@param path? string
 Utils.get_config = function(path)
   local config = {}
-  Utils.require_modules(path, function(module_result)
+  Utils.require_modules(path, nil, function(module_result)
     if module_result.config then
       Utils.deep_merge(config, module_result.config)
     end

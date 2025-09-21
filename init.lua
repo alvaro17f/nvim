@@ -3,7 +3,7 @@
 ------------------------------------
 require("utils")
 
-Utils.require_inits("core", {
+Utils.require_modules("core", {
   early = {
     "ui",
     "pack",

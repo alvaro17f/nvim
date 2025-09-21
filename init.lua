@@ -3,18 +3,25 @@
 ------------------------------------
 require("utils")
 
-Utils.require_modules("core", {
-  early = {
-    "ui",
-    "pack",
-    "flags",
-    "options",
+Utils.require({
+  path = "core",
+  load = {
+    early = {
+      "ui",
+      "pack",
+      "flags",
+      "options",
+    },
   },
 })
 
-Utils.require_inits("plugins", {
-  early = {
-    "themes",
-    "treesitter",
+Utils.require({
+  path = "plugins",
+  init_files_lookup = true,
+  load = {
+    early = {
+      "themes",
+      "treesitter",
+    },
   },
 })

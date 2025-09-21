@@ -46,8 +46,8 @@ local process_path = function(path)
 end
 
 ---@param path string
----@param early? table
-Utils.require_inits = function(path, early)
+---@param load? {early?: string[], after?: string[]}
+Utils.require_inits = function(path, load)
   local modules_path = process_path(path)
   if modules_path == "" then
     local source = debug.getinfo(2, "S").source:sub(2)
@@ -57,19 +57,41 @@ Utils.require_inits = function(path, early)
   local _, lua_end = modules_path:find(".*/lua/")
   local module_prefix = lua_end and modules_path:sub(lua_end + 1):gsub("/$", ""):gsub("/", ".") or ""
 
+  local early_modules = {}
+  local normal_modules = {}
+  local after_modules = {}
+
+  load = load or {}
+  local early = load.early or {}
+  local after = load.after or {}
+
   if early ~= nil then
     assert(type(early) == "table", "early must be a table (list) or nil")
     for _, fname in ipairs(early) do
       assert(type(fname) == "string", "file names in early must be strings")
       local full_module_name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
-      local ok, err = pcall(require, full_module_name)
-      if not ok then
-        vim.notify(string.format("[init] Failed to load early '%s': %s", full_module_name, err), vim.log.levels.WARN)
-      end
+      table.insert(early_modules, full_module_name)
+    end
+  end
+
+  local after_set = {}
+  if after ~= nil then
+    assert(type(after) == "table", "after must be a table (list) or nil")
+    for _, fname in ipairs(after) do
+      assert(type(fname) == "string", "file names in after must be strings")
+      local full_module_name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
+      after_set[full_module_name] = true
+      table.insert(after_modules, full_module_name)
     end
   end
 
   local init_files = vim.fn.globpath(modules_path, "**/init.lua", false, true)
+  local early_set = {}
+
+  for _, module_name in ipairs(early_modules) do
+    early_set[module_name] = true
+  end
+
   for _, file in ipairs(init_files) do
     local rel = file:sub(#modules_path + 1)
     rel = rel:gsub("/init%.lua$", "")
@@ -78,7 +100,31 @@ Utils.require_inits = function(path, early)
       module_name = module_prefix .. (module_name ~= "" and "." .. module_name or "")
     end
     if module_name ~= "" then
-      pcall(require, module_name)
+      -- Skip if this module is in early or after lists
+      if not early_set[module_name] and not after_set[module_name] then
+        table.insert(normal_modules, module_name)
+      end
+    end
+  end
+
+  for _, module_name in ipairs(early_modules) do
+    local ok, err = pcall(require, module_name)
+    if not ok then
+      vim.notify(string.format("[init] Failed to load early '%s': %s", module_name, err), vim.log.levels.WARN)
+    end
+  end
+
+  for _, module_name in ipairs(normal_modules) do
+    local ok, err = pcall(require, module_name)
+    if not ok then
+      vim.notify(string.format("[init] Failed to load module '%s': %s", module_name, err), vim.log.levels.WARN)
+    end
+  end
+
+  for _, module_name in ipairs(after_modules) do
+    local ok, err = pcall(require, module_name)
+    if not ok then
+      vim.notify(string.format("[init] Failed to load after '%s': %s", module_name, err), vim.log.levels.WARN)
     end
   end
 end

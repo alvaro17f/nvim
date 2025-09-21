@@ -59,70 +59,57 @@ Utils.require = function(opts)
   opts = opts or {}
   local path = opts.path
   local load = opts.load or {}
-  local process_fn = opts.process_fn
+  local process_fn = opts.process_fn or function(...) end
   local init_files_lookup = opts.init_files_lookup or false
-  if type(process_fn) ~= "function" then
-    process_fn = function(...) end
+
+  if opts.path ~= nil and type(opts.path) ~= "string" then
+    vim.notify("[Utils.require] path must be a string", vim.log.levels.ERROR)
+    return
   end
 
   local modules_path = process_path(path)
   local _, lua_end = modules_path:find(".*/lua/")
   local module_prefix = lua_end and modules_path:sub(lua_end + 1):gsub("/$", ""):gsub("/", ".") or ""
 
-  local early = load.early or {}
-  local after = load.after or {}
-
-  local early_set = {}
-  local after_set = {}
+  local early_set, after_set = {}, {}
   local modules = { early = {}, normal = {}, after = {} }
 
-  for _, fname in ipairs(early) do
-    local full_module_name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
-    early_set[full_module_name] = true
-    table.insert(modules.early, full_module_name)
+  local function process_module_list(list, set, category)
+    for _, fname in ipairs(list or {}) do
+      local name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
+      set[name] = true
+      table.insert(modules[category], name)
+    end
   end
 
-  for _, fname in ipairs(after) do
-    local full_module_name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
-    after_set[full_module_name] = true
-    table.insert(modules.after, full_module_name)
-  end
+  process_module_list(load.early, early_set, "early")
+  process_module_list(load.after, after_set, "after")
 
-  local files
-  if init_files_lookup then
-    files = vim.fn.globpath(modules_path, "**/init.lua", false, true)
-  else
-    files = vim.fn.globpath(modules_path, "**/*.lua", false, true)
-  end
+  local files = vim.fn.globpath(modules_path, init_files_lookup and "**/init.lua" or "**/*.lua", false, true)
 
   for _, file in ipairs(files) do
-    if
-      (init_files_lookup and not file:match("/init%.lua$")) or (not init_files_lookup and file:match("/init%.lua$"))
-    then
+    local is_init_file = file:match("/init%.lua$")
+
+    if (init_files_lookup and not is_init_file) or (not init_files_lookup and is_init_file) then
       goto continue
     end
 
-    local module_name
-    if init_files_lookup and file:match("/init%.lua$") then
-      local rel = file:sub(#modules_path + 1):gsub("/init%.lua$", "")
-      module_name = rel:gsub("/", ".")
-      if module_prefix ~= "" and module_name ~= "" then
-        module_name = module_prefix .. "." .. module_name
-      elseif module_prefix ~= "" and module_name == "" then
-        module_name = module_prefix
-      end
+    local rel_path = file:sub(#modules_path + 1)
+    if is_init_file then
+      rel_path = rel_path:gsub("/init%.lua$", "")
     else
-      local rel_path = file:sub(#modules_path + 1)
-      module_name = rel_path:gsub("%.lua$", ""):gsub("/", ".")
-      if module_prefix ~= "" then
-        module_name = module_prefix .. "." .. module_name
-      end
+      rel_path = rel_path:gsub("%.lua$", "")
     end
 
-    if module_name ~= "" then
-      if not early_set[module_name] and not after_set[module_name] then
-        table.insert(modules.normal, module_name)
-      end
+    local module_name = rel_path:gsub("/", ".")
+    if module_prefix ~= "" and module_name ~= "" then
+      module_name = module_prefix .. "." .. module_name
+    elseif module_prefix ~= "" and module_name == "" then
+      module_name = module_prefix
+    end
+
+    if module_name ~= "" and not early_set[module_name] and not after_set[module_name] then
+      table.insert(modules.normal, module_name)
     end
 
     ::continue::
@@ -131,15 +118,13 @@ Utils.require = function(opts)
   for _, category in ipairs({ "early", "normal", "after" }) do
     for _, module_name in ipairs(modules[category]) do
       local ok, result = pcall(require, module_name)
-      if init_files_lookup then
-        if not ok then
-          local msg = string.format("[init] Failed to load %s '%s': %s", category, module_name, result)
-          vim.notify(msg, vim.log.levels.WARN)
-        end
-      else
-        if ok and result and type(result) == "table" then
-          process_fn(result, module_name)
-        end
+      if not ok then
+        vim.notify(
+          string.format("[Utils.require] Failed to load %s '%s': %s", category, module_name, result),
+          vim.log.levels.WARN
+        )
+      elseif not init_files_lookup and result and type(result) == "table" then
+        process_fn(result, module_name)
       end
     end
   end

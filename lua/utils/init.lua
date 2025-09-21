@@ -76,7 +76,12 @@ Utils.require = function(opts)
 
   local function process_module_list(list, set, category)
     for _, fname in ipairs(list or {}) do
-      local name = module_prefix .. (module_prefix ~= "" and "." or "") .. fname
+      local name
+      if module_prefix == "" then
+        name = fname
+      else
+        name = module_prefix .. "." .. fname
+      end
       set[name] = true
       table.insert(modules[category], name)
     end
@@ -107,6 +112,8 @@ Utils.require = function(opts)
     elseif module_prefix ~= "" and module_name == "" then
       module_name = module_prefix
     end
+
+    module_name = module_name:gsub("%.%.", ".")
 
     if module_name ~= "" and not early_set[module_name] and not after_set[module_name] then
       table.insert(modules.normal, module_name)

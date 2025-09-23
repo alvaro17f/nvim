@@ -1,5 +1,6 @@
 local LSP_TOOLS = {
   "goimports",
+  "kdlfmt",
   "kulala-fmt",
   "shellcheck",
   "shfmt",

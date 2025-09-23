@@ -13,6 +13,12 @@ local set_global_config = function()
   vim.lsp.config("*", {
     capabilities = capabilities,
   })
+
+  vim.filetype.add({
+    extension = {
+      json = "jsonc",
+    },
+  })
 end
 
 local get_lsp_servers = function()

@@ -22,7 +22,7 @@ end
 
 lualine.setup({
   options = {
-    theme = "auto",
+    theme = vim.g.lualine or "auto",
     component_separators = Utils.icons.lualine.separator.component,
     section_separators = Utils.icons.lualine.separator.section,
     globalstatus = true,

@@ -1,6 +1,6 @@
 Pack.add({ { src = "https://github.com/vague2k/vague.nvim", name = "vague" } })
 
-vim.o.winborder = ""
+vim.o.winborder = "none"
 
 local vague = require("vague")
 

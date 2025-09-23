@@ -1,11 +1,17 @@
 Pack.add({ { src = "https://github.com/nyoom-engineering/oxocarbon.nvim", name = "oxocarbon" } })
 
-vim.o.winborder = ""
+vim.g.lualine = "horizon"
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
+vim.o.background = "dark"
+vim.o.winborder = "none"
 
-vim.opt.background = "dark"
+local transparent = true
+
+if transparent then
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+  vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
+end
+
 vim.cmd.colorscheme("oxocarbon")

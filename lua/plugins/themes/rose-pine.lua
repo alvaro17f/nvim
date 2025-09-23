@@ -1,6 +1,6 @@
 Pack.add({ { src = "https://github.com/rose-pine/neovim", name = "rose-pine" } })
 
-vim.o.winborder = ""
+vim.o.winborder = "none"
 
 local rose_pine = require("rose-pine")
 

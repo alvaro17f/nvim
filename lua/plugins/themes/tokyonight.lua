@@ -1,6 +1,6 @@
 Pack.add({ { src = "https://github.com/folke/tokyonight.nvim", name = "tokyonight" } })
 
-vim.o.winborder = ""
+vim.o.winborder = "none"
 
 local tokyonight = require("tokyonight")
 

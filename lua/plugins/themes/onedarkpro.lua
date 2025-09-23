@@ -1,6 +1,6 @@
 Pack.add({ { src = "https://github.com/olimorris/onedarkpro.nvim", name = "onedarkpro" } })
 
-vim.o.winborder = ""
+vim.o.winborder = "none"
 
 local onedarkpro = require("onedarkpro")
 

@@ -1,7 +1,5 @@
 Pack.add({ { src = "https://github.com/olivercederborg/poimandres.nvim", name = "poimandres" } })
 
-vim.o.winborder = ""
-
 local palette = require("poimandres.palette")
 local poimandres = require("poimandres")
 

@@ -7,6 +7,7 @@ vim.g.maplocalleader = vim.g.mapleader
 vim.g.autocomplete = false
 vim.g.autosave = true
 vim.g.inlayhints = false
+vim.g.lualine = "auto"
 ------------------------------------
 vim.cmd.filetype("plugin indent on")
 if vim.fn.exists("syntax_on") ~= 1 then

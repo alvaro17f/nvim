@@ -5,6 +5,7 @@ local lint = require("lint")
 
 lint.linters_by_ft = {
   json = { "biomejs" },
+  python = { "ruff" },
   sh = { "shellcheck" },
   sql = { "sqruff" },
 }

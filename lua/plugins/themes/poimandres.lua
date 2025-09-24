@@ -3,6 +3,8 @@ Pack.add({ { src = "https://github.com/olivercederborg/poimandres.nvim", name = 
 local palette = require("poimandres.palette")
 local poimandres = require("poimandres")
 
+vim.o.winborder = "none"
+
 poimandres.setup({
   bold_vert_split = false,
   dim_nc_background = false,
@@ -11,12 +13,13 @@ poimandres.setup({
   disable_italics = false,
 
   highlight_groups = {
-    LspReferenceText = { link = "Visual" },
+    FloatBorder = { bg = palette.none, fg = palette.text },
     LspReferenceRead = { link = "Visual" },
+    LspReferenceText = { link = "Visual" },
     LspReferenceWrite = { link = "Visual" },
     NormalFloat = { bg = palette.none, fg = palette.text },
-    FloatBorder = { bg = palette.none, fg = palette.text },
     WinBar = { bg = palette.none, fg = palette.text },
+    WinSeparator = { fg = palette.background1 },
   },
 })
 

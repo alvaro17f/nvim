@@ -17,7 +17,7 @@ vim.g.opencode_opts = {
 }
 
 --stylua: ignore start
-  vim.keymap.set({ "n", "t" }, "<c-a>", function() require("opencode").toggle() end, { desc = "Toggle embedded opencode" })
+  vim.keymap.set({ "n", "t" }, "<c-'>", function() require("opencode").toggle() end, { desc = "Toggle embedded opencode" })
   vim.keymap.set("n", "<leader>aa", function() require("opencode").ask() end, { desc = "Ask opencode" })
   vim.keymap.set("v", "<leader>aa", function() require("opencode").ask("@selection: ") end, { desc = "Ask opencode about selection" })
   vim.keymap.set("n", "<leader>ab", function() require("opencode").ask("@buffer: ") end, { desc = "Ask opencode about current buffer" })

@@ -16,6 +16,7 @@ poimandres.setup({
     LspReferenceText = { link = "Visual" },
     LspReferenceWrite = { link = "Visual" },
     NormalFloat = { bg = palette.none, fg = palette.text },
+    SnacksIndentScope = { fg = palette.teal1 },
     WinBar = { bg = palette.none, fg = palette.text },
     WinSeparator = { fg = palette.background1 },
   },

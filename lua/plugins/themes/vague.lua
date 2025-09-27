@@ -12,6 +12,9 @@ vague.setup({
       bg = c.bg,
       fg = c.fg,
     }
+    hl.SnacksIndentScope = {
+      fg = c.string,
+    }
   end,
 })
 

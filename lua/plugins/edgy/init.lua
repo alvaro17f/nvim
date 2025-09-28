@@ -8,23 +8,44 @@ local edgy = require("edgy")
 edgy.setup({
   top = {},
   right = {
-    { ft = "grug-far", title = "Search & Replace", size = { width = 0.5 } },
-    { ft = "neotest-summary", title = "neotest", size = { width = 0.3 } },
-    { ft = "opencode_terminal", title = "Opencode", size = { width = 0.4 } },
+    {
+      title = "Search & Replace",
+      ft = "grug-far",
+      size = { width = 0.5 },
+    },
+    {
+      title = "Neotest",
+      ft = "neotest-summary",
+      size = { width = 0.3 },
+    },
+    {
+      title = "Opencode",
+      ft = "opencode_terminal",
+      size = { width = 0.4 },
+      wo = { winbar = false },
+    },
   },
   bottom = {
     {
+      title = "Help",
       ft = "help",
       size = { height = 0.7 },
       filter = function(buf)
         return vim.bo[buf].buftype == "help"
       end,
     },
-    { ft = "neotest-output-panel", title = "neotest", size = { height = 0.5 } },
-    { ft = "qf", title = "QuickFix" },
     {
-      ft = "snacks_terminal",
+      title = "Neotest",
+      ft = "neotest-output-panel",
+      size = { height = 0.5 },
+    },
+    {
+      title = "QuickFix",
+      ft = "qf",
+    },
+    {
       title = "Terminal %{b:snacks_terminal.id}",
+      ft = "snacks_terminal",
       size = { height = 0.5 },
       filter = function(_, win)
         return vim.w[win].snacks_win
@@ -33,12 +54,15 @@ edgy.setup({
           and not vim.w[win].trouble_preview
       end,
     },
-    { ft = "trouble", title = "Trouble" },
+    {
+      title = "Trouble",
+      ft = "trouble",
+    },
   },
   left = {
     {
-      ft = "snacks_layout_box",
       title = "Explorer",
+      ft = "snacks_layout_box",
       size = { width = 0.25 },
       filter = function(_, win)
         return vim.api.nvim_win_get_config(win).relative == ""
@@ -46,9 +70,13 @@ edgy.setup({
     },
   },
 
-  animate = { enabled = false },
+  animate = {
+    enabled = false,
+  },
   options = {
     top = { size = 10 },
   },
-  wo = { winhighlight = "" },
+  wo = {
+    winbar = true,
+  },
 })

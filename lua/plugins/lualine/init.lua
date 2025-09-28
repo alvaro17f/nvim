@@ -56,6 +56,7 @@ lualine.setup({
       {
         "diagnostics",
         symbols = Utils.icons.diagnostics,
+        separator = { right = "" },
       },
       {
         "filename",

@@ -1,14 +1,13 @@
 Pack.add({ { src = "https://github.com/folke/tokyonight.nvim", name = "tokyonight" } })
 
-vim.o.winborder = "none"
-
 local tokyonight = require("tokyonight")
 
 tokyonight.setup({
-  style = "moon",
-  light_style = "day",
-  transparent = false,
-  terminal_colors = true,
+  style = "night",
+
+  transparent = true,
+  lualine_bold = true,
+
   styles = {
     comments = { italic = true },
     keywords = { italic = true },
@@ -17,25 +16,18 @@ tokyonight.setup({
     sidebars = "transparent",
     floats = "transparent",
   },
-  day_brightness = 0.3,
-  dim_inactive = false,
-  lualine_bold = true,
 
   on_colors = function() end,
 
   on_highlights = function(hl, c)
-    hl.WinBar = {
-      bg = c.bg,
-      fg = c.fg,
-    }
+    hl.BlinkCmpDocBorder = { fg = c.comment }
+    hl.BlinkCmpMenuBorder = { fg = c.comment }
+    hl.FloatBorder = { fg = c.comment }
+    hl.NormalFloat = { bg = c.none }
+    hl.StatusLine = { bg = c.none }
+    hl.WinBar = { bg = c.none, fg = c.fg }
+    hl.WinSeparator = { fg = c.comment }
   end,
-
-  cache = true,
-
-  plugins = {
-    all = package.loaded.lazy == nil,
-    auto = true,
-  },
 })
 
 vim.cmd.colorscheme("tokyonight")

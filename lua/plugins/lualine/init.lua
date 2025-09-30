@@ -25,85 +25,34 @@ lualine.setup({
   },
   sections = {
     lualine_a = {
-      {
-        "mode",
-        icon = Utils.icons.lualine.logo.vim,
-      },
+      Utils.lualine.core.mode(),
     },
+
     lualine_b = {
-      {
-        "branch",
-        icon = Utils.icons.lualine.git.commit,
-      },
+      Utils.lualine.core.branch(),
     },
+
     lualine_c = {
-      {
-        "diagnostics",
-        symbols = Utils.icons.diagnostics,
-        separator = { right = "" },
-      },
-      {
-        "filename",
-        path = 3,
-        file_status = false,
-        fmt = function(str)
-          local directory = str:match("(.*)/.*$")
-          local is_directory = directory and not directory:match("v:null")
-          return is_directory and directory or "<>"
-        end,
-        icon = {
-          Utils.icons.core.arrows.double.right,
-          align = "right",
-          color = function()
-            return { fg = Utils.color("lualine_a_replace", "bg") }
-          end,
-        },
-        separator = { right = "" },
-      },
-      {
-        "filename",
-        path = 0,
-        file_status = false,
-        color = function()
-          return { fg = Utils.color("lualine_a_normal", "bg"), gui = vim.bo.modified and "italic,bold" or "bold" }
-        end,
-      },
+      Utils.lualine.core.diagnostics(),
+      Utils.lualine.core.filename(),
     },
+
     lualine_x = {
-      Utils.lualine.sidekick(),
-      {
-        "diff",
-        symbols = Utils.icons.diff,
-      },
-      { "filetype" },
-      { "encoding" },
-      {
-        "macro",
-        fmt = function()
-          local reg = vim.fn.reg_recording()
-          if reg ~= "" then
-            return Utils.icons.lualine.recording .. " recording: @" .. reg
-          end
-          return nil
-        end,
-        color = function()
-          return { fg = Utils.color("lualine_a_replace", "bg"), gui = "bold" }
-        end,
-        draw_empty = false,
-      },
+      Utils.lualine.plugins.sidekick(),
+      Utils.lualine.core.diff(),
+      Utils.lualine.core.filetype(),
+      Utils.lualine.core.encoding(),
+      Utils.lualine.core.macro(),
     },
+
     lualine_y = {
-      Utils.lualine.arrow(),
-      { "progress" },
-      { "location" },
+      Utils.lualine.plugins.arrow(),
+      Utils.lualine.core.progress(),
+      Utils.lualine.core.location(),
     },
+
     lualine_z = {
-      {
-        "datetime",
-        style = Utils.icons.lualine.clock .. " %H:%M",
-        separator = Utils.icons.lualine.separator.rounded,
-        left_padding = 2,
-      },
+      Utils.lualine.core.datetime(),
     },
   },
 })

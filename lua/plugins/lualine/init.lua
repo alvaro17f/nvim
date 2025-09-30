@@ -4,22 +4,6 @@ vim.o.showmode = false
 
 local lualine = require("lualine")
 
-local arrow = function()
-  if Utils.require_safe("arrow") then
-    return {
-      function()
-        local statusline = require("arrow.statusline")
-        return statusline.is_on_arrow_file() and statusline.text_for_statusline_with_icons() or ""
-      end,
-      color = function()
-        return { fg = Utils.color("lualine_a_command", "bg"), gui = "bold" }
-      end,
-    }
-  end
-
-  return ""
-end
-
 lualine.setup({
   options = {
     theme = vim.g.lualine or "auto",
@@ -86,6 +70,7 @@ lualine.setup({
       },
     },
     lualine_x = {
+      Utils.lualine.sidekick(),
       {
         "diff",
         symbols = Utils.icons.diff,
@@ -108,7 +93,7 @@ lualine.setup({
       },
     },
     lualine_y = {
-      arrow(),
+      Utils.lualine.arrow(),
       { "progress" },
       { "location" },
     },

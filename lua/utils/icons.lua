@@ -2,6 +2,9 @@ _G.Utils = _G.Utils or {}
 _G.Utils.icons = _G.Utils.icons
   or {
     core = {
+      ai = {
+        copilot = " ",
+      },
       arrows = {
         simple = {
           right = "",

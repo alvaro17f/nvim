@@ -10,7 +10,7 @@ vim.g.opencode_opts = {
       enter = true,
       position = "right",
       bo = {
-        filetype = "opencode_terminal",
+        filetype = "ai_chat",
       },
     },
   },

@@ -7,7 +7,7 @@ sidekick.setup({
   cli = {
     win = {
       bo = {
-        filetype = "opencode_terminal",
+        filetype = "ai_chat",
       },
     },
   },

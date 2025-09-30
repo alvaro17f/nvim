@@ -19,8 +19,8 @@ edgy.setup({
       size = { width = 0.3 },
     },
     {
-      title = "Opencode",
-      ft = "opencode_terminal",
+      title = "AI Chat",
+      ft = "ai_chat",
       size = { width = 0.4 },
       wo = { winbar = false },
     },

@@ -50,8 +50,12 @@ end, {
 
 vim.keymap.set({ "n", "x", "i", "t" }, "<c-'>", function()
   sidekick_cli.toggle({ name = tool, focus = true })
-end, { desc = "Sidekick Toggle CLI" })
+end, { desc = "Sidekick: Toggle CLI" })
 
-vim.keymap.set({ "n", "v" }, "<leader>aa", function()
+vim.keymap.set({ "n", "x", "i", "t" }, "<c-s-'>", function()
+  sidekick_cli.focus({ name = tool })
+end, { desc = "Sidekick: Focus CLI" })
+
+vim.keymap.set({ "n", "v" }, "<c-a>", function()
   sidekick_cli.prompt()
-end, { desc = "Sidekick Ask Prompt" })
+end, { desc = "Sidekick: Ask Prompt" })

@@ -17,7 +17,7 @@ local logos = Utils.flags.get_options_by_path(vim.fn.stdpath("config") .. "/asse
 local themes = Utils.flags.get_options_by_path(vim.fn.stdpath("config") .. "/lua/plugins/themes/", { false })
 
 local flags = {
-  ai_chat = { default = false, options = { "opencode", "sidekick", false } },
+  ai_chat = { default = false, options = { "sidekick", false } },
   ai_suggestions = { default = false, options = { "lsp", "neocodeium", false } },
   debugger = false,
   explorer = { default = "yazi", options = explorers },

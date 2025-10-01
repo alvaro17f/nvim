@@ -20,7 +20,7 @@ edgy.setup({
     },
     {
       title = "AI Chat",
-      ft = "ai_chat",
+      ft = "copilot",
       size = { width = 0.4 },
       wo = { winbar = false },
     },

@@ -24,7 +24,7 @@ sidekick.setup({
     },
     win = {
       bo = {
-        filetype = "ai_chat",
+        filetype = "copilot",
       },
       keys = {
         prompt = { "<c-a>", "prompt" },

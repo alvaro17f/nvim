@@ -1,11 +1,11 @@
 local plugins = {}
 
-if Flags.ai_chat then
-  table.insert(plugins, require("plugins.ai." .. Flags.ai_chat))
+if Flags.copilot then
+  table.insert(plugins, require("plugins.ai." .. Flags.copilot))
 end
 
-if Flags.ai_suggestions and Flags.ai_suggestions ~= "lsp" then
-  table.insert(plugins, require("plugins.ai." .. Flags.ai_suggestions))
+if Flags.suggestions and Flags.suggestions ~= "lsp" then
+  table.insert(plugins, require("plugins.ai." .. Flags.suggestions))
 end
 
 return plugins

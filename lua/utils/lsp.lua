@@ -160,7 +160,7 @@ local on_attach = function()
       end
 
       if client:supports_method(methods.textDocument_inlineCompletion, args.buf) then
-        vim.lsp.inline_completion.enable(Flags.ai_suggestions == "lsp")
+        vim.lsp.inline_completion.enable(Flags.suggestions == "lsp")
 
         if vim.lsp.inline_completion.is_enabled({ client_id = client.id, bufnr = args.buf }) then
           vim.keymap.set("i", "<Tab>", function()

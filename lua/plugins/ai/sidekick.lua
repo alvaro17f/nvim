@@ -12,9 +12,13 @@ sidekick.setup({
       crush = {
         cmd = { "crush", "-D", vim.env.HOME .. "/.cache/crush" },
         url = "https://github.com/charmbracelet/crush",
+        keys = {
+          prompt = { "<c-a>", "prompt" },
+        },
       },
       opencode = {
         cmd = { "opencode" },
+        env = { OPENCODE_THEME = "system" },
         url = "https://github.com/sst/opencode",
       },
     },
@@ -44,10 +48,10 @@ end, {
   desc = "Goto/Apply Next Edit Suggestion",
 })
 
-vim.keymap.set({ "n", "v", "t" }, "<c-'>", function()
+vim.keymap.set({ "n", "x", "i", "t" }, "<c-'>", function()
   sidekick_cli.toggle({ name = tool, focus = true })
 end, { desc = "Sidekick Toggle CLI" })
 
 vim.keymap.set({ "n", "v" }, "<leader>aa", function()
-  sidekick_cli.select_prompt()
+  sidekick_cli.prompt()
 end, { desc = "Sidekick Ask Prompt" })

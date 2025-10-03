@@ -1,7 +1,7 @@
 Pack.add({ "https://github.com/folke/sidekick.nvim" })
 
 ---@type "crush" | "opencode"
-local tool = "opencode"
+local tool = "crush"
 
 local sidekick = require("sidekick")
 local sidekick_cli = require("sidekick.cli")
@@ -10,7 +10,7 @@ sidekick.setup({
   cli = {
     tools = {
       crush = {
-        cmd = { "crush", "-D", vim.env.HOME .. "/.cache/crush" },
+        cmd = { "crush" },
         url = "https://github.com/charmbracelet/crush",
         keys = {
           prompt = { "<c-a>", "prompt" },

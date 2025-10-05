@@ -14,7 +14,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "catppuccin": {
-      "rev": "c891845",
+      "rev": "e79d09f",
       "src": "https://github.com/catppuccin/nvim"
     },
     "conform.nvim": {
@@ -70,7 +70,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "markview.nvim": {
-      "rev": "a3c43a2",
+      "rev": "6616796",
       "src": "https://github.com/OXY2DEV/markview.nvim"
     },
     "mason-lspconfig.nvim": {

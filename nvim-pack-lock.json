@@ -152,7 +152,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "sidekick.nvim": {
-      "rev": "295c612",
+      "rev": "e869205",
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "snacks.nvim": {

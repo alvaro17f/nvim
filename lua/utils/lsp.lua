@@ -145,6 +145,14 @@ local on_attach = function()
       opts.desc = "Show documentation for what is under cursor"
       vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
+      vim.keymap.set({ "n", "x" }, "<a-o>", function()
+        vim.lsp.buf.selection_range(vim.v.count1)
+      end, { desc = "Selection range: outer" })
+
+      vim.keymap.set({ "n", "x" }, "<a-i>", function()
+        vim.lsp.buf.selection_range(-vim.v.count1)
+      end, { desc = "Selection range: inner" })
+
       opts.desc = "Restart LSP"
       vim.keymap.set("n", "grl", "<CMD>LspRestart<CR>", opts)
 
@@ -204,16 +212,6 @@ local on_attach = function()
 
       if client:supports_method(methods.textDocument_onTypeFormatting, args.buf) then
         vim.lsp.on_type_formatting.enable(true, { client_id = client.id })
-      end
-
-      if client:supports_method(methods.textDocument_selectionRange, args.buf) then
-        vim.keymap.set({ "n", "x" }, "<a-o>", function()
-          vim.lsp.buf.selection_range(vim.v.count1)
-        end, { desc = "Selection range: outer" })
-
-        vim.keymap.set({ "n", "x" }, "<a-i>", function()
-          vim.lsp.buf.selection_range(-vim.v.count1)
-        end, { desc = "Selection range: inner" })
       end
     end,
   })

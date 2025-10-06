@@ -13,7 +13,7 @@ sidekick.setup({
         cmd = { "crush" },
         url = "https://github.com/charmbracelet/crush",
         keys = {
-          prompt = { "<c-a>", "prompt" },
+          prompt = { "<a-'>", "prompt" },
         },
       },
       opencode = {
@@ -27,7 +27,7 @@ sidekick.setup({
         filetype = "copilot",
       },
       keys = {
-        prompt = { "<c-a>", "prompt" },
+        prompt = { "<a-'>", "prompt" },
       },
     },
   },
@@ -56,6 +56,6 @@ vim.keymap.set({ "n", "x", "i", "t" }, "<c-s-'>", function()
   sidekick_cli.focus({ name = tool })
 end, { desc = "Sidekick: Focus CLI" })
 
-vim.keymap.set({ "n", "v" }, "<c-a>", function()
+vim.keymap.set({ "n", "v" }, "<a-'>", function()
   sidekick_cli.prompt()
 end, { desc = "Sidekick: Ask Prompt" })

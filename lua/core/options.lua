@@ -21,6 +21,7 @@ vim.o.autowrite = vim.g.autosave
 vim.o.autowriteall = vim.g.autosave
 vim.o.backup = false
 vim.o.breakindent = true
+vim.o.clipboard = "unnamedplus"
 vim.o.cmdheight = 0
 vim.o.colorcolumn = "80"
 vim.o.complete = ".,b,o,u,w"
@@ -64,9 +65,24 @@ vim.o.wrap = false
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.shortmess:append({ c = true })
 ------------------------------------
-vim.schedule(function()
-  vim.o.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
-end)
+if vim.env.SSH_CONNECTION then
+  local function vim_paste()
+    local content = vim.fn.getreg('"')
+    return vim.split(content, "\n")
+  end
+
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = vim_paste,
+      ["*"] = vim_paste,
+    },
+  }
+end
 ------------------------------------
 -- DISABLED PLUGINS
 ------------------------------------

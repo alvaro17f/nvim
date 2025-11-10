@@ -163,12 +163,20 @@ M.keymaps = {
   end, { desc = "Rename" }),
 
   vim.keymap.set("n", "-", function()
-    Utils.snacks.scratch.new_scratch()
-  end, { desc = "New Scratch" }),
-
-  vim.keymap.set("n", "_", function()
-    Utils.snacks.scratch.select_scratch()
-  end, { desc = "Select Scratch" }),
+    Snacks.picker.scratch({
+      finder = "scratch",
+      format = "scratch_format",
+      confirm = "scratch_open",
+      win = {
+        input = {
+          keys = {
+            ["<c-c>"] = { "scratch_delete", mode = { "n", "i" } },
+            ["<c-n>"] = { "scratch_new", mode = { "n", "i" } },
+          },
+        },
+      },
+    })
+  end, { desc = "Scratch" }),
 
   vim.keymap.set("n", "|", function()
     Snacks.picker.lsp_symbols()

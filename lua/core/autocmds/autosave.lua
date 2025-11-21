@@ -12,9 +12,18 @@ local save = function(bufnr)
   end
 
   local current = vim.api.nvim_get_current_buf()
-  vim.api.nvim_set_current_buf(bufnr)
-  vim.cmd("silent! write")
-  vim.api.nvim_set_current_buf(current)
+  if current == bufnr then
+    vim.cmd("silent! write")
+  else
+    local success, error = pcall(function()
+      vim.cmd("silent! write! " .. vim.api.nvim_buf_get_name(bufnr))
+    end)
+
+    if not success then
+      print("󰄳 auto-save: failed to save - " .. error)
+      return
+    end
+  end
 
   print("󰄳 auto-save: saved at " .. vim.fn.strftime("%H:%M:%S"))
 end

@@ -1,7 +1,7 @@
 Pack.add({ "https://github.com/folke/sidekick.nvim" })
 
 ---@type "crush" | "opencode"
-local tool = "crush"
+local tool = "opencode"
 
 local sidekick = require("sidekick")
 local sidekick_cli = require("sidekick.cli")
@@ -18,7 +18,6 @@ sidekick.setup({
       },
       opencode = {
         cmd = { "opencode" },
-        env = { OPENCODE_THEME = "system" },
         url = "https://github.com/sst/opencode",
       },
     },
@@ -48,9 +47,13 @@ end, {
   desc = "Goto/Apply Next Edit Suggestion",
 })
 
-vim.keymap.set({ "n", "x", "i", "t" }, "<c-'>", function()
+vim.keymap.set({ "n", "i", "t" }, "<c-'>", function()
   sidekick_cli.toggle({ name = tool, focus = true })
 end, { desc = "Sidekick: Toggle CLI" })
+
+vim.keymap.set({ "x" }, "<c-'>", function()
+  sidekick_cli.send({ msg = "{selection}", name = tool, focus = true })
+end, { desc = "Sidekick: Send Visual Selection" })
 
 vim.keymap.set({ "n", "v" }, "<a-'>", function()
   sidekick_cli.prompt()

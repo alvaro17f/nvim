@@ -3,7 +3,7 @@ local DELAY = 500
 
 local should_save = function(bufnr)
   local bo = vim.bo[bufnr]
-  return bo.modifiable and bo.buflisted and bo.buftype == "" and bo.modified
+  return vim.g.autosave and bo.modifiable and bo.buflisted and bo.buftype == "" and bo.modified
 end
 
 local save = function(bufnr)
@@ -66,6 +66,16 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 vim.api.nvim_create_autocmd("InsertEnter", {
   callback = function(args)
     cleanup(args.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+  callback = function(args)
+    local bufnr = args.buf
+    if timers[bufnr] and should_save(bufnr) then
+      save(bufnr)
+    end
+    cleanup(bufnr)
   end,
 })
 

@@ -25,7 +25,6 @@ vim.o.clipboard = "unnamedplus"
 vim.o.cmdheight = 0
 vim.o.colorcolumn = "80"
 vim.o.complete = ".,b,o,u,w"
-vim.o.completefuzzycollect = "keyword,files,whole_line"
 vim.o.completeopt = "fuzzy,menuone,noselect,popup"
 vim.o.cursorline = true
 vim.o.expandtab = true

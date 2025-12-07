@@ -15,4 +15,6 @@ local DEBUGGERS = {
   "js-debug-adapter",
 }
 
+vim.lsp.log.set_level(vim.log.levels.ERROR)
+
 Utils.lsp.setup(LSP_TOOLS, DEBUGGERS)

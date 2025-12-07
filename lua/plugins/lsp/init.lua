@@ -6,6 +6,7 @@ local LSP_TOOLS = {
   "shfmt",
   "sqruff",
   "stylua",
+  "tree-sitter-cli",
   "typstyle",
 }
 

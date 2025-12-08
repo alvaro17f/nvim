@@ -43,13 +43,6 @@ local enable = function(LSP_TOOLS, DEBUGGERS)
 
   local servers = get_lsp_servers()
 
-  --TODO: remove when https://github.com/LuaLS/lua-language-server/issues/3301#issuecomment-3618079510 is fixed
-  if vim.tbl_contains(servers, "lua_ls") then
-    servers = vim.tbl_map(function(s)
-      return s == "lua_ls" and "lua_ls@3.15.0" or s
-    end, servers)
-  end
-
   if Flags.mason then
     Pack.add({
       "https://github.com/mason-org/mason.nvim",

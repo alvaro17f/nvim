@@ -1,9 +1,11 @@
 Pack.add({
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
   { src = "https://github.com/windwp/nvim-ts-autotag" },
 })
+
+vim.g.no_plugin_maps = true -- Disable entire built-in ftplugin mappings to avoid conflicts with textobjects.
 
 local autotag = require("nvim-ts-autotag")
 local context = require("treesitter-context")

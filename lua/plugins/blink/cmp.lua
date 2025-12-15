@@ -1,3 +1,7 @@
+if vim.g.autocomplete then
+  return {}
+end
+
 Pack.add({
   { src = "https://github.com/alexandre-abrioux/blink-cmp-npm.nvim" },
   { src = "https://github.com/rafamadriz/friendly-snippets" },

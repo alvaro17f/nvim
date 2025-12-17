@@ -154,7 +154,9 @@ local on_attach = function()
       end, { desc = "Selection range: inner" })
 
       opts.desc = "Restart LSP"
-      vim.keymap.set("n", "grl", "<CMD>LspRestart<CR>", opts)
+      vim.keymap.set("n", "grl", function()
+        vim.cmd.lsp("restart")
+      end, opts)
 
       if client:supports_method(methods.textDocument_competion, args.buf) then
         if vim.g.autocomplete then

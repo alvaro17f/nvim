@@ -23,11 +23,17 @@ local ensure_installed = {
 
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Enable Treesitter",
+  pattern = { "*" },
   callback = function(args)
     local buf = args.buf
-    local filetype = args.match
+    local filetype = vim.bo[buf].filetype
     local language = vim.treesitter.language.get_lang(filetype) or filetype
     local parsers = vim.tbl_extend("force", ensure_installed, { language })
+    local available = vim.g.ts_available or treesitter.get_available()
+
+    if not vim.tbl_contains(available, language) then
+      return
+    end
 
     treesitter.install(parsers):await(function()
       if not vim.treesitter.language.add(language) then

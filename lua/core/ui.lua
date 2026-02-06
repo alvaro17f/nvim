@@ -1,6 +1,6 @@
 ------------------------------------
 -- UI
 ------------------------------------
-local ui = require("vim._extui")
+local ui = require("vim._core.ui2")
 
 ui.enable({})

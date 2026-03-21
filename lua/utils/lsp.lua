@@ -43,6 +43,13 @@ local enable = function(LSP_TOOLS, DEBUGGERS)
 
   local servers = get_lsp_servers()
 
+  -- Filter out copilot if LSP suggestions are not enabled
+  if Flags.suggestions ~= "lsp" then
+    servers = vim.tbl_filter(function(server)
+      return server ~= "copilot"
+    end, servers)
+  end
+
   if Flags.mason then
     Pack.add({
       "https://github.com/mason-org/mason.nvim",

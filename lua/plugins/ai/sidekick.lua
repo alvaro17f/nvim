@@ -52,7 +52,7 @@ vim.keymap.set({ "n", "i", "t" }, "<c-'>", function()
 end, { desc = "Sidekick: Toggle CLI" })
 
 vim.keymap.set({ "x" }, "<c-'>", function()
-  sidekick_cli.send({ msg = "{selection}", name = tool, focus = true })
+  sidekick_cli.send({ msg = "{line}", name = tool, focus = true })
 end, { desc = "Sidekick: Send Visual Selection" })
 
 vim.keymap.set({ "n", "v" }, "<a-'>", function()

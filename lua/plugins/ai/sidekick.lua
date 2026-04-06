@@ -1,7 +1,7 @@
 Pack.add({ "https://github.com/folke/sidekick.nvim" })
 
----@type "crush" | "opencode"
-local tool = "opencode"
+---@type "opencode" | "pi"
+local tool = "pi"
 
 local sidekick = require("sidekick")
 local sidekick_cli = require("sidekick.cli")

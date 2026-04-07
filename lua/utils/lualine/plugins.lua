@@ -28,7 +28,8 @@ Utils.lualine.plugins = {
         color = function()
           local status = require("sidekick.status").get()
           if status then
-            return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
+            local hl = status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
+            return { fg = Utils.color(hl, "fg") }
           end
         end,
         cond = function()

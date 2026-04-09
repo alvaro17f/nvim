@@ -23,7 +23,7 @@ sidekick.setup({
     },
     win = {
       bo = {
-        filetype = "copilot",
+        filetype = "agent",
       },
       keys = {
         prompt = { "<a-'>", "prompt" },

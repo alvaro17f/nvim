@@ -1,7 +1,7 @@
 local plugins = {}
 
-if Flags.copilot then
-  table.insert(plugins, require("plugins.ai." .. Flags.copilot))
+if Flags.agent then
+  table.insert(plugins, require("plugins.ai." .. Flags.agent))
 end
 
 if Flags.suggestions and Flags.suggestions ~= "lsp" then

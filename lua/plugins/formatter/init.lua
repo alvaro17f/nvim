@@ -10,6 +10,7 @@ local formatters = {
     "biome",
     "biome-check",
     "biome-organize-imports",
+    "oxfmt",
   },
   go = { "gofmt", "goimports" },
   http = { "kulala-fmt" },
@@ -46,6 +47,9 @@ conform.setup({
     -- ["_"] = { "trim_newlines", "trim_whitespace" },
   },
   formatters = {
+    ["oxfmt"] = {
+      require_cwd = true,
+    },
     ["biome"] = {
       require_cwd = true,
     },
@@ -59,12 +63,14 @@ conform.setup({
       require_cwd = true,
       condition = function(self, ctx)
         return not conform.get_formatter_config("biome", ctx.buf).cwd(self, ctx)
+          and not conform.get_formatter_config("oxfmt", ctx.buf).cwd(self, ctx)
       end,
     },
     ["prettierd"] = {
       require_cwd = true,
       condition = function(self, ctx)
         return not conform.get_formatter_config("biome", ctx.buf).cwd(self, ctx)
+          and not conform.get_formatter_config("oxfmt", ctx.buf).cwd(self, ctx)
       end,
     },
   },
